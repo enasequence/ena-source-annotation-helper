@@ -37,7 +37,7 @@ build_dev:
     - dcap-gitlab-runner
   artifacts:
     paths:
-      - build/libs/clearinghouse-${VERSION}.war
+      - build/libs/source-annotation-helper-${VERSION}.war
   only:
     - master
 
@@ -59,16 +59,16 @@ deploy_dev:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
   script:
-    - chmod u+x build/libs/clearinghouse-${VERSION}.war
-    - scp -o StrictHostKeyChecking=no build/libs/clearinghouse-${VERSION}.war ena_adm@wp-np2-5c:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/deploy
-    - ssh ena_adm@wp-np2-5c "sed -i 's/clearinghouse-.*/clearinghouse-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/conf/Catalina/localhost/ena#clearinghouse#api.xml"
+    - chmod u+x build/libs/source-annotation-helper-${VERSION}.war
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-np2-5c:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/deploy
+    - ssh ena_adm@wp-np2-5c "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
   tags:
     - dcap-gitlab-runner
   dependencies:
     - build_dev
   environment:
     name: dev
-    url: https://wwwdev.ebi.ac.uk/ena/clearinghouse/api
+    url: https://wwwdev.ebi.ac.uk/ena/source-annotation-helper/api
   only:
     - master
 
@@ -84,7 +84,7 @@ build_prod:
     - dcap-gitlab-runner
   artifacts:
     paths:
-      - build/libs/clearinghouse-${VERSION}.war
+      - build/libs/source-annotation-helper-${VERSION}.war
   only:
     - master
 
@@ -106,22 +106,22 @@ deploy_prod:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
   script:
-    - chmod u+x build/libs/clearinghouse-${VERSION}.war
-    - scp -o StrictHostKeyChecking=no build/libs/clearinghouse-${VERSION}.war ena_adm@wp-p1m-4a:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-clearinghouse/deploy
-#    - scp -o StrictHostKeyChecking=no build/libs/clearinghouse-${VERSION}.war ena_adm@wp-p1m-4b:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-clearinghouse/deploy
-    - scp -o StrictHostKeyChecking=no build/libs/clearinghouse-${VERSION}.war ena_adm@wp-p2m-4a:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-clearinghouse/deploy
-#    - scp -o StrictHostKeyChecking=no build/libs/clearinghouse-${VERSION}.war ena_adm@wp-p2m-4b:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-clearinghouse/deploy
-    - ssh ena_adm@wp-p1m-4a "sed -i 's/clearinghouse-.*/clearinghouse-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-clearinghouse/conf/Catalina/localhost/ena#clearinghouse#api.xml"
-#    - ssh ena_adm@wp-p1m-4b "sed -i 's/clearinghouse-.*/clearinghouse-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-clearinghouse/conf/Catalina/localhost/ena#clearinghouse#api.xml"
-    - ssh ena_adm@wp-p2m-4a "sed -i 's/clearinghouse-.*/clearinghouse-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-clearinghouse/conf/Catalina/localhost/ena#clearinghouse#api.xml"
-#    - ssh ena_adm@wp-p2m-4b "sed -i 's/clearinghouse-.*/clearinghouse-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-clearinghouse/conf/Catalina/localhost/ena#clearinghouse#api.xml"
+    - chmod u+x build/libs/source-annotation-helper-${VERSION}.war
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p1m-4a:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+#    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p1m-4b:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p2m-4a:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+#    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p2m-4b:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+    - ssh ena_adm@wp-p1m-4a "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+#    - ssh ena_adm@wp-p1m-4b "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+    - ssh ena_adm@wp-p2m-4a "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+#    - ssh ena_adm@wp-p2m-4b "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
   tags:
     - dcap-gitlab-runner
   dependencies:
     - build_prod
   environment:
     name: prod
-    url: https://www.ebi.ac.uk/ena/clearinghouse/api
+    url: https://www.ebi.ac.uk/ena/source-annotation-helper/api
   when: manual
   only:
     - master
