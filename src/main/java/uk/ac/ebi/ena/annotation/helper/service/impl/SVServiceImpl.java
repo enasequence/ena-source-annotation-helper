@@ -1,7 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.service.impl;
 
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
-import uk.ac.ebi.ena.annotation.helper.model.Collection;
 import uk.ac.ebi.ena.annotation.helper.model.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.StringJoiner;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -27,6 +25,9 @@ public class SVServiceImpl implements SVService {
     @Autowired
     private SVInstituteServiceHelper svInstituteServiceHelper;
 
+    @Autowired
+    private SVCollectionServiceHelper svCollectionServiceHelper;
+
 
     @Override
     public ResponseDto validateSV(String specimenVoucher) {
@@ -35,10 +36,10 @@ public class SVServiceImpl implements SVService {
             //todo error scenario
         } else if(tokenizedSV.length == 2) {
             //todo [<Institution Unique Name>:]<specimen_id>
-            svInstituteServiceHelper.validateInstituteUniqueName(tokenizedSV[0]);
+            svInstituteServiceHelper.validateInstitute(tokenizedSV[0]);
         } else if(tokenizedSV.length == 3) {
             //todo [<Institution Unique Name>:[<collection-code>:]]<specimen_id>
-            svInstituteServiceHelper.validateInstituteUniqueName(tokenizedSV[0]);
+            svInstituteServiceHelper.validateInstitute(tokenizedSV[0]);
             //validateCollectionCode(tokenizedSV[1]);
         } else {
             //todo error no valid scenario
@@ -86,14 +87,6 @@ public class SVServiceImpl implements SVService {
     }
 
 
-
-    private boolean validateCollectionCode(String instUniqueName, String collCode) {
-//        Optional<Collection> optionalCollection = collectionRepository.findByCollCode(instUniqueName, collCode);
-//        if (optionalCollection.isPresent()) {
-//            return true;
-//        }
-        return false;
-    }
 
 
     @Override
