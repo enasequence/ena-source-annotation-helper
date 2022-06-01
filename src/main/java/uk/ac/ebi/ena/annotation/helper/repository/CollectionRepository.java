@@ -1,15 +1,16 @@
 package uk.ac.ebi.ena.annotation.helper.repository;
 
-import uk.ac.ebi.ena.annotation.helper.model.Collection;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import uk.ac.ebi.ena.annotation.helper.model.Collection;
 
 import java.util.List;
+import java.util.Optional;
 
-public interface SVCollectionRepository extends ElasticsearchRepository<Collection, String> {
+public interface CollectionRepository extends ElasticsearchRepository<Collection, String> {
     List<Collection> findAll();
 
-    Collection findByCollCode(String collCode);
+    Optional<Collection> findByCollCode(String collCode);
 
     @Query("{\"multi_match\": {\"fields\": [\"coll_code\", \"coll_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Collection> findByCollNameFuzzy(String name);

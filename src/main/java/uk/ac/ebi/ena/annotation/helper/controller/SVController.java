@@ -56,7 +56,7 @@ public class SVController {
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> validateSV(@PathVariable String specimenVoucher) {
-        ResponseDto responseDto = SVService.validate(specimenVoucher);
+        ResponseDto responseDto = SVService.validateSV(specimenVoucher);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -68,7 +68,7 @@ public class SVController {
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> constructSV(@PathVariable String instCode, @PathVariable String collCode, @PathVariable String specimenId) {
-        ResponseDto responseDto = SVService.construct(instCode, collCode, specimenId);
+        ResponseDto responseDto = SVService.constructSV(instCode, collCode, specimenId);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }

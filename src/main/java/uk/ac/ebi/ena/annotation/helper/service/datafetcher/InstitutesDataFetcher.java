@@ -25,7 +25,7 @@ public class InstitutesDataFetcher implements DataFetcher<List<Institute>>{
         if(isEmpty(query)) {
             return instituteRepository.findAll();
         } else {
-            return instituteRepository.findByInstituteNameFuzzy(query);
+            return instituteRepository.findByInstituteStringFuzzy(query);
         }
     }
 }

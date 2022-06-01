@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface SVService {
 
-    public ResponseDto validate(String specimenVoucher);
+    public ResponseDto validateSV(String specimenVoucher);
 
-    public ResponseDto construct(String instCode, String collCode, String specimenId);
+    public ResponseDto constructSV(String instCode, String collCode, String specimenId);
 
     Institute save(Institute institute);
 

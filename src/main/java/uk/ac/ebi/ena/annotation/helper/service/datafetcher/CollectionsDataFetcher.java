@@ -1,7 +1,7 @@
 package uk.ac.ebi.ena.annotation.helper.service.datafetcher;
 
 import uk.ac.ebi.ena.annotation.helper.model.Collection;
-import uk.ac.ebi.ena.annotation.helper.repository.SVCollectionRepository;
+import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class CollectionsDataFetcher implements DataFetcher<List<Collection>> {
 
     @Autowired
-    SVCollectionRepository svCollectionRepository;
+    CollectionRepository collectionRepository;
 
     @Override
     public List<Collection> get(DataFetchingEnvironment dataFetchingEnvironment) {
@@ -23,9 +23,9 @@ public class CollectionsDataFetcher implements DataFetcher<List<Collection>> {
         String query = dataFetchingEnvironment.getArgument("query");
 
         if (isEmpty(query)) {
-            return svCollectionRepository.findAll();
+            return collectionRepository.findAll();
         } else {
-            return svCollectionRepository.findByCollNameFuzzy(query);
+            return collectionRepository.findByCollNameFuzzy(query);
         }
     }
 }
