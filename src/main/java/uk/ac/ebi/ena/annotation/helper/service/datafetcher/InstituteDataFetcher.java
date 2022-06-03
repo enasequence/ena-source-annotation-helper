@@ -4,7 +4,7 @@ import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import uk.ac.ebi.ena.annotation.helper.model.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 
 import java.util.Optional;

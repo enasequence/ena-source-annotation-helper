@@ -2,7 +2,8 @@ package uk.ac.ebi.ena.annotation.helper.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.ac.ebi.ena.annotation.helper.model.Institute;
+import uk.ac.ebi.ena.annotation.helper.dto.InstituteResponse;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class SVInstituteServiceHelper {
     @Autowired
     private InstituteRepository instituteRepository;
 
-    public boolean validateInstitute(String instituteString) {
+    public InstituteResponse validateInstitute(String instituteString) {
         //todo - step-1
         isValidInstituteCode(instituteString);
         //todo - step-2
@@ -22,7 +23,7 @@ public class SVInstituteServiceHelper {
         //todo - step-3
         searchPossibleInstitutesByName(instituteString);
 
-        return false;
+        return null;
     }
 
 

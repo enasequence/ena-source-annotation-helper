@@ -1,6 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.repository;
 
-import uk.ac.ebi.ena.annotation.helper.model.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 

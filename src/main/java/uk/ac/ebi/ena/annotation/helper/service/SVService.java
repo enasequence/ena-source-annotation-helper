@@ -1,7 +1,7 @@
 package uk.ac.ebi.ena.annotation.helper.service;
 
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
-import uk.ac.ebi.ena.annotation.helper.model.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 
 import java.util.List;
 

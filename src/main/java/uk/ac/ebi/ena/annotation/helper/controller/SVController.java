@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
-import uk.ac.ebi.ena.annotation.helper.model.Data;
+import uk.ac.ebi.ena.annotation.helper.dto.Data;
 import uk.ac.ebi.ena.annotation.helper.service.GraphQLService;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
 

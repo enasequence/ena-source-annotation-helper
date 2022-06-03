@@ -2,7 +2,7 @@ package uk.ac.ebi.ena.annotation.helper.repository;
 
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
-import uk.ac.ebi.ena.annotation.helper.model.Collection;
+import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 
 import java.util.List;
 import java.util.Optional;

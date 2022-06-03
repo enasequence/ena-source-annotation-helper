@@ -1,6 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.service.datafetcher;
 
-import uk.ac.ebi.ena.annotation.helper.model.Collection;
+import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;

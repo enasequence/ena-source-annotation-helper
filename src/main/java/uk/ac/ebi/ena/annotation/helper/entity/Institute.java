@@ -1,4 +1,4 @@
-package uk.ac.ebi.ena.annotation.helper.model;
+package uk.ac.ebi.ena.annotation.helper.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

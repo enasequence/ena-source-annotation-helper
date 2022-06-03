@@ -1,7 +1,7 @@
 package uk.ac.ebi.ena.annotation.helper.service.impl;
 
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
-import uk.ac.ebi.ena.annotation.helper.model.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;

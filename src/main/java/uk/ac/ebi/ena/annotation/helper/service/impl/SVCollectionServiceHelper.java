@@ -2,10 +2,9 @@ package uk.ac.ebi.ena.annotation.helper.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.ac.ebi.ena.annotation.helper.model.Collection;
-import uk.ac.ebi.ena.annotation.helper.model.Institute;
+import uk.ac.ebi.ena.annotation.helper.dto.CollectionResponse;
+import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
-import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +18,13 @@ public class SVCollectionServiceHelper {
     @Autowired
     private CollectionRepository collectionRepository;
 
-    private boolean validateCollection(int instId, String collectionString) {
+    private CollectionResponse validateCollection(int instId, String collectionString) {
         //todo - step-1
         isValidCollectionCode(instId, collectionString);
         //todo - step-2
         searchPossibleCollectionsByName(instId, collectionString);
 
-        return false;
+        return null;
     }
 
     private boolean isValidCollectionCode(int instId, String collectionString) {

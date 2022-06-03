@@ -1,6 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.service.datafetcher;
 
-import uk.ac.ebi.ena.annotation.helper.model.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
