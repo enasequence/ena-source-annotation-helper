@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.InstituteResponse;
 import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
+import uk.ac.ebi.ena.annotation.helper.utils.SVConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,48 +18,77 @@ public class SVInstituteServiceHelper {
     private InstituteRepository instituteRepository;
 
     public InstituteResponse validateInstitute(String instituteString) {
-        //todo - step-1
-        isValidInstituteCode(instituteString);
-        //todo - step-2
-        searchPossibleInstitutesByUniqueName(instituteString);
-        //todo - step-3
-        searchPossibleInstitutesByName(instituteString);
+        //step-1 - Exact Search on InstUniqueName
+        InstituteResponse instituteResponse = isValidInstituteUniqueName(instituteString);
+        if (instituteResponse.isSuccess()) {
+            return instituteResponse;
+        }
+        //step-2 - check for Similar Search on provided string
+        instituteResponse = searchSimilarInstitutesByUniqueName(instituteString);
+        if (instituteResponse.isSuccess()) {
+            return instituteResponse;
+        }
+        //step-3 - Similar Search with more fuzziness on InstName
+        return searchSimilarInstitutesByName(instituteString);
 
-        return null;
     }
 
 
     /**
-     * isValidInstituteName - exact match.
+     * isValidInstituteUniqueName - exact match.
      *
      * @param instCode
      * @return
      */
-    private boolean isValidInstituteCode(String instCode) {
-        //todo >> Exact Search on InstCode
-        Optional<Institute> optionalInstitute = instituteRepository.findByInstCode(instCode);
+    private InstituteResponse isValidInstituteUniqueName(String instCode) {
+        //todo >> Exact Search on InstUniqueName
+        Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(instCode);
         if (optionalInstitute.isPresent()) {
-            return true;
+            Institute inst = optionalInstitute.get();
+            List instList = new ArrayList<Institute>();
+            instList.add(inst);
+            return InstituteResponse.builder()
+                    .institutes(instList)
+                    .match(SVConstants.EXACT_MATCH)
+                    .success(true)
+                    .build();
         }
-        return false;
+        return InstituteResponse.builder()
+                .match(SVConstants.NO_MATCH)
+                .success(false)
+                .build();
     }
 
-    private boolean searchPossibleInstitutesByUniqueName(String instUniqueName) {
+    private InstituteResponse searchSimilarInstitutesByUniqueName(String instUniqueName) {
         //todo >> Similar Search on InstUniqueName
         List<Institute> listInstitute = instituteRepository.findByInstituteUniqueNameFuzzy(instUniqueName);
-        if (listInstitute.isEmpty()) {
-            //todo create object to set
+        if (!listInstitute.isEmpty() && listInstitute.size() >= 1) {
+            return InstituteResponse.builder()
+                    .institutes(listInstitute)
+                    .match(listInstitute.size() == 1 ? SVConstants.EXACT_MATCH : SVConstants.MULTI_NEAR_MATCH)
+                    .success(true)
+                    .build();
         }
-        return false;
+        return InstituteResponse.builder()
+                .match(SVConstants.NO_MATCH)
+                .success(false)
+                .build();
     }
 
-    private boolean searchPossibleInstitutesByName(String instName) {
+    private InstituteResponse searchSimilarInstitutesByName(String instName) {
         //todo >> Similar Search with more fuzziness on InstName
         List<Institute> listInstitute = instituteRepository.findByInstituteNameFuzzy(instName);
-        if (listInstitute.isEmpty()) {
-            //todo create object to set
+        if (!listInstitute.isEmpty() && listInstitute.size() >= 1) {
+            return InstituteResponse.builder()
+                    .institutes(listInstitute)
+                    .match(listInstitute.size() == 1 ? SVConstants.EXACT_MATCH : SVConstants.MULTI_NEAR_MATCH)
+                    .success(true)
+                    .build();
         }
-        return false;
+        return InstituteResponse.builder()
+                .match(SVConstants.NO_MATCH)
+                .success(false)
+                .build();
     }
 
 }

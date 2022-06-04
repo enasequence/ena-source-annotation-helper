@@ -17,8 +17,8 @@ public class InstituteDataFetcher implements DataFetcher<Institute> {
 
     @Override
     public Institute get(DataFetchingEnvironment dataFetchingEnvironment) {
-        String instCode = dataFetchingEnvironment.getArgument("instCode");
-        Optional<Institute> optionalInstitute = instituteRepository.findByInstCode(instCode);
+        String instCode = dataFetchingEnvironment.getArgument("instUniqueName");
+        Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(instCode);
         if (optionalInstitute.isPresent()) {
             return optionalInstitute.get();
         } else {

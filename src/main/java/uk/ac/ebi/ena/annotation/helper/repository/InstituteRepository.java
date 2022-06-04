@@ -16,7 +16,7 @@ public interface InstituteRepository extends ElasticsearchRepository<Institute, 
 
     Optional<Institute> findByUniqueName(String uniqueName);
 
-    @Query("{\"multi_match\": {\"fields\": [\"unique_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
+    @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institute> findByInstituteUniqueNameFuzzy(String uniqueName);
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")

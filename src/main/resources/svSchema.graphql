@@ -4,7 +4,7 @@ schema {
 
 type Query {
     institutes(query: String): [Institute]
-    institute(instCode: String): Institute
+    institute(instUniqueName: String): Institute
     collections(query: String): [Collection]
     collection(collCode: String): Collection
 }

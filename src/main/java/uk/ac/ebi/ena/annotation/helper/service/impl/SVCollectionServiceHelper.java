@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.CollectionResponse;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
+import uk.ac.ebi.ena.annotation.helper.utils.SVConstants;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,31 +22,49 @@ public class SVCollectionServiceHelper {
     private CollectionRepository collectionRepository;
 
     private CollectionResponse validateCollection(int instId, String collectionString) {
-        //todo - step-1
-        isValidCollectionCode(instId, collectionString);
-        //todo - step-2
-        searchPossibleCollectionsByName(instId, collectionString);
+        //step-1 - Exact search on Collection Code
+        CollectionResponse collectionResponse = isValidCollectionCode(instId, collectionString);
+        if (collectionResponse.isSuccess()) {
+            return collectionResponse;
+        }
+        //step-2 - Similar Search on Collection Name
+        return searchPossibleCollectionsByName(instId, collectionString);
 
-        return null;
     }
 
-    private boolean isValidCollectionCode(int instId, String collectionString) {
-        //todo >> Exact Search on InstCode
+    private CollectionResponse isValidCollectionCode(int instId, String collectionString) {
+        //todo >> Exact search on Collection Code
         Optional<Collection> optionalCollection = collectionRepository.findByInstIdAndCollCode(instId, collectionString);
         if (optionalCollection.isPresent()) {
-            return true;
+            Collection inst = optionalCollection.get();
+            List collList = new ArrayList<Institute>();
+            collList.add(inst);
+            return CollectionResponse.builder()
+                    .collections(collList)
+                    .match(SVConstants.EXACT_MATCH)
+                    .success(true)
+                    .build();
         }
-        return false;
+        return CollectionResponse.builder()
+                .match(SVConstants.NO_MATCH)
+                .success(false)
+                .build();
     }
 
-    private boolean searchPossibleCollectionsByName(int instId, String collectionString) {
-        //todo >> Similar Search with more fuzziness on InstName
+    private CollectionResponse searchPossibleCollectionsByName(int instId, String collectionString) {
+        //todo >> Similar Search on Collection Name
         List<Collection> listCollection = collectionRepository.findByInstIdAndCollNameFuzzy(instId, collectionString);
-        if (listCollection.isEmpty()) {
-            //todo create object to set
+        if (listCollection.isEmpty() && listCollection.size() >= 1) {
+            return CollectionResponse.builder()
+                    .collections(listCollection)
+                    .match(SVConstants.EXACT_MATCH)
+                    .success(true)
+                    .build();
         }
-        return false;
+        return CollectionResponse.builder()
+                .match(SVConstants.NO_MATCH)
+                .success(false)
+                .build();
     }
-
-
+    
 }
