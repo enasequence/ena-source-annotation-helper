@@ -65,7 +65,7 @@ public class SVInstituteServiceHelper {
         if (!listInstitute.isEmpty() && listInstitute.size() >= 1) {
             return InstituteResponse.builder()
                     .institutes(listInstitute)
-                    .match(listInstitute.size() == 1 ? SVConstants.EXACT_MATCH : SVConstants.MULTI_NEAR_MATCH)
+                    .match(listInstitute.size() == 1 ? SVConstants.MULTI_NEAR_MATCH : SVConstants.MULTI_NEAR_MATCH)
                     .success(true)
                     .build();
         }

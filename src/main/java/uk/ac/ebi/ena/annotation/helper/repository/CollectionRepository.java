@@ -14,9 +14,13 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
 
     Optional<Collection> findByInstIdAndCollCode(int instId, String collCode);
 
-    @Query("{ \"query\": { \"bool\": { \"must\": [ { \"match\": { \"inst_id\": ?0 } }, { \"multi_match\": " +
-            "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }}")
+    @Query("{ \"bool\": { \"must\": [ { \"match\": { \"inst_id\": ?0 } }, { \"multi_match\": " +
+            "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
     List<Collection> findByInstIdAndCollNameFuzzy(int instId, String name);
+
+    @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"multi_match\": " +
+            "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
+    List<Collection> findByMultipleInstIdsAndCollNameFuzzy(List instIdList, String name);
 
     @Query("{\"multi_match\": {\"fields\": [\"coll_code\", \"coll_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Collection> findByCollNameFuzzy(String name);

@@ -11,6 +11,7 @@ import uk.ac.ebi.ena.annotation.helper.utils.SVConstants;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SVCollectionServiceHelper {
@@ -21,7 +22,26 @@ public class SVCollectionServiceHelper {
     @Autowired
     private CollectionRepository collectionRepository;
 
-    private CollectionResponse validateCollection(int instId, String collectionString) {
+
+    public CollectionResponse validateMultipleInstIdsAndCollName(List<Institute> instList, String collectionString) {
+        //step-1 - Exact search on Collection Code
+        List<Integer> instIdList = instList.stream().map(x -> x.getInstId()).collect(Collectors.toList());
+        List<Collection> listCollection = collectionRepository
+                .findByMultipleInstIdsAndCollNameFuzzy(instIdList, collectionString);
+        if (listCollection.isEmpty() && listCollection.size() >= 1) {
+            return CollectionResponse.builder()
+                    .collections(listCollection)
+                    .match(listCollection.size() == 1 ? SVConstants.MULTI_NEAR_MATCH : SVConstants.MULTI_NEAR_MATCH)
+                    .success(true)
+                    .build();
+        }
+        return CollectionResponse.builder()
+                .match(SVConstants.NO_MATCH)
+                .success(false)
+                .build();
+    }
+
+    public CollectionResponse validateCollection(int instId, String collectionString) {
         //step-1 - Exact search on Collection Code
         CollectionResponse collectionResponse = isValidCollectionCode(instId, collectionString);
         if (collectionResponse.isSuccess()) {
@@ -29,7 +49,6 @@ public class SVCollectionServiceHelper {
         }
         //step-2 - Similar Search on Collection Name
         return searchPossibleCollectionsByName(instId, collectionString);
-
     }
 
     private CollectionResponse isValidCollectionCode(int instId, String collectionString) {
@@ -57,7 +76,7 @@ public class SVCollectionServiceHelper {
         if (listCollection.isEmpty() && listCollection.size() >= 1) {
             return CollectionResponse.builder()
                     .collections(listCollection)
-                    .match(SVConstants.EXACT_MATCH)
+                    .match(listCollection.size() == 1 ? SVConstants.MULTI_NEAR_MATCH : SVConstants.MULTI_NEAR_MATCH)
                     .success(true)
                     .build();
         }
@@ -66,5 +85,5 @@ public class SVCollectionServiceHelper {
                 .success(false)
                 .build();
     }
-    
+
 }
