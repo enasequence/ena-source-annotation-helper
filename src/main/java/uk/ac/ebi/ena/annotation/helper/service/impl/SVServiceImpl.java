@@ -1,5 +1,8 @@
 package uk.ac.ebi.ena.annotation.helper.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.CollectionResponse;
 import uk.ac.ebi.ena.annotation.helper.dto.InstituteResponse;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
@@ -7,16 +10,15 @@ import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.StringJoiner;
 
-import static org.springframework.util.ObjectUtils.isEmpty;
-
 @Service
 public class SVServiceImpl implements SVService {
+
+    @Value("${ena.annotation.helper.suggestions.limit}")
+    private int SUGGESTIONS_LIMIT;
 
     @Autowired
     private InstituteRepository instituteRepository;
@@ -33,7 +35,7 @@ public class SVServiceImpl implements SVService {
 
     @Override
     public ResponseDto validateSV(String specimenVoucher) {
-        String[] tokenizedSV = "specimenVoucher".split(":");
+        String[] tokenizedSV = specimenVoucher.split(":");
         if (tokenizedSV.length < 2 || tokenizedSV.length > 3) {
             //todo error scenario
         }
@@ -44,9 +46,9 @@ public class SVServiceImpl implements SVService {
             int responseSize = instituteResponse.getInstitutes().size();
             if (responseSize == 1) {
                 //todo set validation success
-            } else if (responseSize > 1 && responseSize <= 10) {
+            } else if (responseSize > 1 && responseSize <= SUGGESTIONS_LIMIT) {
                 //todo set valid options list
-            } else if (responseSize > 10) {
+            } else if (responseSize > SUGGESTIONS_LIMIT) {
                 // todo can't validate and suggest
                 //todo set and return too many hits.. please verify / be more accurate -- the institute unique name entered..
             }
