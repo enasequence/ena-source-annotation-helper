@@ -3,8 +3,8 @@ package uk.ac.ebi.ena.annotation.helper.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import uk.ac.ebi.ena.annotation.helper.dto.CollectionResponse;
-import uk.ac.ebi.ena.annotation.helper.dto.InstituteResponse;
+import uk.ac.ebi.ena.annotation.helper.dto.CollectionSearchResult;
+import uk.ac.ebi.ena.annotation.helper.dto.InstituteSearchResult;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
@@ -41,9 +41,9 @@ public class SVServiceImpl implements SVService {
         }
 
         //[<Institution Unique Name>:]<specimen_id>
-        InstituteResponse instituteResponse = svInstituteServiceHelper.validateInstitute(tokenizedSV[0]);
-        if (instituteResponse.isSuccess()) {
-            int responseSize = instituteResponse.getInstitutes().size();
+        InstituteSearchResult instituteSearchResult = svInstituteServiceHelper.validateInstitute(tokenizedSV[0]);
+        if (instituteSearchResult.isSuccess()) {
+            int responseSize = instituteSearchResult.getInstitutes().size();
             if (responseSize == 1) {
                 //todo set validation success
             } else if (responseSize > 1 && responseSize <= SUGGESTIONS_LIMIT) {
@@ -57,8 +57,8 @@ public class SVServiceImpl implements SVService {
         //[<Institution Unique Name>:[<collection-code>:]]<specimen_id>
         if (tokenizedSV.length == 3) {
             //todo for each institute in list validate the provided collection
-            CollectionResponse collectionResponse = svCollectionServiceHelper
-                    .validateMultipleInstIdsAndCollName(instituteResponse.getInstitutes(), tokenizedSV[1]);
+            CollectionSearchResult collectionSearchResult = svCollectionServiceHelper
+                    .validateMultipleInstIdsAndCollName(instituteSearchResult.getInstitutes(), tokenizedSV[1]);
             //validateCollectionCode(tokenizedSV[1]);
         } else {
             //todo error no valid scenario

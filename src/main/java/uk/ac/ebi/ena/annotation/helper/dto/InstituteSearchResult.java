@@ -2,16 +2,16 @@ package uk.ac.ebi.ena.annotation.helper.dto;
 
 import lombok.Builder;
 import lombok.Data;
-import uk.ac.ebi.ena.annotation.helper.entity.Collection;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 
 import java.util.List;
 
 @Data
 @Builder
-public class CollectionResponse {
+public class InstituteSearchResult {
 
     int match;
-    List<Collection> collections;
+    List<Institute> institutes;
     private String message;
     private boolean success;
 

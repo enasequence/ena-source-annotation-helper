@@ -14,8 +14,6 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseDto {
 
-    private String id;
-
     private String message;
 
     private boolean success;

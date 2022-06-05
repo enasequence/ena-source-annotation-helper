@@ -55,9 +55,9 @@ query collections($queryStr: String) {
   - [X] Integrate Querying Playground / UI
   - [X] Publish Schema Docs on UI
 - [X] Bring all in convention
+- [X] Bulk Load Elastic Indexes for Institutes and Collections 
 - [ ] Expose Search as well as REST APIs for now
-- [ ] Contruct and Validate to be exposed as REST APIs
-- [ ] Contruct is going to be a REST call
+- [ ] Construct and Validate to be exposed as REST APIs
 - [ ] Document Institutes / Collections / Contruct based on the current understanding 
 - [ ] Start building basic UI / HTML 
 - [ ] GraphQL UI exposure -
