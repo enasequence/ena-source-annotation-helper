@@ -15,11 +15,17 @@ import java.util.List;
 public class ResponseDto {
 
     private String message;
-
     private boolean success;
-
     private LocalDateTime timestamp;
-
     private List<SVErrorResponse> errors;
 
+    public ResponseDto() {
+    }
+
+    public ResponseDto(String message, boolean success, LocalDateTime timestamp, List<SVErrorResponse> errors) {
+        this.message = message;
+        this.success = success;
+        this.timestamp = timestamp;
+        this.errors = errors;
+    }
 }

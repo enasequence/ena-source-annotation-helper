@@ -3,16 +3,19 @@ package uk.ac.ebi.ena.annotation.helper.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import uk.ac.ebi.ena.annotation.helper.dto.CollectionSearchResult;
-import uk.ac.ebi.ena.annotation.helper.dto.InstituteSearchResult;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
+import uk.ac.ebi.ena.annotation.helper.dto.SVResponseDto;
+import uk.ac.ebi.ena.annotation.helper.dto.SVSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Institute;
+import uk.ac.ebi.ena.annotation.helper.mapper.SVResponseMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.StringJoiner;
+import java.util.stream.Collectors;
 
 @Service
 public class SVServiceImpl implements SVService {
@@ -34,18 +37,22 @@ public class SVServiceImpl implements SVService {
 
 
     @Override
-    public ResponseDto validateSV(String specimenVoucher) {
+    public SVResponseDto validateSV(String specimenVoucher) {
         String[] tokenizedSV = specimenVoucher.split(":");
+        SVResponseMapper svResponseMapper = new SVResponseMapper();
+
         if (tokenizedSV.length < 2 || tokenizedSV.length > 3) {
             //todo error scenario
         }
 
         //[<Institution Unique Name>:]<specimen_id>
-        InstituteSearchResult instituteSearchResult = svInstituteServiceHelper.validateInstitute(tokenizedSV[0]);
-        if (instituteSearchResult.isSuccess()) {
-            int responseSize = instituteSearchResult.getInstitutes().size();
-            if (responseSize == 1) {
-                //todo set validation success
+        SVSearchResult svSearchResult = svInstituteServiceHelper.validateInstitute(tokenizedSV[0]);
+        if (svSearchResult.isSuccess()) {
+            int responseSize = svSearchResult.getInstitutes().size();
+            if (responseSize == 1 && tokenizedSV.length == 2) {
+                //since collection code is not available, build the response object and return
+                svSearchResult.setSpecimenId(tokenizedSV[1]);
+                return svResponseMapper.mapResponseDto(svSearchResult);
             } else if (responseSize > 1 && responseSize <= SUGGESTIONS_LIMIT) {
                 //todo set valid options list
             } else if (responseSize > SUGGESTIONS_LIMIT) {
@@ -57,8 +64,17 @@ public class SVServiceImpl implements SVService {
         //[<Institution Unique Name>:[<collection-code>:]]<specimen_id>
         if (tokenizedSV.length == 3) {
             //todo for each institute in list validate the provided collection
-            CollectionSearchResult collectionSearchResult = svCollectionServiceHelper
-                    .validateMultipleInstIdsAndCollName(instituteSearchResult.getInstitutes(), tokenizedSV[1]);
+            svSearchResult.setCollectionAvailable(true);
+            //have the institute id and unique name available for rest of the search and construct
+//            List<Integer> instIdList = instList.stream().map(x -> x.getInstId())
+//                    .collect(Collectors.toMap(x, y));
+
+            Map mapInstIdUniqueName = svSearchResult.getInstitutes().stream()
+                    .collect(Collectors.toMap(Institute::getInstId, Institute::getUniqueName));
+            svSearchResult.setInstituteIdNameMap(mapInstIdUniqueName);
+
+            svSearchResult = svCollectionServiceHelper
+                    .validateMultipleInstIdsAndCollName(svSearchResult, tokenizedSV[1]);
             //validateCollectionCode(tokenizedSV[1]);
         } else {
             //todo error no valid scenario

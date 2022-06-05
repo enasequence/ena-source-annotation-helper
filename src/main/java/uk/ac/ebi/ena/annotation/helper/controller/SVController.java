@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.Data;
+import uk.ac.ebi.ena.annotation.helper.dto.SVResponseDto;
 import uk.ac.ebi.ena.annotation.helper.service.GraphQLService;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
 
@@ -56,7 +57,7 @@ public class SVController {
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> validateSV(@PathVariable String specimenVoucher) {
-        ResponseDto responseDto = SVService.validateSV(specimenVoucher);
+        SVResponseDto responseDto = SVService.validateSV(specimenVoucher);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
