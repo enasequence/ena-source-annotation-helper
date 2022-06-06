@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface CollectionRepository extends ElasticsearchRepository<Collection, String> {
     List<Collection> findAll();
 
-    Optional<Collection> findByCollCode(String collCode);
+    List<Collection> findByCollCode(String collCode);
 
     Optional<Collection> findByInstIdAndCollCode(int instId, String collCode);
 

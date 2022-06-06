@@ -26,13 +26,12 @@ dependencies {
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
 	implementation group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.2.0.Final'
 
-	implementation 'io.springfox:springfox-swagger2:3.0.0'
+	implementation 'io.springfox:springfox-boot-starter:3.0.0'
 	implementation 'org.apache.commons:commons-lang3:3.12.0'
 	implementation 'commons-validator:commons-validator:1.7'
 
 
 	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:12.0.0'
-//	implementation 'com.graphql-java-kickstart:graphql-java-servlet:12.0.0'
 	implementation 'com.graphql-java-kickstart:graphql-java-tools:12.0.2'
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 

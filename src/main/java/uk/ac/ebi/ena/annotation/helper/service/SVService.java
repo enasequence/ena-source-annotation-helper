@@ -17,6 +17,8 @@ public interface SVService {
 
     public ResponseDto findByUniqueName(String uniqueName);
 
+    public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode);
+
     public ResponseDto findByInstIdAndCollCode(int instId, String collCode);
 
     public ResponseDto findByCollCode(String collCode);

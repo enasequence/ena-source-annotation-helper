@@ -170,6 +170,22 @@ public class SVServiceImpl implements SVService {
     }
 
     @Override
+    public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode) {
+        Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(instUniqueName);
+        if (optionalInstitute.isPresent()) {
+            Optional<Collection> optionalCollection =
+                    collectionRepository.findByInstIdAndCollCode(optionalInstitute.get().getInstId(), collCode);
+            if (optionalCollection.isPresent()) {
+                return new CollectionResponseDto(Collections.singletonList(optionalCollection.get()),
+                        true, LocalDateTime.now());
+            }
+        }
+            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+            return new ResponseDto(false, LocalDateTime.now(), error);
+
+    }
+
+    @Override
     public ResponseDto findByInstIdAndCollCode(int instId, String collCode) {
         Optional<Collection> optionalCollection = collectionRepository.findByInstIdAndCollCode(instId, collCode);
         if (optionalCollection.isPresent()) {
@@ -183,14 +199,12 @@ public class SVServiceImpl implements SVService {
 
     @Override
     public ResponseDto findByCollCode(String collCode) throws RecordNotFoundException {
-        Optional<Collection> optionalCollection = collectionRepository.findByCollCode(collCode);
-        if (optionalCollection.isPresent()) {
-            return new CollectionResponseDto(Collections.singletonList(optionalCollection.get()),
-                    true, LocalDateTime.now());
-        } else {
-            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
-            return new ResponseDto(false, LocalDateTime.now(), error);
+        List<Collection> listCollection = collectionRepository.findByCollCode(collCode);
+        if (!listCollection.isEmpty()) {
+            return new CollectionResponseDto(listCollection, true, LocalDateTime.now());
         }
+        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+        return new ResponseDto(false, LocalDateTime.now(), error);
     }
 
     @Override

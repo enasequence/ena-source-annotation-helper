@@ -6,7 +6,7 @@ type Query {
     institutes(query: String): [Institute]
     institute(instUniqueName: String): Institute
     collections(query: String): [Collection]
-    collection(collCode: String): Collection
+    collection(instUniqueName: String, collCode: String): Collection
 }
 
 type Collection {

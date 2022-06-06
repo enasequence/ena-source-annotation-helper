@@ -243,190 +243,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "App-FuzzySearchTest",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "ANS"
-						},
-						"url": {
-							"raw": "http://localhost:8091/ena/inst",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8091",
-							"path": [
-								"ena",
-								"inst"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-TestByInstCode",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "AMG"
-						},
-						"url": {
-							"raw": "http://localhost:8080/ena/instcode",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"ena",
-								"instcode"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-GraphQL-FetchAll",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "{\n   institutes {\n     instId\n     instCode\n     uniqueName\n     instName\n   }\n }",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-GraphQL-FetchByCode",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n   institute (instCode: \"AMG\"){\n     instId\n     instCode\n     uniqueName\n     instName\n   }\n }"
-						},
-						"url": {
-							"raw": "http://localhost:8080/ena/institute",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"ena",
-								"institute"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-GraphQL-FuzzySearch",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"{ institutes (query: \\\"ANS\\\") { instId instCode uniqueName instName }}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-GraphQL-FuzzySearch-GQLPayload",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query institutes ($queryStr: String) {\n   institutes (query: $queryStr) {\n     instId\n     instCode\n     instName\n     uniqueName\n   }\n }",
-								"variables": "{\"queryStr\":\"ANS\"}"
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-GraphQL-All-Inst-GQLPayload",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query institutes ($queryStr: String) {\n   institutes (query: $queryStr) {\n     instId\n     instCode\n     instName\n     uniqueName\n   }\n }",
-								"variables": "{\"queryStr\":\"ANS\"}"
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -773,162 +589,949 @@
 						}
 					},
 					"response": []
-				},
+				}
+			]
+		},
+		{
+			"name": "InstituteAPIs",
+			"item": [
 				{
-					"name": "App-FuzzySearchTest",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "Ara"
-						},
-						"url": {
-							"raw": "http://localhost:8080/ena/collection",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"ena",
-								"collection"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-GraphQL-FetchAll",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "{\n   collections {\n     collId\n     collCode\n     instId\n     collName\n   }\n } ",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-GraphQL-FetchByCode",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "{\n   collections (query: \"AMG\"){\n     collId\n     collCode\n     instId\n     collName\n   }\n } ",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "App-GraphQL-FuzzySearch",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": \"{ collections (query: \\\"MQtes\\\") { collId instId collCode collName }}\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "GraphQL",
+					"item": [
+						{
+							"name": "App-GraphQL-FetchAll",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n   institutes {\n     instId\n     instCode\n     uniqueName\n     instName\n   }\n }",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
 								}
-							}
+							},
+							"response": []
 						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
+						{
+							"name": "App-GraphQL-FuzzySearch",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"query\": \"{ institutes (query: \\\"ANS\\\") { instId instCode uniqueName instName }}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "App-GraphQL-FuzzySearch-GQLPayload",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query institutes ($queryStr: String) {\n   institutes (query: $queryStr) {\n     instId\n     instCode\n     instName\n     uniqueName\n   }\n }",
+										"variables": "{\"queryStr\":\"ANS\"}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "App-GraphQL-All-Inst-GQLPayload",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query institutes ($queryStr: String) {\n   institutes (query: $queryStr) {\n     instId\n     instCode\n     instName\n     uniqueName\n   }\n }",
+										"variables": "{\"queryStr\":\"ANS\"}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				},
 				{
-					"name": "App-GraphQL-FuzzyCollSearch-GQLPayload",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query collections($queryStr: String) {\n    collections (query: $queryStr) {\n     collId\n     instId\n     collCode\n     collName\n   }\n }",
-								"variables": "{\"queryStr\":\"MQtes\"}"
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
+					"name": "RESTFul",
+					"item": [
+						{
+							"name": "Inst-FuzzySearchStr-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute?instStr=AMG",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute"
+									],
+									"query": [
+										{
+											"key": "instStr",
+											"value": "AMG"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-FuzzySearchStr-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-Bad-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute?instStr=QQQ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute"
+									],
+									"query": [
+										{
+											"key": "instStr",
+											"value": "QQQ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ByCode-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByCode-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute/code?instCode=AMG",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute",
+										"code"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "AMG"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ByCode-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByCode-Bad-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute/code?instCode=TTT",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute",
+										"code"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "TTT"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ByUniqueName-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByUniqueName-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute/uniqueName?uniqueName=CIS<USA-CA>",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute",
+										"uniqueName"
+									],
+									"query": [
+										{
+											"key": "uniqueName",
+											"value": "CIS<USA-CA>"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ByUniqueName-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByUniqueName-Bad-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute/uniqueName?uniqueName=ZZZ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute",
+										"uniqueName"
+									],
+									"query": [
+										{
+											"key": "uniqueName",
+											"value": "ZZZ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "App-FuzzySearchTest",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "ANS"
+								},
+								"url": {
+									"raw": "http://localhost:8091/ena/inst",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8091",
+									"path": [
+										"ena",
+										"inst"
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
+				}
+			]
+		},
+		{
+			"name": "CollectionAPIs",
+			"item": [
+				{
+					"name": "GraphQL",
+					"item": [
+						{
+							"name": "App-GraphQL-FetchAll",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n   collections {\n     collId\n     collCode\n     instId\n     collName\n   }\n } ",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "App-GraphQL-FetchByCode",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n   collections (query: \"AMG\"){\n     collId\n     collCode\n     instId\n     collName\n   }\n } ",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "App-GraphQL-FuzzySearch",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"query\": \"{ collections (query: \\\"MQtes\\\") { collId instId collCode collName }}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "App-GraphQL-FuzzyCollSearch-GQLPayload",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query collections($queryStr: String) {\n    collections (query: $queryStr) {\n     collId\n     instId\n     collCode\n     collName\n   }\n }",
+										"variables": "{\"queryStr\":\"MQtes\"}"
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "App-GraphQL-All-Coll-GQLPayload",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n  collections {\n    collId\n    collCode\n    collName\n  }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/graphql",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				},
 				{
-					"name": "App-GraphQL-All-Coll-GQLPayload",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "{\n  collections {\n    collId\n    collCode\n    collName\n  }\n}",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/graphql",
-							"protocol": "http",
-							"host": [
-								"localhost"
+					"name": "RESTFul",
+					"item": [
+						{
+							"name": "Coll-FuzzySearch-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-FuzzySearch-Bad-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
 							],
-							"port": "8080",
-							"path": [
-								"graphql"
-							]
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/collection?collString=ZZZ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"collection"
+									],
+									"query": [
+										{
+											"key": "collString",
+											"value": "ZZZ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-FuzzySearch-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-FuzzySearch-Good-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/collection?collString=ANS",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"collection"
+									],
+									"query": [
+										{
+											"key": "collString",
+											"value": "ANS"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByCode-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByCode-Good-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/collection/code?collCode=Bird",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"collection",
+										"code"
+									],
+									"query": [
+										{
+											"key": "collCode",
+											"value": "Bird"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstIdandCollCode-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstIdandCollCode-Good-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/collection/instid?instId=112&collCode=Bird",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"collection",
+										"instid"
+									],
+									"query": [
+										{
+											"key": "instId",
+											"value": "112"
+										},
+										{
+											"key": "collCode",
+											"value": "Bird"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstIdandCollCode-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstIdandCollCode-Bad-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/collection/instid?instId=2&collCode=Bird",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"collection",
+										"instid"
+									],
+									"query": [
+										{
+											"key": "instId",
+											"value": "2"
+										},
+										{
+											"key": "collCode",
+											"value": "Bird"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCodeandCollCode-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstIdandCollCode-Good-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/collection/instcode?instCode=MSNT<ITA-Torino>&collCode=FAZC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"collection",
+										"instcode"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "MSNT<ITA-Torino>"
+										},
+										{
+											"key": "collCode",
+											"value": "FAZC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCodeandCollCode-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstIdandCollCode-Good-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/collection/instcode?instCode=MRAC&collCode=FAZC",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"collection",
+										"instcode"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "MRAC"
+										},
+										{
+											"key": "collCode",
+											"value": "FAZC"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByCode-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByCode-Bad-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/collection/code?collCode=ZZZ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"collection",
+										"code"
+									],
+									"query": [
+										{
+											"key": "collCode",
+											"value": "ZZZ"
+										}
+									]
+								}
+							},
+							"response": []
 						}
-					},
-					"response": []
+					]
 				}
 			]
 		}

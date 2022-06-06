@@ -58,10 +58,10 @@ public class SVController {
     @GetMapping("/ena/sv/institute/code")
     @ApiOperation(value = "Get institute by institute code.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
+            @ApiResponse(code = 200, message = "SSuccessfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByInstCode(@PathVariable("instCode") String instCode) {
+    public ResponseEntity<Object> findByInstCode(@RequestParam("instCode") String instCode) {
         ResponseDto responseDto = SVService.findByInstCode(instCode);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -69,10 +69,10 @@ public class SVController {
     @GetMapping("/ena/sv/institute/uniqueName")
     @ApiOperation(value = "Get institute by institute unique name.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
+            @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByUniqueName(@PathVariable("uniqueName") String uniqueName) {
+    public ResponseEntity<Object> findByUniqueName(@RequestParam("uniqueName") String uniqueName) {
         ResponseDto responseDto = SVService.findByUniqueName(uniqueName);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -80,10 +80,10 @@ public class SVController {
     @GetMapping("/ena/sv/institute")
     @ApiOperation(value = "Get institute by institute name or unique name or code.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
+            @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByInstituteStringFuzzy(@PathVariable("instStr")  String instStr) {
+    public ResponseEntity<Object> findByInstituteStringFuzzy(@RequestParam("instStr")  String instStr) {
         ResponseDto responseDto = SVService.findByInstituteStringFuzzy(instStr);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -91,10 +91,10 @@ public class SVController {
     @GetMapping("/ena/sv/collection/code")
     @ApiOperation(value = "Get collection by collection code.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
+            @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByCollCode(@PathVariable("collCode") String collCode) {
+    public ResponseEntity<Object> findByCollCode(@RequestParam("collCode") String collCode) {
         ResponseDto responseDto = SVService.findByCollCode(collCode);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -102,22 +102,35 @@ public class SVController {
     @GetMapping("/ena/sv/collection")
     @ApiOperation(value = "Get collection by collection name or code.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
+            @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByCollNameFuzzy(@PathVariable("collString") String collString) {
+    public ResponseEntity<Object> findByCollNameFuzzy(@RequestParam("collString") String collString) {
         ResponseDto responseDto = SVService.findByCollNameFuzzy(collString);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
-    @GetMapping("/ena/sv/collection/inst")
+    @GetMapping("/ena/sv/collection/instcode")
     @ApiOperation(value = "Get collection by institute name and collection code.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
+            @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByInstIdAndCollCode(@PathVariable("instId") int instId,
-                                                          @PathVariable("collCode") String collCode) {
+    public ResponseEntity<Object> findByInstIdAndCollCode(@RequestParam("instCode") String instCode,
+                                                          @RequestParam("collCode") String collCode) {
+        ResponseDto responseDto = SVService.findByInstUniqueNameAndCollCode(instCode, collCode);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/ena/sv/collection/instid")
+//    @ApiOperation(value = "Get collection by institute name and collection code.")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Successfully queried the information."),
+//            @ApiResponse(code = 400, message = "Invalid request format")
+//    })
+    //todo verify -- keeping this internal
+    public ResponseEntity<Object> findByInstIdAndCollCode(@RequestParam("instId") int instId,
+                                                          @RequestParam("collCode") String collCode) {
         ResponseDto responseDto = SVService.findByInstIdAndCollCode(instId, collCode);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -129,7 +142,7 @@ public class SVController {
             @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> validateSV(@PathVariable("specimenVoucher") String specimenVoucher) {
+    public ResponseEntity<Object> validateSV(@RequestParam("specimenVoucher") String specimenVoucher) {
         SVResponseDto responseDto = SVService.validateSV(specimenVoucher);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
@@ -141,9 +154,9 @@ public class SVController {
             @ApiResponse(code = 200, message = "Successfully Constructed the Specimen Voucher String."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> constructSV(@PathVariable("instCode") String instCode,
-                                              @PathVariable("collCode") String collCode,
-                                              @PathVariable("specimenId") String specimenId) {
+    public ResponseEntity<Object> constructSV(@RequestParam("instCode") String instCode,
+                                              @RequestParam("collCode") String collCode,
+                                              @RequestParam("specimenId") String specimenId) {
         SVResponseDto responseDto = SVService.constructSV(instCode, collCode, specimenId);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
