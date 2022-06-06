@@ -1,15 +1,16 @@
 package uk.ac.ebi.ena.annotation.helper.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
-import uk.ac.ebi.ena.annotation.helper.exception.SVErrorResponse;
+import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CollectionResponseDto extends ResponseDto {
 
@@ -20,9 +21,14 @@ public class CollectionResponseDto extends ResponseDto {
         this.collections = collections;
     }
 
-    public CollectionResponseDto(String message, boolean success, LocalDateTime timestamp,
-                                 List<SVErrorResponse> errors, List<Collection> collections) {
-        super(message, success, timestamp, errors);
+    public CollectionResponseDto(List<Collection> collections, boolean success, LocalDateTime timestamp) {
+        super(success, timestamp);
+        this.collections = collections;
+    }
+
+    public CollectionResponseDto(List<Collection> collections, boolean success, LocalDateTime timestamp,
+                                 ErrorResponse error) {
+        super(success, timestamp, error);
         this.collections = collections;
     }
 }

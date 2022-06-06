@@ -3,19 +3,22 @@ package uk.ac.ebi.ena.annotation.helper.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
-import uk.ac.ebi.ena.annotation.helper.dto.SVResponseDto;
-import uk.ac.ebi.ena.annotation.helper.dto.SVSearchResult;
+import uk.ac.ebi.ena.annotation.helper.dto.*;
+import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institute;
+import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
+import uk.ac.ebi.ena.annotation.helper.exception.RecordNotFoundException;
 import uk.ac.ebi.ena.annotation.helper.mapper.SVResponseMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
 
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.RecordNotFoundError;
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.RecordNotFoundMessage;
 
 @Service
 public class SVServiceImpl implements SVService {
@@ -83,7 +86,7 @@ public class SVServiceImpl implements SVService {
     }
 
     @Override
-    public ResponseDto constructSV(String instUniqueName, String collCode, String specimenId) {
+    public SVResponseDto constructSV(String instUniqueName, String collCode, String specimenId) {
 
         StringJoiner sjSpecimenVoucher = new StringJoiner(":");
 
@@ -123,12 +126,80 @@ public class SVServiceImpl implements SVService {
 
 
     @Override
-    public Institute save(Institute institute) {
-        return instituteRepository.save(institute);
+    public ResponseDto findByInstName(String instName) {
+        List<Institute> instituteList = instituteRepository.findByInstName(instName);
+        if (!instituteList.isEmpty()) {
+            return new InstituteResponseDto(instituteList, true, LocalDateTime.now());
+        }
+        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+        return new ResponseDto(false, LocalDateTime.now(), error);
     }
 
     @Override
-    public List<Institute> findByInstName(String instName) {
-        return instituteRepository.findByInstName(instName);
+    public ResponseDto findByInstituteStringFuzzy(String name) {
+        List<Institute> instituteList = instituteRepository.findByInstituteStringFuzzy(name);
+        if (!instituteList.isEmpty()) {
+            return new InstituteResponseDto(instituteList, true, LocalDateTime.now());
+        }
+        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+        return new ResponseDto(false, LocalDateTime.now(), error);
+    }
+
+    @Override
+    public ResponseDto findByInstCode(String instCode) {
+        Optional<Institute> optionalInstitute = instituteRepository.findByInstCode(instCode);
+        if (optionalInstitute.isPresent()) {
+            return new InstituteResponseDto(Collections.singletonList(optionalInstitute.get()),
+                    true, LocalDateTime.now());
+        } else {
+            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+            return new ResponseDto(false, LocalDateTime.now(), error);
+        }
+    }
+
+    @Override
+    public ResponseDto findByUniqueName(String uniqueName) throws RecordNotFoundException {
+        Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(uniqueName);
+        if (optionalInstitute.isPresent()) {
+            return new InstituteResponseDto(Collections.singletonList(optionalInstitute.get()),
+                    true, LocalDateTime.now());
+        } else {
+            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+            return new ResponseDto(false, LocalDateTime.now(), error);
+        }
+    }
+
+    @Override
+    public ResponseDto findByInstIdAndCollCode(int instId, String collCode) {
+        Optional<Collection> optionalCollection = collectionRepository.findByInstIdAndCollCode(instId, collCode);
+        if (optionalCollection.isPresent()) {
+            return new CollectionResponseDto(Collections.singletonList(optionalCollection.get()),
+                    true, LocalDateTime.now());
+        } else {
+            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+            return new ResponseDto(false, LocalDateTime.now(), error);
+        }
+    }
+
+    @Override
+    public ResponseDto findByCollCode(String collCode) throws RecordNotFoundException {
+        Optional<Collection> optionalCollection = collectionRepository.findByCollCode(collCode);
+        if (optionalCollection.isPresent()) {
+            return new CollectionResponseDto(Collections.singletonList(optionalCollection.get()),
+                    true, LocalDateTime.now());
+        } else {
+            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+            return new ResponseDto(false, LocalDateTime.now(), error);
+        }
+    }
+
+    @Override
+    public ResponseDto findByCollNameFuzzy(String name) {
+        List<Collection> listCollection = collectionRepository.findByCollNameFuzzy(name);
+        if (!listCollection.isEmpty()) {
+            return new CollectionResponseDto(listCollection, true, LocalDateTime.now());
+        }
+        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+        return new ResponseDto(false, LocalDateTime.now(), error);
     }
 }

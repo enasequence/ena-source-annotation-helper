@@ -7,11 +7,9 @@ import lombok.Data;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SVErrorResponse {
+public class ErrorResponse {
 
-    private String field;
-
-    private String fieldValue;
-
+    private int code;
     private String message;
+
 }

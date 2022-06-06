@@ -1,14 +1,15 @@
 package uk.ac.ebi.ena.annotation.helper.exception;
 
-import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
+
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.FieldValidationError;
 
 
 @RestControllerAdvice
@@ -22,12 +23,11 @@ public class SVControllerAdvice {
      */
     @ExceptionHandler(RecordNotFoundException.class)
     public ResponseEntity<ResponseDto> handleRecordNotFoundException(RecordNotFoundException ex) {
-        SVErrorResponse errorItem = SVErrorResponse.builder().message(ex.getMessage()).build();
-        ResponseDto responseDto = ResponseDto.builder()
-                .errors(Collections.singletonList(errorItem))
-                .success(false)
-                .timestamp(LocalDateTime.now()).build();
-
+        ErrorResponse errorItem = ErrorResponse.builder().message(ex.getMessage()).build();
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setError(errorItem);
+        responseDto.setSuccess(false);
+        responseDto.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<>(responseDto, HttpStatus.NOT_FOUND);
     }
 
@@ -39,11 +39,11 @@ public class SVControllerAdvice {
      */
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ResponseDto> handleBadRequestException(BadRequestException ex) {
-        SVErrorResponse errorItem = SVErrorResponse.builder().message(ex.getMessage()).build();
-        ResponseDto responseDto = ResponseDto.builder()
-                .errors(Collections.singletonList(errorItem))
-                .success(false)
-                .timestamp(LocalDateTime.now()).build();
+        ErrorResponse errorItem = ErrorResponse.builder().message(ex.getMessage()).build();
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setError(errorItem);
+        responseDto.setSuccess(false);
+        responseDto.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<>(responseDto, HttpStatus.BAD_REQUEST);
     }
 
@@ -55,13 +55,12 @@ public class SVControllerAdvice {
      */
     @ExceptionHandler(InvalidFormatException.class)
     public ResponseEntity<ResponseDto> handleInvalidFormatException(InvalidFormatException ex) {
-        SVErrorResponse errorItem = SVErrorResponse.builder().field(ex.getPath().get(0).getFieldName())
-                .fieldValue(ex.getValue().toString())
+        ErrorResponse errorItem = ErrorResponse.builder().code(FieldValidationError)
                 .message(ex.getTargetType().getSimpleName()).build();
-        ResponseDto responseDto = ResponseDto.builder()
-                .errors(Collections.singletonList(errorItem))
-                .success(false)
-                .timestamp(LocalDateTime.now()).build();
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setError(errorItem);
+        responseDto.setSuccess(false);
+        responseDto.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<>(responseDto, HttpStatus.BAD_REQUEST);
     }
 

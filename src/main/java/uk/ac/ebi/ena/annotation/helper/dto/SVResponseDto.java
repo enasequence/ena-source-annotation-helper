@@ -3,7 +3,7 @@ package uk.ac.ebi.ena.annotation.helper.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Data;
-import uk.ac.ebi.ena.annotation.helper.exception.SVErrorResponse;
+import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,6 +21,6 @@ public class SVResponseDto {
 
     List<String> specimenVoucher;
 
-    private List<SVErrorResponse> errors;
+    private List<ErrorResponse> errors;
 
 }

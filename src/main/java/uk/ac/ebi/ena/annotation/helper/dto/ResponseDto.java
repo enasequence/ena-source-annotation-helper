@@ -1,31 +1,31 @@
 package uk.ac.ebi.ena.annotation.helper.dto;
 
-import uk.ac.ebi.ena.annotation.helper.exception.SVErrorResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
 import lombok.Data;
+import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 
 @Data
-@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseDto {
 
-    private String message;
     private boolean success;
     private LocalDateTime timestamp;
-    private List<SVErrorResponse> errors;
+    private ErrorResponse error;
 
     public ResponseDto() {
     }
 
-    public ResponseDto(String message, boolean success, LocalDateTime timestamp, List<SVErrorResponse> errors) {
-        this.message = message;
+    public ResponseDto(boolean success, LocalDateTime timestamp) {
         this.success = success;
         this.timestamp = timestamp;
-        this.errors = errors;
+    }
+
+    public ResponseDto(boolean success, LocalDateTime timestamp, ErrorResponse error) {
+        this.success = success;
+        this.timestamp = timestamp;
+        this.error = error;
     }
 }

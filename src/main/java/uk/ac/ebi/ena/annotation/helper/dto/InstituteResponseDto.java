@@ -1,17 +1,18 @@
 package uk.ac.ebi.ena.annotation.helper.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import uk.ac.ebi.ena.annotation.helper.entity.Institute;
-import uk.ac.ebi.ena.annotation.helper.exception.SVErrorResponse;
+import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class InstituteResponseDto extends ResponseDto{
+public class InstituteResponseDto extends ResponseDto {
 
     List<Institute> institutes;
 
@@ -19,8 +20,14 @@ public class InstituteResponseDto extends ResponseDto{
         this.institutes = institutes;
     }
 
-    public InstituteResponseDto(String message, boolean success, LocalDateTime timestamp, List<SVErrorResponse> errors, List<Institute> institutes) {
-        super(message, success, timestamp, errors);
+    public InstituteResponseDto(List<Institute> institutes, boolean success, LocalDateTime timestamp) {
+        super(success, timestamp);
+        this.institutes = institutes;
+    }
+
+    public InstituteResponseDto(List<Institute> institutes, boolean success, LocalDateTime timestamp,
+                                ErrorResponse error) {
+        super(success, timestamp, error);
         this.institutes = institutes;
     }
 }
