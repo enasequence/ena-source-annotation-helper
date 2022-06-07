@@ -247,7 +247,7 @@
 			]
 		},
 		{
-			"name": "SVCollection-Index",
+			"name": "Collection-Index",
 			"item": [
 				{
 					"name": "AddMapping-Collection",
@@ -593,10 +593,10 @@
 			]
 		},
 		{
-			"name": "InstituteAPIs",
+			"name": "GraphQL-APIs",
 			"item": [
 				{
-					"name": "GraphQL",
+					"name": "Institutes-GraphQL",
 					"item": [
 						{
 							"name": "App-GraphQL-FetchAll",
@@ -707,342 +707,7 @@
 					]
 				},
 				{
-					"name": "RESTFul",
-					"item": [
-						{
-							"name": "Inst-FuzzySearchStr-Good-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-FuzzySearchStr-Good-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(true);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute?instStr=AMG",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute"
-									],
-									"query": [
-										{
-											"key": "instStr",
-											"value": "AMG"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-FuzzySearchStr-Bad-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-FuzzySearchStr-Bad-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(false);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute?instStr=QQQ",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute"
-									],
-									"query": [
-										{
-											"key": "instStr",
-											"value": "QQQ"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-ByCode-Good-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-ByCode-Good-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(true);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute/code?instCode=AMG",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute",
-										"code"
-									],
-									"query": [
-										{
-											"key": "instCode",
-											"value": "AMG"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-ByCode-Bad-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-ByCode-Bad-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(false);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute/code?instCode=TTT",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute",
-										"code"
-									],
-									"query": [
-										{
-											"key": "instCode",
-											"value": "TTT"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-ByUniqueName-Good-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-ByUniqueName-Good-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(true);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute/uniqueName?uniqueName=CIS<USA-CA>",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute",
-										"uniqueName"
-									],
-									"query": [
-										{
-											"key": "uniqueName",
-											"value": "CIS<USA-CA>"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-ByUniqueName-Bad-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-ByUniqueName-Bad-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(false);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute/uniqueName?uniqueName=ZZZ",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute",
-										"uniqueName"
-									],
-									"query": [
-										{
-											"key": "uniqueName",
-											"value": "ZZZ"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-FuzzySearchTest",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "ANS"
-								},
-								"url": {
-									"raw": "http://localhost:8091/ena/inst",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8091",
-									"path": [
-										"ena",
-										"inst"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
-		{
-			"name": "CollectionAPIs",
-			"item": [
-				{
-					"name": "GraphQL",
+					"name": "Collections-GraphQL",
 					"item": [
 						{
 							"name": "App-GraphQL-FetchAll",
@@ -1177,9 +842,14 @@
 							"response": []
 						}
 					]
-				},
+				}
+			]
+		},
+		{
+			"name": "RESTFul-APIs",
+			"item": [
 				{
-					"name": "RESTFul",
+					"name": "CollectionAPIs",
 					"item": [
 						{
 							"name": "Coll-FuzzySearch-Bad-01",
@@ -1525,6 +1195,759 @@
 										{
 											"key": "collCode",
 											"value": "ZZZ"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Institute-APIs",
+					"item": [
+						{
+							"name": "Inst-FuzzySearchStr-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute?instStr=AMG",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute"
+									],
+									"query": [
+										{
+											"key": "instStr",
+											"value": "AMG"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-FuzzySearchStr-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-Bad-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute?instStr=QQQ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute"
+									],
+									"query": [
+										{
+											"key": "instStr",
+											"value": "QQQ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ByCode-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByCode-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute/code?instCode=AMG",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute",
+										"code"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "AMG"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ByCode-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByCode-Bad-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute/code?instCode=TTT",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute",
+										"code"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "TTT"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ByUniqueName-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByUniqueName-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute/uniqueName?uniqueName=CIS<USA-CA>",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute",
+										"uniqueName"
+									],
+									"query": [
+										{
+											"key": "uniqueName",
+											"value": "CIS<USA-CA>"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ByUniqueName-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByUniqueName-Bad-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/institute/uniqueName?uniqueName=ZZZ",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"institute",
+										"uniqueName"
+									],
+									"query": [
+										{
+											"key": "uniqueName",
+											"value": "ZZZ"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "App-FuzzySearchTest",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "ANS"
+								},
+								"url": {
+									"raw": "http://localhost:8091/ena/inst",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8091",
+									"path": [
+										"ena",
+										"inst"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Validate-APIs",
+					"item": [
+						{
+							"name": "Validate-ExactMatch-Inst-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-ExactMatch-Inst-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-ExactMatch-Inst-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT<ITA-Torino>:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "MSNT<ITA-Torino>:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatch-Inst-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatch-Inst-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatch-Inst-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "MSNT:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatchMultiple-Inst-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatchMultiple-Inst-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatchMultiple-Inst-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.greaterThan(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=NYX:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "NYX:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatch-Inst-TooMany-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatch-Inst-TooMany-01\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.error.code).to.eql(2008);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSN:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "MSN:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-ExactMatch-WithColl-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-ExactMatch-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-ExactMatch-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT<ITA-Torino>:FAZC:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "MSNT<ITA-Torino>:FAZC:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatch-WithColl-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatch-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatch-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT:FAZC:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "MSNT:FAZC:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatch-WithColl-Good-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatch-WithColl-Good-02-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatch-WithColl-Good-02-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT:FAZ:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "MSNT:FAZ:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatchMultiple-WithColl-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.greaterThan(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=HSUV:Bird:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "HSUV:Bird:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-NoMatch-WithColl-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-NoMatch-WithColl-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Validate-NoMatch-WithColl-01-ErrorCode\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.error.code).to.eq(2011);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=TSUV:Bird:123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "specimenVoucher",
+											"value": "TSUV:Bird:123456"
 										}
 									]
 								}

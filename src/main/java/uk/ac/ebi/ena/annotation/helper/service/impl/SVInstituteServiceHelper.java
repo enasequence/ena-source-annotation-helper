@@ -91,7 +91,7 @@ public class SVInstituteServiceHelper {
                 return SVSearchResult.builder()
                         .institutes(listInstitute)
                         .match(TOO_MANY_MATCH)
-                        .success(false)
+                        .success(true)
                         .build();
             }
         }

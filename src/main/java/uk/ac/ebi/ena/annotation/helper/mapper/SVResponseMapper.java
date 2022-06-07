@@ -1,5 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.mapper;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import uk.ac.ebi.ena.annotation.helper.dto.SVResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SVSearchResult;
@@ -12,14 +13,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
+import static org.springframework.util.ObjectUtils.isEmpty;
 import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.*;
 import static uk.ac.ebi.ena.annotation.helper.utils.SVConstants.*;
 
 @Component
+@Slf4j
 public class SVResponseMapper {
 
     public SVResponseDto mapResponseDto(SVSearchResult svSearchResult) {
 
+        log.debug("Processing Search Result with {}", svSearchResult.getMatch());
         //build and return exact match response
         if (svSearchResult.getMatch() == EXACT_MATCH || svSearchResult.getMatch() == MULTI_NEAR_MATCH) {
             return buildSuccessMatchResponse(svSearchResult);
@@ -41,9 +45,11 @@ public class SVResponseMapper {
 
     private SVResponseDto buildSuccessMatchResponse(SVSearchResult svSearchResult) {
         //mean only single entry in response array
+        log.debug("Building Success Match Response");
         List svList = new ArrayList<String>();
         String specimenVoucherStr;
         if (svSearchResult.isCollectionAvailable()) {
+            log.debug("Collection Available");
             for (Collection collection : svSearchResult.getCollections()) {
                 String instUniqueName = svSearchResult.getInstituteIdNameMap().get(collection.getInstId());
                 specimenVoucherStr = buildSpecimenVoucherString(instUniqueName, collection.getCollCode(),
@@ -51,6 +57,7 @@ public class SVResponseMapper {
                 svList.add(specimenVoucherStr);
             }
         } else {
+            log.debug("Collection Not Available");
             for (Institute institute : svSearchResult.getInstitutes()) {
                 String instUniqueName = institute.getUniqueName();
                 specimenVoucherStr = buildSpecimenVoucherString(instUniqueName, null,
@@ -67,7 +74,9 @@ public class SVResponseMapper {
                                               String specimenId, boolean collectionAvailable) {
         StringJoiner sjSpecimenVoucher = new StringJoiner(":");
         sjSpecimenVoucher.add(instUniqueName);
-        sjSpecimenVoucher.add(collCode);
+        if(!isEmpty(collCode)) {
+            sjSpecimenVoucher.add(collCode);
+        }
         sjSpecimenVoucher.add(specimenId);
         return sjSpecimenVoucher.toString();
     }
@@ -81,7 +90,7 @@ public class SVResponseMapper {
     private SVResponseDto buildMatchErrorResponse(SVSearchResult svSearchResult) {
         //build error object and return
         return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
-                code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
+                code(NoMatchError).message(NoMatchMessage).build()).build();
     }
 
 }

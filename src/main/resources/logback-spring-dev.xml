@@ -49,8 +49,8 @@
         <appender-ref ref="Console" />
     </logger>
 
-    <!-- LOG "org.springframework*" at INFO level -->
-    <logger name="org.springframework" level="INFO" additivity="false">
+    <!-- LOG "org.springframework*" at ERROR level -->
+    <logger name="org.springframework" level="ERROR" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>
@@ -67,14 +67,14 @@
         <appender-ref ref="Console" />
     </Logger>
 
-    <!-- LOG "springfox.documentation*" at INFO level -->
-    <logger name="springfox.documentation" level="info" additivity="false">
+    <!-- LOG "springfox" at ERROR level -->
+    <logger name="springfox" level="ERROR" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>
 
-    <!-- LOG "org.apache.http*" at INFO level -->
-    <logger name="org.apache.http" level="info" additivity="false">
+    <!-- LOG "org.apache.http*" at ERROR level -->
+    <logger name="org.apache.http" level="ERROR" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>

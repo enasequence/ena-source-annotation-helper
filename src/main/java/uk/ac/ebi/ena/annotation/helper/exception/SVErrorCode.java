@@ -13,6 +13,7 @@ public interface SVErrorCode {
     int TooManyMatchesError = 2008;
     int InstituteMissingError = 2009;
     int SpecimenIdMissingError = 2010;
+    int NoMatchError = 2011;
 
     String ServerProcessingErrorMessage = "Unable to process your request, please contact system administrator";
     String FieldValidationFailedMessage = "One or more field(s) failed validation";
@@ -25,5 +26,6 @@ public interface SVErrorCode {
     String MultipleMatchesFoundMessage = "Multiple similar matches found. Please select the appropriate one or retry the search";
     String InstituteMissingMessage = "Institute Unique Code is mandatory";
     String SpecimenIdMissingMessage = "Specimen Id is mandatory";
+    String NoMatchMessage = "No Matching Institute/Collection found";
 
 }

@@ -43,20 +43,20 @@
         <appender-ref ref="Console" />
     </logger>
 
-    <!-- LOG "graphql*" at INFO level -->
-    <logger name="graphql" level="INFO" additivity="false">
+    <!-- LOG "graphql*" at WARN level -->
+    <logger name="graphql" level="WARN" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>
 
-    <!-- LOG "org.springframework*" at INFO level -->
+    <!-- LOG "org.springframework*" at ERROR level -->
     <logger name="org.springframework" level="ERROR" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>
 
-    <!-- LOG "springfox.documentation*" at INFO level -->
-    <logger name="springfox.documentation" level="ERROR" additivity="false">
+    <!-- LOG "springfox.*" at ERROR level -->
+    <logger name="springfox" level="ERROR" additivity="false">
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>
