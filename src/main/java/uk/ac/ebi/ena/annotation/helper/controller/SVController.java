@@ -11,16 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.Data;
+import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SVResponseDto;
-import uk.ac.ebi.ena.annotation.helper.entity.Collection;
-import uk.ac.ebi.ena.annotation.helper.entity.Institute;
-import uk.ac.ebi.ena.annotation.helper.exception.RecordNotFoundException;
 import uk.ac.ebi.ena.annotation.helper.service.GraphQLService;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
-
-import java.util.List;
 
 import static java.util.Objects.isNull;
 
@@ -83,7 +78,7 @@ public class SVController {
             @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByInstituteStringFuzzy(@RequestParam("instStr")  String instStr) {
+    public ResponseEntity<Object> findByInstituteStringFuzzy(@RequestParam("instStr") String instStr) {
         ResponseDto responseDto = SVService.findByInstituteStringFuzzy(instStr);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }

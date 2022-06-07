@@ -1,7 +1,7 @@
 package uk.ac.ebi.ena.annotation.helper.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.*;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
@@ -14,17 +14,21 @@ import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.RecordNotFoundError;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.RecordNotFoundMessage;
+import static org.springframework.util.ObjectUtils.isEmpty;
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.*;
 
 @Service
+@Slf4j
 public class SVServiceImpl implements SVService {
 
-    @Value("${ena.annotation.helper.suggestions.limit}")
-    private int SUGGESTIONS_LIMIT;
+//    @Value("${ena.annotation.helper.suggestions.limit}")
+//    private int SUGGESTIONS_LIMIT;
 
     @Autowired
     private InstituteRepository instituteRepository;
@@ -38,90 +42,110 @@ public class SVServiceImpl implements SVService {
     @Autowired
     private SVCollectionServiceHelper svCollectionServiceHelper;
 
+    @Autowired
+    SVResponseMapper svResponseMapper;
+
 
     @Override
     public SVResponseDto validateSV(String specimenVoucher) {
+
+        log.debug("Validating the specimen voucher value -- " + specimenVoucher);
+
         String[] tokenizedSV = specimenVoucher.split(":");
-        SVResponseMapper svResponseMapper = new SVResponseMapper();
 
         if (tokenizedSV.length < 2 || tokenizedSV.length > 3) {
-            //todo error scenario
+            //todo improve - error reporting
+            return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
+                    code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
         }
 
         //[<Institution Unique Name>:]<specimen_id>
         SVSearchResult svSearchResult = svInstituteServiceHelper.validateInstitute(tokenizedSV[0]);
-        if (svSearchResult.isSuccess()) {
-            int responseSize = svSearchResult.getInstitutes().size();
-            if (responseSize == 1 && tokenizedSV.length == 2) {
-                //since collection code is not available, build the response object and return
-                svSearchResult.setSpecimenId(tokenizedSV[1]);
-                return svResponseMapper.mapResponseDto(svSearchResult);
-            } else if (responseSize > 1 && responseSize <= SUGGESTIONS_LIMIT) {
-                //todo set valid options list
-            } else if (responseSize > SUGGESTIONS_LIMIT) {
-                // todo can't validate and suggest
-                //todo set and return too many hits.. please verify / be more accurate -- the institute unique name entered..
-            }
+
+        //invalid institute scenario
+        if (!svSearchResult.isSuccess()) {
+            return svResponseMapper.mapResponseDto(svSearchResult);
+        }
+
+        //set specimen id for further processing
+        if (tokenizedSV.length == 2) {
+            //collection code not provided.
+            svSearchResult.setSpecimenId(tokenizedSV[1]);
+            return svResponseMapper.mapResponseDto(svSearchResult);
+        } else {
+            svSearchResult.setSpecimenId(tokenizedSV[2]);
         }
 
         //[<Institution Unique Name>:[<collection-code>:]]<specimen_id>
-        if (tokenizedSV.length == 3) {
-            //todo for each institute in list validate the provided collection
-            svSearchResult.setCollectionAvailable(true);
-            //have the institute id and unique name available for rest of the search and construct
-//            List<Integer> instIdList = instList.stream().map(x -> x.getInstId())
-//                    .collect(Collectors.toMap(x, y));
+        //also within suggestions limits
+        svSearchResult.setCollectionAvailable(true);
+        //Map will further help in contructing the final SV strings
+        Map mapInstIdUniqueName = svSearchResult.getInstitutes().stream()
+                .collect(Collectors.toMap(Institute::getInstId, Institute::getUniqueName));
+        svSearchResult.setInstituteIdNameMap(mapInstIdUniqueName);
 
-            Map mapInstIdUniqueName = svSearchResult.getInstitutes().stream()
-                    .collect(Collectors.toMap(Institute::getInstId, Institute::getUniqueName));
-            svSearchResult.setInstituteIdNameMap(mapInstIdUniqueName);
+        svSearchResult = svCollectionServiceHelper
+                .validateMultipleInstIdsAndCollName(svSearchResult, tokenizedSV[1]);
+        return svResponseMapper.mapResponseDto(svSearchResult);
 
-            svSearchResult = svCollectionServiceHelper
-                    .validateMultipleInstIdsAndCollName(svSearchResult, tokenizedSV[1]);
-            //validateCollectionCode(tokenizedSV[1]);
-        } else {
-            //todo error no valid scenario
-        }
-        return null;
+
+//        if (svSearchResult.isSuccess()) {
+//            int responseSize = svSearchResult.getInstitutes().size();
+//            if (responseSize == 0 && tokenizedSV.length == 2) {
+//                //no match scenario
+//                return svResponseMapper.mapResponseDto(svSearchResult);
+//            } else if (responseSize == 1 && tokenizedSV.length == 2) {
+//                //since collection code is not available, build the response object and return
+//                return svResponseMapper.mapResponseDto(svSearchResult);
+//            } else if (responseSize > 1 && tokenizedSV.length == 2 && responseSize <= SUGGESTIONS_LIMIT) {
+//                //generate multiple valid string and return
+//                return svResponseMapper.mapResponseDto(svSearchResult);
+//            } else if (responseSize > SUGGESTIONS_LIMIT) {
+//                //set and return too many hits.. please verify / be more accurate -- the institute unique name entered..
+//                return svResponseMapper.mapResponseDto(svSearchResult);
+//            }
+//        }
+
     }
 
     @Override
     public SVResponseDto constructSV(String instUniqueName, String collCode, String specimenId) {
 
-        StringJoiner sjSpecimenVoucher = new StringJoiner(":");
+        if (isEmpty(instUniqueName)) {
+            return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
+                    code(InstituteMissingError).message(InstituteMissingMessage).build()).build();
+        }
 
-//        if(isEmpty(instUniqueName)) {
-//            //todo error mandatory
-//        } else {
-//            //todo validate instCode
-//            if(!svInstituteServiceHelper.validateInstituteUniqueName(instUniqueName)) {
-//                //todo invalid instCdoe return
-//            }
-//            sjSpecimenVoucher.add(instUniqueName);
-//        }
-//
-//
-//
-//        if(isEmpty(specimenId)) {
-//            //todo error mandatory
-//        } else if(isEmpty(collCode)) {
-//            //todo [<Institution Unique Name>:]<specimen_id>
-//            //validate the institution code -- specimen id can't be validated for now
-//            if(svInstituteServiceHelper.validateInstituteUniqueName(instUniqueName)) {
-//                constructString(instUniqueName, specimenId);
-//            } else {
-//                //todo error institution code not valid
-//            }
-//        }  else {
-//            //todo [<Institution Unique Name>:[<collection-code>:]]<specimen_id>
-//            //validate the institution and collection code -- specimen id can't be validated for now
-//            if(svInstituteServiceHelper.validateInstituteUniqueName(instUniqueName) && validateCollectionCode(instUniqueName, collCode)) {
-//                constructString(instUniqueName, collCode, specimenId);
-//            } else {
-//                //todo error institution code not valid
-//            }
-//        }
-        return null;
+        if (isEmpty(specimenId)) {
+            return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
+                    code(SpecimenIdMissingError).message(SpecimenIdMissingMessage).build()).build();
+        }
+
+        //[<Institution Unique Name>:]<specimen_id>
+        SVSearchResult svSearchResult = svInstituteServiceHelper.validateInstitute(instUniqueName);
+        svSearchResult.setSpecimenId(specimenId);
+
+        //invalid institute scenario
+        if (!svSearchResult.isSuccess()) {
+            return svResponseMapper.mapResponseDto(svSearchResult);
+        }
+
+        if (isEmpty(collCode)) {
+            //collection code not provided. return with results
+            return svResponseMapper.mapResponseDto(svSearchResult);
+        }
+
+        //[<Institution Unique Name>:[<collection-code>:]]<specimen_id>
+        //also within suggestions limits
+        svSearchResult.setCollectionAvailable(true);
+        //Map will further help in contructing the final SV strings
+        Map mapInstIdUniqueName = svSearchResult.getInstitutes().stream()
+                .collect(Collectors.toMap(Institute::getInstId, Institute::getUniqueName));
+        svSearchResult.setInstituteIdNameMap(mapInstIdUniqueName);
+
+        svSearchResult = svCollectionServiceHelper
+                .validateMultipleInstIdsAndCollName(svSearchResult, collCode);
+        return svResponseMapper.mapResponseDto(svSearchResult);
     }
 
 
@@ -180,8 +204,8 @@ public class SVServiceImpl implements SVService {
                         true, LocalDateTime.now());
             }
         }
-            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
-            return new ResponseDto(false, LocalDateTime.now(), error);
+        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+        return new ResponseDto(false, LocalDateTime.now(), error);
 
     }
 

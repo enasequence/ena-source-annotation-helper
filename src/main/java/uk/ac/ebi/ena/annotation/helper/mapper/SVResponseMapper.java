@@ -1,19 +1,21 @@
 package uk.ac.ebi.ena.annotation.helper.mapper;
 
+import org.springframework.stereotype.Component;
 import uk.ac.ebi.ena.annotation.helper.dto.SVResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SVSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institute;
+import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.TooManyMatchesMessage;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.ValidationFailedMessage;
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.*;
 import static uk.ac.ebi.ena.annotation.helper.utils.SVConstants.*;
 
+@Component
 public class SVResponseMapper {
 
     public SVResponseDto mapResponseDto(SVSearchResult svSearchResult) {
@@ -29,6 +31,11 @@ public class SVResponseMapper {
         }
 
         // NO_MATCH condition
+        if (svSearchResult.getMatch() == NO_MATCH) {
+            return buildMatchErrorResponse(svSearchResult);
+        }
+
+        //no match again -- should not be reached
         return buildMatchErrorResponse(svSearchResult);
     }
 
@@ -67,14 +74,14 @@ public class SVResponseMapper {
 
     private SVResponseDto buildTooManyMatchErrorResponse(SVSearchResult svSearchResult) {
         //build error object and return
-        return SVResponseDto.builder().message(TooManyMatchesMessage)
-                .success(false).timestamp(LocalDateTime.now()).build();
+        return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
+                code(TooManyMatchesError).message(TooManyMatchesMessage).build()).build();
     }
 
     private SVResponseDto buildMatchErrorResponse(SVSearchResult svSearchResult) {
         //build error object and return
-        return SVResponseDto.builder().message(ValidationFailedMessage)
-                .success(false).timestamp(LocalDateTime.now()).build();
+        return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
+                code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
     }
 
 }

@@ -21,6 +21,6 @@ public class SVResponseDto {
 
     List<String> specimenVoucher;
 
-    private List<ErrorResponse> errors;
+    ErrorResponse error;
 
 }
