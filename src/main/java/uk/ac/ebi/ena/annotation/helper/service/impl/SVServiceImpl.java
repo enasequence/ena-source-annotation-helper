@@ -8,6 +8,8 @@ import uk.ac.ebi.ena.annotation.helper.dto.*;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
+import uk.ac.ebi.ena.annotation.helper.mapper.CollectionMapper;
+import uk.ac.ebi.ena.annotation.helper.mapper.InstituteMapper;
 import uk.ac.ebi.ena.annotation.helper.mapper.SVResponseMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
@@ -41,6 +43,12 @@ public class SVServiceImpl implements SVService {
     private SVCollectionServiceHelper svCollectionServiceHelper;
 
     @Autowired
+    InstituteMapper instituteMapper;
+
+    @Autowired
+    CollectionMapper collectionMapper;
+
+    @Autowired
     SVResponseMapper svResponseMapper;
 
     @Value("${query.results.limit}")
@@ -57,7 +65,8 @@ public class SVServiceImpl implements SVService {
                     .findByInstituteFuzzyAndQualifierType(name, qualifierType, QUERY_RESULTS_LIMIT);
         }
         if (!instituteList.isEmpty()) {
-            return new InstituteResponseDto(instituteList, true, LocalDateTime.now());
+            return new InstituteResponseDto(instituteList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
+                    true, LocalDateTime.now());
         }
         ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
         return new ResponseDto(false, LocalDateTime.now(), error);
@@ -83,7 +92,7 @@ public class SVServiceImpl implements SVService {
         }
 
         if (!listCollection.isEmpty()) {
-            return new CollectionResponseDto(listCollection,
+            return new CollectionResponseDto(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()),
                     true, LocalDateTime.now());
         }
 
@@ -113,7 +122,7 @@ public class SVServiceImpl implements SVService {
         }
 
         if (!listCollection.isEmpty()) {
-            return new CollectionResponseDto(listCollection,
+            return new CollectionResponseDto(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()),
                     true, LocalDateTime.now());
         }
 

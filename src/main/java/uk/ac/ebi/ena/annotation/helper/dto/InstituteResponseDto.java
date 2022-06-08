@@ -14,18 +14,18 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class InstituteResponseDto extends ResponseDto {
 
-    List<Institute> institutes;
+    List<InstituteDto> institutes;
 
-    public InstituteResponseDto(List<Institute> institutes) {
+    public InstituteResponseDto(List<InstituteDto> institutes) {
         this.institutes = institutes;
     }
 
-    public InstituteResponseDto(List<Institute> institutes, boolean success, LocalDateTime timestamp) {
+    public InstituteResponseDto(List<InstituteDto> institutes, boolean success, LocalDateTime timestamp) {
         super(success, timestamp);
         this.institutes = institutes;
     }
 
-    public InstituteResponseDto(List<Institute> institutes, boolean success, LocalDateTime timestamp,
+    public InstituteResponseDto(List<InstituteDto> institutes, boolean success, LocalDateTime timestamp,
                                 ErrorResponse error) {
         super(success, timestamp, error);
         this.institutes = institutes;

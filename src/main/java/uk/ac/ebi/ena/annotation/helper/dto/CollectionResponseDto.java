@@ -14,19 +14,19 @@ import java.util.List;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CollectionResponseDto extends ResponseDto {
 
-    List<Collection> collections;
+    List<CollectionDto> collections;
 
-    public CollectionResponseDto(List<Collection> collections) {
+    public CollectionResponseDto(List<CollectionDto> collections) {
         super();
         this.collections = collections;
     }
 
-    public CollectionResponseDto(List<Collection> collections, boolean success, LocalDateTime timestamp) {
+    public CollectionResponseDto(List<CollectionDto> collections, boolean success, LocalDateTime timestamp) {
         super(success, timestamp);
         this.collections = collections;
     }
 
-    public CollectionResponseDto(List<Collection> collections, boolean success, LocalDateTime timestamp,
+    public CollectionResponseDto(List<CollectionDto> collections, boolean success, LocalDateTime timestamp,
                                  ErrorResponse error) {
         super(success, timestamp, error);
         this.collections = collections;
