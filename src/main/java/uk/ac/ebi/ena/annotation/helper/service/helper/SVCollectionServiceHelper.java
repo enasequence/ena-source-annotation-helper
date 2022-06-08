@@ -11,6 +11,8 @@ import uk.ac.ebi.ena.annotation.helper.utils.SVConstants;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.MultipleMatchesFoundMessage;
+
 @Service
 @Slf4j
 public class SVCollectionServiceHelper {
@@ -21,6 +23,9 @@ public class SVCollectionServiceHelper {
 
     public SVSearchResult validateMultipleInstIdsAndCollName(SVSearchResult svSearchResult, String collectionString) {
         log.debug("Validating the collection '{}' for given institute(s)", collectionString);
+        // reset the earlier message since collection code is also provided
+        svSearchResult.setMessage(null);
+        
         //step-1 - Exact search on Collection Code
         int[] listInstituteIds = svSearchResult.getInstitutes().stream().map(x -> x.getInstId()).mapToInt(i->i).toArray();
         List<Collection> listCollection = collectionRepository
@@ -37,7 +42,8 @@ public class SVCollectionServiceHelper {
                 return svSearchResult;
             } else {
                 svSearchResult.setCollections(listCollection);
-                svSearchResult.setMatch(listCollection.size() == 1 ? SVConstants.MULTI_NEAR_MATCH : SVConstants.MULTI_NEAR_MATCH);
+                svSearchResult.setMatch(SVConstants.MULTI_NEAR_MATCH);
+                svSearchResult.setMessage(MultipleMatchesFoundMessage);
                 svSearchResult.setSuccess(true);
                 return svSearchResult;
             }

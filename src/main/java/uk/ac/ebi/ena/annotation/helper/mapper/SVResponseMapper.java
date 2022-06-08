@@ -67,15 +67,19 @@ public class SVResponseMapper {
             }
         }
         //build object and return
-        return SVResponseDto.builder().specimenVoucher(svList)
-                .success(true).timestamp(LocalDateTime.now()).build();
+        return SVResponseDto.builder()
+                .specimenVoucher(svList)
+                .success(true)
+                .message(svSearchResult.getMessage() != null ? svSearchResult.getMessage() : null)
+                .timestamp(LocalDateTime.now())
+                .build();
     }
 
     private String buildSpecimenVoucherString(String instUniqueName, String collCode,
                                               String specimenId, boolean collectionAvailable) {
         StringJoiner sjSpecimenVoucher = new StringJoiner(":");
         sjSpecimenVoucher.add(instUniqueName);
-        if(!isEmpty(collCode)) {
+        if (!isEmpty(collCode)) {
             sjSpecimenVoucher.add(collCode);
         }
         sjSpecimenVoucher.add(specimenId);

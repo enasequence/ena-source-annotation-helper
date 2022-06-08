@@ -31,11 +31,11 @@ public class SVController {
     SVService SVService;
 
     @PostMapping("/graphql")
-    @ApiOperation(value = "GraphQL interface to fetch the Institutes and the Collections")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully fetched the required information."),
-            @ApiResponse(code = 400, message = "Invalid request format")
-    })
+//    @ApiOperation(value = "GraphQL interface to fetch the Institutes and the Collections")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "Successfully fetched the required information."),
+//            @ApiResponse(code = 400, message = "Invalid request format")
+//    })
     public ResponseEntity<Object> fetchInstCollMeta(@RequestBody Data query) {
         ExecutionResult execute;
         if (isNull(query.getVariables())) {
@@ -51,31 +51,31 @@ public class SVController {
     }
 
     @GetMapping("/ena/sv/institute/code")
-    @ApiOperation(value = "Get institute by institute code.")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "SSuccessfully queried the information."),
-            @ApiResponse(code = 400, message = "Invalid request format")
-    })
+//    @ApiOperation(value = "Get institute by institute code")
+//    @ApiResponses(value = {
+//            @ApiResponse(code = 200, message = "SSuccessfully queried the information."),
+//            @ApiResponse(code = 400, message = "Invalid request format")
+//    })
     public ResponseEntity<Object> findByInstCode(@RequestParam("instCode") String instCode) {
         ResponseDto responseDto = SVService.findByInstCode(instCode);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
-    @GetMapping("/ena/sv/institute/uniqueName")
-    @ApiOperation(value = "Get institute by institute unique name.")
+    @GetMapping("/ena/sv/institute/uniquecode")
+    @ApiOperation(value = "Get institute by institute's unique code")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully queried the information."),
+            @ApiResponse(code = 200, message = "Successfully queried the institute information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByUniqueName(@RequestParam("uniqueName") String uniqueName) {
+    public ResponseEntity<Object> findByUniqueName(@RequestParam("code") String uniqueName) {
         ResponseDto responseDto = SVService.findByUniqueName(uniqueName);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @GetMapping("/ena/sv/institute")
-    @ApiOperation(value = "Get institute by institute name or unique name or code.")
+    @ApiOperation(value = "Fetch similar institute matches by either institute name or institute code.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully queried the information."),
+            @ApiResponse(code = 200, message = "Successfully queried the institute(s) information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> findByInstituteStringFuzzy(@RequestParam("instStr") String instStr) {
@@ -84,9 +84,9 @@ public class SVController {
     }
 
     @GetMapping("/ena/sv/collection/code")
-    @ApiOperation(value = "Get collection by collection code.")
+    @ApiOperation(value = "Get collection by collection code")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully queried the information."),
+            @ApiResponse(code = 200, message = "Successfully queried the collection information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> findByCollCode(@RequestParam("collCode") String collCode) {
@@ -95,9 +95,9 @@ public class SVController {
     }
 
     @GetMapping("/ena/sv/collection")
-    @ApiOperation(value = "Get collection by collection name or code.")
+    @ApiOperation(value = "Fetch similar collection matches by either collection name or collection code.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully queried the information."),
+            @ApiResponse(code = 200, message = "Successfully queried the collection(s) information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> findByCollNameFuzzy(@RequestParam("collString") String collString) {
@@ -105,7 +105,7 @@ public class SVController {
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
-    @GetMapping("/ena/sv/collection/instcode")
+    @GetMapping("/ena/sv/collection/institute")
     @ApiOperation(value = "Get collection by institute name and collection code.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully queried the information."),

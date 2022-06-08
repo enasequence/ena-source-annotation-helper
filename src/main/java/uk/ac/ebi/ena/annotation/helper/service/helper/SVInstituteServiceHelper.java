@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.MultipleMatchesFoundMessage;
 import static uk.ac.ebi.ena.annotation.helper.utils.SVConstants.TOO_MANY_MATCH;
 
 @Service
@@ -84,6 +85,7 @@ public class SVInstituteServiceHelper {
                 return SVSearchResult.builder()
                         .institutes(listInstitute)
                         .match(listInstitute.size() == 1 ? SVConstants.EXACT_MATCH : SVConstants.MULTI_NEAR_MATCH)
+                        .message(listInstitute.size() > 1 ? MultipleMatchesFoundMessage: null)
                         .success(true)
                         .build();
             } else {
