@@ -1514,18 +1514,25 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "ANS"
+									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8091/ena/inst",
+									"raw": "http://localhost:8080/ena/sv/institute?instStr=ANS",
 									"protocol": "http",
 									"host": [
 										"localhost"
 									],
-									"port": "8091",
+									"port": "8080",
 									"path": [
 										"ena",
-										"inst"
+										"sv",
+										"institute"
+									],
+									"query": [
+										{
+											"key": "instStr",
+											"value": "ANS"
+										}
 									]
 								}
 							},
@@ -1948,6 +1955,485 @@
 										{
 											"key": "specimenVoucher",
 											"value": "TSUV:Bird:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Construct-APIs",
+					"item": [
+						{
+							"name": "Construct-ExactMatch-Inst-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-ExactMatch-Inst-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-ExactMatch-Inst-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT<ITA-Torino>&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "MSNT<ITA-Torino>"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatch-Inst-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatch-Inst-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatch-Inst-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "MSNT"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatchMultiple-Inst-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatchMultiple-Inst-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatchMultiple-Inst-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.greaterThan(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=NYX&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "NYX"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatch-Inst-TooMany-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatch-Inst-TooMany-01\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.error.code).to.eql(2008);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSN&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "MSN"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-ExactMatch-WithColl-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-ExactMatch-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-ExactMatch-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT<ITA-Torino>&collCode=FAZC&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "MSNT<ITA-Torino>"
+										},
+										{
+											"key": "collCode",
+											"value": "FAZC"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatch-WithColl-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatch-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatch-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT&collCode=FAZC&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "MSNT"
+										},
+										{
+											"key": "collCode",
+											"value": "FAZC"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatch-WithColl-Good-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatch-WithColl-Good-02-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatch-WithColl-Good-02-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT&collCode=FAZ&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "MSNT"
+										},
+										{
+											"key": "collCode",
+											"value": "FAZ"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatchMultiple-WithColl-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatchMultiple-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.specimenVoucher.length).to.greaterThan(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=HSUV&collCode=Bird&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "HSUV"
+										},
+										{
+											"key": "collCode",
+											"value": "Bird"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-NoMatch-WithColl-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-NoMatch-WithColl-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoMatch-WithColl-01-ErrorCode\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.error.code).to.eq(2011);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/ena/sv/construct?instCode=TSUV&collCode=Bird&specimenId=123456",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"ena",
+										"sv",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "instCode",
+											"value": "TSUV"
+										},
+										{
+											"key": "collCode",
+											"value": "Bird"
+										},
+										{
+											"key": "specimenId",
+											"value": "123456"
 										}
 									]
 								}

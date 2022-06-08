@@ -149,9 +149,9 @@ public class SVController {
             @ApiResponse(code = 200, message = "Successfully Constructed the Specimen Voucher String."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> constructSV(@RequestParam("instCode") String instCode,
-                                              @RequestParam("collCode") String collCode,
-                                              @RequestParam("specimenId") String specimenId) {
+    public ResponseEntity<Object> constructSV(@RequestParam(name="instCode") String instCode,
+                                              @RequestParam(name="collCode", required=false) String collCode,
+                                              @RequestParam(name="specimenId") String specimenId) {
         SVResponseDto responseDto = SVService.constructSV(instCode, collCode, specimenId);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
