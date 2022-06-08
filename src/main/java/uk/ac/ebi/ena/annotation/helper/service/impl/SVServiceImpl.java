@@ -12,6 +12,8 @@ import uk.ac.ebi.ena.annotation.helper.mapper.SVResponseMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
+import uk.ac.ebi.ena.annotation.helper.service.helper.SVCollectionServiceHelper;
+import uk.ac.ebi.ena.annotation.helper.service.helper.SVInstituteServiceHelper;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -26,9 +28,6 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.*;
 @Service
 @Slf4j
 public class SVServiceImpl implements SVService {
-
-//    @Value("${ena.annotation.helper.suggestions.limit}")
-//    private int SUGGESTIONS_LIMIT;
 
     @Autowired
     private InstituteRepository instituteRepository;
@@ -54,13 +53,15 @@ public class SVServiceImpl implements SVService {
         String[] tokenizedSV = specimenVoucher.split(":");
 
         if (tokenizedSV.length < 2 || tokenizedSV.length > 3) {
-            //todo improve - error reporting
+            log.info("Invalid specimen voucher format -- {} ", specimenVoucher);
             return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
                     code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
         }
 
         //[<Institution Unique Name>:]<specimen_id>
         SVSearchResult svSearchResult = svInstituteServiceHelper.validateInstitute(tokenizedSV[0]);
+        //set the input string for logs and reporting purpose
+        svSearchResult.setInputsParams(specimenVoucher);
 
         //invalid institute scenario
         if (!svSearchResult.isSuccess()) {
@@ -88,35 +89,18 @@ public class SVServiceImpl implements SVService {
                 .validateMultipleInstIdsAndCollName(svSearchResult, tokenizedSV[1]);
         return svResponseMapper.mapResponseDto(svSearchResult);
 
-
-//        if (svSearchResult.isSuccess()) {
-//            int responseSize = svSearchResult.getInstitutes().size();
-//            if (responseSize == 0 && tokenizedSV.length == 2) {
-//                //no match scenario
-//                return svResponseMapper.mapResponseDto(svSearchResult);
-//            } else if (responseSize == 1 && tokenizedSV.length == 2) {
-//                //since collection code is not available, build the response object and return
-//                return svResponseMapper.mapResponseDto(svSearchResult);
-//            } else if (responseSize > 1 && tokenizedSV.length == 2 && responseSize <= SUGGESTIONS_LIMIT) {
-//                //generate multiple valid string and return
-//                return svResponseMapper.mapResponseDto(svSearchResult);
-//            } else if (responseSize > SUGGESTIONS_LIMIT) {
-//                //set and return too many hits.. please verify / be more accurate -- the institute unique name entered..
-//                return svResponseMapper.mapResponseDto(svSearchResult);
-//            }
-//        }
-
     }
 
     @Override
     public SVResponseDto constructSV(String instUniqueName, String collCode, String specimenId) {
-
         if (isEmpty(instUniqueName)) {
+            log.info("Missing institute unique name");
             return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
                     code(InstituteMissingError).message(InstituteMissingMessage).build()).build();
         }
 
         if (isEmpty(specimenId)) {
+            log.info("Missing specimen id");
             return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
                     code(SpecimenIdMissingError).message(SpecimenIdMissingMessage).build()).build();
         }
@@ -124,6 +108,8 @@ public class SVServiceImpl implements SVService {
         //[<Institution Unique Name>:]<specimen_id>
         SVSearchResult svSearchResult = svInstituteServiceHelper.validateInstitute(instUniqueName);
         svSearchResult.setSpecimenId(specimenId);
+        //set the input string for logs and reporting purpose
+        svSearchResult.setInputsParams(instUniqueName, collCode, specimenId);
 
         //invalid institute scenario
         if (!svSearchResult.isSuccess()) {

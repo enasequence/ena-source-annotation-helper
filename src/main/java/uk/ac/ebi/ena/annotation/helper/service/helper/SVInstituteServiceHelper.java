@@ -1,4 +1,4 @@
-package uk.ac.ebi.ena.annotation.helper.service.impl;
+package uk.ac.ebi.ena.annotation.helper.service.helper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,6 +95,7 @@ public class SVInstituteServiceHelper {
                         .build();
             }
         }
+        log.debug("No match found for the given inputs");
         return SVSearchResult.builder()
                 .match(SVConstants.NO_MATCH)
                 .success(false)

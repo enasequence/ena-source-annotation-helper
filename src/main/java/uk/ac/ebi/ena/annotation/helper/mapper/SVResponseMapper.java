@@ -48,6 +48,7 @@ public class SVResponseMapper {
         log.debug("Building Success Match Response");
         List svList = new ArrayList<String>();
         String specimenVoucherStr;
+        log.info("Building success response for the given input -- {}", svSearchResult.getInputParams());
         if (svSearchResult.isCollectionAvailable()) {
             log.debug("Collection Available");
             for (Collection collection : svSearchResult.getCollections()) {
@@ -83,12 +84,14 @@ public class SVResponseMapper {
 
     private SVResponseDto buildTooManyMatchErrorResponse(SVSearchResult svSearchResult) {
         //build error object and return
+        log.info("Too many matches found for the given input -- {}", svSearchResult.getInputParams());
         return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
                 code(TooManyMatchesError).message(TooManyMatchesMessage).build()).build();
     }
 
     private SVResponseDto buildMatchErrorResponse(SVSearchResult svSearchResult) {
         //build error object and return
+        log.info("No match found for the given input -- {}", svSearchResult.getInputParams());
         return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
                 code(NoMatchError).message(NoMatchMessage).build()).build();
     }

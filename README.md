@@ -56,18 +56,17 @@ query collections($queryStr: String) {
   - [X] Publish Schema Docs on UI
 - [X] Bring all in convention
 - [X] Bulk Load Elastic Indexes for Institutes and Collections 
-- [ ] Expose Search as well as REST APIs for now
-- [ ] Construct and Validate to be exposed as REST APIs
-- [ ] Document Institutes / Collections / Contruct based on the current understanding 
-- [ ] Start building basic UI / HTML 
-- [ ] GraphQL UI exposure -
-  - [ ] Customise GraphQL endpoints
-  - [ ] UI Customisation to later merge it with ENA Portal
-- [ ] GraphQL - logging customisation for more meaningful logs
-- [ ] GraphQL - exception handling - Global Exception Handler
-- [ ] GraphQL - Unit Tests ??
-- [ ] GraphQL Instrumentation / observability for production environment
+- [X] Expose Institutes and Collections Search as REST APIs for now
+- [X] Construct and Validate to be exposed as REST APIs
+- [X] Instrumentation / observability for production environment
+- [X] Improve logging
+- [ ] Review Messages to be displayed in responses
+- [ ] Add unit tests
+- [ ] Deployment gitlab-ci to be constructed
+- [ ] Deploy in development environment
+- [ ] Document Institutes / Collections / Construct based on the current understanding
+- [ ] 
 - 
-- 
+
 
 
