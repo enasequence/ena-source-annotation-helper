@@ -10,12 +10,12 @@ public interface CollectionMapper {
 
     @Mapping(source = "collCode", target = "collectionCode")
     @Mapping(source = "collName", target = "collectionName")
-    @Mapping(source = "collType", target = "collectionType")
+    @Mapping(source = "collUrl", target = "collectionUrl")
     CollectionDto toDto(Collection entity);
 
     @Mapping(source = "collectionCode", target = "collCode")
     @Mapping(source = "collectionName", target = "collName")
-    @Mapping(source = "collectionType", target = "collType")
+    @Mapping(source = "collectionUrl", target = "collUrl")
     Collection toNewEntity(CollectionDto dto);
 
 }

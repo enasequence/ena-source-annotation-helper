@@ -176,6 +176,41 @@
 					"response": []
 				},
 				{
+					"name": "QueryDocs-FuzzyQuery-WithQT-01",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"size\": 2, \"query\": {\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"specimen_voucher\"}}, {\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"ANS\", \"fuzziness\": \"AUTO\" }}]}}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"protocol": "http",
+							"host": [
+								"dca-wh-es-test"
+							],
+							"port": "9200",
+							"path": [
+								"institute",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "QueryDocs-ByInstCode",
 					"request": {
 						"method": "POST",
@@ -452,6 +487,41 @@
 					"response": []
 				},
 				{
+					"name": "QueryDocs-FuzzyWithInstId-QT-01",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"match\": {\n                        \"inst_id\": 10\n                    }\n                },\n                {\n                    \"match\": {\n                        \"qualifier_type\": \"specimen_voucher\"\n                    }\n                },\n                {\n                    \"multi_match\": {\n                        \"fields\": [\n                            \"coll_code\",\n                            \"coll_name\"\n                        ],\n                        \"query\": \"Arachnida\",\n                        \"fuzziness\": \"AUTO\"\n                    }\n                }\n            ]\n        }\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dca-wh-es-test:9200/collection/_search?pretty",
+							"protocol": "http",
+							"host": [
+								"dca-wh-es-test"
+							],
+							"port": "9200",
+							"path": [
+								"collection",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "QueryDocs-FuzzyWithInstIdMuseum",
 					"request": {
 						"method": "POST",
@@ -611,12 +681,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -639,12 +707,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -665,12 +731,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -691,12 +755,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -722,12 +784,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -748,12 +808,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -776,12 +834,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -802,12 +858,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -828,12 +882,10 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:8080/graphql",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/graphql",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"graphql"
 									]
@@ -849,19 +901,142 @@
 			"name": "RESTFul-APIs",
 			"item": [
 				{
+					"name": "HealthChecks",
+					"item": [
+						{
+							"name": "Actuator-Health-Test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Actuator-Health-Test\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.status).to.eql(\"UP\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/actuator/health",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"actuator",
+										"health"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Actuator-Links-Test",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Actuator-Links-Test\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData._links.info.href).to.eql(\"http://localhost:8080/actuator/info\");",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/actuator/",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"actuator",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "CollectionAPIs",
 					"item": [
 						{
-							"name": "Coll-FuzzySearch-Bad-01",
+							"name": "Coll-ByInstCode-AllColl-Good-01",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Coll-FuzzySearch-Bad-01-Success-check\", function () {",
+											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Inst-Present\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutes[0].collections.length).to.greaterThan(0);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"CMN",
+										"collection"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCode-NoInst-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-01-check\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.success).to.eql(false);",
-											"});"
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-ErrorCode\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.error.code).to.eq(3005);",
+											"});",
+											"",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -871,166 +1046,36 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/collection?collString=ZZZ",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/institute/QQQ/collection",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
+										"institute",
+										"QQQ",
 										"collection"
-									],
-									"query": [
-										{
-											"key": "collString",
-											"value": "ZZZ"
-										}
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Coll-FuzzySearch-Good-01",
+							"name": "Coll-ByInstCode-NoColl-Bad-01",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Coll-FuzzySearch-Good-01-Success-check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(true);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/collection?collString=ANS",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"collection"
-									],
-									"query": [
-										{
-											"key": "collString",
-											"value": "ANS"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Coll-ByCode-Good-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Coll-ByCode-Good-01-Success-check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(true);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/collection/code?collCode=Bird",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"collection",
-										"code"
-									],
-									"query": [
-										{
-											"key": "collCode",
-											"value": "Bird"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Coll-ByInstIdandCollCode-Good-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Coll-ByInstIdandCollCode-Good-01-Success-check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(true);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/collection/instid?instId=112&collCode=Bird",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"collection",
-										"instid"
-									],
-									"query": [
-										{
-											"key": "instId",
-											"value": "112"
-										},
-										{
-											"key": "collCode",
-											"value": "Bird"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Coll-ByInstIdandCollCode-Bad-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Coll-ByInstIdandCollCode-Bad-01-Success-check\", function () {",
+											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-check\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-ErrorCode\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.error.code).to.eq(3006);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1041,27 +1086,16 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/collection/instid?instId=2&collCode=Bird",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/institute/AMG/collection",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
-										"collection",
-										"instid"
-									],
-									"query": [
-										{
-											"key": "instId",
-											"value": "2"
-										},
-										{
-											"key": "collCode",
-											"value": "Bird"
-										}
+										"sah",
+										"institute",
+										"AMG",
+										"collection"
 									]
 								}
 							},
@@ -1087,27 +1121,53 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/collection/instcode?instCode=MSNT<ITA-Torino>&collCode=FAZC",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/institute/MSNT<ITA-Torino>/collection/FAZC",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
+										"institute",
+										"MSNT<ITA-Torino>",
 										"collection",
-										"instcode"
+										"FAZC"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCodeandCollCode-Good-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstIdandCollCode-Good-02-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/USNM/collection/herp",
+									"host": [
+										"{{current-sv-env}}"
 									],
-									"query": [
-										{
-											"key": "instCode",
-											"value": "MSNT<ITA-Torino>"
-										},
-										{
-											"key": "collCode",
-											"value": "FAZC"
-										}
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"USNM",
+										"collection",
+										"herp"
 									]
 								}
 							},
@@ -1120,10 +1180,17 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Coll-ByInstIdandCollCode-Good-01-Success-check\", function () {",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-Success-check\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.success).to.eql(false);",
-											"});"
+											"});",
+											"",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-ErrorCode\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.error.code).to.eq(3006);",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -1133,69 +1200,17 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/collection/instcode?instCode=MRAC&collCode=FAZC",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/institute/MRAC/collection/FAZC",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
+										"institute",
+										"MRAC",
 										"collection",
-										"instcode"
-									],
-									"query": [
-										{
-											"key": "instCode",
-											"value": "MRAC"
-										},
-										{
-											"key": "collCode",
-											"value": "FAZC"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Coll-ByCode-Bad-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Coll-ByCode-Bad-01-Success-check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(false);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/collection/code?collCode=ZZZ",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"collection",
-										"code"
-									],
-									"query": [
-										{
-											"key": "collCode",
-											"value": "ZZZ"
-										}
+										"FAZC"
 									]
 								}
 							},
@@ -1234,21 +1249,62 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute?instStr=AMG",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/institute/ANS",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
-										"institute"
+										"sah",
+										"institute",
+										"ANS"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-FuzzySearchStr-QT-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-QT-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/ANS?qualifier_type=bio_material",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"ANS"
 									],
 									"query": [
 										{
-											"key": "instStr",
-											"value": "AMG"
+											"key": "qualifier_type",
+											"value": "bio_material"
 										}
 									]
 								}
@@ -1283,122 +1339,15 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute?instStr=QQQ",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/institute/QQQ",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
-										"institute"
-									],
-									"query": [
-										{
-											"key": "instStr",
-											"value": "QQQ"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-ByCode-Good-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-ByCode-Good-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(true);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute/code?instCode=AMG",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
+										"sah",
 										"institute",
-										"code"
-									],
-									"query": [
-										{
-											"key": "instCode",
-											"value": "AMG"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-ByCode-Bad-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-ByCode-Bad-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(false);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute/code?instCode=TTT",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute",
-										"code"
-									],
-									"query": [
-										{
-											"key": "instCode",
-											"value": "TTT"
-										}
+										"QQQ"
 									]
 								}
 							},
@@ -1432,107 +1381,15 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute/uniqueName?uniqueName=CIS<USA-CA>",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/institute/CIS<USA-CA>",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"institute",
-										"uniqueName"
-									],
-									"query": [
-										{
-											"key": "uniqueName",
-											"value": "CIS<USA-CA>"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-ByUniqueName-Bad-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-ByUniqueName-Bad-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(false);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute/uniqueName?uniqueName=ZZZ",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute",
-										"uniqueName"
-									],
-									"query": [
-										{
-											"key": "uniqueName",
-											"value": "ZZZ"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-FuzzySearchTest",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/ena/sv/institute?instStr=ANS",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"ena",
-										"sv",
-										"institute"
-									],
-									"query": [
-										{
-											"key": "instStr",
-											"value": "ANS"
-										}
+										"CIS<USA-CA>"
 									]
 								}
 							},
@@ -1557,7 +1414,7 @@
 											"",
 											"pm.test(\"Validate-ExactMatch-Inst-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -1569,20 +1426,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT<ITA-Torino>:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT<ITA-Torino>:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "MSNT<ITA-Torino>:123456"
 										}
 									]
@@ -1604,7 +1459,7 @@
 											"",
 											"pm.test(\"Validate-SimilarMatch-Inst-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -1616,20 +1471,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "MSNT:123456"
 										}
 									]
@@ -1651,7 +1504,7 @@
 											"",
 											"pm.test(\"Validate-SimilarMatchMultiple-Inst-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
 											"});",
 											""
 										],
@@ -1663,20 +1516,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=NYX:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=NYX:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "NYX:123456"
 										}
 									]
@@ -1693,7 +1544,7 @@
 										"exec": [
 											"pm.test(\"Validate-SimilarMatch-Inst-TooMany-01\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eql(2008);",
+											"    pm.expect(jsonData.error.code).to.eql(3009);",
 											"});",
 											""
 										],
@@ -1705,20 +1556,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSN:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSN:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "MSN:123456"
 										}
 									]
@@ -1740,7 +1589,7 @@
 											"",
 											"pm.test(\"Validate-ExactMatch-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -1752,20 +1601,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT<ITA-Torino>:FAZC:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT<ITA-Torino>:FAZC:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "MSNT<ITA-Torino>:FAZC:123456"
 										}
 									]
@@ -1787,7 +1634,7 @@
 											"",
 											"pm.test(\"Validate-SimilarMatch-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -1799,20 +1646,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT:FAZC:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:FAZC:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "MSNT:FAZC:123456"
 										}
 									]
@@ -1834,7 +1679,7 @@
 											"",
 											"pm.test(\"Validate-SimilarMatch-WithColl-Good-02-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -1846,20 +1691,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=MSNT:FAZ:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:FAZ:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "MSNT:FAZ:123456"
 										}
 									]
@@ -1881,7 +1724,7 @@
 											"",
 											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
 											"});",
 											""
 										],
@@ -1893,20 +1736,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=HSUV:Bird:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=HSUV:Bird:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "HSUV:Bird:123456"
 										}
 									]
@@ -1928,7 +1769,7 @@
 											"",
 											"pm.test(\"Validate-NoMatch-WithColl-01-ErrorCode\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(2011);",
+											"    pm.expect(jsonData.error.code).to.eq(3012);",
 											"});",
 											""
 										],
@@ -1940,20 +1781,18 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/validate?specimenVoucher=TSUV:Bird:123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=TSUV:Bird:123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"validate"
 									],
 									"query": [
 										{
-											"key": "specimenVoucher",
+											"key": "value",
 											"value": "TSUV:Bird:123456"
 										}
 									]
@@ -1980,7 +1819,7 @@
 											"",
 											"pm.test(\"Construct-ExactMatch-Inst-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -1992,24 +1831,22 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT<ITA-Torino>&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT<ITA-Torino>&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "MSNT<ITA-Torino>"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2031,7 +1868,7 @@
 											"",
 											"pm.test(\"Construct-SimilarMatch-Inst-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -2043,24 +1880,22 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "MSNT"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2082,7 +1917,7 @@
 											"",
 											"pm.test(\"Construct-SimilarMatchMultiple-Inst-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
 											"});",
 											""
 										],
@@ -2094,24 +1929,22 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=NYX&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=NYX&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "NYX"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2128,7 +1961,7 @@
 										"exec": [
 											"pm.test(\"Construct-SimilarMatch-Inst-TooMany-01\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eql(2008);",
+											"    pm.expect(jsonData.error.code).to.eql(3009);",
 											"});",
 											""
 										],
@@ -2140,24 +1973,22 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSN&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSN&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "MSN"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2179,7 +2010,7 @@
 											"",
 											"pm.test(\"Construct-ExactMatch-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -2191,28 +2022,26 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT<ITA-Torino>&collCode=FAZC&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT<ITA-Torino>&collection=FAZC&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "MSNT<ITA-Torino>"
 										},
 										{
-											"key": "collCode",
+											"key": "collection",
 											"value": "FAZC"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2234,7 +2063,7 @@
 											"",
 											"pm.test(\"Construct-SimilarMatch-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -2246,28 +2075,26 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT&collCode=FAZC&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&collection=FAZC&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "MSNT"
 										},
 										{
-											"key": "collCode",
+											"key": "collection",
 											"value": "FAZC"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2289,7 +2116,7 @@
 											"",
 											"pm.test(\"Construct-SimilarMatch-WithColl-Good-02-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
 											"});",
 											""
 										],
@@ -2301,28 +2128,26 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=MSNT&collCode=FAZ&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&collection=FAZ&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "MSNT"
 										},
 										{
-											"key": "collCode",
+											"key": "collection",
 											"value": "FAZ"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2344,7 +2169,7 @@
 											"",
 											"pm.test(\"Construct-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.specimenVoucher.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
 											"});",
 											""
 										],
@@ -2356,28 +2181,26 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=HSUV&collCode=Bird&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=HSUV&collection=Bird&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "HSUV"
 										},
 										{
-											"key": "collCode",
+											"key": "collection",
 											"value": "Bird"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2399,7 +2222,7 @@
 											"",
 											"pm.test(\"Construct-NoMatch-WithColl-01-ErrorCode\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(2011);",
+											"    pm.expect(jsonData.error.code).to.eq(3012);",
 											"});",
 											""
 										],
@@ -2411,28 +2234,26 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "http://localhost:8080/ena/sv/construct?instCode=TSUV&collCode=Bird&specimenId=123456",
-									"protocol": "http",
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=TSUV&collection=Bird&id=123456",
 									"host": [
-										"localhost"
+										"{{current-sv-env}}"
 									],
-									"port": "8080",
 									"path": [
 										"ena",
-										"sv",
+										"sah",
 										"construct"
 									],
 									"query": [
 										{
-											"key": "instCode",
+											"key": "institute",
 											"value": "TSUV"
 										},
 										{
-											"key": "collCode",
+											"key": "collection",
 											"value": "Bird"
 										},
 										{
-											"key": "specimenId",
+											"key": "id",
 											"value": "123456"
 										}
 									]
@@ -2441,6 +2262,10 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "TestBed-APIs",
+					"item": []
 				}
 			]
 		}

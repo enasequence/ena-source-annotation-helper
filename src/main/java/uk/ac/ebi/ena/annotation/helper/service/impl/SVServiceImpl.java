@@ -18,6 +18,7 @@ import uk.ac.ebi.ena.annotation.helper.service.helper.SVCollectionServiceHelper;
 import uk.ac.ebi.ena.annotation.helper.service.helper.SVInstituteServiceHelper;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -78,10 +79,11 @@ public class SVServiceImpl implements SVService {
 
         if (!optionalInstitute.isPresent()) {
             log.info("No matching institute found for institute -- {}", instUniqueName);
-            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+            ErrorResponse error = ErrorResponse.builder().message(NoMatchingInstituteMessage).code(NoMatchingInstituteError).build();
             return new ResponseDto(false, LocalDateTime.now(), error);
         }
 
+        InstituteDto instituteDto = instituteMapper.toDto(optionalInstitute.get());
         List<Collection> listCollection;
         if (isEmpty(qualifierType)) {
             listCollection = collectionRepository
@@ -92,12 +94,13 @@ public class SVServiceImpl implements SVService {
         }
 
         if (!listCollection.isEmpty()) {
-            return new CollectionResponseDto(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()),
+            instituteDto.setCollections(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()));
+            return new InstituteResponseDto(Collections.singletonList(instituteDto),
                     true, LocalDateTime.now());
         }
 
         log.info("No matching collection found for institute -- {}", instUniqueName);
-        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+        ErrorResponse error = ErrorResponse.builder().message(NoMatchingCollectionMessage).code(NoMatchingCollectionError).build();
         return new ResponseDto(false, LocalDateTime.now(), error);
 
     }
@@ -107,10 +110,11 @@ public class SVServiceImpl implements SVService {
         Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(instUniqueName);
         if (!optionalInstitute.isPresent()) {
             log.info("No matching institute found for institute -- {}", instUniqueName);
-            ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+            ErrorResponse error = ErrorResponse.builder().message(NoMatchingInstituteMessage).code(NoMatchingInstituteError).build();
             return new ResponseDto(false, LocalDateTime.now(), error);
         }
 
+        InstituteDto instituteDto = instituteMapper.toDto(optionalInstitute.get());
         List<Collection> listCollection;
         if (isEmpty(qualifierType)) {
             listCollection =
@@ -122,12 +126,13 @@ public class SVServiceImpl implements SVService {
         }
 
         if (!listCollection.isEmpty()) {
-            return new CollectionResponseDto(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()),
+            instituteDto.setCollections(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()));
+            return new InstituteResponseDto(Collections.singletonList(instituteDto),
                     true, LocalDateTime.now());
         }
 
         log.info("No matching collection found for institute -- {}", instUniqueName);
-        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
+        ErrorResponse error = ErrorResponse.builder().message(NoMatchingCollectionMessage).code(NoMatchingCollectionError).build();
         return new ResponseDto(false, LocalDateTime.now(), error);
 
     }
