@@ -2,8 +2,9 @@ package uk.ac.ebi.ena.annotation.helper.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import uk.ac.ebi.ena.annotation.helper.dto.SVResponseDto;
-import uk.ac.ebi.ena.annotation.helper.dto.SVSearchResult;
+import uk.ac.ebi.ena.annotation.helper.dto.MatchDto;
+import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
+import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
@@ -21,56 +22,57 @@ import static uk.ac.ebi.ena.annotation.helper.utils.SVConstants.*;
 @Slf4j
 public class SVResponseMapper {
 
-    public SVResponseDto mapResponseDto(SVSearchResult svSearchResult) {
+    public SAHResponseDto mapResponseDto(ValidationSearchResult validationSearchResult) {
 
-        log.debug("Processing Search Result with {}", svSearchResult.getMatch());
+        log.debug("Processing Search Result with {}", validationSearchResult.getMatch());
         //build and return exact match response
-        if (svSearchResult.getMatch() == EXACT_MATCH || svSearchResult.getMatch() == MULTI_NEAR_MATCH) {
-            return buildSuccessMatchResponse(svSearchResult);
+        if (validationSearchResult.getMatch() == EXACT_MATCH || validationSearchResult.getMatch() == MULTI_NEAR_MATCH) {
+            return buildSuccessMatchResponse(validationSearchResult);
         }
 
         //build and return exact match response
-        if (svSearchResult.getMatch() == TOO_MANY_MATCH) {
-            return buildTooManyMatchErrorResponse(svSearchResult);
+        if (validationSearchResult.getMatch() == TOO_MANY_MATCH) {
+            return buildTooManyMatchErrorResponse(validationSearchResult);
         }
 
         // NO_MATCH condition
-        if (svSearchResult.getMatch() == NO_MATCH) {
-            return buildMatchErrorResponse(svSearchResult);
+        if (validationSearchResult.getMatch() == NO_MATCH) {
+            return buildMatchErrorResponse(validationSearchResult);
         }
 
         //no match again -- should not be reached
-        return buildMatchErrorResponse(svSearchResult);
+        return buildMatchErrorResponse(validationSearchResult);
     }
 
-    private SVResponseDto buildSuccessMatchResponse(SVSearchResult svSearchResult) {
+    private SAHResponseDto buildSuccessMatchResponse(ValidationSearchResult validationSearchResult) {
         //mean only single entry in response array
         log.debug("Building Success Match Response");
-        List svList = new ArrayList<String>();
-        String specimenVoucherStr;
-        log.info("Building success response for the given input -- {}", svSearchResult.getInputParams());
-        if (svSearchResult.isCollectionAvailable()) {
+        List<MatchDto> matchDtoList = new ArrayList();
+        //String specimenVoucherStr;
+        log.info("Building success response for the given input -- {}", validationSearchResult.getInputParams());
+        if (validationSearchResult.isCollectionAvailable()) {
             log.debug("Collection Available");
-            for (Collection collection : svSearchResult.getCollections()) {
-                String instUniqueName = svSearchResult.getInstituteIdNameMap().get(collection.getInstId());
-                specimenVoucherStr = buildSpecimenVoucherString(instUniqueName, collection.getCollCode(),
-                        svSearchResult.getSpecimenId(), true);
-                svList.add(specimenVoucherStr);
+            for (Collection collection : validationSearchResult.getCollections()) {
+                String instUniqueName = validationSearchResult.getInstituteIdNameMap().get(collection.getInstId());
+                String specimenVoucherStr = buildSpecimenVoucherString(instUniqueName, collection.getCollCode(),
+                        validationSearchResult.getSpecimenId(), true);
+                matchDtoList.add(MatchDto.builder().match(specimenVoucherStr).qualifierType(collection.getQualifierType()).build());
             }
         } else {
             log.debug("Collection Not Available");
-            for (Institute institute : svSearchResult.getInstitutes()) {
+            for (Institute institute : validationSearchResult.getInstitutes()) {
                 String instUniqueName = institute.getUniqueName();
-                specimenVoucherStr = buildSpecimenVoucherString(instUniqueName, null,
-                        svSearchResult.getSpecimenId(), false);
-                svList.add(specimenVoucherStr);
+                String specimenVoucherStr = buildSpecimenVoucherString(instUniqueName, null,
+                        validationSearchResult.getSpecimenId(), false);
+                matchDtoList.add(MatchDto.builder().match(specimenVoucherStr).qualifierType(institute.getQualifierType()).build());
             }
         }
         //build object and return
-        return SVResponseDto.builder()
-                .specimenVoucher(svList)
+        return SAHResponseDto.builder()
+                .matches(matchDtoList)
                 .success(true)
-                .message(svSearchResult.getMessage() != null ? svSearchResult.getMessage() : null)
+                .matchLevel(validationSearchResult.getMatch() == EXACT_MATCH ? MATCH_LEVEL_EXACT : MATCH_LEVEL_PARTIAL)
+                .message(validationSearchResult.getMessage() != null ? validationSearchResult.getMessage() : null)
                 .timestamp(LocalDateTime.now())
                 .build();
     }
@@ -86,18 +88,22 @@ public class SVResponseMapper {
         return sjSpecimenVoucher.toString();
     }
 
-    private SVResponseDto buildTooManyMatchErrorResponse(SVSearchResult svSearchResult) {
+    private SAHResponseDto buildTooManyMatchErrorResponse(ValidationSearchResult validationSearchResult) {
         //build error object and return
-        log.info("Too many matches found for the given input -- {}", svSearchResult.getInputParams());
-        return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
-                code(TooManyMatchesError).message(TooManyMatchesMessage).build()).build();
+        log.info("Too many matches found for the given input -- {}", validationSearchResult.getInputParams());
+        return SAHResponseDto.builder().success(false)
+                .error(ErrorResponse.builder().code(TooManyMatchesError).message(TooManyMatchesMessage).build())
+                .matchLevel(MATCH_LEVEL_TOO_MANY)
+                .inputValue(validationSearchResult.getInputParams()).build();
     }
 
-    private SVResponseDto buildMatchErrorResponse(SVSearchResult svSearchResult) {
+    private SAHResponseDto buildMatchErrorResponse(ValidationSearchResult validationSearchResult) {
         //build error object and return
-        log.info("No match found for the given input -- {}", svSearchResult.getInputParams());
-        return SVResponseDto.builder().success(false).error(ErrorResponse.builder().
-                code(NoMatchError).message(NoMatchMessage).build()).build();
+        log.info("No match found for the given input -- {}", validationSearchResult.getInputParams());
+        return SAHResponseDto.builder().success(false)
+                .error(ErrorResponse.builder().code(NoMatchError).message(NoMatchMessage).build())
+                .matchLevel(MATCH_LEVEL_NONE)
+                .inputValue(validationSearchResult.getInputParams()).build();
     }
 
 }

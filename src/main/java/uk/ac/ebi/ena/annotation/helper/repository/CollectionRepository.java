@@ -14,9 +14,20 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
 
     Optional<Collection> findByInstIdAndCollCode(int instId, String collCode);
 
+    //Optional<Collection> findByInstIdAndCollCodeAndQualifierType(int instId, String collCode, String qualifierType);
+
+    List<Collection> findByInstId(int instId);
+
+    List<Collection> findByInstIdAndQualifierType(int instId, String qualifierType);
+
     @Query("{ \"bool\": { \"must\": [ { \"match\": { \"inst_id\": ?0 } }, { \"multi_match\": " +
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
     List<Collection> findByInstIdAndCollNameFuzzy(int instId, String name);
+
+    @Query("{ \"bool\": { \"must\": [ { \"match\": { \"inst_id\": ?0 } }, { \"match\": { \"qualifier_type\": ?2 } }, { \"multi_match\": " +
+            "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
+    List<Collection> findByInstIdAndCollNameFuzzyWithQualifierType(int instId, String name, String qualifierType);
+
 
     @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"multi_match\": " +
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
@@ -25,4 +36,7 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
     @Query("{\"multi_match\": {\"fields\": [\"coll_code\", \"coll_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Collection> findByCollNameFuzzy(String name);
 
+    @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"match\": { \"qualifier_type\": ?2 } }, { \"multi_match\": " +
+            "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
+    List<Collection> findByMultipleInstIdsAndCollNameFuzzyAndQualifierType(int[] listInstituteIds, String collectionString, String qualifierType);
 }

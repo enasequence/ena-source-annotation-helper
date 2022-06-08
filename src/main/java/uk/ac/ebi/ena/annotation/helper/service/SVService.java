@@ -1,28 +1,18 @@
 package uk.ac.ebi.ena.annotation.helper.service;
 
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
-import uk.ac.ebi.ena.annotation.helper.dto.SVResponseDto;
+import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
 
 public interface SVService {
 
-    public SVResponseDto validateSV(String specimenVoucher);
+    public ResponseDto findByInstituteStringFuzzy(String name, String qualifierType);
 
-    public SVResponseDto constructSV(String instCode, String collCode, String specimenId);
+    public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String qualifierType);
 
-    public ResponseDto findByInstName(String instName);
+    public ResponseDto findCollectionsByInstUniqueName(String instUniqueName, String qualifierType);
 
-    public ResponseDto findByInstituteStringFuzzy(String name);
+    public SAHResponseDto validateSV(String specimenVoucher, String qualifierType);
 
-    public ResponseDto findByInstCode(String instCode);
-
-    public ResponseDto findByUniqueName(String uniqueName);
-
-    public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode);
-
-    public ResponseDto findByInstIdAndCollCode(int instId, String collCode);
-
-    public ResponseDto findByCollCode(String collCode);
-
-    public ResponseDto findByCollNameFuzzy(String name);
-
+    public SAHResponseDto constructSV(String instCode, String collCode, String specimenId, String qualifierType);
+    
 }

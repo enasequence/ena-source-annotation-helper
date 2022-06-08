@@ -13,7 +13,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 @Data
 @Builder
-public class SVSearchResult {
+public class ValidationSearchResult {
 
     int match;
     String specimenId;

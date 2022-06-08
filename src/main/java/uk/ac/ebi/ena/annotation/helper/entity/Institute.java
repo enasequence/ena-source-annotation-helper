@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 
+import java.util.Arrays;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,7 +33,7 @@ public class Institute {
     @Field(name = "collection_type")
     private String collectionType;
     @Field(name = "qualifier_type")
-    private String qualifierType;
+    private String[] qualifierType;
 
     @Field(name = "home_url")
     private String homeUrl;
@@ -49,7 +51,7 @@ public class Institute {
                 ", country='" + country + '\'' +
                 ", address='" + address + '\'' +
                 ", collectionType='" + collectionType + '\'' +
-                ", qualifierType='" + qualifierType + '\'' +
+                ", qualifierType=" + Arrays.toString(qualifierType) +
                 ", homeUrl='" + homeUrl + '\'' +
                 ", urlRule='" + urlRule + '\'' +
                 '}';

@@ -11,15 +11,19 @@ import java.util.List;
 @Data
 @Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class SVResponseDto {
-
-    private String message;
+public class SAHResponseDto {
 
     private boolean success;
 
+    private String matchLevel;
+
     private LocalDateTime timestamp;
 
-    List<String> specimenVoucher;
+    private String message;
+
+    private String inputValue;
+
+    List<MatchDto> matches;
 
     ErrorResponse error;
 

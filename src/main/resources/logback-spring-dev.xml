@@ -78,6 +78,11 @@
         <appender-ref ref="RollingFile" />
         <appender-ref ref="Console" />
     </logger>
+<!--    logging.level.org.springframework.data.elasticsearch.client.WIRE : trace-->
+    <logger name="org.springframework.data.elasticsearch.client.WIRE" level="TRACE" additivity="false">
+        <appender-ref ref="RollingFile" />
+        <appender-ref ref="Console" />
+    </logger>
 
 
 </configuration>

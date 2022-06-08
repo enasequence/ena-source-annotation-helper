@@ -8,6 +8,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 
+import java.util.Arrays;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -29,7 +31,7 @@ public class Collection {
     @Field(name = "coll_type")
     private String collType;
     @Field(name = "qualifier_type")
-    private String qualifierType;
+    private String[] qualifierType;
     @Field(name = "coll_url")
     private String collUrl;
 
@@ -42,7 +44,7 @@ public class Collection {
                 ", collCode='" + collCode + '\'' +
                 ", collName='" + collName + '\'' +
                 ", collType='" + collType + '\'' +
-                ", qualifierType='" + qualifierType + '\'' +
+                ", qualifierType=" + Arrays.toString(qualifierType) +
                 ", collUrl='" + collUrl + '\'' +
                 '}';
     }

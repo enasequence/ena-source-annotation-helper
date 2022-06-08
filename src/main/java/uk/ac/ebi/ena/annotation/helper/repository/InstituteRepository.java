@@ -16,13 +16,28 @@ public interface InstituteRepository extends ElasticsearchRepository<Institute, 
 
     Optional<Institute> findByUniqueName(String uniqueName);
 
+    Optional<Institute> findByUniqueNameAndQualifierType(String instCode, String qualifierType);
+
     @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institute> findByInstituteUniqueNameFuzzy(String uniqueName);
+
+    @Query("{\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
+            "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
+    List<Institute> findByInstituteUniqueNameFuzzyAndQualifierType(String instUniqueName, String qualifierType);
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institute> findByInstituteNameFuzzy(String instName);
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
-    List<Institute> findByInstituteStringFuzzy(String name);
+    List<Institute> findByInstituteFuzzy(String name);
 
+//    @Query("{\"query\": {\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
+//            "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}}")
+    @Query("{\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
+            "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
+    List<Institute> findByInstituteFuzzyAndQualifierType(String name, String qualifierType, int limit);
+
+    @Query("{\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
+            "{\"multi_match\": {\"fields\": [\"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
+    List<Institute> findByInstituteNameFuzzyAndQualifierType(String instName, String qualifierType);
 }
