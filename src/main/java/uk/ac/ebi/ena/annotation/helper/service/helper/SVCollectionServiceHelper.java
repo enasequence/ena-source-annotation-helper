@@ -8,6 +8,7 @@ import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.utils.SVConstants;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -22,7 +23,7 @@ public class SVCollectionServiceHelper {
 
 
     public ValidationSearchResult validateMultipleInstIdsAndCollName(ValidationSearchResult validationSearchResult,
-                                                                     String collectionString, String qualifierType) {
+                                                                     String collectionString, String[] qualifierType) {
         log.debug("Validating the collection '{}' for given institute(s)", collectionString);
         // reset the earlier message since collection code is also provided
         validationSearchResult.setMessage(null);
@@ -36,8 +37,9 @@ public class SVCollectionServiceHelper {
             listCollection = collectionRepository.findByMultipleInstIdsAndCollNameFuzzy(
                     listInstituteIds, collectionString);
         } else {
+            List<String> listQT = Arrays.asList(qualifierType);
             listCollection = collectionRepository.findByMultipleInstIdsAndCollNameFuzzyAndQualifierType(
-                    listInstituteIds, collectionString, qualifierType);
+                    listInstituteIds, collectionString, listQT);
         }
 
         if (!listCollection.isEmpty()) {

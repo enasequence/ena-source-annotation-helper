@@ -17,14 +17,15 @@ public interface InstituteRepository extends ElasticsearchRepository<Institute, 
 
     Optional<Institute> findByUniqueName(String uniqueName);
 
-    Optional<Institute> findByUniqueNameAndQualifierType(String instCode, String qualifierType);
+    @Query("{\"bool\": {\"must\": [{ \"match\": { \"unique_name\": \"?0\" } },{\"terms\": {\"qualifier_type\": ?1 }}]}}")
+    Optional<Institute> findByUniqueNameAndQualifierTypeArray(String uniqueName, List<String> qualifierType);
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institute> findByInstituteUniqueNameFuzzy(String uniqueName);
 
-    @Query("{\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
+    @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}, " +
             "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
-    List<Institute> findByInstituteUniqueNameFuzzyAndQualifierType(String instUniqueName, String qualifierType);
+    List<Institute> findByInstituteUniqueNameFuzzyAndQualifierType(String instUniqueName, List<String> qualifierType);
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institute> findByInstituteNameFuzzy(String instName);
@@ -40,7 +41,7 @@ public interface InstituteRepository extends ElasticsearchRepository<Institute, 
             "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
     List<Institute> findByInstituteFuzzyAndQualifierTypeArray(String name, List<String> qualifierTypeArrray, int limit);
 
-    @Query("{\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
+    @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}, " +
             "{\"multi_match\": {\"fields\": [\"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
-    List<Institute> findByInstituteNameFuzzyAndQualifierType(String instName, String qualifierType);
+    List<Institute> findByInstituteNameFuzzyAndQualifierType(String instName, List<String> qualifierType);
 }

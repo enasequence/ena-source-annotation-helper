@@ -9,6 +9,7 @@ import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import uk.ac.ebi.ena.annotation.helper.utils.SVConstants;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,7 @@ public class SVInstituteServiceHelper {
     @Value("${ena.annotation.helper.suggestions.limit}")
     private int SUGGESTIONS_LIMIT;
 
-    public ValidationSearchResult validateInstitute(String instituteString, String qualifierType) {
+    public ValidationSearchResult validateInstitute(String instituteString, String[] qualifierType) {
         log.debug("Validating the institute -- " + instituteString);
         //step-1 - Exact Search on InstUniqueName
         ValidationSearchResult ValidationSearchResult = isValidInstituteUniqueName(instituteString, qualifierType);
@@ -51,13 +52,14 @@ public class SVInstituteServiceHelper {
      * @param qualifierType
      * @return
      */
-    private ValidationSearchResult isValidInstituteUniqueName(String instCode, String qualifierType) {
+    private ValidationSearchResult isValidInstituteUniqueName(String instCode, String[] qualifierType) {
         //Exact Search on InstUniqueName
         Optional<Institute> optionalInstitute;
         if (isEmpty(qualifierType)) {
             optionalInstitute = instituteRepository.findByUniqueName(instCode);
         } else {
-            optionalInstitute = instituteRepository.findByUniqueNameAndQualifierType(instCode, qualifierType);
+            List<String> listQT = Arrays.asList(qualifierType);
+            optionalInstitute = instituteRepository.findByUniqueNameAndQualifierTypeArray(instCode, listQT);
         }
         if (optionalInstitute.isPresent()) {
             log.debug("found exact match -- " + instCode);
@@ -73,24 +75,26 @@ public class SVInstituteServiceHelper {
                 .build();
     }
 
-    private ValidationSearchResult searchSimilarInstitutesByUniqueName(String instUniqueName, String qualifierType) {
+    private ValidationSearchResult searchSimilarInstitutesByUniqueName(String instUniqueName, String[] qualifierType) {
         //Similar Search on InstUniqueName
         List<Institute> listInstitute;
         if (isEmpty(qualifierType)) {
             listInstitute = instituteRepository.findByInstituteUniqueNameFuzzy(instUniqueName);
         } else {
-            listInstitute = instituteRepository.findByInstituteUniqueNameFuzzyAndQualifierType(instUniqueName, qualifierType);
+            List<String> listQT = Arrays.asList(qualifierType);
+            listInstitute = instituteRepository.findByInstituteUniqueNameFuzzyAndQualifierType(instUniqueName, listQT);
         }
         return getSvSearchResult(listInstitute);
     }
 
-    private ValidationSearchResult searchSimilarInstitutesByName(String instName, String qualifierType) {
+    private ValidationSearchResult searchSimilarInstitutesByName(String instName, String[] qualifierType) {
         //Similar Search with more fuzziness on InstName
         List<Institute> listInstitute;
         if (isEmpty(qualifierType)) {
             listInstitute = instituteRepository.findByInstituteNameFuzzy(instName);
         } else {
-            listInstitute = instituteRepository.findByInstituteNameFuzzyAndQualifierType(instName, qualifierType);
+            List<String> listQT = Arrays.asList(qualifierType);
+            listInstitute = instituteRepository.findByInstituteNameFuzzyAndQualifierType(instName, listQT);
         }
         return getSvSearchResult(listInstitute);
     }

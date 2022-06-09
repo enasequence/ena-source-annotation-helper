@@ -33,6 +33,11 @@ public interface SVErrorCode {
     String NoMatchMessage = "No Matching Institute/Collection found";
     String ValidInputSizeMessage = "for search, accepts minimum 3 chars and maximum 20 chars";
     String ValidInstituteUniqueNameRequiredMessage = "a valid institute unique name is required to search";
+    String ValidCollectionCodeRequiredMessage = "a valid collection code is required to search";
+    String ProvideValidInstituteUniqueName = "a valid institute unique name is required";
+    String ProvideValidCollectionCode = "a valid collection code is required";
+    String ProvideValidId = "an identifier is required";
+    String ProvideQualifierString = "qualifier string is required";
     String InstituteNotValidInputMessage = "For institute name/code,please provide at least 3 chars to search and max 20 chars";
     String CollectionNotValidInputMessage = "For collection name/code,please provide at least 3 chars to search and max 20 chars";
 

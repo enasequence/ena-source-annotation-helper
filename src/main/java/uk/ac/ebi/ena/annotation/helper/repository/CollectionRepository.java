@@ -35,7 +35,7 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
     @Query("{\"multi_match\": {\"fields\": [\"coll_code\", \"coll_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Collection> findByCollNameFuzzy(String name);
 
-    @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"match\": { \"qualifier_type\": ?2 } }, { \"multi_match\": " +
+    @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"terms\": { \"qualifier_type\": ?2 } }, { \"multi_match\": " +
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
-    List<Collection> findByMultipleInstIdsAndCollNameFuzzyAndQualifierType(int[] listInstituteIds, String collectionString, String qualifierType);
+    List<Collection> findByMultipleInstIdsAndCollNameFuzzyAndQualifierType(int[] listInstituteIds, String collectionString, List<String> qualifierType);
 }

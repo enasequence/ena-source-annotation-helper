@@ -78,13 +78,13 @@ public class SAHController {
     })
     public ResponseEntity<Object> findByInstUniqueNameAndCollCode(@ApiParam(name = "ivalue", type = "String",
             value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 3, max = 20, message = InstituteNotValidInputMessage) String ivalue,
-                                                          @ApiParam(name = "cvalue", type = "String", value = ValidInputSizeMessage)
-                                                          @PathVariable @Size(min = 3, max = 20, message = CollectionNotValidInputMessage) String cvalue,
-                                                          @ApiParam(name = "qualifier_type", type = "String[]",
-                                                                  value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
-                                                                  example = "specimen_voucher", required = false)
-                                                          @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
-                                                          @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
+                                                                  @ApiParam(name = "cvalue", type = "String", value = ValidInputSizeMessage)
+                                                                  @PathVariable @Size(min = 3, max = 20, message = CollectionNotValidInputMessage) String cvalue,
+                                                                  @ApiParam(name = "qualifier_type", type = "String[]",
+                                                                          value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
+                                                                          example = "specimen_voucher", required = false)
+                                                                  @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
+                                                                  @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
         ResponseDto responseDto = SVService.findByInstUniqueNameAndCollCode(ivalue, cvalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -96,8 +96,13 @@ public class SAHController {
             @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> validate(@RequestParam("value") String value,
-                                           @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
+    public ResponseEntity<Object> validate(@ApiParam(name = "value", type = "String",
+            value = ProvideQualifierString) @RequestParam("value") String value,
+                                           @ApiParam(name = "qualifier_type", type = "String[]",
+                                                   value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
+                                                   example = "specimen_voucher", required = false)
+                                           @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
+                                           @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
         SAHResponseDto responseDto = SVService.validateSV(value, qualifierType);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
@@ -109,10 +114,19 @@ public class SAHController {
             @ApiResponse(code = 200, message = "Successfully Constructed the Specimen Voucher String."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> construct(@RequestParam(name = "institute") String institute,
+    public ResponseEntity<Object> construct(@ApiParam(name = "institute", type = "String",
+            value = ProvideValidInstituteUniqueName) @RequestParam(name = "institute") String institute,
+                                            @ApiParam(name = "collection", type = "String",
+                                                    value = ProvideValidCollectionCode)
                                             @RequestParam(name = "collection", required = false) String collection,
+                                            @ApiParam(name = "id", type = "String",
+                                                    value = ProvideValidId)
                                             @RequestParam(name = "id") String id,
-                                            @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
+                                            @ApiParam(name = "qualifier_type", type = "String[]",
+                                                    value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
+                                                    example = "specimen_voucher", required = false)
+                                            @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
+                                            @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
         SAHResponseDto responseDto = SVService.constructSV(institute, collection, id, qualifierType);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);

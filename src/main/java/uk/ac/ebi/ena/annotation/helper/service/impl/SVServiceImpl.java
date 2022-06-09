@@ -139,7 +139,7 @@ public class SVServiceImpl implements SVService {
 
 
     @Override
-    public SAHResponseDto validateSV(String specimenVoucher, String qualifierType) {
+    public SAHResponseDto validateSV(String specimenVoucher, String[] qualifierType) {
 
         log.debug("Validating the specimen voucher value -- " + specimenVoucher);
 
@@ -159,7 +159,7 @@ public class SVServiceImpl implements SVService {
     }
 
     @Override
-    public SAHResponseDto constructSV(String instUniqueName, String collCode, String specimenId, String qualifierType) {
+    public SAHResponseDto constructSV(String instUniqueName, String collCode, String specimenId, String[] qualifierType) {
         if (isEmpty(instUniqueName)) {
             log.info("Missing institute unique name");
             return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
@@ -175,7 +175,7 @@ public class SVServiceImpl implements SVService {
         return validateAndConstruct(instUniqueName, collCode, specimenId, qualifierType);
     }
 
-    private SAHResponseDto validateAndConstruct(String instUniqueName, String collCode, String specimenId, String qualifierType) {
+    private SAHResponseDto validateAndConstruct(String instUniqueName, String collCode, String specimenId, String[] qualifierType) {
         //[<Institution Unique Name>:]<specimen_id>
         ValidationSearchResult validationSearchResult = svInstituteServiceHelper.validateInstitute(instUniqueName, qualifierType);
         validationSearchResult.setSpecimenId(specimenId);
