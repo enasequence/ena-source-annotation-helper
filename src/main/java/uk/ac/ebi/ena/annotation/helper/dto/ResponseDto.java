@@ -5,6 +5,7 @@ import lombok.Data;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -13,7 +14,7 @@ public class ResponseDto {
 
     private boolean success;
     private LocalDateTime timestamp;
-    private ErrorResponse error;
+    private List<ErrorResponse> errors;
 
     public ResponseDto() {
     }
@@ -23,9 +24,9 @@ public class ResponseDto {
         this.timestamp = timestamp;
     }
 
-    public ResponseDto(boolean success, LocalDateTime timestamp, ErrorResponse error) {
+    public ResponseDto(boolean success, LocalDateTime timestamp, List<ErrorResponse> errors) {
         this.success = success;
         this.timestamp = timestamp;
-        this.error = error;
+        this.errors = errors;
     }
 }

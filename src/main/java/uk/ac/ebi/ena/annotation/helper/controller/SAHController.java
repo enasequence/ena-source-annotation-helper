@@ -10,19 +10,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import uk.ac.ebi.ena.annotation.helper.dto.Data;
+import uk.ac.ebi.ena.annotation.helper.dto.QualifierValuesAllowed;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
 import uk.ac.ebi.ena.annotation.helper.service.GraphQLService;
 import uk.ac.ebi.ena.annotation.helper.service.SVService;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
+
 import static java.util.Objects.isNull;
 
 @RestController
 @Slf4j
-@Api(tags = "ENA Source Annotation Helper APIs")
+@Api(tags = "ENA Source Annotations Helper APIs")
 @RequestMapping("/ena/sah/")
+@Validated
 public class SAHController {
 
     @Autowired
@@ -38,8 +44,21 @@ public class SAHController {
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> findByInstituteStringFuzzy(@PathVariable String value,
-                                                             @RequestParam(name="qualifier_type", required=false) String qualifierType) {
+                                                             @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
         ResponseDto responseDto = SVService.findByInstituteStringFuzzy(value, qualifierType);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
+    }
+
+    @GetMapping("/institute1/{value}")
+    @ApiOperation(value = "Fetch similar institute matches by either institute name or institute code.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully queried the institute(s) information."),
+            @ApiResponse(code = 400, message = "Invalid request format")
+    })
+    public ResponseEntity<Object> findByInstitute1StringFuzzy(@PathVariable @Size(min=3, max=20) String value ,
+                                                              @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection",})
+                                                              @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
+        ResponseDto responseDto = SVService.findByInstituteStringFuzzyWithQTArray(value, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
@@ -50,7 +69,7 @@ public class SAHController {
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> findByInstIdAndCollCode(@PathVariable String ivalue,
-                                                          @RequestParam(name="qualifier_type", required=false) String qualifierType) {
+                                                          @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
         ResponseDto responseDto = SVService.findCollectionsByInstUniqueName(ivalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
         //return new ResponseEntity<>("Not Implemented yet", HttpStatus.NOT_FOUND);
@@ -65,35 +84,35 @@ public class SAHController {
     })
     public ResponseEntity<Object> findByInstIdAndCollCode(@PathVariable String ivalue,
                                                           @PathVariable String cvalue,
-                                                          @RequestParam(name="qualifier_type", required=false) String qualifierType) {
+                                                          @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
         ResponseDto responseDto = SVService.findByInstUniqueNameAndCollCode(ivalue, cvalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
 
     @GetMapping("/validate")
-    @ApiOperation(value = "Validate the provided Specimen Voucher.")
+    @ApiOperation(value = "Validate the provided Qualifier String")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully Validated the provided Specimen Voucher."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> validate(@RequestParam("value") String value,
-                                           @RequestParam(name="qualifier_type", required=false) String qualifierType) {
+                                           @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
         SAHResponseDto responseDto = SVService.validateSV(value, qualifierType);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     @GetMapping("/construct")
-    @ApiOperation(value = "Construct the Specimen Voucher String.")
+    @ApiOperation(value = "Construct the Qualifier String")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully Constructed the Specimen Voucher String."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> construct(@RequestParam(name="institute") String institute,
-                                            @RequestParam(name="collection", required=false) String collection,
-                                            @RequestParam(name="id") String id,
-                                            @RequestParam(name="qualifier_type", required=false) String qualifierType) {
+    public ResponseEntity<Object> construct(@RequestParam(name = "institute") String institute,
+                                            @RequestParam(name = "collection", required = false) String collection,
+                                            @RequestParam(name = "id") String id,
+                                            @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
         SAHResponseDto responseDto = SVService.constructSV(institute, collection, id, qualifierType);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);

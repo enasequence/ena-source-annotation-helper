@@ -15,8 +15,10 @@ public interface SVErrorCode {
     int InstituteMissingError = 3010;
     int SpecimenIdMissingError = 3011;
     int NoMatchError = 3012;
+    int QualifierTypeInvalidError = 3015;
 
     String ServerProcessingErrorMessage = "Unable to process your request, please contact system administrator";
+    String QualifierTypeInvalidMessage = "QualifierType values should be from list of ";
     String FieldValidationFailedMessage = "One or more field(s) failed validation";
     String RecordNotFoundMessage = "Requested record not found";
     String NoMatchingInstituteMessage = "No matching institute found";

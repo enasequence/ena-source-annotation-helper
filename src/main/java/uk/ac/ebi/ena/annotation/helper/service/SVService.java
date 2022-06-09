@@ -6,6 +6,7 @@ import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
 public interface SVService {
 
     public ResponseDto findByInstituteStringFuzzy(String name, String qualifierType);
+    public ResponseDto findByInstituteStringFuzzyWithQTArray(String name, String[] qualifierType);
 
     public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String qualifierType);
 

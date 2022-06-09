@@ -60,6 +60,11 @@ query collections($queryStr: String) {
 - [X] Construct and Validate to be exposed as REST APIs
 - [X] Instrumentation / observability for production environment
 - [X] Improve logging
+- [X] API contracts change post review
+- [X] Institutes to contain Collections in response
+- [ ] Input change to qualifier type array instead of string
+- [X] Validation on the inputs to ensure restrictions
+- [ ] Top 10 limit implementation
 - [ ] Review Messages to be displayed in responses
 - [ ] Add unit tests
 - [ ] Deployment gitlab-ci to be constructed

@@ -26,8 +26,8 @@ public class InstituteResponseDto extends ResponseDto {
     }
 
     public InstituteResponseDto(List<InstituteDto> institutes, boolean success, LocalDateTime timestamp,
-                                ErrorResponse error) {
-        super(success, timestamp, error);
+                                List<ErrorResponse> errors) {
+        super(success, timestamp, errors);
         this.institutes = institutes;
     }
 }

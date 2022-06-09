@@ -27,8 +27,8 @@ public class CollectionResponseDto extends ResponseDto {
     }
 
     public CollectionResponseDto(List<CollectionDto> collections, boolean success, LocalDateTime timestamp,
-                                 ErrorResponse error) {
-        super(success, timestamp, error);
+                                 List<ErrorResponse> errors) {
+        super(success, timestamp, errors);
         this.collections = collections;
     }
 }

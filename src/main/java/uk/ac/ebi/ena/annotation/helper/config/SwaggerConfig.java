@@ -40,7 +40,7 @@ public class SwaggerConfig {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("ENA Source Annotation Helper (SAH)")
+                .title("ENA Source Annotations Helper (SAH)")
                 .version("1.0.0")
                 .build();
     }
