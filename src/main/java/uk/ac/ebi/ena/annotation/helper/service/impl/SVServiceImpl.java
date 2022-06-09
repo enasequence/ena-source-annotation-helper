@@ -52,24 +52,6 @@ public class SVServiceImpl implements SVService {
     @Value("${query.results.limit}")
     private int QUERY_RESULTS_LIMIT;
 
-
-    @Override
-    public ResponseDto findByInstituteStringFuzzy(String name, String qualifierType) {
-        List<Institute> instituteList;
-        if (isEmpty(qualifierType)) {
-            instituteList = instituteRepository.findByInstituteFuzzy(name);
-        } else {
-            instituteList = instituteRepository
-                    .findByInstituteFuzzyAndQualifierType(name, qualifierType, QUERY_RESULTS_LIMIT);
-        }
-        if (!instituteList.isEmpty()) {
-            return new InstituteResponseDto(instituteList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
-                    true, LocalDateTime.now());
-        }
-        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
-        return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
-    }
-
     @Override
     public ResponseDto findByInstituteStringFuzzyWithQTArray(String name, String[] qualifierType) {
         List<Institute> instituteList;

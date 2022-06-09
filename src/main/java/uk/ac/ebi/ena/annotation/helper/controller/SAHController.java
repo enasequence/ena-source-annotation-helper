@@ -2,10 +2,7 @@ package uk.ac.ebi.ena.annotation.helper.controller;
 
 import graphql.ExecutionInput;
 import graphql.ExecutionResult;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +20,8 @@ import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import static java.util.Objects.isNull;
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.InstituteNotValidInputMessage;
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.ValidInputSizeMessage;
 
 @RestController
 @Slf4j
@@ -43,21 +42,13 @@ public class SAHController {
             @ApiResponse(code = 200, message = "Successfully queried the institute(s) information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByInstituteStringFuzzy(@PathVariable String value,
-                                                             @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
-        ResponseDto responseDto = SVService.findByInstituteStringFuzzy(value, qualifierType);
-        return new ResponseEntity<>(responseDto, HttpStatus.OK);
-    }
-
-    @GetMapping("/institute1/{value}")
-    @ApiOperation(value = "Fetch similar institute matches by either institute name or institute code.")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully queried the institute(s) information."),
-            @ApiResponse(code = 400, message = "Invalid request format")
-    })
-    public ResponseEntity<Object> findByInstitute1StringFuzzy(@PathVariable @Size(min=3, max=20) String value ,
-                                                              @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection",})
-                                                              @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
+    public ResponseEntity<Object> findByInstituteValue(@ApiParam(name = "value", type = "String",
+            value = ValidInputSizeMessage) @PathVariable @Size(min = 3, max = 20, message = InstituteNotValidInputMessage) String value,
+                                                       @ApiParam(name = "qualifier_type", type = "String[]",
+                                                               value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
+                                                               example = "specimen_voucher", required = false)
+                                                       @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
+                                                       @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
         ResponseDto responseDto = SVService.findByInstituteStringFuzzyWithQTArray(value, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }

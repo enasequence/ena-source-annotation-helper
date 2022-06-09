@@ -9,6 +9,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.springframework.util.ObjectUtils.isEmpty;
 import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.QualifierTypeInvalidMessage;
 
 @Retention(RetentionPolicy.RUNTIME)
@@ -41,9 +42,13 @@ public @interface QualifierValuesAllowed {
 
             Boolean valid = true;
 
+            if(isEmpty(value)) {
+                return valid;
+            }
+
             for (String val :
                     value) {
-                if (val != null && !this.allowable.contains(val)) {
+                if (!isEmpty(val) && !this.allowable.contains(val)) {
                     valid = false;
                     break;
                 }

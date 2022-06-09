@@ -32,8 +32,6 @@ public interface InstituteRepository extends ElasticsearchRepository<Institute, 
     @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institute> findByInstituteFuzzy(String name);
 
-//    @Query("{\"query\": {\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
-//            "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}}")
     @Query("{\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
             "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
     List<Institute> findByInstituteFuzzyAndQualifierType(String name, String qualifierType, int limit);
