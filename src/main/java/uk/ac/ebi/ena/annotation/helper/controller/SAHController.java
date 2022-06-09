@@ -54,16 +54,20 @@ public class SAHController {
     }
 
     @GetMapping("/institute/{ivalue}/collection")
-    @ApiOperation(value = "Get all collections by institute name")
+    @ApiOperation(value = "Get all collections by institute unique name")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByInstIdAndCollCode(@PathVariable String ivalue,
-                                                          @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
+    public ResponseEntity<Object> findByAllCollByInstituteUniqueName(@ApiParam(name = "ivalue", type = "String",
+            value = ValidInputSizeMessage) @PathVariable @Size(min = 3, max = 20, message = InstituteNotValidInputMessage) String ivalue,
+                                                       @ApiParam(name = "qualifier_type", type = "String[]",
+                                                               value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
+                                                               example = "specimen_voucher", required = false)
+                                                       @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
+                                                       @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
         ResponseDto responseDto = SVService.findCollectionsByInstUniqueName(ivalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
-        //return new ResponseEntity<>("Not Implemented yet", HttpStatus.NOT_FOUND);
     }
 
 

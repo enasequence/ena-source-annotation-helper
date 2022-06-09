@@ -14,11 +14,10 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
 
     Optional<Collection> findByInstIdAndCollCode(int instId, String collCode);
 
-    //Optional<Collection> findByInstIdAndCollCodeAndQualifierType(int instId, String collCode, String qualifierType);
-
     List<Collection> findByInstId(int instId);
 
-    List<Collection> findByInstIdAndQualifierType(int instId, String qualifierType);
+    @Query("{\"bool\": {\"must\": [{ \"match\": { \"inst_id\": \"?0\" } },{\"terms\": {\"qualifier_type\": ?1 }}]}}")
+    List<Collection> findByInstIdAndQualifierTypeArray(int instId, List<String> qualifierTypeArrray);
 
     @Query("{ \"bool\": { \"must\": [ { \"match\": { \"inst_id\": ?0 } }, { \"multi_match\": " +
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")

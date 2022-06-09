@@ -71,7 +71,8 @@ public class SVServiceImpl implements SVService {
     }
 
     @Override
-    public ResponseDto findCollectionsByInstUniqueName(String instUniqueName, String qualifierType) {
+    public ResponseDto findCollectionsByInstUniqueName(String instUniqueName, String[] qualifierType) {
+
         Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(instUniqueName);
 
         if (!optionalInstitute.isPresent()) {
@@ -86,8 +87,9 @@ public class SVServiceImpl implements SVService {
             listCollection = collectionRepository
                     .findByInstId(optionalInstitute.get().getInstId());
         } else {
+            List<String> listQT = Arrays.asList(qualifierType);
             listCollection = collectionRepository
-                    .findByInstIdAndQualifierType(optionalInstitute.get().getInstId(), qualifierType);
+                    .findByInstIdAndQualifierTypeArray(optionalInstitute.get().getInstId(), listQT);
         }
 
         if (!listCollection.isEmpty()) {
