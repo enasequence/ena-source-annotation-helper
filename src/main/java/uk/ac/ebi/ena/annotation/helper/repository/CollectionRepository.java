@@ -23,9 +23,9 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
     List<Collection> findByInstIdAndCollNameFuzzy(int instId, String name);
 
-    @Query("{ \"bool\": { \"must\": [ { \"match\": { \"inst_id\": ?0 } }, { \"match\": { \"qualifier_type\": ?2 } }, { \"multi_match\": " +
+    @Query("{ \"bool\": { \"must\": [ { \"match\": { \"inst_id\": ?0 } }, { \"terms\": { \"qualifier_type\": ?2 } }, { \"multi_match\": " +
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
-    List<Collection> findByInstIdAndCollNameFuzzyWithQualifierType(int instId, String name, String qualifierType);
+    List<Collection> findByInstIdAndCollNameFuzzyWithQualifierType(int instId, String name, List<String> qualifierType);
 
 
     @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"multi_match\": " +

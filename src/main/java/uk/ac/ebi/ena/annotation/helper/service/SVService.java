@@ -9,7 +9,7 @@ public interface SVService {
 
     public ResponseDto findCollectionsByInstUniqueName(String instUniqueName, String[] qualifierType);
 
-    public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String qualifierType);
+    public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String[] qualifierType);
 
     public SAHResponseDto validateSV(String specimenVoucher, String qualifierType);
 

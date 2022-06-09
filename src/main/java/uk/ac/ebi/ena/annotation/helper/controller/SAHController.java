@@ -20,8 +20,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import static java.util.Objects.isNull;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.InstituteNotValidInputMessage;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.ValidInputSizeMessage;
+import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.*;
 
 @RestController
 @Slf4j
@@ -60,12 +59,12 @@ public class SAHController {
             @ApiResponse(code = 400, message = "Invalid request format")
     })
     public ResponseEntity<Object> findByAllCollByInstituteUniqueName(@ApiParam(name = "ivalue", type = "String",
-            value = ValidInputSizeMessage) @PathVariable @Size(min = 3, max = 20, message = InstituteNotValidInputMessage) String ivalue,
-                                                       @ApiParam(name = "qualifier_type", type = "String[]",
-                                                               value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
-                                                               example = "specimen_voucher", required = false)
-                                                       @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
-                                                       @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
+            value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 3, max = 20, message = InstituteNotValidInputMessage) String ivalue,
+                                                                     @ApiParam(name = "qualifier_type", type = "String[]",
+                                                                             value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
+                                                                             example = "specimen_voucher", required = false)
+                                                                     @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
+                                                                     @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
         ResponseDto responseDto = SVService.findCollectionsByInstUniqueName(ivalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -77,9 +76,15 @@ public class SAHController {
             @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByInstIdAndCollCode(@PathVariable String ivalue,
-                                                          @PathVariable String cvalue,
-                                                          @RequestParam(name = "qualifier_type", required = false) String qualifierType) {
+    public ResponseEntity<Object> findByInstUniqueNameAndCollCode(@ApiParam(name = "ivalue", type = "String",
+            value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 3, max = 20, message = InstituteNotValidInputMessage) String ivalue,
+                                                          @ApiParam(name = "cvalue", type = "String", value = ValidInputSizeMessage)
+                                                          @PathVariable @Size(min = 3, max = 20, message = CollectionNotValidInputMessage) String cvalue,
+                                                          @ApiParam(name = "qualifier_type", type = "String[]",
+                                                                  value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
+                                                                  example = "specimen_voucher", required = false)
+                                                          @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
+                                                          @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
         ResponseDto responseDto = SVService.findByInstUniqueNameAndCollCode(ivalue, cvalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }

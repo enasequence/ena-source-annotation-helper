@@ -32,6 +32,8 @@ public interface SVErrorCode {
     String SpecimenIdMissingMessage = "Specimen Id is mandatory";
     String NoMatchMessage = "No Matching Institute/Collection found";
     String ValidInputSizeMessage = "for search, accepts minimum 3 chars and maximum 20 chars";
-    String InstituteNotValidInputMessage = "For institute search,please provide at least 3 chars to search and max 20 chars";
+    String ValidInstituteUniqueNameRequiredMessage = "a valid institute unique name is required to search";
+    String InstituteNotValidInputMessage = "For institute name/code,please provide at least 3 chars to search and max 20 chars";
+    String CollectionNotValidInputMessage = "For collection name/code,please provide at least 3 chars to search and max 20 chars";
 
 }

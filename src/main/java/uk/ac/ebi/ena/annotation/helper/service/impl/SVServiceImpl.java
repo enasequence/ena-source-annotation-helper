@@ -105,7 +105,7 @@ public class SVServiceImpl implements SVService {
     }
 
     @Override
-    public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String qualifierType) {
+    public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String[] qualifierType) {
         Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(instUniqueName);
         if (!optionalInstitute.isPresent()) {
             log.info("No matching institute found for institute -- {}", instUniqueName);
@@ -119,9 +119,10 @@ public class SVServiceImpl implements SVService {
             listCollection =
                     collectionRepository.findByInstIdAndCollNameFuzzy(optionalInstitute.get().getInstId(), collCode);
         } else {
+            List<String> listQT = Arrays.asList(qualifierType);
             listCollection =
                     collectionRepository.findByInstIdAndCollNameFuzzyWithQualifierType(optionalInstitute.get().getInstId(),
-                            collCode, qualifierType);
+                            collCode, listQT);
         }
 
         if (!listCollection.isEmpty()) {
