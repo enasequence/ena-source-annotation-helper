@@ -9,7 +9,7 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger.web.*;
+import springfox.documentation.swagger.web.SecurityConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
@@ -44,30 +44,5 @@ public class SwaggerConfig {
                 .version("1.0.0")
                 .build();
     }
-
-    /**
-     * Swagger UI Configuration
-     *
-     * @return UiConfiguration
-     */
-//    @Bean
-//    UiConfiguration uiConfig() {
-//        return UiConfigurationBuilder.builder()
-//                .deepLinking(true)
-//                .displayOperationId(false)
-//                .defaultModelsExpandDepth(1)
-//                .defaultModelExpandDepth(1)
-//                .defaultModelRendering(ModelRendering.EXAMPLE)
-//                .displayRequestDuration(false)
-//                .docExpansion(DocExpansion.LIST)
-//                .filter(false)
-//                .maxDisplayedTags(null)
-//                .operationsSorter(OperationsSorter.ALPHA)
-//                .showExtensions(false)
-//                .tagsSorter(TagsSorter.ALPHA)
-//                .validatorUrl("http://online.swagger.io/validator")
-//                .build();
-//    }
-
 
 }

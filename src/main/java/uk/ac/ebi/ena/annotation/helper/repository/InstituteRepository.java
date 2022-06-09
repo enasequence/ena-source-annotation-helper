@@ -1,19 +1,15 @@
 package uk.ac.ebi.ena.annotation.helper.repository;
 
-import org.springframework.data.repository.query.Param;
-import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface InstituteRepository extends ElasticsearchRepository<Institute, String> {
+
     List<Institute> findAll();
-
-    Optional<Institute> findByInstCode(String instCode);
-
-    List<Institute> findByInstName(String name);
 
     Optional<Institute> findByUniqueName(String uniqueName);
 
@@ -32,10 +28,6 @@ public interface InstituteRepository extends ElasticsearchRepository<Institute, 
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institute> findByInstituteFuzzy(String name);
-
-    @Query("{\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"?1\"}}, " +
-            "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
-    List<Institute> findByInstituteFuzzyAndQualifierType(String name, String qualifierType, int limit);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1 }}, " +
             "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")

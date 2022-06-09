@@ -101,22 +101,23 @@ public class SVInstituteServiceHelper {
 
     private ValidationSearchResult getSvSearchResult(List<Institute> listInstitute) {
         if (!listInstitute.isEmpty() && listInstitute.size() >= 1) {
-            if (listInstitute.size() <= SUGGESTIONS_LIMIT) {
-                log.debug("found similar {} institutes", listInstitute.size());
-                return ValidationSearchResult.builder()
-                        .institutes(listInstitute)
-                        .match(listInstitute.size() == 1 ? SVConstants.EXACT_MATCH : SVConstants.MULTI_NEAR_MATCH)
-                        .message(listInstitute.size() > 1 ? MultipleMatchesFoundMessage : null)
-                        .success(true)
-                        .build();
-            } else {
-                log.debug("found similar {} institutes, beyond configured limit", listInstitute.size());
-                return ValidationSearchResult.builder()
-                        .institutes(listInstitute)
-                        .match(TOO_MANY_MATCH)
-                        .success(true)
-                        .build();
-            }
+            //todo verify -- later to restrict if query fails becuase of search data load
+//            if(listInstitute.size() > SUGGESTIONS_LIMIT){
+//                log.debug("found similar {} institutes, beyond configured limit", listInstitute.size());
+//                return ValidationSearchResult.builder()
+//                        .institutes(listInstitute)
+//                        .match(TOO_MANY_MATCH)
+//                        .success(true)
+//                        .build();
+//            }
+            log.debug("found similar {} institutes", listInstitute.size());
+            return ValidationSearchResult.builder()
+                    .institutes(listInstitute)
+                    .match(listInstitute.size() == 1 ? SVConstants.EXACT_MATCH : SVConstants.MULTI_NEAR_MATCH)
+                    .message(listInstitute.size() > 1 ? MultipleMatchesFoundMessage : null)
+                    .success(true)
+                    .build();
+            
         }
         log.debug("No match found for the given inputs");
         return ValidationSearchResult.builder()

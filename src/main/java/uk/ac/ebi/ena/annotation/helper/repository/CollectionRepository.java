@@ -8,9 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CollectionRepository extends ElasticsearchRepository<Collection, String> {
-    List<Collection> findAll();
 
-    List<Collection> findByCollCode(String collCode);
+    List<Collection> findAll();
 
     Optional<Collection> findByInstIdAndCollCode(int instId, String collCode);
 

@@ -7,9 +7,9 @@ public interface SVConstants {
     int TOO_MANY_MATCH = 2;
     int NO_MATCH = -1;
 
-    String MATCH_LEVEL_EXACT = "Exact Match";
-    String MATCH_LEVEL_PARTIAL = "Partial Match";
+    String MATCH_LEVEL_EXACT = "Exact";
+    String MATCH_LEVEL_PARTIAL = "Partial";
     String MATCH_LEVEL_TOO_MANY = "Too Many Partial Matches";
-    String MATCH_LEVEL_NONE = "No Match";
+    String MATCH_LEVEL_NONE = "None";
 
 }

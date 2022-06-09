@@ -3,7 +3,6 @@ package uk.ac.ebi.ena.annotation.helper.dto;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
-import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;

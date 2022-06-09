@@ -1,6 +1,5 @@
 package uk.ac.ebi.ena.annotation.helper.exception;
 
-
 import org.springframework.http.HttpStatus;
 
 public class BadRequestException extends SVBaseException {

@@ -42,7 +42,7 @@ public @interface QualifierValuesAllowed {
 
             Boolean valid = true;
 
-            if(isEmpty(value)) {
+            if (isEmpty(value)) {
                 return valid;
             }
 
