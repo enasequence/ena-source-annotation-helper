@@ -147,18 +147,18 @@ public class SAHController {
 //            @ApiResponse(code = 200, message = "Successfully fetched the required information."),
 //            @ApiResponse(code = 400, message = "Invalid request format")
 //    })
-    @Deprecated
-    private ResponseEntity<Object> fetchInstCollMeta(@RequestBody Data query) {
-        ExecutionResult execute;
-        if (isNull(query.getVariables())) {
-            execute = graphQLService.getGraphQL().execute(query.getQuery());
-        } else {
-            ExecutionInput executionInput = ExecutionInput.newExecutionInput()
-                    .query(query.getQuery())
-                    .variables(query.getVariables())
-                    .build();
-            execute = graphQLService.getGraphQL().execute(executionInput);
-        }
-        return new ResponseEntity<>(execute, HttpStatus.OK);
-    }
+//    @Deprecated
+//    private ResponseEntity<Object> fetchInstCollMeta(@RequestBody Data query) {
+//        ExecutionResult execute;
+//        if (isNull(query.getVariables())) {
+//            execute = graphQLService.getGraphQL().execute(query.getQuery());
+//        } else {
+//            ExecutionInput executionInput = ExecutionInput.newExecutionInput()
+//                    .query(query.getQuery())
+//                    .variables(query.getVariables())
+//                    .build();
+//            execute = graphQLService.getGraphQL().execute(executionInput);
+//        }
+//        return new ResponseEntity<>(execute, HttpStatus.OK);
+//    }
 }

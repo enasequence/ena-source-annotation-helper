@@ -4,8 +4,8 @@ import graphql.GraphQL;
 
 public interface GraphQLService {
 
-    public GraphQL getGraphQL();
-
-    public String getGraphQLSchema();
+//    public GraphQL getGraphQL();
+//
+//    public String getGraphQLSchema();
 
 }
