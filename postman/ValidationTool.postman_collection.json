@@ -107,21 +107,9 @@
 				},
 				{
 					"name": "QueryDocs-ALL-Institutes",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
 							"protocol": "http",
@@ -372,7 +360,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete-Test-Index",
+					"name": "Delete-Institute-Index",
 					"request": {
 						"method": "DELETE",
 						"header": [],
@@ -753,7 +741,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete-Test-Index",
+					"name": "Delete-Collection-Index",
 					"request": {
 						"method": "DELETE",
 						"header": [],
