@@ -10,12 +10,12 @@ import uk.ac.ebi.ena.annotation.helper.entity.Institute;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 import uk.ac.ebi.ena.annotation.helper.mapper.CollectionMapper;
 import uk.ac.ebi.ena.annotation.helper.mapper.InstituteMapper;
-import uk.ac.ebi.ena.annotation.helper.mapper.SVResponseMapper;
+import uk.ac.ebi.ena.annotation.helper.mapper.SAHResponseMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
 import uk.ac.ebi.ena.annotation.helper.service.SAHService;
-import uk.ac.ebi.ena.annotation.helper.service.helper.SVCollectionServiceHelper;
-import uk.ac.ebi.ena.annotation.helper.service.helper.SVInstituteServiceHelper;
+import uk.ac.ebi.ena.annotation.helper.service.helper.SAHCollectionServiceHelper;
+import uk.ac.ebi.ena.annotation.helper.service.helper.SAHInstituteServiceHelper;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -35,10 +35,10 @@ public class SAHServiceImpl implements SAHService {
     private CollectionRepository collectionRepository;
 
     @Autowired
-    private SVInstituteServiceHelper svInstituteServiceHelper;
+    private SAHInstituteServiceHelper sahInstituteServiceHelper;
 
     @Autowired
-    private SVCollectionServiceHelper svCollectionServiceHelper;
+    private SAHCollectionServiceHelper sahCollectionServiceHelper;
 
     @Autowired
     InstituteMapper instituteMapper;
@@ -47,7 +47,7 @@ public class SAHServiceImpl implements SAHService {
     CollectionMapper collectionMapper;
 
     @Autowired
-    SVResponseMapper svResponseMapper;
+    SAHResponseMapper SAHResponseMapper;
 
     @Value("${query.results.limit}")
     private int QUERY_RESULTS_LIMIT;
@@ -141,20 +141,20 @@ public class SAHServiceImpl implements SAHService {
     @Override
     public SAHResponseDto validate(String qualifierValue, String[] qualifierType) {
 
-        log.debug("Validating the specimen voucher value -- " + qualifierValue);
+        log.debug("Validating the qualifier value -- " + qualifierValue);
 
-        String[] tokenizedSV = qualifierValue.split(":");
+        String[] tokenizedQV = qualifierValue.split(":");
 
-        if (tokenizedSV.length < 2 || tokenizedSV.length > 3) {
-            log.info("Invalid specimen voucher format -- {} ", qualifierValue);
+        if (tokenizedQV.length < 2 || tokenizedQV.length > 3) {
+            log.info("Invalid qualifier format -- {} ", qualifierValue);
             return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
                     code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
         }
 
-        if (tokenizedSV.length == 2) {
-            return validateAndConstruct(tokenizedSV[0], null, tokenizedSV[1], qualifierType);
+        if (tokenizedQV.length == 2) {
+            return validateAndConstruct(tokenizedQV[0], null, tokenizedQV[1], qualifierType);
         } else {
-            return validateAndConstruct(tokenizedSV[0], tokenizedSV[1], tokenizedSV[2], qualifierType);
+            return validateAndConstruct(tokenizedQV[0], tokenizedQV[1], tokenizedQV[2], qualifierType);
         }
     }
 
@@ -167,7 +167,7 @@ public class SAHServiceImpl implements SAHService {
         }
 
         if (isEmpty(identifier)) {
-            log.info("Missing specimen id");
+            log.info("Missing identifier");
             return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
                     code(IdentifierMissingError).message(IdentifierMissingMessage).build()).build();
         }
@@ -175,34 +175,34 @@ public class SAHServiceImpl implements SAHService {
         return validateAndConstruct(instUniqueName, collCode, identifier, qualifierType);
     }
 
-    private SAHResponseDto validateAndConstruct(String instUniqueName, String collCode, String specimenId, String[] qualifierType) {
-        //[<Institution Unique Name>:]<specimen_id>
-        ValidationSearchResult validationSearchResult = svInstituteServiceHelper.validateInstitute(instUniqueName, qualifierType);
-        validationSearchResult.setIdentifier(specimenId);
+    private SAHResponseDto validateAndConstruct(String instUniqueName, String collCode, String identifier, String[] qualifierType) {
+        //[<Institution Unique Name>:]<identifier>
+        ValidationSearchResult validationSearchResult = sahInstituteServiceHelper.validateInstitute(instUniqueName, qualifierType);
+        validationSearchResult.setIdentifier(identifier);
         //set the input string for logs and reporting purpose
-        validationSearchResult.setInputsParams(instUniqueName, collCode, specimenId);
+        validationSearchResult.setInputsParams(instUniqueName, collCode, identifier);
 
         //invalid institute scenario
         if (!validationSearchResult.isSuccess()) {
-            return svResponseMapper.mapResponseDto(validationSearchResult);
+            return SAHResponseMapper.mapResponseDto(validationSearchResult);
         }
 
         if (isEmpty(collCode)) {
             //collection code not provided. return with results
-            return svResponseMapper.mapResponseDto(validationSearchResult);
+            return SAHResponseMapper.mapResponseDto(validationSearchResult);
         }
 
-        //[<Institution Unique Name>:[<collection-code>:]]<specimen_id>
+        //[<Institution Unique Name>:[<collection-code>:]]<identifier>
         //also within suggestions limits
         validationSearchResult.setCollectionAvailable(true);
-        //Map will further help in contructing the final SV strings
+        //Map will further help in contructing the final QV strings
         Map mapInstIdUniqueName = validationSearchResult.getInstitutes().stream()
                 .collect(Collectors.toMap(Institute::getInstId, Institute::getUniqueName));
         validationSearchResult.setInstituteIdNameMap(mapInstIdUniqueName);
 
-        validationSearchResult = svCollectionServiceHelper
+        validationSearchResult = sahCollectionServiceHelper
                 .validateMultipleInstIdsAndCollName(validationSearchResult, collCode, qualifierType);
-        return svResponseMapper.mapResponseDto(validationSearchResult);
+        return SAHResponseMapper.mapResponseDto(validationSearchResult);
     }
 
 

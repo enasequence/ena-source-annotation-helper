@@ -2422,7 +2422,7 @@
 										"exec": [
 											"pm.test(\"Validate-SimilarMatch-Inst-TooMany-01\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eql(3009);",
+											"    pm.expect(jsonData.success).to.eql(true);",
 											"});",
 											""
 										],
@@ -2839,7 +2839,7 @@
 										"exec": [
 											"pm.test(\"Construct-SimilarMatch-Inst-TooMany-01\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eql(3009);",
+											"    pm.expect(jsonData.success).to.eql(true);",
 											"});",
 											""
 										],

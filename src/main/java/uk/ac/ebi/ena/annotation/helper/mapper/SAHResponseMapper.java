@@ -16,11 +16,11 @@ import java.util.StringJoiner;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
-import static uk.ac.ebi.ena.annotation.helper.utils.SVConstants.*;
+import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.*;
 
 @Component
 @Slf4j
-public class SVResponseMapper {
+public class SAHResponseMapper {
 
     public SAHResponseDto mapResponseDto(ValidationSearchResult validationSearchResult) {
 
@@ -53,7 +53,7 @@ public class SVResponseMapper {
             log.debug("Collection Available");
             for (Collection collection : validationSearchResult.getCollections()) {
                 String instUniqueName = validationSearchResult.getInstituteIdNameMap().get(collection.getInstId());
-                String qualifierValueStr = buildSpecimenVoucherString(instUniqueName, collection.getCollCode(),
+                String qualifierValueStr = buildQualifierValueString(instUniqueName, collection.getCollCode(),
                         validationSearchResult.getIdentifier(), true);
                 matchDtoList.add(MatchDto.builder().match(qualifierValueStr).qualifierType(collection.getQualifierType()).build());
             }
@@ -61,7 +61,7 @@ public class SVResponseMapper {
             log.debug("Collection Not Available");
             for (Institute institute : validationSearchResult.getInstitutes()) {
                 String instUniqueName = institute.getUniqueName();
-                String qualifierValueStr = buildSpecimenVoucherString(instUniqueName, null,
+                String qualifierValueStr = buildQualifierValueString(instUniqueName, null,
                         validationSearchResult.getIdentifier(), false);
                 matchDtoList.add(MatchDto.builder().match(qualifierValueStr).qualifierType(institute.getQualifierType()).build());
             }
@@ -76,8 +76,8 @@ public class SVResponseMapper {
                 .build();
     }
 
-    private String buildSpecimenVoucherString(String instUniqueName, String collCode,
-                                              String identifier, boolean collectionAvailable) {
+    private String buildQualifierValueString(String instUniqueName, String collCode,
+                                             String identifier, boolean collectionAvailable) {
         StringJoiner sjQualifierValue = new StringJoiner(":");
         sjQualifierValue.add(instUniqueName);
         if (!isEmpty(collCode)) {

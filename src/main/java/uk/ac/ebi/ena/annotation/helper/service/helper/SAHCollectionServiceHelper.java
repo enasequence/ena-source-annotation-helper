@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
-import uk.ac.ebi.ena.annotation.helper.utils.SVConstants;
+import uk.ac.ebi.ena.annotation.helper.utils.SAHConstants;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +16,7 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.MultipleMat
 
 @Service
 @Slf4j
-public class SVCollectionServiceHelper {
+public class SAHCollectionServiceHelper {
 
     @Autowired
     private CollectionRepository collectionRepository;
@@ -47,19 +47,19 @@ public class SVCollectionServiceHelper {
             if (listCollection.size() == 1) {
                 log.debug("found collection exact match");
                 validationSearchResult.setCollections(listCollection);
-                validationSearchResult.setMatch(SVConstants.EXACT_MATCH);
+                validationSearchResult.setMatch(SAHConstants.EXACT_MATCH);
                 validationSearchResult.setSuccess(true);
                 return validationSearchResult;
             } else {
                 validationSearchResult.setCollections(listCollection);
-                validationSearchResult.setMatch(SVConstants.MULTI_NEAR_MATCH);
+                validationSearchResult.setMatch(SAHConstants.MULTI_NEAR_MATCH);
                 validationSearchResult.setMessage(MultipleMatchesFoundMessage);
                 validationSearchResult.setSuccess(true);
                 return validationSearchResult;
             }
         }
         log.info("No matching collection found for inputs -- {}", validationSearchResult.getInputParams());
-        validationSearchResult.setMatch(SVConstants.NO_MATCH);
+        validationSearchResult.setMatch(SAHConstants.NO_MATCH);
         validationSearchResult.setSuccess(false);
         return validationSearchResult;
     }
