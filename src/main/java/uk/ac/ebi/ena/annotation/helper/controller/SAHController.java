@@ -14,13 +14,13 @@ import uk.ac.ebi.ena.annotation.helper.dto.QualifierValuesAllowed;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
 import uk.ac.ebi.ena.annotation.helper.service.GraphQLService;
-import uk.ac.ebi.ena.annotation.helper.service.SVService;
+import uk.ac.ebi.ena.annotation.helper.service.SAHService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import static java.util.Objects.isNull;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.*;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 
 @RestController
 @Slf4j
@@ -33,22 +33,22 @@ public class SAHController {
     GraphQLService graphQLService;
 
     @Autowired
-    SVService SVService;
+    SAHService SAHService;
 
-    @GetMapping("/institute/{value}")
+    @GetMapping("/institute/{ivalue}")
     @ApiOperation(value = "Fetch similar institute matches by either institute name or institute code.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully queried the institute(s) information."),
             @ApiResponse(code = 400, message = "Invalid request format")
     })
-    public ResponseEntity<Object> findByInstituteValue(@ApiParam(name = "value", type = "String",
-            value = ValidInputSizeMessage) @PathVariable @Size(min = 3, max = 20, message = InstituteNotValidInputMessage) String value,
+    public ResponseEntity<Object> findByInstituteValue(@ApiParam(name = "ivalue", type = "String",
+            value = ValidInputSizeMessage) @PathVariable @Size(min = 3, max = 20, message = InstituteNotValidInputMessage) String ivalue,
                                                        @ApiParam(name = "qualifier_type", type = "String[]",
                                                                value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
                                                                example = "specimen_voucher", required = false)
                                                        @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                                        @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        ResponseDto responseDto = SVService.findByInstituteStringFuzzyWithQTArray(value, qualifierType);
+        ResponseDto responseDto = SAHService.findByInstituteStringFuzzyWithQTArray(ivalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
@@ -65,7 +65,7 @@ public class SAHController {
                                                                              example = "specimen_voucher", required = false)
                                                                      @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                                                      @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        ResponseDto responseDto = SVService.findCollectionsByInstUniqueName(ivalue, qualifierType);
+        ResponseDto responseDto = SAHService.findCollectionsByInstUniqueName(ivalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
@@ -85,7 +85,7 @@ public class SAHController {
                                                                           example = "specimen_voucher", required = false)
                                                                   @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                                                   @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        ResponseDto responseDto = SVService.findByInstUniqueNameAndCollCode(ivalue, cvalue, qualifierType);
+        ResponseDto responseDto = SAHService.findByInstUniqueNameAndCollCode(ivalue, cvalue, qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
@@ -103,7 +103,7 @@ public class SAHController {
                                                    example = "specimen_voucher", required = false)
                                            @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                            @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        SAHResponseDto responseDto = SVService.validateSV(value, qualifierType);
+        SAHResponseDto responseDto = SAHService.validate(value, qualifierType);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
@@ -127,7 +127,7 @@ public class SAHController {
                                                     example = "specimen_voucher", required = false)
                                             @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                             @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        SAHResponseDto responseDto = SVService.constructSV(institute, collection, id, qualifierType);
+        SAHResponseDto responseDto = SAHService.construct(institute, collection, id, qualifierType);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }

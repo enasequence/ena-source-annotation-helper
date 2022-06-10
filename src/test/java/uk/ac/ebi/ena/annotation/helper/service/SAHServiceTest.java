@@ -12,10 +12,10 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-public class SVServiceTest {
+public class SAHServiceTest {
 
     @Autowired
-    private SVService SVService;
+    private SAHService SAHService;
 
     @Autowired
     private static ElasticsearchOperations esTemplate;

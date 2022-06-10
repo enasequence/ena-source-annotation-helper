@@ -1,7 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -16,15 +15,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.FieldValidationError;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.QualifierTypeInvalidError;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.FieldValidationError;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.QualifierTypeInvalidError;
 
 
 @RestControllerAdvice
-public class SVControllerAdvice {
+public class SAHControllerAdvice {
 
     /**
      * Method handler for MethodArgumentNotValidException

@@ -15,8 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.MultipleMatchesFoundMessage;
-import static uk.ac.ebi.ena.annotation.helper.utils.SVConstants.TOO_MANY_MATCH;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.MultipleMatchesFoundMessage;
 
 @Service
 @Slf4j
@@ -117,7 +116,7 @@ public class SVInstituteServiceHelper {
                     .message(listInstitute.size() > 1 ? MultipleMatchesFoundMessage : null)
                     .success(true)
                     .build();
-            
+
         }
         log.debug("No match found for the given inputs");
         return ValidationSearchResult.builder()

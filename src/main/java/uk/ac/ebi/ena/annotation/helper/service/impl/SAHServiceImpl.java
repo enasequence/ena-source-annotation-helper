@@ -13,7 +13,7 @@ import uk.ac.ebi.ena.annotation.helper.mapper.InstituteMapper;
 import uk.ac.ebi.ena.annotation.helper.mapper.SVResponseMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
-import uk.ac.ebi.ena.annotation.helper.service.SVService;
+import uk.ac.ebi.ena.annotation.helper.service.SAHService;
 import uk.ac.ebi.ena.annotation.helper.service.helper.SVCollectionServiceHelper;
 import uk.ac.ebi.ena.annotation.helper.service.helper.SVInstituteServiceHelper;
 
@@ -22,11 +22,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.*;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 
 @Service
 @Slf4j
-public class SVServiceImpl implements SVService {
+public class SAHServiceImpl implements SAHService {
 
     @Autowired
     private InstituteRepository instituteRepository;
@@ -139,14 +139,14 @@ public class SVServiceImpl implements SVService {
 
 
     @Override
-    public SAHResponseDto validateSV(String specimenVoucher, String[] qualifierType) {
+    public SAHResponseDto validate(String qualifierValue, String[] qualifierType) {
 
-        log.debug("Validating the specimen voucher value -- " + specimenVoucher);
+        log.debug("Validating the specimen voucher value -- " + qualifierValue);
 
-        String[] tokenizedSV = specimenVoucher.split(":");
+        String[] tokenizedSV = qualifierValue.split(":");
 
         if (tokenizedSV.length < 2 || tokenizedSV.length > 3) {
-            log.info("Invalid specimen voucher format -- {} ", specimenVoucher);
+            log.info("Invalid specimen voucher format -- {} ", qualifierValue);
             return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
                     code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
         }
@@ -159,26 +159,26 @@ public class SVServiceImpl implements SVService {
     }
 
     @Override
-    public SAHResponseDto constructSV(String instUniqueName, String collCode, String specimenId, String[] qualifierType) {
+    public SAHResponseDto construct(String instUniqueName, String collCode, String identifier, String[] qualifierType) {
         if (isEmpty(instUniqueName)) {
             log.info("Missing institute unique name");
             return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
                     code(InstituteMissingError).message(InstituteMissingMessage).build()).build();
         }
 
-        if (isEmpty(specimenId)) {
+        if (isEmpty(identifier)) {
             log.info("Missing specimen id");
             return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
-                    code(SpecimenIdMissingError).message(SpecimenIdMissingMessage).build()).build();
+                    code(IdentifierMissingError).message(IdentifierMissingMessage).build()).build();
         }
 
-        return validateAndConstruct(instUniqueName, collCode, specimenId, qualifierType);
+        return validateAndConstruct(instUniqueName, collCode, identifier, qualifierType);
     }
 
     private SAHResponseDto validateAndConstruct(String instUniqueName, String collCode, String specimenId, String[] qualifierType) {
         //[<Institution Unique Name>:]<specimen_id>
         ValidationSearchResult validationSearchResult = svInstituteServiceHelper.validateInstitute(instUniqueName, qualifierType);
-        validationSearchResult.setSpecimenId(specimenId);
+        validationSearchResult.setIdentifier(specimenId);
         //set the input string for logs and reporting purpose
         validationSearchResult.setInputsParams(instUniqueName, collCode, specimenId);
 

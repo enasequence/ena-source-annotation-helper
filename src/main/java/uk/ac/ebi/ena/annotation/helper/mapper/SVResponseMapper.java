@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.*;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 import static uk.ac.ebi.ena.annotation.helper.utils.SVConstants.*;
 
 @Component
@@ -48,23 +48,22 @@ public class SVResponseMapper {
         //mean only single entry in response array
         log.debug("Building Success Match Response");
         List<MatchDto> matchDtoList = new ArrayList();
-        //String specimenVoucherStr;
         log.info("Building success response for the given input -- {}", validationSearchResult.getInputParams());
         if (validationSearchResult.isCollectionAvailable()) {
             log.debug("Collection Available");
             for (Collection collection : validationSearchResult.getCollections()) {
                 String instUniqueName = validationSearchResult.getInstituteIdNameMap().get(collection.getInstId());
-                String specimenVoucherStr = buildSpecimenVoucherString(instUniqueName, collection.getCollCode(),
-                        validationSearchResult.getSpecimenId(), true);
-                matchDtoList.add(MatchDto.builder().match(specimenVoucherStr).qualifierType(collection.getQualifierType()).build());
+                String qualifierValueStr = buildSpecimenVoucherString(instUniqueName, collection.getCollCode(),
+                        validationSearchResult.getIdentifier(), true);
+                matchDtoList.add(MatchDto.builder().match(qualifierValueStr).qualifierType(collection.getQualifierType()).build());
             }
         } else {
             log.debug("Collection Not Available");
             for (Institute institute : validationSearchResult.getInstitutes()) {
                 String instUniqueName = institute.getUniqueName();
-                String specimenVoucherStr = buildSpecimenVoucherString(instUniqueName, null,
-                        validationSearchResult.getSpecimenId(), false);
-                matchDtoList.add(MatchDto.builder().match(specimenVoucherStr).qualifierType(institute.getQualifierType()).build());
+                String qualifierValueStr = buildSpecimenVoucherString(instUniqueName, null,
+                        validationSearchResult.getIdentifier(), false);
+                matchDtoList.add(MatchDto.builder().match(qualifierValueStr).qualifierType(institute.getQualifierType()).build());
             }
         }
         //build object and return
@@ -78,14 +77,14 @@ public class SVResponseMapper {
     }
 
     private String buildSpecimenVoucherString(String instUniqueName, String collCode,
-                                              String specimenId, boolean collectionAvailable) {
-        StringJoiner sjSpecimenVoucher = new StringJoiner(":");
-        sjSpecimenVoucher.add(instUniqueName);
+                                              String identifier, boolean collectionAvailable) {
+        StringJoiner sjQualifierValue = new StringJoiner(":");
+        sjQualifierValue.add(instUniqueName);
         if (!isEmpty(collCode)) {
-            sjSpecimenVoucher.add(collCode);
+            sjQualifierValue.add(collCode);
         }
-        sjSpecimenVoucher.add(specimenId);
-        return sjSpecimenVoucher.toString();
+        sjQualifierValue.add(identifier);
+        return sjQualifierValue.toString();
     }
 
     private SAHResponseDto buildTooManyMatchErrorResponse(ValidationSearchResult validationSearchResult) {

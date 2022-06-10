@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.QualifierTypeInvalidMessage;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.QualifierTypeInvalidMessage;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = {QualifierValuesAllowed.Validator.class})

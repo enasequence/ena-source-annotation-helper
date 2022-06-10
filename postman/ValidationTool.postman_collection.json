@@ -334,6 +334,44 @@
 					"response": []
 				},
 				{
+					"name": "QueryDocs-MultiMatchInst-MaxCheck-01",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"query\": {\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\"], \"query\": \"MSG\", \"fuzziness\": \"AUTO\" }}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"protocol": "http",
+							"host": [
+								"dca-wh-es-test"
+							],
+							"port": "9200",
+							"path": [
+								"institute",
+								"_search"
+							],
+							"query": [
+								{
+									"key": "pretty",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Delete-Test-Index",
 					"request": {
 						"method": "DELETE",

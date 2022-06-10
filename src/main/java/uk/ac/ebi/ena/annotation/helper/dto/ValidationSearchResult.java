@@ -16,7 +16,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 public class ValidationSearchResult {
 
     int match;
-    String specimenId;
+    String identifier;
     List<Institute> institutes;
     Map<Integer, String> instituteIdNameMap;
     List<Collection> collections;
@@ -26,18 +26,18 @@ public class ValidationSearchResult {
 
     private String inputParams;
 
-    public void setInputsParams(String instCode, String collCode, String specimenId) {
+    public void setInputsParams(String instCode, String collCode, String identifier) {
         StringJoiner sjInputsParams = new StringJoiner(":");
         sjInputsParams.add(instCode);
         if (!isEmpty(collCode)) {
             sjInputsParams.add(collCode);
         }
-        sjInputsParams.add(specimenId);
+        sjInputsParams.add(identifier);
         this.inputParams = sjInputsParams.toString();
     }
 
-    public void setInputsParams(String specimenVoucher) {
-        this.inputParams = specimenVoucher;
+    public void setInputsParams(String qualifierValue) {
+        this.inputParams = qualifierValue;
     }
 
 }

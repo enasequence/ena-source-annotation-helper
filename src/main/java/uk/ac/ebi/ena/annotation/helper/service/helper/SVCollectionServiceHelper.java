@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.ac.ebi.ena.annotation.helper.exception.SVErrorCode.MultipleMatchesFoundMessage;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.MultipleMatchesFoundMessage;
 
 @Service
 @Slf4j

@@ -1,6 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.exception;
 
-public interface SVErrorCode {
+public interface SAHErrorCode {
 
     int ServerProcessingError = 3000;
     int BadRequestData = 3001;
@@ -13,7 +13,7 @@ public interface SVErrorCode {
     int InvalidFormatProvidedError = 3008;
     int TooManyMatchesError = 3009;
     int InstituteMissingError = 3010;
-    int SpecimenIdMissingError = 3011;
+    int IdentifierMissingError = 3011;
     int NoMatchError = 3012;
     int QualifierTypeInvalidError = 3015;
 
@@ -24,12 +24,12 @@ public interface SVErrorCode {
     String NoMatchingInstituteMessage = "No matching institute found";
     String NoMatchingCollectionMessage = "No matching collection found";
     String ValidationFailedMessage = "Failed to validate institution id / collection id. Please verify and try again";
-    String InvalidFormatProvidedMessage = "Invalid Specimen Voucher Format Provided. Please provide input " +
-            "in the format - [<Institution Unique Name>:[<collection-code>:]]<specimen_id>";
+    String InvalidFormatProvidedMessage = "Invalid Qualifier Value Format Provided. Please provide input " +
+            "in the format - [<Institution Unique Name>:[<collection-code>:]]<identifier>";
     String TooManyMatchesMessage = "Too many similar matches found. Please verify and try again";
     String MultipleMatchesFoundMessage = "Multiple similar matches found. Please select the appropriate one or retry the search";
     String InstituteMissingMessage = "Institute Unique Code is mandatory";
-    String SpecimenIdMissingMessage = "Specimen Id is mandatory";
+    String IdentifierMissingMessage = "Identifier is mandatory";
     String NoMatchMessage = "No Matching Institute/Collection found";
     String ValidInputSizeMessage = "for search, accepts minimum 3 chars and maximum 20 chars";
     String ValidInstituteUniqueNameRequiredMessage = "a valid institute unique name is required to search";
