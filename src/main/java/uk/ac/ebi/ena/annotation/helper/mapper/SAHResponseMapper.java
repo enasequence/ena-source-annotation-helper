@@ -70,6 +70,7 @@ public class SAHResponseMapper {
         return SAHResponseDto.builder()
                 .matches(matchDtoList)
                 .success(true)
+                .inputValue(validationSearchResult.getInputParams())
                 .matchLevel(validationSearchResult.getMatch() == EXACT_MATCH ? MATCH_LEVEL_EXACT : MATCH_LEVEL_PARTIAL)
                 .message(validationSearchResult.getMessage() != null ? validationSearchResult.getMessage() : null)
                 .timestamp(LocalDateTime.now())

@@ -1084,6 +1084,609 @@
 					]
 				},
 				{
+					"name": "Documented",
+					"item": [
+						{
+							"name": "Inst-FuzzySearchStr-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/CAMZX?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"CAMZX"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-FuzzySearchStr-QTArrayMultiple-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-QTArrayMultiple-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Inst-FuzzySearchStr-QTArrayMultiple-Good-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/CGEX?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"CGEX"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-FuzzySearchStr-Bad-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-Bad-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/QQQ",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"QQQ"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCode-AllColl-WithQT-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-Inst-Present\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutes[0].collections.length).to.greaterThan(0);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"CMN",
+										"collection"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCode-AllColl-WithQT-Bad-01 Copy 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-Inst-Present\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutes[0].collections.length).to.greaterThan(0);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"CMN",
+										"collection"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCodeandCollCode-WithQT-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-Good-01-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-Good-01-institute-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection/herp?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"institute",
+										"CMN",
+										"collection",
+										"herp"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-ExactMatch-Inst-WithQT-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-ExactMatch-Inst-WithQT-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-ExactMatch-Inst-WithQT-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:123456&qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "MSNT:123456"
+										},
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-ExactMatch-WithColl-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-ExactMatch-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-ExactMatch-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:FAZC:123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "MSNT:FAZC:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatchMultiple-WithColl-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=HSUV:Bird:123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "HSUV:Bird:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-ExactMatch-Inst-WithQT-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-ExactMatch-Inst-WithQT-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-ExactMatch-Inst-WithQT-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&id=123456&qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institute",
+											"value": "MSNT"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										},
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatch-WithColl-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatch-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatch-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&collection=FAZC&id=123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institute",
+											"value": "MSNT"
+										},
+										{
+											"key": "collection",
+											"value": "FAZC"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatchMultiple-WithCollAndQT-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institute",
+											"value": "HSUV"
+										},
+										{
+											"key": "collection",
+											"value": "Bird"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										},
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
 					"name": "CollectionAPIs",
 					"item": [
 						{
@@ -2214,6 +2817,55 @@
 							"response": []
 						},
 						{
+							"name": "Validate-ExactMatch-Inst-WithQT-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-ExactMatch-Inst-WithQT-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-ExactMatch-Inst-WithQT-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:123456&qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "MSNT:123456"
+										},
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Validate-SimilarMatch-Inst-Good-01",
 							"event": [
 								{
@@ -2714,6 +3366,59 @@
 										{
 											"key": "id",
 											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-ExactMatch-Inst-WithQT-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-ExactMatch-Inst-WithQT-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-ExactMatch-Inst-WithQT-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&id=123456&qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"ena",
+										"sah",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institute",
+											"value": "MSNT"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										},
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
 										}
 									]
 								}
