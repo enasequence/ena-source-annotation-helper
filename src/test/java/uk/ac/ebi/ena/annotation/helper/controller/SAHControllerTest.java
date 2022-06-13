@@ -23,9 +23,9 @@ class SAHControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private static final String META_SEARCH_BASE_ENDPOINT = "/ena/sah/institute/";
-    private static final String VALIDATE_BASE_ENDPOINT = "/ena/sah/validate";
-    private static final String CONSTRUCT_BASE_ENDPOINT = "/ena/sah/construct";
+    private static final String META_SEARCH_BASE_ENDPOINT = "/ena/source-annotation-helper/institute/";
+    private static final String VALIDATE_BASE_ENDPOINT = "/ena/source-annotation-helper/validate";
+    private static final String CONSTRUCT_BASE_ENDPOINT = "/ena/source-annotation-helper/construct";
 
     @BeforeAll
     public static void before() {

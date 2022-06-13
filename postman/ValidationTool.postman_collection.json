@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"settings\": {\n        \"number_of_shards\": 1,\n        \"number_of_replicas\": 0,\n        \"analysis\": {\n            \"analyzer\": {\n                \"folding\": {\n                    \"tokenizer\": \"standard\",\n                    \"filter\": [\n                        \"lowercase\",\n                        \"asciifolding\"\n                    ]\n                }\n            },\n            \"normalizer\": {\n                \"lowerasciinormalizer\": {\n                    \"type\": \"custom\",\n                    \"filter\": [\n                        \"lowercase\",\n                        \"asciifolding\"\n                    ]\n                }\n            }\n        }\n    },\n    \"mappings\": {\n        \"dynamic\": \"false\",\n        \"properties\": {\n            \"inst_id\": {\n                \"type\": \"long\",\n                \"meta\": {\n                    \"description\": \"Institute Identifier\"\n                }\n            },\n            \"inst_code\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Code\"\n                }\n            },\n            \"unique_name\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Unique Name\"\n                }\n            },\n            \"inst_name\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Name\"\n                }\n            },\n            \"country\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Country\"\n                }\n            },\n            \"address\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Address\"\n                }\n            },\n            \"collection_type\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Collection Type\"\n                }\n            },\n            \"qualifier_type\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Qualifier Type\"\n                }\n            },\n            \"home_url\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Home URL\"\n                }\n            },\n            \"url_rule\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute URL Rule\"\n                }\n            }\n        }\n    }\n}\n",
+							"raw": "{\n    \"settings\": {\n        \"number_of_shards\": 1,\n        \"number_of_replicas\": 0,\n        \"analysis\": {\n            \"analyzer\": {\n                \"folding\": {\n                    \"tokenizer\": \"standard\",\n                    \"filter\": [\n                        \"lowercase\",\n                        \"asciifolding\"\n                    ]\n                }\n            },\n            \"normalizer\": {\n                \"lowerasciinormalizer\": {\n                    \"type\": \"custom\",\n                    \"filter\": [\n                        \"lowercase\",\n                        \"asciifolding\"\n                    ]\n                }\n            }\n        }\n    },\n    \"mappings\": {\n        \"dynamic\": \"false\",\n        \"properties\": {\n            \"inst_id\": {\n                \"type\": \"long\",\n                \"meta\": {\n                    \"description\": \"Institute Identifier\"\n                }\n            },\n            \"inst_code\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Code\"\n                }\n            },\n            \"unique_name\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Unique Name\"\n                }\n            },\n            \"inst_name\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Name\"\n                }\n            },\n            \"country\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Country\"\n                }\n            },\n            \"address\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Address\"\n                }\n            },\n            \"coll_type\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Collection Type\"\n                }\n            },\n            \"qualifier_type\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Qualifier Type\"\n                }\n            },\n            \"home_url\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Home URL\"\n                }\n            },\n            \"url_rule\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute URL Rule\"\n                }\n            }\n        }\n    }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -51,7 +51,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/Users/vikasg/Documents/ws/github/embl/ena-source-annotation-helper/data/v1/AllInstitituesData.json"
+								"src": "/Users/vikasg/Documents/ws/github/embl/ena-source-annotation-helper/ElascticSearch/v1/AllInstitituesData.json"
 							}
 						},
 						"url": {
@@ -440,7 +440,7 @@
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/Users/vikasg/Documents/ws/github/embl/ena-source-annotation-helper/data/v1/AllCollectionsData.json"
+								"src": "/Users/vikasg/Documents/ws/github/embl/ena-source-annotation-helper/ElascticSearch/v1/AllCollectionsData.json"
 							}
 						},
 						"url": {
@@ -1114,13 +1114,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CAMZX?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CAMZX?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CAMZX"
 									],
@@ -1167,13 +1166,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CGEX?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CGEX?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CGEX"
 									],
@@ -1215,13 +1213,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/QQQ",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/QQQ",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"QQQ"
 									]
@@ -1261,13 +1258,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CMN",
 										"collection"
@@ -1314,13 +1310,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CMN",
 										"collection"
@@ -1360,13 +1355,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection/herp?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection/herp?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CMN",
 										"collection",
@@ -1408,13 +1402,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -1457,13 +1450,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:FAZC:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:FAZC:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -1502,13 +1494,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=HSUV:Bird:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HSUV:Bird:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -1547,13 +1538,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -1600,13 +1590,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&collection=FAZC&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&collection=FAZC&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -1653,13 +1642,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -1721,13 +1709,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CMN",
 										"collection"
@@ -1768,13 +1755,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CMN",
 										"collection"
@@ -1815,13 +1801,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CMN/collection?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection?qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CMN",
 										"collection"
@@ -1863,13 +1848,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/QQQ/collection",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/QQQ/collection",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"QQQ",
 										"collection"
@@ -1903,13 +1887,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/AMG/collection",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/AMG/collection",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"AMG",
 										"collection"
@@ -1938,13 +1921,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/MSNT<ITA-Torino>/collection/FAZC",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/MSNT<ITA-Torino>/collection/FAZC",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"MSNT<ITA-Torino>",
 										"collection",
@@ -1974,13 +1956,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/USNM/collection/herp",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/USNM/collection/herp",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"USNM",
 										"collection",
@@ -2015,13 +1996,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/USNM/collection/herp?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/USNM/collection/herp?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"USNM",
 										"collection",
@@ -2062,13 +2042,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/USNM/collection/herp?qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/USNM/collection/herp?qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"USNM",
 										"collection",
@@ -2104,13 +2083,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/USNM/collection/herp?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/USNM/collection/herp?qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"USNM",
 										"collection",
@@ -2153,13 +2131,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/MRAC/collection/FAZC",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/MRAC/collection/FAZC",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"MRAC",
 										"collection",
@@ -2202,13 +2179,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/ANS",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"ANS"
 									]
@@ -2244,13 +2220,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/ANS?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"ANS"
 									],
@@ -2297,13 +2272,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/ANS?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"ANS"
 									],
@@ -2350,13 +2324,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/ANS?qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"ANS"
 									],
@@ -2403,13 +2376,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/ANS?qualifier_type=",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"ANS"
 									],
@@ -2456,13 +2428,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/ANS",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"ANS"
 									]
@@ -2503,13 +2474,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/ANS?qualifier_type=ABC",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=ABC",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"ANS"
 									],
@@ -2556,13 +2526,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/ANS?qualifier_type=",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"ANS"
 									],
@@ -2609,13 +2578,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/AN?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/AN?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"AN"
 									],
@@ -2662,13 +2630,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/AN?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/AN?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"AN"
 									],
@@ -2710,13 +2677,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/QQQ",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/QQQ",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"QQQ"
 									]
@@ -2752,13 +2718,12 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/institute/CIS<USA-CA>",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CIS<USA-CA>",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"institute",
 										"CIS<USA-CA>"
 									]
@@ -2797,13 +2762,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT<ITA-Torino>:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT<ITA-Torino>:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -2842,13 +2806,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -2891,13 +2854,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -2936,13 +2898,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=NYX:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=NYX:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -2981,13 +2942,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=NYX:123456&qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=NYX:123456&qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -3030,13 +2990,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=NYX:123456&qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=NYX:123456&qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -3074,13 +3033,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSN:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSN:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -3119,13 +3077,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT<ITA-Torino>:FAZC:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT<ITA-Torino>:FAZC:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -3164,13 +3121,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:FAZC:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:FAZC:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -3209,13 +3165,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=MSNT:FAZ:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:FAZ:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -3254,13 +3209,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=HSUV:Bird:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HSUV:Bird:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -3299,13 +3253,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/validate?value=TSUV:Bird:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=TSUV:Bird:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"validate"
 									],
 									"query": [
@@ -3349,13 +3302,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT<ITA-Torino>&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT<ITA-Torino>&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3398,13 +3350,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3451,13 +3402,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3500,13 +3450,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=NYX&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=NYX&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3544,13 +3493,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSN&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSN&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3593,13 +3541,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT<ITA-Torino>&collection=FAZC&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT<ITA-Torino>&collection=FAZC&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3646,13 +3593,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&collection=FAZC&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&collection=FAZC&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3699,13 +3645,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=MSNT&collection=FAZ&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&collection=FAZ&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3752,13 +3697,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=HSUV&collection=Bird&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=HSUV&collection=Bird&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3805,13 +3749,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3862,13 +3805,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [
@@ -3919,13 +3861,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/ena/sah/construct?institute=TSUV&collection=Bird&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=TSUV&collection=Bird&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
-										"ena",
-										"sah",
+										"{{sah_app_context}}",
 										"construct"
 									],
 									"query": [

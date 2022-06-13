@@ -30,8 +30,8 @@ public class Institute {
     private String instName;
     private String country;
     private String address;
-    @Field(name = "collection_type")
-    private String collectionType;
+    @Field(name = "coll_type")
+    private String collType;
     @Field(name = "qualifier_type")
     private String[] qualifierType;
 
@@ -50,7 +50,7 @@ public class Institute {
                 ", instName='" + instName + '\'' +
                 ", country='" + country + '\'' +
                 ", address='" + address + '\'' +
-                ", collectionType='" + collectionType + '\'' +
+                ", collType='" + collType + '\'' +
                 ", qualifierType=" + Arrays.toString(qualifierType) +
                 ", homeUrl='" + homeUrl + '\'' +
                 ", urlRule='" + urlRule + '\'' +

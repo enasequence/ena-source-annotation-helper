@@ -1,7 +1,5 @@
 package uk.ac.ebi.ena.annotation.helper.controller;
 
-import graphql.ExecutionInput;
-import graphql.ExecutionResult;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import uk.ac.ebi.ena.annotation.helper.dto.Data;
 import uk.ac.ebi.ena.annotation.helper.dto.QualifierValuesAllowed;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
@@ -19,13 +16,12 @@ import uk.ac.ebi.ena.annotation.helper.service.SAHService;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
-import static java.util.Objects.isNull;
 import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 
 @RestController
 @Slf4j
 @Api(tags = "ENA Source Annotations Helper APIs")
-@RequestMapping("/ena/sah/")
+@RequestMapping("/ena/source-annotation-helper/")
 @Validated
 public class SAHController {
 

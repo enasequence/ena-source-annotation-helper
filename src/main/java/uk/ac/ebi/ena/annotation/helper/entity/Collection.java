@@ -28,8 +28,8 @@ public class Collection {
     private String collCode;
     @Field(name = "coll_name")
     private String collName;
-    @Field(name = "collection_type")
-    private String collectionType;
+    @Field(name = "coll_type")
+    private String collType;
     @Field(name = "qualifier_type")
     private String[] qualifierType;
     @Field(name = "coll_url")
@@ -43,7 +43,7 @@ public class Collection {
                 ", instId=" + instId +
                 ", collCode='" + collCode + '\'' +
                 ", collName='" + collName + '\'' +
-                ", collectionType='" + collectionType + '\'' +
+                ", collectionType='" + collType + '\'' +
                 ", qualifierType=" + Arrays.toString(qualifierType) +
                 ", collUrl='" + collUrl + '\'' +
                 '}';

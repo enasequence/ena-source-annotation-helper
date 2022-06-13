@@ -62,7 +62,7 @@
           "description": "Institute Address"
         }
       },
-      "collection_type": {
+      "coll_type": {
         "type": "text",
         "meta": {
           "description": "Institute Collection Type"
