@@ -38,6 +38,7 @@ build_dev:
       - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
+    - dcp-3148-initial
 
 deploy_dev:
   stage: deploy
@@ -57,18 +58,18 @@ deploy_dev:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
   script:
-    - chmod u+x build/libs/source-annotation-helper-${VERSION}.war
-    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@SERVER_NAME:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/deploy
-    - ssh ena_adm@wp-np2-5c "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+    - chmod u+x build/libs/source-annotation-helper-${VERSION}.jar
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.jar ena_adm@wp-p1m2-69:/nfs/public/rw/ena/source-annotation-helper/deploy
   tags:
     - dcap-gitlab-runner
   dependencies:
     - build_dev
   environment:
     name: dev
-    url: https://wwwdev.ebi.ac.uk/ena/source-annotation-helper/api
+    url: https://wwwdev.ebi.ac.uk/ena/source-annotation-helper/
   only:
     - master
+    - dcp-3148-initial
 
 build_prod:
   stage: build
@@ -81,7 +82,7 @@ build_prod:
     - dcap-gitlab-runner
   artifacts:
     paths:
-      - build/libs/source-annotation-helper-${VERSION}.war
+      - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
 
@@ -103,16 +104,15 @@ deploy_prod:
     - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
   script:
-    - chmod u+x build/libs/source-annotation-helper-${VERSION}.war
-    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@SERVER_NAME:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
-    - ssh ena_adm@wp-p1m-4a "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+    - chmod u+x build/libs/source-annotation-helper-${VERSION}.jar
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.jar ena_adm@SERVER_NAME:/nfs/public/rw/ena/source-annotation-helper/deploy
   tags:
     - dcap-gitlab-runner
   dependencies:
     - build_prod
   environment:
     name: prod
-    url: https://www.ebi.ac.uk/ena/source-annotation-helper/api
+    url: https://www.ebi.ac.uk/ena/source-annotation-helper/
   when: manual
   only:
     - master

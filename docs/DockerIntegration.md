@@ -12,3 +12,4 @@ $ docker build . -t source-annotation-helper-app -f Dockerfile
 ```bash
 $ docker run -p 8080:8080 source-annotation-helper-app
 ```
+
