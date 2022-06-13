@@ -18,9 +18,8 @@ test:
   before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
-    - sed -i 's/<env>/dev/' src/main/resources/application.properties
+    - sed -i 's/<env>/test/' src/main/resources/application.properties
     - ./gradlew clean test
-    - cat build/jacocoHtml/index.html
   tags:
     - dcap-gitlab-runner
 
