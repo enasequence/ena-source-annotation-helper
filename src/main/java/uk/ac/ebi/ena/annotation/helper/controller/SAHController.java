@@ -21,7 +21,7 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 @RestController
 @Slf4j
 @Api(tags = "ENA Source Annotations Helper APIs")
-@RequestMapping("/ena/source-annotation-helper/")
+@RequestMapping({"/ena/source-annotation-helper/", "/ena/sah/"})
 @Validated
 public class SAHController {
 

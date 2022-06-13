@@ -24,6 +24,7 @@ class SAHControllerTest {
     private MockMvc mockMvc;
 
     private static final String META_SEARCH_BASE_ENDPOINT = "/ena/source-annotation-helper/institute/";
+    private static final String META_SEARCH_BASE_ENDPOINT2 = "/ena/sah/institute/";
     private static final String VALIDATE_BASE_ENDPOINT = "/ena/source-annotation-helper/validate";
     private static final String CONSTRUCT_BASE_ENDPOINT = "/ena/source-annotation-helper/construct";
 
@@ -41,6 +42,16 @@ class SAHControllerTest {
     void findByInstituteValue() throws Exception {
         String params = "ANS";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.institutes").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void findByInstituteValueMappingSAH() throws Exception {
+        String params = "ANS";
+        MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT2 + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.institutes").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
