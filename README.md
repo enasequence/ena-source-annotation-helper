@@ -21,6 +21,12 @@ Swagger API documentation can be launched by pointing the browser to [Swagger-UI
   - Displays application information (to be extended to desired attributes)
   - URL to access - `http://localhost:8080/actuator/`
 
+
+## Document References
+Docker integration [Document](./docs/DockerIntegration.md)
+GraphQL Reference [Document](./docs/GraphQL-Reference.md)
+
+
 ## Future Roadmap items
 - [ ] Performance / Elastic Queries Optimisation
 - [ ] Top 10 limit implementation
