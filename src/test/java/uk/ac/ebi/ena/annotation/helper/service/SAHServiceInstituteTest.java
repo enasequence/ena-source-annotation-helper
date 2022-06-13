@@ -17,8 +17,6 @@ public class SAHServiceInstituteTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private static final String INSTITUTE_SEARCH_BASE_ENDPOINT = "/ena/sah/institute/";
-
     @BeforeAll
     public static void before() {
 

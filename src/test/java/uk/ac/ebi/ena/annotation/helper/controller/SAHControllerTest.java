@@ -24,8 +24,8 @@ class SAHControllerTest {
     private MockMvc mockMvc;
 
     private static final String META_SEARCH_BASE_ENDPOINT = "/ena/sah/institute/";
-    private static final String VALIDATE_BASE_ENDPOINT = "/ena/sah/validate/";
-    private static final String CONSTRUCT_BASE_ENDPOINT = "/ena/sah/construct/";
+    private static final String VALIDATE_BASE_ENDPOINT = "/ena/sah/validate";
+    private static final String CONSTRUCT_BASE_ENDPOINT = "/ena/sah/construct";
 
     @BeforeAll
     public static void before() {
@@ -72,10 +72,22 @@ class SAHControllerTest {
 
     @Test
     void validate() throws Exception {
+        String params = "?value=MSNT<ITA-Torino>:FAZC:123456";
+        MvcResult result = this.mockMvc.perform(get(VALIDATE_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
     }
 
     @Test
     void construct() throws Exception {
+        String params = "?institute=MSNT<ITA-Torino>&collection=FAZC&id=123456";
+        MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
     }
 
     @Test
@@ -202,4 +214,95 @@ class SAHControllerTest {
     public void getCollectionByInstCodeAndCollCode() throws Exception {
 
     }
+
+    @Test
+    void validateExactMatchInstOnly() throws Exception {
+        String params = "?value=MSNT<ITA-Torino>:123456";
+        MvcResult result = this.mockMvc.perform(get(VALIDATE_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void validateExactMatchInstWithQT() throws Exception {
+        String params = "?value=MSNT:123456&qualifier_type=specimen_voucher";
+        MvcResult result = this.mockMvc.perform(get(VALIDATE_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void validateSimilarMatchInstOnly() throws Exception {
+        String params = "?value=NYX:123456";
+        MvcResult result = this.mockMvc.perform(get(VALIDATE_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void validateSimilarMatchInstWithCollWithQT() throws Exception {
+        String params = "?value=HSUV:Bird:123456&qualifier_type=specimen_voucher";
+        MvcResult result = this.mockMvc.perform(get(VALIDATE_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void constructExactMatchInstOnly() throws Exception {
+        String params = "?institute=MSNT<ITA-Torino>&id=123456";
+        MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void constructExactMatchInstWithQT() throws Exception {
+        String params = "?institute=MSNT<ITA-Torino>&id=123456&qualifier_type=specimen_voucher";
+        MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void constructSimilarMatchInstOnly() throws Exception {
+        String params = "?institute=NYX&id=123456&qualifier_type=specimen_voucher";
+        MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void constructSimilarMatchInstWithCollWithQT() throws Exception {
+        String params = "?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material";
+        MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.matches").exists())
+                .andExpect(jsonPath("$.success").value(equalTo(true)))
+                .andReturn();
+    }
+
+    @Test
+    void constructSimilarMatchInstWithCollWithQTNoMatch() throws Exception {
+        String params = "?institute=HSUV&collection=Bird&id=123456&qualifier_type=bio_material";
+        MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success").value(equalTo(false)))
+                .andExpect(jsonPath("$.error.code").value(equalTo(3012)))
+                .andReturn();
+    }
+
 }
