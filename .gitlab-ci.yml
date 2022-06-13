@@ -1,7 +1,7 @@
 image: java:8
 
 variables:
-  VERSION: "1.0.8"
+  VERSION: "1.0.0"
 
 stages:
   - test
@@ -19,7 +19,6 @@ test:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
-    - sed -i -e "s/<username>/$DEV_DB_USER/" -e "s/<password>/$DEV_DB_PASSWORD/" src/main/resources/application-dev.properties
     - ./gradlew clean test
     - cat build/jacocoHtml/index.html
   tags:
@@ -31,13 +30,12 @@ build_dev:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
-    - sed -i -e "s/<username>/$DEV_DB_USER/" -e "s/<password>/$DEV_DB_PASSWORD/" src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
   artifacts:
     paths:
-      - build/libs/source-annotation-helper-${VERSION}.war
+      - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
 
@@ -60,7 +58,7 @@ deploy_dev:
     - mkdir -p ~/.ssh
   script:
     - chmod u+x build/libs/source-annotation-helper-${VERSION}.war
-    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-np2-5c:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/deploy
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@SERVER_NAME:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/deploy
     - ssh ena_adm@wp-np2-5c "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
   tags:
     - dcap-gitlab-runner
@@ -78,7 +76,6 @@ build_prod:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/prod/' src/main/resources/application.properties
-    - sed -i -e "s/<username>/$PROD_DB_USER/" -e "s/<password>/$PROD_DB_PASSWORD/" src/main/resources/application-prod.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
@@ -107,14 +104,8 @@ deploy_prod:
     - mkdir -p ~/.ssh
   script:
     - chmod u+x build/libs/source-annotation-helper-${VERSION}.war
-    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p1m-4a:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
-#    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p1m-4b:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
-    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p2m-4a:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
-#    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p2m-4b:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@SERVER_NAME:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
     - ssh ena_adm@wp-p1m-4a "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
-#    - ssh ena_adm@wp-p1m-4b "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
-    - ssh ena_adm@wp-p2m-4a "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
-#    - ssh ena_adm@wp-p2m-4b "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
   tags:
     - dcap-gitlab-runner
   dependencies:

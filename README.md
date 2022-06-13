@@ -1,77 +1,31 @@
-# GraphQL Reference 
+# Source Annotation Helper Application
 
-### GraphQL UI URL -
-```shell
-http://localhost:8080/graphiql
-```
+## Application Requirements / Context
+For application requirements, please refer to the document - 
+[Project Requirements](https://docs.google.com/document/d/1LyIMCls1Zf6r0TQRXuFy6obXwfacQQ6gqfcUpEUc7os/edit?pli=1#heading=h.dqhch82jqy5z)
 
-### GraphQL API Endpoint -
-```shell
-http://localhost:8080/graphql
-```
+## Pre-Requisites
+Following applications must be installed, configured and accessible for the build and deployment to work -
+- Gradle
+- JDK 8
+- ElasticSearch
 
-### Sample Request
+## Swagger Documentation
+Swagger API documentation can be launched by pointing the browser to [Swagger-UI](http://localhost:8080/swagger-ui/)
 
-#### Query Institutes - 
-```shell
-query institutes ($queryStr: String) {
-   institutes (query: $queryStr) {
-     instId
-     instCode
-     uniqueName
-     instName
-   }
- }
-```
-#### Query Variables -
-```shell
-{
-  "queryStr": "ANS"
-}
-```
+## Actuator Endpoints
+- **Health**
+  - Displays application health information
+  - URL to access - `http://localhost:8080/actuator/health`
+- **Info**
+  - Displays application information (to be extended to desired attributes)
+  - URL to access - `http://localhost:8080/actuator/`
 
-#### Query Collections -
-```shell
-query collections($queryStr: String) {
-    collections (query: $queryStr) {
-     collId
-     instId
-     collCode
-     collName
-   }
- }
-```
-#### Query Variables -
-```shell
-{
-  "queryStr": "MQtes"
-}
-```
-
-##Tasks to complete
-- [X] Springboot GraphQL ElasticSearch Fuzzy Search Flow
-- [X] GraphQL -- GraphQL format Handling + Handling of Variables
-- [X] GraphQL UI exposure -
-  - [X] Integrate Querying Playground / UI
-  - [X] Publish Schema Docs on UI
-- [X] Bring all in convention
-- [X] Bulk Load Elastic Indexes for Institutes and Collections 
-- [X] Expose Institutes and Collections Search as REST APIs for now
-- [X] Construct and Validate to be exposed as REST APIs
-- [X] Instrumentation / observability for production environment
-- [X] Improve logging
-- [X] API contracts change post review
-- [X] Institutes to contain Collections in response
-- [ ] Input change to qualifier type array instead of string
-- [X] Validation on the inputs to ensure restrictions
+## Future Roadmap items
+- [ ] Performance / Elastic Queries Optimisation
 - [ ] Top 10 limit implementation
 - [ ] Review Messages to be displayed in responses
 - [ ] Add unit tests
-- [ ] Deployment gitlab-ci to be constructed
-- [ ] Deploy in development environment
-- [ ] Document Institutes / Collections / Construct based on the current understanding
-- [ ] 
-- 
 
 
 
