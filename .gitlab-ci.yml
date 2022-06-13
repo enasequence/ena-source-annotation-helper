@@ -1,0 +1,127 @@
+image: java:8
+
+variables:
+  VERSION: "1.0.8"
+
+stages:
+  - test
+  - build
+  - deploy
+
+cache:
+  paths:
+    - .gradle/wrapper
+    - .gradle/caches
+
+test:
+  stage: test
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  script:
+    - sed -i 's/<env>/dev/' src/main/resources/application.properties
+    - sed -i -e "s/<username>/$DEV_DB_USER/" -e "s/<password>/$DEV_DB_PASSWORD/" src/main/resources/application-dev.properties
+    - ./gradlew clean test
+    - cat build/jacocoHtml/index.html
+  tags:
+    - dcap-gitlab-runner
+
+build_dev:
+  stage: build
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  script:
+    - sed -i 's/<env>/dev/' src/main/resources/application.properties
+    - sed -i -e "s/<username>/$DEV_DB_USER/" -e "s/<password>/$DEV_DB_PASSWORD/" src/main/resources/application-dev.properties
+    - ./gradlew clean build -x test
+  tags:
+    - dcap-gitlab-runner
+  artifacts:
+    paths:
+      - build/libs/source-annotation-helper-${VERSION}.war
+  only:
+    - master
+
+deploy_dev:
+  stage: deploy
+  before_script:
+    - echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
+    # As suggested by a user, for some people this line works instead of the first one. Use whichever works for your case
+    # RUN echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie main" > /etc/apt/sources.list.d/jessie.list
+    - sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
+    - apt-get -o Acquire::Check-Valid-Until=false update
+    - gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys AA8E81B4331F7F50
+    - gpg --export AA8E81B4331F7F50  | apt-key add -
+    - apt-get -o Acquire::Check-Valid-Until=false update -qq
+#    - apt-get install -qq git
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+  script:
+    - chmod u+x build/libs/source-annotation-helper-${VERSION}.war
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-np2-5c:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/deploy
+    - ssh ena_adm@wp-np2-5c "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-browser-test/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+  tags:
+    - dcap-gitlab-runner
+  dependencies:
+    - build_dev
+  environment:
+    name: dev
+    url: https://wwwdev.ebi.ac.uk/ena/source-annotation-helper/api
+  only:
+    - master
+
+build_prod:
+  stage: build
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  script:
+    - sed -i 's/<env>/prod/' src/main/resources/application.properties
+    - sed -i -e "s/<username>/$PROD_DB_USER/" -e "s/<password>/$PROD_DB_PASSWORD/" src/main/resources/application-prod.properties
+    - ./gradlew clean build -x test
+  tags:
+    - dcap-gitlab-runner
+  artifacts:
+    paths:
+      - build/libs/source-annotation-helper-${VERSION}.war
+  only:
+    - master
+
+deploy_prod:
+  stage: deploy
+  before_script:
+    - echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
+    # As suggested by a user, for some people this line works instead of the first one. Use whichever works for your case
+    # RUN echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie main" > /etc/apt/sources.list.d/jessie.list
+    - sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
+    - apt-get -o Acquire::Check-Valid-Until=false update
+    - gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys AA8E81B4331F7F50
+    - gpg --export AA8E81B4331F7F50  | apt-key add -
+    - apt-get -o Acquire::Check-Valid-Until=false update -qq
+#     - apt-get install -qq git
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")
+    - mkdir -p ~/.ssh
+  script:
+    - chmod u+x build/libs/source-annotation-helper-${VERSION}.war
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p1m-4a:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+#    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p1m-4b:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p2m-4a:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+#    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.war ena_adm@wp-p2m-4b:/nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/deploy
+    - ssh ena_adm@wp-p1m-4a "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+#    - ssh ena_adm@wp-p1m-4b "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+    - ssh ena_adm@wp-p2m-4a "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+#    - ssh ena_adm@wp-p2m-4b "sed -i 's/source-annotation-helper-.*/source-annotation-helper-${VERSION}.war\">/' /nfs/public/rw/webadmin/tomcat/bases/ena/tc-ena-source-annotation-helper/conf/Catalina/localhost/ena#source-annotation-helper#api.xml"
+  tags:
+    - dcap-gitlab-runner
+  dependencies:
+    - build_prod
+  environment:
+    name: prod
+    url: https://www.ebi.ac.uk/ena/source-annotation-helper/api
+  when: manual
+  only:
+    - master

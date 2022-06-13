@@ -1,0 +1,91 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 0,
+    "analysis": {
+      "analyzer": {
+        "folding": {
+          "tokenizer": "standard",
+          "filter": [
+            "lowercase",
+            "asciifolding"
+          ]
+        }
+      },
+      "normalizer": {
+        "lowerasciinormalizer": {
+          "type": "custom",
+          "filter": [
+            "lowercase",
+            "asciifolding"
+          ]
+        }
+      }
+    }
+  },
+  "mappings": {
+    "dynamic": "false",
+    "properties": {
+      "inst_id": {
+        "type": "long",
+        "meta": {
+          "description": "Institute Identifier"
+        }
+      },
+      "inst_code": {
+        "type": "text",
+        "meta": {
+          "description": "Institute Code"
+        }
+      },
+      "unique_name": {
+        "type": "text",
+        "meta": {
+          "description": "Institute Unique Name"
+        }
+      },
+      "inst_name": {
+        "type": "text",
+        "meta": {
+          "description": "Institute Name"
+        }
+      },
+      "country": {
+        "type": "text",
+        "meta": {
+          "description": "Institute Country"
+        }
+      },
+      "address": {
+        "type": "text",
+        "meta": {
+          "description": "Institute Address"
+        }
+      },
+      "coll_type": {
+        "type": "text",
+        "meta": {
+          "description": "Institute Collection Type"
+        }
+      },
+      "qualifier_type": {
+        "type": "text",
+        "meta": {
+          "description": "Institute Qualifier Type"
+        }
+      },
+      "home_url": {
+        "type": "text",
+        "meta": {
+          "description": "Institute Home URL"
+        }
+      },
+      "url_rule": {
+        "type": "text",
+        "meta": {
+          "description": "Institute URL Rule"
+        }
+      }
+    }
+  }
+}

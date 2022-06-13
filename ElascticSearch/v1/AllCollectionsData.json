@@ -1,0 +1,1422 @@
+{"index":{}}
+{"coll_id": "7536", "inst_id": "6", "coll_code": "Malacology", "coll_name": "Malacology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.ansp.org\/research\/systematics-evolution\/collections\/malacology\/"}
+{"index":{}}
+{"coll_id": "7671", "inst_id": "6", "coll_code": "HRP", "coll_name": "Herpetology collection", "coll_size": "34827", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7676", "inst_id": "6", "coll_code": "ORN", "coll_name": "Ornithology collection", "coll_size": "174350", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7677", "inst_id": "6", "coll_code": "FISH", "coll_name": "Ichthyology Collection", "coll_size": "146747", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/ansp.org\/research\/systematics-evolution\/ichthyology\/"}
+{"index":{}}
+{"coll_id": "7678", "inst_id": "6", "coll_code": "MAM", "coll_name": "Mammal collection", "coll_size": "19159", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7421", "inst_id": "10", "coll_code": "Arachnida", "coll_name": "Arachnida (Mites, Ticks, Spiders)", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.canacoll.org\/Arach\/Main\/arachnid.htm"}
+{"index":{}}
+{"coll_id": "7422", "inst_id": "10", "coll_code": "Coleoptera", "coll_name": "Coleoptera (Beetles)", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.canacoll.org\/Coleo\/Main\/coleopt.htm"}
+{"index":{}}
+{"coll_id": "7423", "inst_id": "10", "coll_code": "Diptera", "coll_name": "Diptera (Flies)", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.canacoll.org\/Diptera\/Main\/diptera.htm"}
+{"index":{}}
+{"coll_id": "7424", "inst_id": "10", "coll_code": "Hemiptera", "coll_name": "", "coll_size": "0", "coll_type": "      ", "coll_status": "0", "qualifier_type": "      ", "coll_url": "http:\/\/www.canacoll.org\/Hemip\/Main\/hemipter.htm"}
+{"index":{}}
+{"coll_id": "7425", "inst_id": "10", "coll_code": "Hymenoptera", "coll_name": "Hymenoptera (Sawflies, Parasitic Wasps, Ants, Wasps, Bees)", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.canacoll.org\/Hymenoptera\/Hymenoptera_Home.htm"}
+{"index":{}}
+{"coll_id": "7426", "inst_id": "10", "coll_code": "Lepidoptera", "coll_name": "Lepidoptera (Butterflies, Moths)", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.canacoll.org\/Lep\/Main\/lepidopt.htm#personnel"}
+{"index":{}}
+{"coll_id": "7427", "inst_id": "10", "coll_code": "Miscellaneous", "coll_name": "Miscellaneous Insect Orders", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.canacoll.org\/Misc\/Pages\/minor_o.htm"}
+{"index":{}}
+{"coll_id": "7428", "inst_id": "10", "coll_code": "Nematoda", "coll_name": "Nematoda (Roundworms)", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.canacoll.org\/Nem\/Main\/nem.htm"}
+{"index":{}}
+{"coll_id": "7443", "inst_id": "28", "coll_code": "IC", "coll_name": "Ichtyologie", "coll_size": "134313", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ic\/item\/search"}
+{"index":{}}
+{"coll_id": "7483", "inst_id": "28", "coll_code": "IU", "coll_name": "Crustaceans", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/iu\/item\/search"}
+{"index":{}}
+{"coll_id": "7340", "inst_id": "28", "coll_code": "IM", "coll_name": "Molluscs", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/im\/item\/search"}
+{"index":{}}
+{"coll_id": "7341", "inst_id": "28", "coll_code": "P", "coll_name": "Vascular plants ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7631", "inst_id": "28", "coll_code": "IA", "coll_name": "Annelids, Polychaetes and Sipuncula ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mnhn.fr\/fr\/collections\/ensembles-collections\/invertebres-marins\/annelides"}
+{"index":{}}
+{"coll_id": "7643", "inst_id": "28", "coll_code": "CH", "coll_name": "Chimiotheque ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ch\/item\/search"}
+{"index":{}}
+{"coll_id": "7644", "inst_id": "28", "coll_code": "PMC", "coll_name": "Cyanobacteria ", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/pmc\/item\/search"}
+{"index":{}}
+{"coll_id": "7645", "inst_id": "28", "coll_code": "CEU", "coll_name": "Unicellular eukaryotes ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ceu\/item\/search"}
+{"index":{}}
+{"coll_id": "7646", "inst_id": "28", "coll_code": "CX", "coll_name": "Extractotheque ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/cx\/item\/search"}
+{"index":{}}
+{"coll_id": "7647", "inst_id": "28", "coll_code": "ALCP", "coll_name": "Microalgae", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher,culture_collection", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/search"}
+{"index":{}}
+{"coll_id": "7648", "inst_id": "28", "coll_code": "RF", "coll_name": "Fungal strains ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher,culture_collection", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/rf\/item\/search"}
+{"index":{}}
+{"coll_id": "7649", "inst_id": "28", "coll_code": "TCCV", "coll_name": "Frozen vertebrates tissues & cells ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/tccv\/item\/search"}
+{"index":{}}
+{"coll_id": "7650", "inst_id": "28", "coll_code": "EA", "coll_name": "Apterygota and springtails", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ea\/item\/search"}
+{"index":{}}
+{"coll_id": "7651", "inst_id": "28", "coll_code": "AR", "coll_name": "Arachnids: Spiders ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ar\/item\/search"}
+{"index":{}}
+{"coll_id": "7652", "inst_id": "28", "coll_code": "RS", "coll_name": "Arachnids : Scorpions ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/rs\/item\/search"}
+{"index":{}}
+{"coll_id": "7653", "inst_id": "28", "coll_code": "IB", "coll_name": "Bryozoans Brachiopods ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ib\/item\/search"}
+{"index":{}}
+{"coll_id": "7654", "inst_id": "28", "coll_code": "EC", "coll_name": "Insects - Coleoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ec\/item\/search"}
+{"index":{}}
+{"coll_id": "7655", "inst_id": "28", "coll_code": "ED", "coll_name": "Insects - Diptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ed\/item\/search"}
+{"index":{}}
+{"coll_id": "7656", "inst_id": "28", "coll_code": "EH", "coll_name": "Insects - Hemiptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/eh\/item\/search"}
+{"index":{}}
+{"coll_id": "7657", "inst_id": "28", "coll_code": "EY", "coll_name": "Insects - Hymenoptera  ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ey\/item\/search"}
+{"index":{}}
+{"coll_id": "7658", "inst_id": "28", "coll_code": "EL", "coll_name": "Insects - Lepidoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/el\/item\/search"}
+{"index":{}}
+{"coll_id": "7659", "inst_id": "28", "coll_code": "EO", "coll_name": "Insects - Orthoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/eo\/item\/search"}
+{"index":{}}
+{"coll_id": "7660", "inst_id": "28", "coll_code": "EP", "coll_name": "Insects - Small orders & Odonates", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ep\/item\/search"}
+{"index":{}}
+{"coll_id": "7661", "inst_id": "28", "coll_code": "MY", "coll_name": "Myriapods ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/my\/item\/search"}
+{"index":{}}
+{"coll_id": "7662", "inst_id": "28", "coll_code": "IN", "coll_name": "Nematodes  ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/in\/item\/search"}
+{"index":{}}
+{"coll_id": "7663", "inst_id": "28", "coll_code": "IP", "coll_name": "Porifera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ip\/item\/search"}
+{"index":{}}
+{"coll_id": "7664", "inst_id": "28", "coll_code": "IR  ", "coll_name": "Protists", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ir\/item\/search"}
+{"index":{}}
+{"coll_id": "7665", "inst_id": "28", "coll_code": "IT  ", "coll_name": "Tunicates\/ascidians", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/it\/item\/search"}
+{"index":{}}
+{"coll_id": "7666", "inst_id": "28", "coll_code": "ZO", "coll_name": "Birds", "coll_size": "32658", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/zo\/item\/search"}
+{"index":{}}
+{"coll_id": "7667", "inst_id": "28", "coll_code": "RA", "coll_name": "Reptiles and amphibians ", "coll_size": "193345", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ra\/item\/search"}
+{"index":{}}
+{"coll_id": "7669", "inst_id": "28", "coll_code": "ZA", "coll_name": "Vertebrates - Others  ", "coll_size": "1660", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/za\/item\/search"}
+{"index":{}}
+{"coll_id": "7597", "inst_id": "28", "coll_code": "IE", "coll_name": "Echinoderms", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ie\/item\/search"}
+{"index":{}}
+{"coll_id": "7600", "inst_id": "28", "coll_code": "IK", "coll_name": "Cnidarians ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/ik\/item\/search"}
+{"index":{}}
+{"coll_id": "7542", "inst_id": "28", "coll_code": "M", "coll_name": "Mammal ", "coll_size": "78362", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/science.mnhn.fr\/institution\/mnhn\/collection\/zm\/item\/search"}
+{"index":{}}
+{"coll_id": "7874", "inst_id": "28", "coll_code": "LCP", "coll_name": "Laboratory of Cryptogamy", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7329", "inst_id": "31", "coll_code": "FAZC", "coll_name": "Franco Andreone Zoological Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7327", "inst_id": "53", "coll_code": "Herp", "coll_name": "Division of Amphibians and Reptiles", "coll_size": "571949", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/vertebrates.si.edu\/herps\/index.html"}
+{"index":{}}
+{"coll_id": "7285", "inst_id": "53", "coll_code": "ENT", "coll_name": "Entomology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/entomology.si.edu\/"}
+{"index":{}}
+{"coll_id": "7286", "inst_id": "53", "coll_code": "FISH", "coll_name": "National Fish Collection", "coll_size": "402499", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/vertebrates.si.edu\/fishes\/fishes_collections.html"}
+{"index":{}}
+{"coll_id": "7263", "inst_id": "53", "coll_code": "LAB", "coll_name": "Laboratories of Analytical Biology", "coll_size": "0", "coll_type": "DNA bank", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7350", "inst_id": "53", "coll_code": "IZ", "coll_name": "Department of Invertebrate Zoology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/invertebrates.si.edu\/"}
+{"index":{}}
+{"coll_id": "7351", "inst_id": "53", "coll_code": "Birds", "coll_name": "Division of Birds", "coll_size": "493197", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/vertebrates.si.edu\/birds\/index.html"}
+{"index":{}}
+{"coll_id": "7352", "inst_id": "53", "coll_code": "MAMM", "coll_name": "Division of Mammals", "coll_size": "587639", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/vertebrates.si.edu\/mammals\/index.html"}
+{"index":{}}
+{"coll_id": "7885", "inst_id": "53", "coll_code": "Botany", "coll_name": "Plant Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7864", "inst_id": "53", "coll_code": "Herp Image", "coll_name": "Herpetology image collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7865", "inst_id": "53", "coll_code": "Herp Tissue", "coll_name": "Herpetology tissue collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7348", "inst_id": "61", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/zmmu.msu.ru\/eng\/r_m_m.htm"}
+{"index":{}}
+{"coll_id": "7492", "inst_id": "61", "coll_code": "Birds", "coll_name": "Bird Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/zmmu.msu.ru\/eng\/r_o_m.htm"}
+{"index":{}}
+{"coll_id": "7493", "inst_id": "61", "coll_code": "Herps", "coll_name": "Ampibia and Reptilia Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/zmmu.msu.ru\/eng\/r_r_m.htm"}
+{"index":{}}
+{"coll_id": "7494", "inst_id": "61", "coll_code": "Fishes", "coll_name": "Fishes Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/zmmu.msu.ru\/eng\/r_p_m.htm"}
+{"index":{}}
+{"coll_id": "7495", "inst_id": "61", "coll_code": "Insects", "coll_name": "Insects Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/zmmu.msu.ru\/eng\/r_e_m.htm"}
+{"index":{}}
+{"coll_id": "7496", "inst_id": "61", "coll_code": "Invertebrates", "coll_name": "Invertebrates Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/zmmu.msu.ru\/eng\/r_i_m.htm"}
+{"index":{}}
+{"coll_id": "7288", "inst_id": "112", "coll_code": "Annelid", "coll_name": "Annelid Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/inverts_e.cfm"}
+{"index":{}}
+{"coll_id": "7289", "inst_id": "112", "coll_code": "Mollusc", "coll_name": "Mollusc Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/inverts_e.cfm"}
+{"index":{}}
+{"coll_id": "7290", "inst_id": "112", "coll_code": "Crustacean", "coll_name": "Crustacean Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/inverts_e.cfm"}
+{"index":{}}
+{"coll_id": "7291", "inst_id": "112", "coll_code": "Insect", "coll_name": "Insect Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/inverts_e.cfm"}
+{"index":{}}
+{"coll_id": "7292", "inst_id": "112", "coll_code": "Parasite", "coll_name": "Parasite Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/inverts_e.cfm"}
+{"index":{}}
+{"coll_id": "7293", "inst_id": "112", "coll_code": "GenInvert", "coll_name": "General Invertebrate Collextion", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/inverts_e.cfm"}
+{"index":{}}
+{"coll_id": "7294", "inst_id": "112", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/verts_e.cfm"}
+{"index":{}}
+{"coll_id": "7295", "inst_id": "112", "coll_code": "Herp", "coll_name": "Amphibian and Reptile Collection", "coll_size": "37667", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/verts_e.cfm"}
+{"index":{}}
+{"coll_id": "7296", "inst_id": "112", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "100970", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/verts_e.cfm"}
+{"index":{}}
+{"coll_id": "7297", "inst_id": "112", "coll_code": "Mammal", "coll_name": "Mammal Collection", "coll_size": "59469", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nature.ca\/collections\/verts_e.cfm"}
+{"index":{}}
+{"coll_id": "7690", "inst_id": "113", "coll_code": "Birds", "coll_name": "Birds Collection", "coll_size": "33144", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7626", "inst_id": "130", "coll_code": "Para", "coll_name": "Parasite collection ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7391", "inst_id": "130", "coll_code": "Bird", "coll_name": "Ornithology Collections", "coll_size": "47962", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7392", "inst_id": "130", "coll_code": "Mamm", "coll_name": "Mammology Collection", "coll_size": "17162", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7692", "inst_id": "149", "coll_code": "I", "coll_name": "Fish collection", "coll_size": "25535", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7693", "inst_id": "149", "coll_code": "HERP", "coll_name": "Herps Collection", "coll_size": "15389", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7694", "inst_id": "149", "coll_code": "M", "coll_name": "Mammals Collection", "coll_size": "39529", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7637", "inst_id": "281", "coll_code": "PORa", "coll_name": "Porifera collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7527", "inst_id": "281", "coll_code": "IZ", "coll_name": "Invertebrate Zoology Collection", "coll_size": "166454", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mcz.harvard.edu\/Departments\/InvertZoo\/"}
+{"index":{}}
+{"coll_id": "7528", "inst_id": "281", "coll_code": "Mala", "coll_name": "Malacology Collection", "coll_size": "376455", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mcz.harvard.edu\/Departments\/Malacology\/"}
+{"index":{}}
+{"coll_id": "7529", "inst_id": "281", "coll_code": "Mamm", "coll_name": "Mammalogy Collection", "coll_size": "89351", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mcz.harvard.edu\/Departments\/Mammalogy\/"}
+{"index":{}}
+{"coll_id": "7530", "inst_id": "281", "coll_code": "Orn", "coll_name": "Ornithology Collection", "coll_size": "321891", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mcz.harvard.edu\/Departments\/Ornithology\/index.html"}
+{"index":{}}
+{"coll_id": "7531", "inst_id": "281", "coll_code": "IP", "coll_name": "Invertebrate Paleontology Collection", "coll_size": "193542", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mcz.harvard.edu\/Departments\/InvertPaleo\/"}
+{"index":{}}
+{"coll_id": "7532", "inst_id": "281", "coll_code": "Ent", "coll_name": "Entomology Collection", "coll_size": "368943", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mcz.harvard.edu\/Departments\/Entomology\/"}
+{"index":{}}
+{"coll_id": "7533", "inst_id": "281", "coll_code": "Cryo", "coll_name": "Cryogenic Collection", "coll_size": "8779", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7309", "inst_id": "281", "coll_code": "Ich", "coll_name": "Ichthyology Collection", "coll_size": "173842", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mcz.harvard.edu\/Departments\/Ichthyology\/researchcoll.html"}
+{"index":{}}
+{"coll_id": "7248", "inst_id": "281", "coll_code": "Herp", "coll_name": "Herpetology Collection", "coll_size": "347601", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.mcz.harvard.edu\/Departments\/Herpetology\/ "}
+{"index":{}}
+{"coll_id": "7166", "inst_id": "362", "coll_code": "Herp", "coll_name": "Herpetology Collection", "coll_size": "272249", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7167", "inst_id": "362", "coll_code": "Egg", "coll_name": "Egg Collection", "coll_size": "14910", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7168", "inst_id": "362", "coll_code": "Img", "coll_name": "Image Collection", "coll_size": "0", "coll_type": "images", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7169", "inst_id": "362", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "235786", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7170", "inst_id": "362", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "187528", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7171", "inst_id": "362", "coll_code": "Page", "coll_name": "Notebook Page Collection", "coll_size": "0", "coll_type": "images", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7187", "inst_id": "362", "coll_code": "Hild", "coll_name": "Milton Hildebrand collection", "coll_size": "657", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7707", "inst_id": "366", "coll_code": "Birds", "coll_name": "Birds collection", "coll_size": "20921", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7708", "inst_id": "366", "coll_code": "Fishes", "coll_name": "Fish collection", "coll_size": "92562", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7709", "inst_id": "366", "coll_code": "Herp", "coll_name": "Herpetology Collection", "coll_size": "48654", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7710", "inst_id": "366", "coll_code": "Mammals ", "coll_name": "Mammal collection", "coll_size": "17713", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7551", "inst_id": "380", "coll_code": "Mamm", "coll_name": "Mammal collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nmnaturalhistory.org\/bioscience-collections"}
+{"index":{}}
+{"coll_id": "7582", "inst_id": "386", "coll_code": "Z", "coll_name": "Tissue Collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7451", "inst_id": "386", "coll_code": "K", "coll_name": "Arachnology ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7452", "inst_id": "386", "coll_code": "BUP", "coll_name": "Buprestidae", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7453", "inst_id": "386", "coll_code": "COL", "coll_name": "Coleoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7454", "inst_id": "386", "coll_code": "J", "coll_name": "Crustacea", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7455", "inst_id": "386", "coll_code": "DIP", "coll_name": "Diptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7456", "inst_id": "386", "coll_code": "G", "coll_name": "DNA Products", "coll_size": "0", "coll_type": "DNA bank", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7457", "inst_id": "386", "coll_code": "AV", "coll_name": "Entomology - Australian Voucher Specimens", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7458", "inst_id": "386", "coll_code": "T", "coll_name": "Entomlogy Type Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7459", "inst_id": "386", "coll_code": "HEM", "coll_name": "Hemiptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7460", "inst_id": "386", "coll_code": "D", "coll_name": "Herpetology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7461", "inst_id": "386", "coll_code": "DTD", "coll_name": "Herpetology - Donald Thompson Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7462", "inst_id": "386", "coll_code": "HET", "coll_name": "Heteroptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7463", "inst_id": "386", "coll_code": "H", "coll_name": "Hygrobatidae", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7464", "inst_id": "386", "coll_code": "HYM", "coll_name": "Hymenoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7465", "inst_id": "386", "coll_code": "A", "coll_name": "Ichthyology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7466", "inst_id": "386", "coll_code": "F", "coll_name": "Invertebrates Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7467", "inst_id": "386", "coll_code": "ISO", "coll_name": "Isoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7468", "inst_id": "386", "coll_code": "LEP", "coll_name": "Lepidoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7469", "inst_id": "386", "coll_code": "C", "coll_name": "Mammology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7470", "inst_id": "386", "coll_code": "MEC", "coll_name": "Mecoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7471", "inst_id": "386", "coll_code": "MEG", "coll_name": "Megaloptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7472", "inst_id": "386", "coll_code": "NEU", "coll_name": "Neuroptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7473", "inst_id": "386", "coll_code": "NOH", "coll_name": "Northofagus Project", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7474", "inst_id": "386", "coll_code": "ODO", "coll_name": "Odonata", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7475", "inst_id": "386", "coll_code": "B", "coll_name": "Ornithology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7476", "inst_id": "386", "coll_code": "DTB", "coll_name": "Ornithology - Donald Thompson Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7477", "inst_id": "386", "coll_code": "BE", "coll_name": "Ornithology - Eggs", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7478", "inst_id": "386", "coll_code": "HLW", "coll_name": "Ornithology - H.L. White Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7479", "inst_id": "386", "coll_code": "P", "coll_name": "Paleontology & Paleobotany", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7480", "inst_id": "386", "coll_code": "TRI", "coll_name": "Trichoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7639", "inst_id": "460", "coll_code": "Birds", "coll_name": "Bird collection", "coll_size": "49262", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7640", "inst_id": "460", "coll_code": "ENT", "coll_name": "Entomology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7641", "inst_id": "460", "coll_code": "HERP", "coll_name": "Herpetology collection", "coll_size": "76325", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7642", "inst_id": "460", "coll_code": "Mamm", "coll_name": "Mammal collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7552", "inst_id": "528", "coll_code": "Mamm", "coll_name": "Mammal collection", "coll_size": "41819", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nhmu.utah.edu\/vertebrate-zoology"}
+{"index":{}}
+{"coll_id": "7699", "inst_id": "528", "coll_code": "Bird", "coll_name": "Birds collection", "coll_size": "20741", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7700", "inst_id": "528", "coll_code": "HERP", "coll_name": "", "coll_size": "22431", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7226", "inst_id": "571", "coll_code": "Arachnology", "coll_name": "Invertebrate Collections: Arachnology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/collections\/arachnology\/index.cfm"}
+{"index":{}}
+{"coll_id": "7227", "inst_id": "571", "coll_code": "Entomology", "coll_name": "Invertebrate Collections: Entomology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/collections\/entomology\/index.cfm"}
+{"index":{}}
+{"coll_id": "7228", "inst_id": "571", "coll_code": "Malacology", "coll_name": "Invertebrate Collections: Malacology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/collections\/malacology\/index.cfm"}
+{"index":{}}
+{"coll_id": "7229", "inst_id": "571", "coll_code": "Marine_Invertebrates", "coll_name": "Invertebrate Collections: Marine and other invertebrates", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/collections\/marineinverts\/index.cfm"}
+{"index":{}}
+{"coll_id": "7230", "inst_id": "571", "coll_code": "Herpetology", "coll_name": "Vertebrate Collections: Herpetology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/herpetology\/index.htm"}
+{"index":{}}
+{"coll_id": "7231", "inst_id": "571", "coll_code": "Ichthyology", "coll_name": "Vertebrate Collections: Ichthyology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/fishes\/collections\/index.cfm"}
+{"index":{}}
+{"coll_id": "7232", "inst_id": "571", "coll_code": "Mammalogy", "coll_name": "Vertebrate Collections: Mammalogy", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/mammals\/collections\/index.htm"}
+{"index":{}}
+{"coll_id": "7233", "inst_id": "571", "coll_code": "Ornithology", "coll_name": "Vertebrate Collections: Ornithology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/birds\/collections\/index.htm"}
+{"index":{}}
+{"coll_id": "7234", "inst_id": "571", "coll_code": "Palaeontology", "coll_name": "Palaeontology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/palaeontology\/collections\/index.htm"}
+{"index":{}}
+{"coll_id": "7235", "inst_id": "571", "coll_code": "Mineralogy", "coll_name": "Earth Sciences: Mineralogy and Petrology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.austmus.gov.au\/geoscience\/collections\/index.htm"}
+{"index":{}}
+{"coll_id": "7236", "inst_id": "571", "coll_code": "EBU", "coll_name": "Evolutionary Biology Unit Tissue Collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "http:\/\/australianmuseum.net.au\/Frozen-Tissue-Collection\/"}
+{"index":{}}
+{"coll_id": "7243", "inst_id": "573", "coll_code": "Herp", "coll_name": "Herpetology collection", "coll_size": "349178", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7328", "inst_id": "573", "coll_code": "Fish", "coll_name": "Ichthyology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.amnh.org\/vz\/ichthyology\/collection-information"}
+{"index":{}}
+{"coll_id": "7571", "inst_id": "573", "coll_code": "ORN", "coll_name": "Ornithology Collection", "coll_size": "833709", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7635", "inst_id": "573", "coll_code": "M", "coll_name": "Mammal collection", "coll_size": "290333", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7593", "inst_id": "573", "coll_code": "FM", "coll_name": "Fossil Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7604", "inst_id": "573", "coll_code": "R", "coll_name": "Reptile Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7691", "inst_id": "599", "coll_code": "Bird", "coll_name": "Birds collection", "coll_size": "76380", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7870", "inst_id": "619", "coll_code": "Aves", "coll_name": "Ornithological collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7553", "inst_id": "636", "coll_code": "Crustacea", "coll_name": "Crustacea Department", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nhm.org\/site\/research-collections\/crustacea"}
+{"index":{}}
+{"coll_id": "7554", "inst_id": "636", "coll_code": "Echinoderms", "coll_name": "Echinoderms Department", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nhm.org\/site\/research-collections\/echinoderms"}
+{"index":{}}
+{"coll_id": "7555", "inst_id": "636", "coll_code": "Entomology", "coll_name": "Entomology Department", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nhm.org\/site\/research-collections\/entomology"}
+{"index":{}}
+{"coll_id": "7556", "inst_id": "636", "coll_code": "Herpetology", "coll_name": "Section of Herpetology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nhm.org\/site\/research-collections\/herpetology"}
+{"index":{}}
+{"coll_id": "7557", "inst_id": "636", "coll_code": "Ichthyology", "coll_name": "Ichthyology Department", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7558", "inst_id": "636", "coll_code": "Malacology", "coll_name": "Malacology Department", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nhm.org\/site\/research-collections\/malacology"}
+{"index":{}}
+{"coll_id": "7559", "inst_id": "636", "coll_code": "Mammalogy", "coll_name": "Mammalogy Department", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nhm.org\/site\/research-collections\/mammalogy"}
+{"index":{}}
+{"coll_id": "7560", "inst_id": "636", "coll_code": "Ornithology", "coll_name": "Ornithology Department", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nhm.org\/site\/research-collections\/ornithology"}
+{"index":{}}
+{"coll_id": "7568", "inst_id": "652", "coll_code": "Invertebrate", "coll_name": "Invertebrate collection", "coll_size": "43857", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7244", "inst_id": "652", "coll_code": "Herp", "coll_name": "Herpetology collection", "coll_size": "26143", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7507", "inst_id": "663", "coll_code": "ADN", "coll_name": "Coleccion de Tejidos y ADN", "coll_size": "0", "coll_type": "DNA bank", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "http:\/\/www.mncn.csic.es\/Menu\/Coleccionesydocumentacin\/Colecciones\/TejidosyADN\/seccion=1208&idioma=es_ES.do"}
+{"index":{}}
+{"coll_id": "7519", "inst_id": "663", "coll_code": "Herpeto", "coll_name": "Coleccion de anfibios y reptiles", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7520", "inst_id": "663", "coll_code": "Ornit", "coll_name": "Coleccion de aves", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7521", "inst_id": "663", "coll_code": "Ent", "coll_name": "Coleccion de entomologia", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7522", "inst_id": "663", "coll_code": "ICTIO", "coll_name": "Coleccion de ictiologia", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7523", "inst_id": "663", "coll_code": "Inverte", "coll_name": "Coleccion de invertebrados", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7524", "inst_id": "663", "coll_code": "Malac", "coll_name": "Coleccion de malacologia", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7525", "inst_id": "663", "coll_code": "Mam", "coll_name": "Colession de mamiferos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7396", "inst_id": "670", "coll_code": "A", "coll_name": "Amphibian Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7339", "inst_id": "670", "coll_code": "R", "coll_name": "Reptile Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7434", "inst_id": "684", "coll_code": "Amp", "coll_name": "Amphibian Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7574", "inst_id": "684", "coll_code": "Ornith", "coll_name": "Ornithology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7336", "inst_id": "711", "coll_code": "A", "coll_name": "Amphibian Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7337", "inst_id": "711", "coll_code": "R", "coll_name": "Reptile Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7888", "inst_id": "711", "coll_code": "M", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7482", "inst_id": "715", "coll_code": "MAM ", "coll_name": "Mammal collection ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7207", "inst_id": "715", "coll_code": "INS", "coll_name": "Insect collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7208", "inst_id": "715", "coll_code": "COEL", "coll_name": "Coelomate collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7209", "inst_id": "715", "coll_code": "AVES", "coll_name": "bird collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7210", "inst_id": "715", "coll_code": "PISC", "coll_name": "fish collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7211", "inst_id": "715", "coll_code": "BRY", "coll_name": "bryozoan collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7212", "inst_id": "715", "coll_code": "POR", "coll_name": "poriferan collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7213", "inst_id": "715", "coll_code": "BRA", "coll_name": "brachiopod collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7214", "inst_id": "715", "coll_code": "MOL", "coll_name": "mollusc collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7215", "inst_id": "715", "coll_code": "ACA", "coll_name": "Acari collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7216", "inst_id": "715", "coll_code": "CRUS", "coll_name": "crustacean collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7217", "inst_id": "715", "coll_code": "CRUS.D", "coll_name": "decapod collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7882", "inst_id": "718", "coll_code": "Herpetology", "coll_name": "Herpetology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7732", "inst_id": "723", "coll_code": "Amphibia fossil", "coll_name": "Amphibia fossil Collection", "coll_size": "14", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7733", "inst_id": "723", "coll_code": "Anatomie", "coll_name": "Anatomie Collection", "coll_size": "4022", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7736", "inst_id": "723", "coll_code": "Arachnologie", "coll_name": "Arachnologie Collection", "coll_size": "72929", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7737", "inst_id": "723", "coll_code": "Arachnologie fossil", "coll_name": "Arachnologie fossil Collection", "coll_size": "98", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7738", "inst_id": "723", "coll_code": "Aschelminthes", "coll_name": "Aschelminthes Collection", "coll_size": "436", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7739", "inst_id": "723", "coll_code": "Aves fossil", "coll_name": "Aves fossil Collection", "coll_size": "12", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7740", "inst_id": "723", "coll_code": "Bernstein", "coll_name": "Bernstein Collection", "coll_size": "8482", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7741", "inst_id": "723", "coll_code": "Brachiopoda fossil", "coll_name": "Brachiopoda fossil Collection", "coll_size": "2860", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7742", "inst_id": "723", "coll_code": "Bryozoa", "coll_name": "Bryozoa Collection", "coll_size": "32483", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7743", "inst_id": "723", "coll_code": "Chaetognatha", "coll_name": "Chaetognatha Collection", "coll_size": "42", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7744", "inst_id": "723", "coll_code": "Clitellata", "coll_name": "Clitellata Collection", "coll_size": "1653", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7745", "inst_id": "723", "coll_code": "Cnidaria", "coll_name": "Cnidaria Collection", "coll_size": "10663", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7746", "inst_id": "723", "coll_code": "Cnidaria fossil", "coll_name": "Cnidaria fossil Collection", "coll_size": "3119", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7747", "inst_id": "723", "coll_code": "Coleoptera", "coll_name": "Coleoptera Collection", "coll_size": "14558", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7752", "inst_id": "723", "coll_code": "Ctenophora", "coll_name": "Ctenophora Collection", "coll_size": "92", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7753", "inst_id": "723", "coll_code": "Diptera", "coll_name": "Diptera Collection", "coll_size": "468", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7754", "inst_id": "723", "coll_code": "Echinodermata", "coll_name": "Echinodermata Collection", "coll_size": "4511", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7755", "inst_id": "723", "coll_code": "Echinodermata fossil", "coll_name": "Echinodermata fossil Collection", "coll_size": "2191", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7756", "inst_id": "723", "coll_code": "Echiura", "coll_name": "Echiura Collection", "coll_size": "26", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7757", "inst_id": "723", "coll_code": "Ephemeroptera", "coll_name": "Ephemeroptera Collection", "coll_size": "127", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7758", "inst_id": "723", "coll_code": "Foraminifera", "coll_name": "Foraminifera Collection", "coll_size": "3524", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7759", "inst_id": "723", "coll_code": "Graptolithina fossil", "coll_name": "Graptolithina fossil Collection", "coll_size": "1000", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7760", "inst_id": "723", "coll_code": "Hemichordata", "coll_name": "Hemichordata Collection", "coll_size": "32", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7749", "inst_id": "723", "coll_code": "Copepoda", "coll_name": "Copepoda Collection", "coll_size": "80", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7750", "inst_id": "723", "coll_code": "Crustacea", "coll_name": "Crustacea Collection", "coll_size": "39966", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7763", "inst_id": "723", "coll_code": "Herpetologie", "coll_name": "Herpetologie Collection", "coll_size": "42665", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7765", "inst_id": "723", "coll_code": "Hunsruckschiefer", "coll_name": "Hunsruckschiefer Collection", "coll_size": "950", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7766", "inst_id": "723", "coll_code": "Hymenoptera", "coll_name": "Hymenoptera Collection", "coll_size": "9454", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7767", "inst_id": "723", "coll_code": "Hyolithen", "coll_name": "Hyolithen Collection", "coll_size": "25", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7768", "inst_id": "723", "coll_code": "Ichthyologie", "coll_name": "Ichthyologie Collection", "coll_size": "28137", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7770", "inst_id": "723", "coll_code": "Insecta fossil", "coll_name": "Insecta fossil Collection", "coll_size": "1246", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7771", "inst_id": "723", "coll_code": "Lepidoptera", "coll_name": "Lepidoptera Collection", "coll_size": "462", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7773", "inst_id": "723", "coll_code": "Loricifera", "coll_name": "Loricifera Collection", "coll_size": "5", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7774", "inst_id": "723", "coll_code": "Malakologie", "coll_name": "Malakologie Collection", "coll_size": "51228", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7777", "inst_id": "723", "coll_code": "Mammalia fossil Grossauger", "coll_name": "Mammalia fossil Grossauger Collection", "coll_size": "1", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7778", "inst_id": "723", "coll_code": "Mammalia fossil Kleinsauger", "coll_name": "Mammalia fossil Kleinsauger Collection", "coll_size": "6638", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7779", "inst_id": "723", "coll_code": "Mammalogie", "coll_name": "Mammalogie Collection", "coll_size": "92134", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7781", "inst_id": "723", "coll_code": "Mantodea", "coll_name": "Mantodea Collection", "coll_size": "22", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7783", "inst_id": "723", "coll_code": "Mineralogie", "coll_name": "Mineralogie Collection", "coll_size": "12721", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7784", "inst_id": "723", "coll_code": "Myriapoda", "coll_name": "Myriapoda Collection", "coll_size": "1647", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7786", "inst_id": "723", "coll_code": "Nemertini", "coll_name": "Nemertini Collection", "coll_size": "61", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7787", "inst_id": "723", "coll_code": "Odonata", "coll_name": "Odonata Collection", "coll_size": "282", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7788", "inst_id": "723", "coll_code": "Onychophora", "coll_name": "Onychophora Collection", "coll_size": "23", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7795", "inst_id": "723", "coll_code": "Ostracoda", "coll_name": "Ostracoda Collection", "coll_size": "901", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7796", "inst_id": "723", "coll_code": "Otolithen", "coll_name": "Otolithen Collection", "coll_size": "3065", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7797", "inst_id": "723", "coll_code": "Palaoanthropologie", "coll_name": "Palaoanthropologie Collection", "coll_size": "1698", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7798", "inst_id": "723", "coll_code": "Palaoherpetologie", "coll_name": "Palaoherpetologie Collection", "coll_size": "200", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7799", "inst_id": "723", "coll_code": "Pantopoda", "coll_name": "Pantopoda Collection", "coll_size": "14", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7800", "inst_id": "723", "coll_code": "Pentastomida", "coll_name": "Pentastomida Collection", "coll_size": "58", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7801", "inst_id": "723", "coll_code": "Phoronida", "coll_name": "Phoronida Collection", "coll_size": "8", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7802", "inst_id": "723", "coll_code": "Pisces fossil", "coll_name": "Pisces fossil Collection", "coll_size": "1162", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7803", "inst_id": "723", "coll_code": "Plathelminthes", "coll_name": "Plathelminthes Collection", "coll_size": "1560", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7804", "inst_id": "723", "coll_code": "Plecoptera", "coll_name": "Plecoptera Collection", "coll_size": "1154", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7805", "inst_id": "723", "coll_code": "Polychaeta", "coll_name": "Polychaeta Collection", "coll_size": "17649", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7806", "inst_id": "723", "coll_code": "Porifera", "coll_name": "Porifera Collection", "coll_size": "4641", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7807", "inst_id": "723", "coll_code": "Reptilia fossil", "coll_name": "Reptilia fossil Collection", "coll_size": "76", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7808", "inst_id": "723", "coll_code": "Sedimentologie", "coll_name": "Sedimentologie Collection", "coll_size": "4", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7810", "inst_id": "723", "coll_code": "Sipuncula", "coll_name": "Sipuncula Collection", "coll_size": "233", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7811", "inst_id": "723", "coll_code": "Strepsiptera", "coll_name": "Strepsiptera Collection", "coll_size": "429", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7812", "inst_id": "723", "coll_code": "Stromatolithen", "coll_name": "Stromatolithen Collection", "coll_size": "70", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7813", "inst_id": "723", "coll_code": "Tardigrada", "coll_name": "Tardigrada Collection", "coll_size": "44", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7814", "inst_id": "723", "coll_code": "Tentakulita fossil", "coll_name": "Tentakulita fossil Collection", "coll_size": "353", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7815", "inst_id": "723", "coll_code": "Thysanoptera", "coll_name": "Thysanoptera Collection", "coll_size": "19626", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7816", "inst_id": "723", "coll_code": "Trichoptera", "coll_name": "Trichoptera Collection", "coll_size": "14009", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7817", "inst_id": "723", "coll_code": "Trilobita", "coll_name": "Trilobita Collection", "coll_size": "692", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7818", "inst_id": "723", "coll_code": "Tunicata", "coll_name": "Tunicata Collection", "coll_size": "812", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7819", "inst_id": "723", "coll_code": "Xiphosura", "coll_name": "Xiphosura Collection", "coll_size": "11", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7790", "inst_id": "723", "coll_code": "Ornithologie-Alkohol", "coll_name": "Ornithologie-Alkohol Collection", "coll_size": "4033", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7791", "inst_id": "723", "coll_code": "Ornithologie-Balge", "coll_name": "Ornithologie-Balge Collection", "coll_size": "71511", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7792", "inst_id": "723", "coll_code": "Ornithologie-Skelette", "coll_name": "Ornithologie-Skelette Collection", "coll_size": "19296", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7793", "inst_id": "723", "coll_code": "Orthoptera", "coll_name": "Orthoptera Collection", "coll_size": "1", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7782", "inst_id": "724", "coll_code": "Mesozoa", "coll_name": "Mesozoa Collection", "coll_size": "1", "coll_type": "      ", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7562", "inst_id": "731", "coll_code": "Herp", "coll_name": "Collection of Amphibians and Reptiles ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/brtc.tamu.edu\/collections\/herpetology_collection\/"}
+{"index":{}}
+{"coll_id": "7563", "inst_id": "731", "coll_code": "Birds", "coll_name": "Collection of Birds", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/brtc.tamu.edu\/collections\/ornithology\/"}
+{"index":{}}
+{"coll_id": "7564", "inst_id": "731", "coll_code": "Mamm", "coll_name": " Mammal collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/brtc.tamu.edu\/collections\/mammals\/"}
+{"index":{}}
+{"coll_id": "7565", "inst_id": "731", "coll_code": "Fish", "coll_name": "Collection of Fishes", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7566", "inst_id": "731", "coll_code": "Invrt", "coll_name": "Collection of Marine Invertebrate", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/brtc.tamu.edu\/"}
+{"index":{}}
+{"coll_id": "7855", "inst_id": "734", "coll_code": "Herpetology ", "coll_name": "Herpetology Collection", "coll_size": "94474", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7856", "inst_id": "734", "coll_code": "Ichthyology ", "coll_name": "Ichthyology Collection", "coll_size": "60109", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7342", "inst_id": "737", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.museum.tulane.edu\/collections\/fishes.shtml"}
+{"index":{}}
+{"coll_id": "7344", "inst_id": "737", "coll_code": "Birds", "coll_name": "Ornithological Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.museum.tulane.edu\/collections\/birds.shtml"}
+{"index":{}}
+{"coll_id": "7345", "inst_id": "737", "coll_code": "Herptiles", "coll_name": "Amphibian And Reptile Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.museum.tulane.edu\/collections\/herps.shtml"}
+{"index":{}}
+{"coll_id": "7346", "inst_id": "737", "coll_code": "Invertebrates", "coll_name": "Invertebrate Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.museum.tulane.edu\/collections\/inverts.shtml"}
+{"index":{}}
+{"coll_id": "7347", "inst_id": "737", "coll_code": "Mammals", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.museum.tulane.edu\/collections\/mammals.shtml"}
+{"index":{}}
+{"coll_id": "7584", "inst_id": "741", "coll_code": "Mamm", "coll_name": "University of Colorado Museum Mammal Collection", "coll_size": "16994", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/SpecimenSearch.cfm"}
+{"index":{}}
+{"coll_id": "7585", "inst_id": "741", "coll_code": "Bird", "coll_name": "University of Colorado Museum Bird Collection", "coll_size": "12124", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7587", "inst_id": "741", "coll_code": "Fish", "coll_name": "University of Colorado Museum Fish collection", "coll_size": "3551", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7588", "inst_id": "741", "coll_code": "Herp", "coll_name": "University of Colorado Museum Amplibian and Reptile collection", "coll_size": "65744", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7891", "inst_id": "741", "coll_code": "Egg", "coll_name": "University of Colorado Museum Egg collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7892", "inst_id": "748", "coll_code": "Ichthyology", "coll_name": "Ichthyology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7537", "inst_id": "748", "coll_code": "MC", "coll_name": "Mollusk Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.lsa.umich.edu\/ummz\/mollusks\/collections\/default.asp"}
+{"index":{}}
+{"coll_id": "7718", "inst_id": "748", "coll_code": "Birds", "coll_name": "Birds Collection", "coll_size": "211063", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7719", "inst_id": "748", "coll_code": "Herpetology", "coll_name": "Herpetology Collection", "coll_size": "197469", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7720", "inst_id": "748", "coll_code": "Mammal", "coll_name": "Mammal collection", "coll_size": "128001", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7578", "inst_id": "755", "coll_code": "R", "coll_name": "Reptile collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7432", "inst_id": "755", "coll_code": "A", "coll_name": "Amphibian Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7605", "inst_id": "756", "coll_code": "Ento", "coll_name": "Entomology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/utep_ento"}
+{"index":{}}
+{"coll_id": "7606", "inst_id": "756", "coll_code": "Bird", "coll_name": "Ornithology Collection", "coll_size": "3047", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/utep_bird"}
+{"index":{}}
+{"coll_id": "7607", "inst_id": "756", "coll_code": "ES", "coll_name": "Earth Science  fossils Collections", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/utep_es"}
+{"index":{}}
+{"coll_id": "7608", "inst_id": "756", "coll_code": "Fish", "coll_name": "Ichthyology collection", "coll_size": "242", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/utep_fish"}
+{"index":{}}
+{"coll_id": "7609", "inst_id": "756", "coll_code": "INV", "coll_name": "Invertebrates - Molluscs Collections", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/utep_inv"}
+{"index":{}}
+{"coll_id": "7610", "inst_id": "756", "coll_code": "Herb", "coll_name": "Herbarium", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/utep_herb"}
+{"index":{}}
+{"coll_id": "7611", "inst_id": "756", "coll_code": "Zoo", "coll_name": "Zooplankton collections", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/utep_zoo"}
+{"index":{}}
+{"coll_id": "7723", "inst_id": "756", "coll_code": "Herps", "coll_name": "Herpetology collection", "coll_size": "45597", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7724", "inst_id": "756", "coll_code": "Mammal", "coll_name": "Mammal collection", "coll_size": "8436", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7632", "inst_id": "760", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7638", "inst_id": "760", "coll_code": "R", "coll_name": "Reptile Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7726", "inst_id": "762", "coll_code": "VP", "coll_name": "Vertebrate Paleontology ", "coll_size": "72963", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7330", "inst_id": "762", "coll_code": "ENT", "coll_name": "Entomology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.peabody.yale.edu\/collections\/ent\/index.html"}
+{"index":{}}
+{"coll_id": "7331", "inst_id": "762", "coll_code": "IZ", "coll_name": "Invertebrate Zoology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.peabody.yale.edu\/collections\/iz\/index.html"}
+{"index":{}}
+{"coll_id": "7332", "inst_id": "762", "coll_code": "HER", "coll_name": "Herpetology Collection", "coll_size": "42593", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/peabody.research.yale.edu\/COLLECTIONS\/her\/"}
+{"index":{}}
+{"coll_id": "7333", "inst_id": "762", "coll_code": "ICH", "coll_name": "Ichthyology Collection", "coll_size": "30561", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/peabody.research.yale.edu\/COLLECTIONS\/ich\/"}
+{"index":{}}
+{"coll_id": "7334", "inst_id": "762", "coll_code": "MAM", "coll_name": "Mammology Collection", "coll_size": "15738", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/peabody.research.yale.edu\/COLLECTIONS\/mam\/"}
+{"index":{}}
+{"coll_id": "7335", "inst_id": "762", "coll_code": "ORN", "coll_name": "Ornithology Collection", "coll_size": "148254", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/peabody.research.yale.edu\/COLLECTIONS\/orn\/"}
+{"index":{}}
+{"coll_id": "7449", "inst_id": "767", "coll_code": "COL", "coll_name": "Coleoptera collection ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7547", "inst_id": "767", "coll_code": "ICH", "coll_name": "Ichthyological Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7548", "inst_id": "767", "coll_code": "FSJF", "coll_name": "fish collection of Jeorg Freyhof", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/joerg-freyhof.de\/tutorials-mainmenu-52\/46-fischsammlung-joerg-freyhof"}
+{"index":{}}
+{"coll_id": "7602", "inst_id": "776", "coll_code": "POR", "coll_name": "Porifera collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7883", "inst_id": "776", "coll_code": "MOL", "coll_name": "Mollusc collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7875", "inst_id": "777", "coll_code": "Mammal ", "coll_name": "Mammal collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7820", "inst_id": "777", "coll_code": "Bryozoa", "coll_name": "Bryozoa Collection", "coll_size": "141", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7821", "inst_id": "777", "coll_code": "Cnidaria", "coll_name": "Cnidaria Collection", "coll_size": "345", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7822", "inst_id": "777", "coll_code": "Crustacea", "coll_name": "Crustacea Collection", "coll_size": "28761", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7823", "inst_id": "777", "coll_code": "Echinodermata", "coll_name": "Echinodermata Collection", "coll_size": "665", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7824", "inst_id": "777", "coll_code": "Hydrozoa", "coll_name": "Hydrozoa Collection", "coll_size": "123", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7825", "inst_id": "777", "coll_code": "Porifera", "coll_name": "Porifera Collection", "coll_size": "801", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7826", "inst_id": "777", "coll_code": "Vermes", "coll_name": "Vermes Collection", "coll_size": "28193", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7727", "inst_id": "784", "coll_code": "R", "coll_name": "Amphibians and Reptiles collection ", "coll_size": "15835", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7728", "inst_id": "784", "coll_code": "AVES", "coll_name": "Aves collection", "coll_size": "9605", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7729", "inst_id": "784", "coll_code": "Fisk", "coll_name": "Fish Collection", "coll_size": "70229", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7353", "inst_id": "792", "coll_code": "Lep", "coll_name": "Lepidoptera", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7354", "inst_id": "792", "coll_code": "Mol", "coll_name": "Mollusca", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7713", "inst_id": "793", "coll_code": "AMP", "coll_name": "Amphibian collection", "coll_size": "23484", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7714", "inst_id": "793", "coll_code": "AVE", "coll_name": "Birds collection", "coll_size": "2403", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7715", "inst_id": "793", "coll_code": "MAM", "coll_name": "Mammal collection", "coll_size": "2789", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7716", "inst_id": "793", "coll_code": "PIS", "coll_name": "Fish collection", "coll_size": "13479", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7717", "inst_id": "793", "coll_code": "REP", "coll_name": "", "coll_size": "4026", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7672", "inst_id": "959", "coll_code": "Fish", "coll_name": "Fish collection", "coll_size": "66983", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7576", "inst_id": "1010", "coll_code": "Ichthyology", "coll_name": "Australian National Fish Collection", "coll_size": "33070", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.csiro.au\/places\/ps7u"}
+{"index":{}}
+{"coll_id": "7325", "inst_id": "1013", "coll_code": "R", "coll_name": "Reptile Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7298", "inst_id": "1077", "coll_code": "CNHE", "coll_name": "Coleccion Nacional de Helmintos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7299", "inst_id": "1077", "coll_code": "CNMO", "coll_name": "Coleccion Nacional de Moluscos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7300", "inst_id": "1077", "coll_code": "CNAC", "coll_name": "Coleccion Nacional de Acaros", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7301", "inst_id": "1077", "coll_code": "CNAN", "coll_name": "Coleccion Nacional de Aracnidos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7302", "inst_id": "1077", "coll_code": "CNCR", "coll_name": "Coleccion Nacional de Crustaceos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7303", "inst_id": "1077", "coll_code": "CNIN", "coll_name": "Coleccion Nacional de Insectos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7304", "inst_id": "1077", "coll_code": "CNPE", "coll_name": "Coleccion Nacional de Peces", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7305", "inst_id": "1077", "coll_code": "CNAR", "coll_name": "Coleccion Nacional de Anfibios y Reptiles", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7306", "inst_id": "1077", "coll_code": "CNAV", "coll_name": "Coleccion Nacional de Aves", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7307", "inst_id": "1077", "coll_code": "CNMA", "coll_name": "Coleccion Nacional de Mamiferos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7444", "inst_id": "1077", "coll_code": "CFB", "coll_name": "Coleccion de Fotocolectas Biologicas", "coll_size": "0", "coll_type": "photos", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7445", "inst_id": "1077", "coll_code": "MEXU", "coll_name": "Herbario Nacional", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7397", "inst_id": "1128", "coll_code": "H", "coll_name": "Herpetology Collection", "coll_size": "346859", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/herpetology.biodiversity.ku.edu\/"}
+{"index":{}}
+{"coll_id": "7398", "inst_id": "1128", "coll_code": "IP", "coll_name": "Invertebrate Paleontology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/invertebratepaleontology.biodiversity.ku.edu\/"}
+{"index":{}}
+{"coll_id": "7399", "inst_id": "1128", "coll_code": "IZ", "coll_name": "Invertebrate Zoology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/invertebratezoology.biodiversity.ku.edu\/"}
+{"index":{}}
+{"coll_id": "7400", "inst_id": "1128", "coll_code": "M", "coll_name": "Mammology Collection", "coll_size": "167516", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/mammalogy.biodiversity.ku.edu\/"}
+{"index":{}}
+{"coll_id": "7401", "inst_id": "1128", "coll_code": "O", "coll_name": "Ornithology Collection", "coll_size": "121999", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/ornithology.biodiversity.ku.edu\/"}
+{"index":{}}
+{"coll_id": "7402", "inst_id": "1128", "coll_code": "PB", "coll_name": "Paleobotany Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/paleobotany.biodiversity.ku.edu\/"}
+{"index":{}}
+{"coll_id": "7403", "inst_id": "1128", "coll_code": "VP", "coll_name": "Vertebrate Paleontology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "84710", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/vertebratepaleontology.biodiversity.ku.edu\/"}
+{"index":{}}
+{"coll_id": "7237", "inst_id": "1128", "coll_code": "I", "coll_name": "Ichthyology collection", "coll_size": "41811", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/nhm.ku.edu\/fishes\/collect.html"}
+{"index":{}}
+{"coll_id": "7238", "inst_id": "1128", "coll_code": "IT", "coll_name": "Ichthyology tissue collection", "coll_size": "10982", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "http:\/\/nhm.ku.edu\/fishes\/collect.html"}
+{"index":{}}
+{"coll_id": "7441", "inst_id": "1217", "coll_code": "TD", "coll_name": "Herpetological Tissue Collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7442", "inst_id": "1217", "coll_code": "T", "coll_name": "Tissue collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7877", "inst_id": "1256", "coll_code": "HERP", "coll_name": "Herpetology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7878", "inst_id": "1256", "coll_code": "ICH", "coll_name": "Ichthyology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7879", "inst_id": "1256", "coll_code": "ORN", "coll_name": "Ornithology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7313", "inst_id": "1260", "coll_code": "OR", "coll_name": "Birds", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7314", "inst_id": "1260", "coll_code": "CR", "coll_name": "Crustacea", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7315", "inst_id": "1260", "coll_code": "P", "coll_name": "Fish", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7316", "inst_id": "1260", "coll_code": "S", "coll_name": "Fossil Vertebrates", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7317", "inst_id": "1260", "coll_code": "AS", "coll_name": "Spiders", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7318", "inst_id": "1260", "coll_code": "AI", "coll_name": "Insects", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7319", "inst_id": "1260", "coll_code": "MM", "coll_name": "Marine Mammals", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7320", "inst_id": "1260", "coll_code": "M", "coll_name": "Molluscs", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7321", "inst_id": "1260", "coll_code": "RE", "coll_name": "Reptiles", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7322", "inst_id": "1260", "coll_code": "AM", "coll_name": "Amphibians", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7323", "inst_id": "1260", "coll_code": "TS", "coll_name": "Tissue Collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7324", "inst_id": "1260", "coll_code": "TSA", "coll_name": "Tissue Collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7711", "inst_id": "1286", "coll_code": "Fishes", "coll_name": "Icthyology collection", "coll_size": "19219", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7712", "inst_id": "1286", "coll_code": "Herps", "coll_name": "Herpetological collection", "coll_size": "58475", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7549", "inst_id": "1302", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7615", "inst_id": "1302", "coll_code": "Ornith", "coll_name": "Ornithology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7280", "inst_id": "1320", "coll_code": "BIC", "coll_name": "Benthic Invertebrates Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7884", "inst_id": "1320", "coll_code": "Marine Vertebrates", "coll_name": "Marine Vertebrates Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7255", "inst_id": "1371", "coll_code": "Herpetology", "coll_name": "Herpetology Collection", "coll_size": "173058", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/specifyportal.flmnh.ufl.edu\/herps\/"}
+{"index":{}}
+{"coll_id": "7256", "inst_id": "1371", "coll_code": "Ichthyology", "coll_name": "Fish Collection", "coll_size": "228880", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.flmnh.ufl.edu\/databases\/fish\/default.htm"}
+{"index":{}}
+{"coll_id": "7257", "inst_id": "1371", "coll_code": "Invertebrate Zoology", "coll_name": "Invertebrate Zoology and Malacology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.flmnh.ufl.edu\/databases\/mala\/intro.htm"}
+{"index":{}}
+{"coll_id": "7258", "inst_id": "1371", "coll_code": "Mammalogy", "coll_name": "Mammalogy Collection", "coll_size": "33725", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.flmnh.ufl.edu\/databases\/mammals\/intro.htm"}
+{"index":{}}
+{"coll_id": "7259", "inst_id": "1371", "coll_code": "Ornithology", "coll_name": "Ornithology Skins and Skeletons Collection", "coll_size": "89877", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.flmnh.ufl.edu\/databases\/birds\/intro.htm"}
+{"index":{}}
+{"coll_id": "7534", "inst_id": "1371", "coll_code": "Porifera", "coll_name": "", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7509", "inst_id": "1390", "coll_code": "CNAV", "coll_name": "Coleccion Nacional de Aves ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7510", "inst_id": "1390", "coll_code": "CNHE", "coll_name": "Coleccion Nacional de Helmintos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7511", "inst_id": "1390", "coll_code": "CNMO", "coll_name": "Coleccion Nacional de Moluscos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7512", "inst_id": "1390", "coll_code": "CNAC", "coll_name": "Coleccion Nacional de Acaros", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7513", "inst_id": "1390", "coll_code": "CNAN", "coll_name": "Coleccion Nacional de Aracnidos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7514", "inst_id": "1390", "coll_code": "CNCR", "coll_name": "Coleccion Nacional de Crustaceos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7515", "inst_id": "1390", "coll_code": "CNIN", "coll_name": "Coleccion Nacional de Insectos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.ibiologia.unam.mx\/cnin\/"}
+{"index":{}}
+{"coll_id": "7516", "inst_id": "1390", "coll_code": "CNPE", "coll_name": "Coleccion Nacional de Peces", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7517", "inst_id": "1390", "coll_code": "CNAR", "coll_name": "Coleccion Nacional de Anfibios", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7518", "inst_id": "1390", "coll_code": "CNMA", "coll_name": "Coleccion Nacional de Mamiferos", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7630", "inst_id": "1390", "coll_code": "CNNE", "coll_name": "Coleccion Nacional de Nematodos ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7376", "inst_id": "1390", "coll_code": "CNPGG", "coll_name": "Coleccion Nacional del Phylum Porifera Gerardo Green", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.conabio.gob.mx\/informacion\/catalogo_autoridades\/doctos\/esponjas.html"}
+{"index":{}}
+{"coll_id": "7721", "inst_id": "1394", "coll_code": "Herpetology", "coll_name": "Herpetology Collection", "coll_size": "6801", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7722", "inst_id": "1394", "coll_code": "Mammal", "coll_name": "Mammalogy collection", "coll_size": "413", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7634", "inst_id": "1503", "coll_code": "R", "coll_name": "Reptile collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7612", "inst_id": "1639", "coll_code": "ORNITH", "coll_name": "Ornithology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7860", "inst_id": "1763", "coll_code": "UCIS   ", "coll_name": "University of California Insect Survey", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7861", "inst_id": "1763", "coll_code": "EMEC", "coll_name": "Essig Museum of Entomology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7613", "inst_id": "1805", "coll_code": "ColTryp", "coll_name": "Collection of Trypanosoma from Wild and Domestic Mammals and Vectors", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "http:\/\/coltryp.fiocruz.br\/"}
+{"index":{}}
+{"coll_id": "7491", "inst_id": "1883", "coll_code": "Moll", "coll_name": "Mollusca Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nhmus.hu\/en\/department_of_zoology\/collection\/mollusca_collection"}
+{"index":{}}
+{"coll_id": "7876", "inst_id": "1883", "coll_code": "CGR", "coll_name": "Collection of Genetic Resources ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7868", "inst_id": "1895", "coll_code": "A", "coll_name": "Ornithological Collection ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7869", "inst_id": "1895", "coll_code": "CT", "coll_name": "Tissue Collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7448", "inst_id": "2281", "coll_code": "BAU", "coll_name": "Zoological collection of the Department of Biology and Biotechnology ", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7287", "inst_id": "2292", "coll_code": "ZOOL", "coll_name": "Department of Life Science", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7431", "inst_id": "2526", "coll_code": "H", "coll_name": "Herpetology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7731", "inst_id": "2542", "coll_code": "Acari fossil", "coll_name": "Acari fossil Collection", "coll_size": "4", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7735", "inst_id": "2542", "coll_code": "Arachnologie", "coll_name": "Arachnologie Collection", "coll_size": "10120", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7748", "inst_id": "2542", "coll_code": "Collembola", "coll_name": "Collembola Collection", "coll_size": "6812", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7794", "inst_id": "2542", "coll_code": "Orthoptera", "coll_name": "Orthoptera Collection", "coll_size": "34", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7809", "inst_id": "2542", "coll_code": "Siphonaptera fossil", "coll_name": "Siphonaptera fossil Collection", "coll_size": "1", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7764", "inst_id": "2542", "coll_code": "Heteroptera", "coll_name": "Heteroptera Collection", "coll_size": "20", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7776", "inst_id": "2542", "coll_code": "Malakologie", "coll_name": "Malakologie Collection", "coll_size": "7", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7543", "inst_id": "2700", "coll_code": "NSGC", "coll_name": "National Small Grains Collection", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "http:\/\/www.ars.usda.gov\/main\/docs.htm?docid=2884"}
+{"index":{}}
+{"coll_id": "7430", "inst_id": "2700", "coll_code": "USNPC", "coll_name": "US National Parasite Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.anri.barc.usda.gov\/bnpcu\/index.asp"}
+{"index":{}}
+{"coll_id": "7393", "inst_id": "2700", "coll_code": "PGRU", "coll_name": "Plant Genetic Resources Unit ", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "http:\/\/www.ars.usda.gov\/main\/site_main.htm?modecode=19-10-05-00"}
+{"index":{}}
+{"coll_id": "7310", "inst_id": "2700", "coll_code": "CFRA", "coll_name": "Corvallis Fragaria Catalog", "coll_size": "0", "coll_type": "seed bank", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "http:\/\/www.ars-grin.gov\/cor\/catalogs\/fraseed.html"}
+{"index":{}}
+{"coll_id": "7311", "inst_id": "2700", "coll_code": "NCGR", "coll_name": "National Clonal Germplasm Repository", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "http:\/\/www.ars.usda.gov\/main\/site_main.htm?modecode=53-58-15-00"}
+{"index":{}}
+{"coll_id": "7183", "inst_id": "2700", "coll_code": "GRIN", "coll_name": "Germplasm Resources Information Network", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "http:\/\/www.ars-grin.gov\/"}
+{"index":{}}
+{"coll_id": "7550", "inst_id": "2709", "coll_code": "Mamm", "coll_name": "Burke Museum's mammal collection", "coll_size": "55651", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7572", "inst_id": "2709", "coll_code": "ORN", "coll_name": "Ornithology Collection", "coll_size": "100958", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7725", "inst_id": "2709", "coll_code": "HERP", "coll_name": "Herpetology Collection", "coll_size": "8372", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7184", "inst_id": "2779", "coll_code": "HERP", "coll_name": "Herptile collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7185", "inst_id": "2779", "coll_code": "BIRD", "coll_name": "Bird collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7186", "inst_id": "2779", "coll_code": "MAMM", "coll_name": "Mammal collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7182", "inst_id": "2779", "coll_code": "ICHT", "coll_name": "Fish Collections", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7679", "inst_id": "2799", "coll_code": "Reptiles", "coll_name": "Herpetology Collection", "coll_size": "14646", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/www.angelo.edu\/dept\/biology\/asnhc\/amphibian_reptile_collections.php"}
+{"index":{}}
+{"coll_id": "7680", "inst_id": "2799", "coll_code": "Mammals", "coll_name": "Mammalogy Collection", "coll_size": "16217", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/www.angelo.edu\/dept\/biology\/asnhc\/mammal_collection.php"}
+{"index":{}}
+{"coll_id": "7681", "inst_id": "2799", "coll_code": "Birds", "coll_name": "Ornithology Collection", "coll_size": "2052", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7674", "inst_id": "2810", "coll_code": "Herpetology", "coll_name": "Herpetology collection", "coll_size": "159", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7675", "inst_id": "2810", "coll_code": "Ornithology", "coll_name": "Ornithology collection", "coll_size": "2911", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7191", "inst_id": "2843", "coll_code": "Bird", "coll_name": "bird collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7312", "inst_id": "2843", "coll_code": "Mammal", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7682", "inst_id": "2848", "coll_code": "Birds", "coll_name": "Ornithology Collection", "coll_size": "7735", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7683", "inst_id": "2850", "coll_code": "Mammals", "coll_name": "Mammala collection", "coll_size": "12217", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7567", "inst_id": "2858", "coll_code": "Rept", "coll_name": "Reptile Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/cumv_rept"}
+{"index":{}}
+{"coll_id": "7265", "inst_id": "2858", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "91253", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/cumv_fish"}
+{"index":{}}
+{"coll_id": "7266", "inst_id": "2858", "coll_code": "Amph", "coll_name": "Amphibian Collection", "coll_size": "26789", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/cumv_amph"}
+{"index":{}}
+{"coll_id": "7267", "inst_id": "2858", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "56800", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/cumv_bird"}
+{"index":{}}
+{"coll_id": "7268", "inst_id": "2858", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "22551", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/arctos.database.museum\/cumv_mamm"}
+{"index":{}}
+{"coll_id": "7827", "inst_id": "2906", "coll_code": "Amphibian ", "coll_name": "Amphibian Collection", "coll_size": "718", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7828", "inst_id": "2906", "coll_code": "Birds", "coll_name": "Birds collection", "coll_size": "283", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7829", "inst_id": "2906", "coll_code": "Mammal", "coll_name": "Mammals collection", "coll_size": "8633", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7830", "inst_id": "2906", "coll_code": "Reptile", "coll_name": "Reptile collection", "coll_size": "702", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7695", "inst_id": "2919", "coll_code": "Fish", "coll_name": "Ichthyology Collection", "coll_size": "1952", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7696", "inst_id": "2919", "coll_code": "Mammals", "coll_name": "Mammalogy Collection", "coll_size": "12289", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7697", "inst_id": "2919", "coll_code": "Aves", "coll_name": "Ornithology collection", "coll_size": "12051", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7698", "inst_id": "2919", "coll_code": "HERP", "coll_name": "Herpetology collection", "coll_size": "2502", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7501", "inst_id": "2933", "coll_code": "Herpetology", "coll_name": "Herpetology Collection", "coll_size": "98523", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7502", "inst_id": "2933", "coll_code": "Ichthyology", "coll_name": "Ichthyology Collection", "coll_size": "17672", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7503", "inst_id": "2933", "coll_code": "Mammalogy", "coll_name": "Mammal Collection", "coll_size": "39183", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7504", "inst_id": "2933", "coll_code": "Ornithology", "coll_name": "Bird Collection", "coll_size": "180988", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7505", "inst_id": "2933", "coll_code": "FrozenTissue", "coll_name": "Frozen Tissue Collection", "coll_size": "100000", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7446", "inst_id": "2952", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "62765", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/college.oxy.edu\/mlz\/mlz-bird-and-mammal-collections\/"}
+{"index":{}}
+{"coll_id": "7447", "inst_id": "2952", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "2174", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/college.oxy.edu\/mlz\/mlz-bird-and-mammal-collections\/"}
+{"index":{}}
+{"coll_id": "7673", "inst_id": "2954", "coll_code": "Bird", "coll_name": "Bird collection", "coll_size": "48114", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7390", "inst_id": "2967", "coll_code": "Herp", "coll_name": "Herpetology Collection", "coll_size": "17621", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7284", "inst_id": "2967", "coll_code": "Para", "coll_name": "Parasitology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7198", "inst_id": "2967", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "41768", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7199", "inst_id": "2967", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "300368", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7249", "inst_id": "2967", "coll_code": "Fishes", "coll_name": "Fish Collection", "coll_size": "99074", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7847", "inst_id": "3009", "coll_code": "Amphibian", "coll_name": "Amphibian collection", "coll_size": "28310", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7848", "inst_id": "3009", "coll_code": "Birds", "coll_name": "Birds Collection", "coll_size": "21615", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7849", "inst_id": "3009", "coll_code": "Fish", "coll_name": "Fish collection", "coll_size": "3769", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7850", "inst_id": "3009", "coll_code": "Mammal", "coll_name": "Mammals Collection", "coll_size": "65437", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7851", "inst_id": "3009", "coll_code": "Reptile ", "coll_name": "Reptile Collection", "coll_size": "30509", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7852", "inst_id": "3009", "coll_code": "Eggs", "coll_name": "Eggs collection", "coll_size": "3769", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7842", "inst_id": "3013", "coll_code": "Fish", "coll_name": "Fish collection", "coll_size": "99850", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7843", "inst_id": "3013", "coll_code": "Amphibian", "coll_name": "Amphibian collection", "coll_size": "4996", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7844", "inst_id": "3013", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "26014", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7845", "inst_id": "3013", "coll_code": "Mammal ", "coll_name": "Mammal collection", "coll_size": "6868", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7846", "inst_id": "3013", "coll_code": "Reptile", "coll_name": "Reptile Collection", "coll_size": "2391", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7180", "inst_id": "3031", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7204", "inst_id": "3164", "coll_code": "Bird", "coll_name": "bird collection", "coll_size": "1339", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7205", "inst_id": "3164", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "379", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7206", "inst_id": "3164", "coll_code": "Mamm", "coll_name": "mammal collection", "coll_size": "6888", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7544", "inst_id": "3181", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7545", "inst_id": "3181", "coll_code": "IZ", "coll_name": "Invertebrate Zoology", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.bishopmuseum.org\/research\/natsci\/invert\/invertzoo.html "}
+{"index":{}}
+{"coll_id": "7579", "inst_id": "3210", "coll_code": "ENT", "coll_name": "Entomology collection", "coll_size": "1306919", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7858", "inst_id": "3210", "coll_code": "BOT", "coll_name": "Plants collection", "coll_size": "1392507", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7859", "inst_id": "3210", "coll_code": "ZOO", "coll_name": "Zoological Collection", "coll_size": "708670", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7686", "inst_id": "3218", "coll_code": "HERP", "coll_name": "Herpetology collection", "coll_size": "20957", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7687", "inst_id": "3218", "coll_code": "Fish", "coll_name": " Ichthyology collection", "coll_size": "29", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7688", "inst_id": "3218", "coll_code": " Mammal", "coll_name": " Mammalogy Collection", "coll_size": "5342", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7689", "inst_id": "3218", "coll_code": "Bird", "coll_name": "Ornithology Collection", "coll_size": "26588", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7616", "inst_id": "3267", "coll_code": "F", "coll_name": "Botany Department", "coll_size": "25535", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7270", "inst_id": "3267", "coll_code": "ARTH", "coll_name": "Arthropod Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/emuweb.fieldmuseum.org\/arthropod\/Query.php "}
+{"index":{}}
+{"coll_id": "7271", "inst_id": "3267", "coll_code": "HERP", "coll_name": "Herpetology Collection", "coll_size": "15389", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/fm1.fieldmuseum.org\/collections\/search.cgi?dest=herps"}
+{"index":{}}
+{"coll_id": "7272", "inst_id": "3267", "coll_code": "ICHTHY", "coll_name": "Ichthyology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7273", "inst_id": "3267", "coll_code": "INVRT", "coll_name": "Invertebrate Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/emuweb.fieldmuseum.org\/iz\/Query.php "}
+{"index":{}}
+{"coll_id": "7274", "inst_id": "3267", "coll_code": "MAMM", "coll_name": "Mammal Collection", "coll_size": "39529", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7275", "inst_id": "3267", "coll_code": "AVES", "coll_name": "Ornithology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7506", "inst_id": "3301", "coll_code": "CMF", "coll_name": "Collection of Microscopic Fungi", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection,bio_material", "coll_url": "http:\/\/web.natur.cuni.cz\/fccm\/cmfisba.pdf"}
+{"index":{}}
+{"coll_id": "7508", "inst_id": "3415", "coll_code": "ENT", "coll_name": "Entomology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7359", "inst_id": "3428", "coll_code": "W", "coll_name": "Annelid Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nt.gov.au\/nreta\/museums\/collection\/science\/invert\/annelida.html"}
+{"index":{}}
+{"coll_id": "7360", "inst_id": "3428", "coll_code": "P", "coll_name": "Malacology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nt.gov.au\/nreta\/museums\/collection\/science\/invert\/mollusca.html"}
+{"index":{}}
+{"coll_id": "7361", "inst_id": "3428", "coll_code": "A", "coll_name": "Arachnid Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nt.gov.au\/nreta\/museums\/collection\/science\/invert\/arachnida.html"}
+{"index":{}}
+{"coll_id": "7362", "inst_id": "3428", "coll_code": "C", "coll_name": "Cnidarian Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nt.gov.au\/nreta\/museums\/collection\/science\/invert\/cnidaria.html"}
+{"index":{}}
+{"coll_id": "7363", "inst_id": "3428", "coll_code": "Cr", "coll_name": "Crustacean Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7364", "inst_id": "3428", "coll_code": "D", "coll_name": "Minor Invertebrate Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7365", "inst_id": "3428", "coll_code": "E", "coll_name": "Ascidian Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7366", "inst_id": "3428", "coll_code": "G", "coll_name": "Bryozoan Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7367", "inst_id": "3428", "coll_code": "I", "coll_name": "Insect Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nt.gov.au\/nreta\/museums\/collection\/science\/invert\/insecta.html"}
+{"index":{}}
+{"coll_id": "7368", "inst_id": "3428", "coll_code": "M", "coll_name": "Myriapod Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7369", "inst_id": "3428", "coll_code": "N", "coll_name": "Pycnogonid Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7370", "inst_id": "3428", "coll_code": "Q", "coll_name": "Echinoderm Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7371", "inst_id": "3428", "coll_code": "R", "coll_name": "Herpetology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7372", "inst_id": "3428", "coll_code": "S", "coll_name": "Fish Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7373", "inst_id": "3428", "coll_code": "T", "coll_name": "Bird Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7374", "inst_id": "3428", "coll_code": "U", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7375", "inst_id": "3428", "coll_code": "Z", "coll_name": "Poriferan Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.nt.gov.au\/nreta\/museums\/collection\/science\/invert\/porifera.html"}
+{"index":{}}
+{"coll_id": "7705", "inst_id": "3430", "coll_code": "ZO", "coll_name": "Birds collection", "coll_size": "13968", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7706", "inst_id": "3430", "coll_code": "ZM", "coll_name": "Mammal collection", "coll_size": "14165", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7338", "inst_id": "3467", "coll_code": "IZ", "coll_name": "Invertebrate Zoology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7355", "inst_id": "3467", "coll_code": "ORN", "coll_name": "Ornithology Collection", "coll_size": "169086", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7276", "inst_id": "3467", "coll_code": "MAM", "coll_name": "Mammal Collection", "coll_size": "118315", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7247", "inst_id": "3467", "coll_code": "HERP", "coll_name": "Herpetology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7220", "inst_id": "3467", "coll_code": "ICH", "coll_name": "Fish collection", "coll_size": "100410", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7221", "inst_id": "3467", "coll_code": "ENT", "coll_name": "Entomology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7420", "inst_id": "3515", "coll_code": "O", "coll_name": "Ornithology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7429", "inst_id": "3515", "coll_code": "A", "coll_name": "Amphibian Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7867", "inst_id": "3515", "coll_code": "T", "coll_name": "Tissue Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher,bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7730", "inst_id": "3613", "coll_code": "Crustacea", "coll_name": "Crustacea Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7589", "inst_id": "3689", "coll_code": "PROK", "coll_name": "Prokaryotic collection", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "specimen_voucher,culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7590", "inst_id": "3689", "coll_code": "MOLD", "coll_name": "Mold collection", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "specimen_voucher,culture_collection", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7591", "inst_id": "3689", "coll_code": "YEAST", "coll_name": "Yeast Collection", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "specimen_voucher,culture_collection", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7573", "inst_id": "3986", "coll_code": "H", "coll_name": "Collection of Amphibians and Reptiles", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7356", "inst_id": "3986", "coll_code": "LMM", "coll_name": "Laboratorio de Micologia Medica Divisao de Microbiologia e Nutricao", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7357", "inst_id": "3986", "coll_code": "CR", "coll_name": "Crustacea Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.biodiversidadeamazonica.net\/crustaceos"}
+{"index":{}}
+{"coll_id": "7862", "inst_id": "3986", "coll_code": "ICT", "coll_name": "", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7450", "inst_id": "4654", "coll_code": "germplasm bank", "coll_name": "", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7250", "inst_id": "4861", "coll_code": "INV", "coll_name": "Invertebrate collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7636", "inst_id": "4861", "coll_code": "R", "coll_name": "Reptie collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7831", "inst_id": "4928", "coll_code": "Birds", "coll_name": "Birds Collection", "coll_size": "3253", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7832", "inst_id": "4928", "coll_code": "Mammal", "coll_name": "Mammals Collection", "coll_size": "1157", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7603", "inst_id": "5110", "coll_code": "Fungi", "coll_name": "Fungi collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7570", "inst_id": "5457", "coll_code": "P", "coll_name": "The Protozoan collection of the National Museum", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7279", "inst_id": "5474", "coll_code": "ZC", "coll_name": " Zoology Crustacea", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7871", "inst_id": "5474", "coll_code": "ZF", "coll_name": " Zoology Fish", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7239", "inst_id": "5555", "coll_code": "EVAR", "coll_name": "Evertebrata Varia (Invertebrates other than Insects)", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7240", "inst_id": "5555", "coll_code": "INS", "coll_name": "Insect collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7241", "inst_id": "5555", "coll_code": "VERT", "coll_name": "Vertebrate collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7627", "inst_id": "6151", "coll_code": "ALGAS", "coll_name": "Algal Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7628", "inst_id": "6151", "coll_code": "BRIOFITOS", "coll_name": "Bryophyta Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7629", "inst_id": "6151", "coll_code": "HONGOS", "coll_name": "Mushroom Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7188", "inst_id": "6163", "coll_code": "Algae", "coll_name": "algae collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7189", "inst_id": "6163", "coll_code": "Lich", "coll_name": "lichen collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7190", "inst_id": "6163", "coll_code": "Bryo", "coll_name": "bryophyte collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7580", "inst_id": "6194", "coll_code": "LIPP", "coll_name": "Laboratory Plant-Pathogen Interaction", "coll_size": "0", "coll_type": "      ", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7433", "inst_id": "6212", "coll_code": "H", "coll_name": "Collecion Herpetologica", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7223", "inst_id": "6529", "coll_code": "CBD", "coll_name": "Center for Biological Defense", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "http:\/\/www.bt.usf.edu\/"}
+{"index":{}}
+{"coll_id": "7886", "inst_id": "6633", "coll_code": "F", "coll_name": "Fungal Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7535", "inst_id": "6777", "coll_code": "Z", "coll_name": "Zoology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7404", "inst_id": "6832", "coll_code": "Fungi", "coll_name": "Fungi collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.rjb.csic.es\/jardinbotanico\/jardin\/index.php?Cab=109&len=en&Pag=191&Pag=191"}
+{"index":{}}
+{"coll_id": "7405", "inst_id": "6832", "coll_code": "FunHist", "coll_name": "Historical fungi colleciton", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.rjb.csic.es\/jardinbotanico\/jardin\/index.php?Cab=109&len=en&Pag=191&Pag=191"}
+{"index":{}}
+{"coll_id": "7406", "inst_id": "6832", "coll_code": "Lichen", "coll_name": "Lichen collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.rjb.csic.es\/jardinbotanico\/jardin\/index.php?Cab=109&len=en&Pag=191&Pag=190"}
+{"index":{}}
+{"coll_id": "7407", "inst_id": "6832", "coll_code": "Musci", "coll_name": "Bryophyte collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.rjb.csic.es\/jardinbotanico\/jardin\/index.php?Cab=109&len=en&Pag=190&Pag=411"}
+{"index":{}}
+{"coll_id": "7408", "inst_id": "6832", "coll_code": "Hepat", "coll_name": "Liverwort collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.rjb.csic.es\/jardinbotanico\/jardin\/index.php?Cab=109&len=en&Pag=190&Pag=411"}
+{"index":{}}
+{"coll_id": "7409", "inst_id": "6832", "coll_code": "Algae", "coll_name": "Algae collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7277", "inst_id": "6866", "coll_code": "M", "coll_name": "Section of Mammals", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.carnegiemnh.org\/mammals\/index.html"}
+{"index":{}}
+{"coll_id": "7278", "inst_id": "6866", "coll_code": "O", "coll_name": "Section of Birds", "coll_size": "205967", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.carnegiemnh.org\/birds\/index.html"}
+{"index":{}}
+{"coll_id": "7684", "inst_id": "6866", "coll_code": "Herps", "coll_name": "Herpetology Collection", "coll_size": "170040", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7685", "inst_id": "6866", "coll_code": "VertPaleo", "coll_name": "Vertebrate Paleontology Collection", "coll_size": "79254", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7546", "inst_id": "6934", "coll_code": "ICBG-Panama", "coll_name": " International Cooperative Biodiversity Groups", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7596", "inst_id": "6955", "coll_code": "F", "coll_name": "Fungal Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7484", "inst_id": "7052", "coll_code": "Herps", "coll_name": "Museum of Biodiversity Amphibians & Reptiles Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.sci.sdsu.edu\/collections\/herps.htm"}
+{"index":{}}
+{"coll_id": "7485", "inst_id": "7052", "coll_code": "Birds", "coll_name": "Museum of Biodiversity Birds Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.sci.sdsu.edu\/collections\/birds.htm"}
+{"index":{}}
+{"coll_id": "7486", "inst_id": "7052", "coll_code": "Fish", "coll_name": "Museum of Biodiversity Fish Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.sci.sdsu.edu\/collections\/fish.htm"}
+{"index":{}}
+{"coll_id": "7487", "inst_id": "7052", "coll_code": "Mammals", "coll_name": "Museum of Biodiversity Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.sci.sdsu.edu\/collections\/mammals.htm"}
+{"index":{}}
+{"coll_id": "7488", "inst_id": "7052", "coll_code": "Arthropods", "coll_name": "Museum of Biodiversity Terrestrial Arthropod Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.sci.sdsu.edu\/collections\/terrestrialarthropods.htm"}
+{"index":{}}
+{"coll_id": "7489", "inst_id": "7052", "coll_code": "Herbarium", "coll_name": "Herbarium", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.sci.sdsu.edu\/collections\/herbarium.htm"}
+{"index":{}}
+{"coll_id": "7490", "inst_id": "7052", "coll_code": "Greenhouse", "coll_name": "Greenhouse", "coll_size": "0", "coll_type": "botanical garden", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "http:\/\/www.sci.sdsu.edu\/greenhouse\/"}
+{"index":{}}
+{"coll_id": "7377", "inst_id": "7121", "coll_code": "ANTH", "coll_name": "Anthropology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/anthro\/collections"}
+{"index":{}}
+{"coll_id": "7378", "inst_id": "7121", "coll_code": "BOT", "coll_name": "Botany Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/botany\/collections"}
+{"index":{}}
+{"coll_id": "7379", "inst_id": "7121", "coll_code": "DIA", "coll_name": "Diatom collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/researcharchive.calacademy.org\/research\/diatoms\/hanna_db\/index.asp"}
+{"index":{}}
+{"coll_id": "7380", "inst_id": "7121", "coll_code": "DS", "coll_name": "Dudley Stanford Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7381", "inst_id": "7121", "coll_code": "EGG", "coll_name": "Egg & Nest Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/om\/collections"}
+{"index":{}}
+{"coll_id": "7382", "inst_id": "7121", "coll_code": "TYPE", "coll_name": "Entomology Type Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/ent\/collections"}
+{"index":{}}
+{"coll_id": "7383", "inst_id": "7121", "coll_code": "IU", "coll_name": "Indiana University fish collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/ichthyology\/collections"}
+{"index":{}}
+{"coll_id": "7384", "inst_id": "7121", "coll_code": "IZ", "coll_name": "Invertebrate Zoology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/izg\/collections "}
+{"index":{}}
+{"coll_id": "7385", "inst_id": "7121", "coll_code": "MAM", "coll_name": "Mammalogy Collection", "coll_size": "31986", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/om\/collections "}
+{"index":{}}
+{"coll_id": "7386", "inst_id": "7121", "coll_code": "ORN", "coll_name": "Ornithology Collection", "coll_size": "99447", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/om\/collections "}
+{"index":{}}
+{"coll_id": "7387", "inst_id": "7121", "coll_code": "SUA", "coll_name": "Stanford University Collection of amphibians", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/herp\/collections "}
+{"index":{}}
+{"coll_id": "7388", "inst_id": "7121", "coll_code": "SUR", "coll_name": "Stanford University Collection of reptiles", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/herp\/collections"}
+{"index":{}}
+{"coll_id": "7389", "inst_id": "7121", "coll_code": "SU", "coll_name": "Stanford University Collection of fish", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/ichthyology\/collections "}
+{"index":{}}
+{"coll_id": "7269", "inst_id": "7121", "coll_code": "ICH", "coll_name": "Ichthyology collection", "coll_size": "207513", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/research\/ichthyology\/collection\/index.asp"}
+{"index":{}}
+{"coll_id": "7245", "inst_id": "7121", "coll_code": "HERP", "coll_name": "Herpetology collection", "coll_size": "315594", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/researcharchive.calacademy.org\/research\/herpetology\/catalog\/index.asp"}
+{"index":{}}
+{"coll_id": "7246", "inst_id": "7121", "coll_code": "ENT", "coll_name": "Entomology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.calacademy.org\/ent\/collections "}
+{"index":{}}
+{"coll_id": "7837", "inst_id": "7159", "coll_code": "Anfibios", "coll_name": "Anfibios Collection", "coll_size": "9794", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7838", "inst_id": "7159", "coll_code": "Aves", "coll_name": "Aves collection", "coll_size": "7697", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7839", "inst_id": "7159", "coll_code": "Mamiferos", "coll_name": "Mamiferos collection", "coll_size": "3578", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7840", "inst_id": "7159", "coll_code": "Peixes", "coll_name": "Peixes Collection", "coll_size": "12145", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7841", "inst_id": "7159", "coll_code": "Repteis", "coll_name": "Repteis Collection", "coll_size": "3927", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7614", "inst_id": "7188", "coll_code": "F", "coll_name": "Fungal Collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7887", "inst_id": "7206", "coll_code": "BIN", "coll_name": "Komarov Botanical Institute Basidiomycetes ", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "https:\/\/www.binran.ru\/en\/structure\/podrazdelenia\/laboratoriya-biokhimii-gribov\/kollektsionnye-fondy\/"}
+{"index":{}}
+{"coll_id": "7575", "inst_id": "7224", "coll_code": "FECRGA", "coll_name": "Fungal Endophytes Collection of the  Research Group of Agronomy", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7498", "inst_id": "7242", "coll_code": "ENT", "coll_name": "Entomology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7890", "inst_id": "7242", "coll_code": "ESM", "coll_name": "Earth Sciences Museum", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": ""}
+{"index":{}}
+{"coll_id": "7540", "inst_id": "7272", "coll_code": "CTC", "coll_name": "Cowan Tetrapod Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.beatymuseum.ubc.ca\/collections\/vertebrate"}
+{"index":{}}
+{"coll_id": "7541", "inst_id": "7272", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.beatymuseum.ubc.ca\/collections\/fish"}
+{"index":{}}
+{"coll_id": "7595", "inst_id": "7272", "coll_code": "SEM", "coll_name": "Spencer Entomological Museum", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7889", "inst_id": "7408", "coll_code": "CZEUM", "coll_name": "Collection of Zoosporic Eufungi at the University of Michigan", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "https:\/\/czeum.herb.lsa.umich.edu\/"}
+{"index":{}}
+{"coll_id": "7853", "inst_id": "7423", "coll_code": "Mammal", "coll_name": "Mammals collection", "coll_size": "968", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7854", "inst_id": "7423", "coll_code": "Ornithology", "coll_name": "Ornithology collection", "coll_size": "3945", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7202", "inst_id": "7457", "coll_code": "Herb", "coll_name": "UAM Herbarium", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7203", "inst_id": "7457", "coll_code": "Paleo", "coll_name": "paleontology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7172", "inst_id": "7457", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "133389", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7173", "inst_id": "7457", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "31580", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7174", "inst_id": "7457", "coll_code": "Bryo", "coll_name": "Bryozoan Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7175", "inst_id": "7457", "coll_code": "Crus", "coll_name": "Marine Arthropod Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7176", "inst_id": "7457", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "10041", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7177", "inst_id": "7457", "coll_code": "Herp", "coll_name": "Amphibian and Reptile Collection", "coll_size": "486", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7178", "inst_id": "7457", "coll_code": "Ento", "coll_name": "Insect Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7179", "inst_id": "7457", "coll_code": "Moll", "coll_name": "Mollusc Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7264", "inst_id": "7457", "coll_code": "ES", "coll_name": "Earth Science", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7866", "inst_id": "7457", "coll_code": "Inv", "coll_name": "Invertebrate Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7192", "inst_id": "7477", "coll_code": "Bird", "coll_name": "bird tissue collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7193", "inst_id": "7477", "coll_code": "Ento", "coll_name": "entomology tissue collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7194", "inst_id": "7477", "coll_code": "Fish", "coll_name": "fish tissue collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7195", "inst_id": "7477", "coll_code": "Herp", "coll_name": "herpetology tissue collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7196", "inst_id": "7477", "coll_code": "Mamm", "coll_name": "mammal tissue collection", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7197", "inst_id": "7478", "coll_code": "Ento", "coll_name": "Lepidoptera collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7200", "inst_id": "7479", "coll_code": "Bird", "coll_name": "bird collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7201", "inst_id": "7479", "coll_code": "Mamm", "coll_name": "mammal tissue collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7218", "inst_id": "7485", "coll_code": "DEBU", "coll_name": "Ontario Insect Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7219", "inst_id": "7485", "coll_code": "BIO", "coll_name": "Biodiversity Institute of Ontario ", "coll_size": "0", "coll_type": "DNA bank", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7222", "inst_id": "7492", "coll_code": "MMMGL", "coll_name": "Marine Mammal Molecular Genetics Laboratory", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7224", "inst_id": "7497", "coll_code": "ENT", "coll_name": "Entomology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7242", "inst_id": "7505", "coll_code": "ZPL", "coll_name": "ZooPlantLab", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.zooplantlab.btbs.unimib.it\/"}
+{"index":{}}
+{"coll_id": "7538", "inst_id": "7513", "coll_code": "CHN", "coll_name": "Cochin Unit", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7251", "inst_id": "7520", "coll_code": "Rhizobium", "coll_name": "CIAT Rhizobium Collection ", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "http:\/\/isa.ciat.cgiar.org\/urg\/main.do"}
+{"index":{}}
+{"coll_id": "7252", "inst_id": "7520", "coll_code": "Bean", "coll_name": "CIAT Bean Collection", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "http:\/\/isa.ciat.cgiar.org\/urg\/main.do"}
+{"index":{}}
+{"coll_id": "7253", "inst_id": "7520", "coll_code": "Cassava", "coll_name": "CIAT Cassava Collection", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "http:\/\/isa.ciat.cgiar.org\/urg\/main.do"}
+{"index":{}}
+{"coll_id": "7254", "inst_id": "7520", "coll_code": "Forage", "coll_name": "CIAT Forages Collection", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "http:\/\/isa.ciat.cgiar.org\/urg\/main.do"}
+{"index":{}}
+{"coll_id": "7262", "inst_id": "7522", "coll_code": "VCRU", "coll_name": "Vector Control Research Unit", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.usm.my\/vcru\/vcu.html"}
+{"index":{}}
+{"coll_id": "7581", "inst_id": "7523", "coll_code": "SF", "coll_name": "Subcollection Fungi", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7395", "inst_id": "7544", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7281", "inst_id": "7551", "coll_code": "SEAMAP", "coll_name": "SEAMAP Ichthyoplankton Collection", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7282", "inst_id": "7551", "coll_code": "Ichthyology", "coll_name": "Ichthyology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.myfwc.com\/features\/view_article.asp?id=30886"}
+{"index":{}}
+{"coll_id": "7283", "inst_id": "7551", "coll_code": "Invertebrate", "coll_name": "Invertebrate Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/research.myfwc.com\/features\/view_article.asp?id=30920"}
+{"index":{}}
+{"coll_id": "7308", "inst_id": "7585", "coll_code": "MarFor", "coll_name": "Marine Forensics", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/www.chbr.noaa.gov\/default.aspx?category=mf&pageName=forensics "}
+{"index":{}}
+{"coll_id": "7358", "inst_id": "7625", "coll_code": "CGAB", "coll_name": "Collection of Germplasms of Agaricus bisporus", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "culture_collection,bio_material", "coll_url": "http:\/\/www.bordeaux-aquitaine.inra.fr\/mycsa_eng\/des_ressources_biologiques_uniques\/la_collection_d_agarics_cgab"}
+{"index":{}}
+{"coll_id": "7326", "inst_id": "7627", "coll_code": "CN", "coll_name": "Canadian National Plant Germplasm System", "coll_size": "0", "coll_type": "germplasm repository", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7349", "inst_id": "7648", "coll_code": "RDD", "coll_name": "Rickettsial Diseases Division", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "http:\/\/www.med.navy.mil\/sites\/nmrc\/pages\/id_rd.htm"}
+{"index":{}}
+{"coll_id": "7394", "inst_id": "7676", "coll_code": "OGR", "coll_name": "Ocean Genome Resource", "coll_size": "0", "coll_type": "frozen tissue collection", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7410", "inst_id": "7685", "coll_code": "P", "coll_name": "Pisces  and Coelenterata", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7411", "inst_id": "7685", "coll_code": "MO", "coll_name": "Mollusca collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7412", "inst_id": "7685", "coll_code": "AR", "coll_name": "Arthropoda collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7413", "inst_id": "7685", "coll_code": "EC", "coll_name": "Echinodermata", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7414", "inst_id": "7685", "coll_code": "IV", "coll_name": "Invertebrata", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7415", "inst_id": "7685", "coll_code": "S", "coll_name": "Sea weed", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7416", "inst_id": "7690", "coll_code": "DNA", "coll_name": "LWL-DNA- und Gewebearchiv", "coll_size": "0", "coll_type": "DNA bank", "coll_status": "0", "qualifier_type": "bio_material", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7417", "inst_id": "7691", "coll_code": "A", "coll_name": "Amphibian collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7617", "inst_id": "7693", "coll_code": "Mamm", "coll_name": "Mammal collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7618", "inst_id": "7693", "coll_code": "Herp", "coll_name": "Herpetology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7619", "inst_id": "7693", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7418", "inst_id": "7695", "coll_code": "Ento", "coll_name": "Entomology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7419", "inst_id": "7695", "coll_code": "Herb", "coll_name": "Herbarium", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7439", "inst_id": "7715", "coll_code": "HC", "coll_name": "Herpetological Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7435", "inst_id": "7717", "coll_code": "Mamm", "coll_name": "Mammal Collection", "coll_size": "6314", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7436", "inst_id": "7717", "coll_code": "Bird", "coll_name": "Bird Collection", "coll_size": "2273", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7437", "inst_id": "7717", "coll_code": "Herp", "coll_name": "Herpetology Collection", "coll_size": "8", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7438", "inst_id": "7717", "coll_code": "Fish", "coll_name": "Fish Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7440", "inst_id": "7719", "coll_code": "I", "coll_name": "Ichthyology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7481", "inst_id": "7750", "coll_code": "ASC", "coll_name": "Alaska Science Center", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/pubs.usgs.gov\/fs\/2007\/3019\/"}
+{"index":{}}
+{"coll_id": "7497", "inst_id": "7780", "coll_code": "KCCPM", "coll_name": "KOPRI Culture Collection of Polar Microorganisms", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7499", "inst_id": "7792", "coll_code": "Z", "coll_name": "Gifu prefectural Museum Zoological collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7500", "inst_id": "7792", "coll_code": "B", "coll_name": "Gifu prefectural Museum herbarium", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7833", "inst_id": "7805", "coll_code": "Birds", "coll_name": "Birds collection", "coll_size": "878", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7834", "inst_id": "7805", "coll_code": "Herps", "coll_name": "Herpetology Collection", "coll_size": "61", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7835", "inst_id": "7805", "coll_code": "Mammal", "coll_name": "Mammals collection", "coll_size": "187", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7836", "inst_id": "7805", "coll_code": "Eggs", "coll_name": "Eggs Collection", "coll_size": "119", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7599", "inst_id": "7832", "coll_code": "Fungos", "coll_name": "Fungal collection", "coll_size": "0", "coll_type": "herbarium", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7601", "inst_id": "7908", "coll_code": "POR", "coll_name": "Porifera collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7873", "inst_id": "7925", "coll_code": "R", "coll_name": "Reptile collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7577", "inst_id": "7938", "coll_code": "Moll", "coll_name": "", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7751", "inst_id": "7938", "coll_code": "Crustacea", "coll_name": "Crustacea Collection", "coll_size": "2462", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7769", "inst_id": "7938", "coll_code": "Ichthyologie", "coll_name": "Ichthyologie Collection", "coll_size": "28103", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7780", "inst_id": "7938", "coll_code": "Mammalogie", "coll_name": "Mammalogie Collection", "coll_size": "237", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7775", "inst_id": "7938", "coll_code": "Malakologie", "coll_name": "Malakologie Collection", "coll_size": "43152", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7772", "inst_id": "7938", "coll_code": "Lepidoptera", "coll_name": "Lepidoptera Collection", "coll_size": "1575", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7785", "inst_id": "7938", "coll_code": "Myriapoda", "coll_name": "Myriapoda Collection", "coll_size": "8", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7789", "inst_id": "7938", "coll_code": "Ornithologie", "coll_name": "Ornithologie Collection", "coll_size": "6714", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7734", "inst_id": "7938", "coll_code": "Arachnida", "coll_name": "Arachnida Collection", "coll_size": "2540", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7761", "inst_id": "7938", "coll_code": "Hemiptera", "coll_name": "Hemiptera Collection", "coll_size": "7", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7762", "inst_id": "7938", "coll_code": "Herpetologie", "coll_name": "Herpetologie Collection", "coll_size": "16495", "coll_type": "museum", "coll_status": "      ", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7583", "inst_id": "7965", "coll_code": "ENT", "coll_name": "Entomology collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7863", "inst_id": "8009", "coll_code": "Pisces", "coll_name": "Fish collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7598", "inst_id": "8211", "coll_code": "PMS-ICBG ", "coll_name": "Philippine Mollusk Symbiont-International Cooperative Biodiversity Group", "coll_size": "0", "coll_type": "culture collection", "coll_status": "0", "qualifier_type": "culture_collection", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7620", "inst_id": "8500", "coll_code": "AC", "coll_name": "Archaeozoology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7621", "inst_id": "8500", "coll_code": "BC", "coll_name": "Bird Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7622", "inst_id": "8500", "coll_code": "EC", "coll_name": "Entomology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7623", "inst_id": "8500", "coll_code": "HC", "coll_name": "Herpetology Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7624", "inst_id": "8500", "coll_code": "IC", "coll_name": "Invertebrate Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7625", "inst_id": "8500", "coll_code": "MC", "coll_name": "Mammal Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7701", "inst_id": "8513", "coll_code": "Herp", "coll_name": "Herpetile collection", "coll_size": "3087", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7702", "inst_id": "8513", "coll_code": "Pisc", "coll_name": "Fish collection", "coll_size": "9684", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7703", "inst_id": "8513", "coll_code": "Mam", "coll_name": "Mammal collection", "coll_size": "19309", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7704", "inst_id": "8513", "coll_code": "BI", "coll_name": "The avian collection", "coll_size": "121897", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7857", "inst_id": "8543", "coll_code": "Ichthyology", "coll_name": "Ichthyology Collection", "coll_size": "150169", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
+{"index":{}}
+{"coll_id": "7872", "inst_id": "8617", "coll_code": "PCS_cicada", "coll_name": "Cicada collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "http:\/\/ce3c.ciencias.ulisboa.pt\/member\/paula-cristina-pinto-simotildees"}
+{"index":{}}
+{"coll_id": "7880", "inst_id": "8782", "coll_code": "I", "coll_name": "University of the Philippines Visayas Museum of Natural Sciences Ichthyological Collection", "coll_size": "0", "coll_type": "museum", "coll_status": "0", "qualifier_type": "specimen_voucher", "coll_url": "      "}
