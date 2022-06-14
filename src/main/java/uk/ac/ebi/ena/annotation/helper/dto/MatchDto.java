@@ -8,6 +8,6 @@ import lombok.Data;
 public class MatchDto {
 
     String match;
-    String[] qualifierType;
+    InstituteDto instituteDto;
 
 }

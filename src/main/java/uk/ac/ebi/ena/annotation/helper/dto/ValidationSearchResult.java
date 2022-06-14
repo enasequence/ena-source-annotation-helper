@@ -18,7 +18,7 @@ public class ValidationSearchResult {
     int match;
     String identifier;
     List<Institute> institutes;
-    Map<Integer, String> instituteIdNameMap;
+    Map<Integer, InstituteDto> instituteIdNameMap;
     List<Collection> collections;
     private String message;
     private boolean success;

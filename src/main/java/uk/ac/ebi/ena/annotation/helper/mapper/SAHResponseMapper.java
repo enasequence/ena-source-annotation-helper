@@ -1,7 +1,9 @@
 package uk.ac.ebi.ena.annotation.helper.mapper;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import uk.ac.ebi.ena.annotation.helper.dto.InstituteDto;
 import uk.ac.ebi.ena.annotation.helper.dto.MatchDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
@@ -11,6 +13,7 @@ import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.StringJoiner;
 
@@ -21,6 +24,12 @@ import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.*;
 @Component
 @Slf4j
 public class SAHResponseMapper {
+
+    @Autowired
+    CollectionMapper collectionMapper;
+
+    @Autowired
+    InstituteMapper instituteMapper;
 
     public SAHResponseDto mapResponseDto(ValidationSearchResult validationSearchResult) {
 
@@ -52,10 +61,13 @@ public class SAHResponseMapper {
         if (validationSearchResult.isCollectionAvailable()) {
             log.debug("Collection Available");
             for (Collection collection : validationSearchResult.getCollections()) {
-                String instUniqueName = validationSearchResult.getInstituteIdNameMap().get(collection.getInstId());
-                String qualifierValueStr = buildQualifierValueString(instUniqueName, collection.getCollCode(),
+                InstituteDto instituteDto = validationSearchResult.getInstituteIdNameMap().get(collection.getInstId());
+                String qualifierValueStr = buildQualifierValueString(instituteDto.getUniqueName(), collection.getCollCode(),
                         validationSearchResult.getIdentifier(), true);
-                matchDtoList.add(MatchDto.builder().match(qualifierValueStr).qualifierType(collection.getQualifierType()).build());
+                instituteDto.setCollections(Collections.singletonList(collectionMapper.toDto(collection)));
+                matchDtoList.add(MatchDto.builder().match(qualifierValueStr)
+                        .instituteDto(instituteDto)
+                        .build());
             }
         } else {
             log.debug("Collection Not Available");
@@ -63,7 +75,9 @@ public class SAHResponseMapper {
                 String instUniqueName = institute.getUniqueName();
                 String qualifierValueStr = buildQualifierValueString(instUniqueName, null,
                         validationSearchResult.getIdentifier(), false);
-                matchDtoList.add(MatchDto.builder().match(qualifierValueStr).qualifierType(institute.getQualifierType()).build());
+                matchDtoList.add(MatchDto.builder().match(qualifierValueStr)
+                        .instituteDto(instituteMapper.toDto(institute))
+                        .build());
             }
         }
         //build object and return
