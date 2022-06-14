@@ -66,7 +66,7 @@ public class SAHResponseMapper {
                         validationSearchResult.getIdentifier(), true);
                 instituteDto.setCollections(Collections.singletonList(collectionMapper.toDto(collection)));
                 matchDtoList.add(MatchDto.builder().match(qualifierValueStr)
-                        .instituteDto(instituteDto)
+                        .institute(instituteDto)
                         .build());
             }
         } else {
@@ -76,7 +76,7 @@ public class SAHResponseMapper {
                 String qualifierValueStr = buildQualifierValueString(instUniqueName, null,
                         validationSearchResult.getIdentifier(), false);
                 matchDtoList.add(MatchDto.builder().match(qualifierValueStr)
-                        .instituteDto(instituteMapper.toDto(institute))
+                        .institute(instituteMapper.toDto(institute))
                         .build());
             }
         }

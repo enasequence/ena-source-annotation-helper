@@ -65,7 +65,7 @@ deploy_dev:
     - build_dev
   environment:
     name: dev
-    url: https://wwwdev.ebi.ac.uk/ena/source-annotation-helper/
+    url: https://wwwdev.ebi.ac.uk/ena/sah/api/
   only:
     - master
     - dcp-3148-initial
@@ -111,7 +111,7 @@ deploy_prod:
     - build_prod
   environment:
     name: prod
-    url: https://www.ebi.ac.uk/ena/source-annotation-helper/
+    url: https://www.ebi.ac.uk/ena/sah/api/
   when: manual
   only:
     - master
