@@ -44,7 +44,6 @@ deploy_dev:
   stage: deploy
   before_script:
     # Setup SSH deploy keys
-    - apk add --no-cache rsync openssh-client
     - mkdir -p ~/.ssh
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
@@ -82,7 +81,6 @@ deploy_prod:
   stage: deploy
   before_script:
     # Setup SSH deploy keys
-    - apk add --no-cache rsync openssh-client
     - mkdir -p ~/.ssh
     - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
