@@ -5,8 +5,12 @@ plugins {
 }
 
 group = 'uk.ac.ebi.ena.annotation.helper'
-version = '0.0.1-SNAPSHOT'
+version = System.getenv("VERSION")
 sourceCompatibility = '1.8'
+
+jar {
+	enabled = false
+}
 
 configurations {
 	compileOnly {

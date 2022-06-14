@@ -47,7 +47,7 @@ public class SAHServiceImpl implements SAHService {
     CollectionMapper collectionMapper;
 
     @Autowired
-    SAHResponseMapper SAHResponseMapper;
+    SAHResponseMapper sahResponseMapper;
 
     @Value("${query.results.limit}")
     private int QUERY_RESULTS_LIMIT;
@@ -184,25 +184,27 @@ public class SAHServiceImpl implements SAHService {
 
         //invalid institute scenario
         if (!validationSearchResult.isSuccess()) {
-            return SAHResponseMapper.mapResponseDto(validationSearchResult);
+            return sahResponseMapper.mapResponseDto(validationSearchResult);
         }
 
         if (isEmpty(collCode)) {
             //collection code not provided. return with results
-            return SAHResponseMapper.mapResponseDto(validationSearchResult);
+            return sahResponseMapper.mapResponseDto(validationSearchResult);
         }
 
         //[<Institution Unique Name>:[<collection-code>:]]<identifier>
         //also within suggestions limits
         validationSearchResult.setCollectionAvailable(true);
         //Map will further help in contructing the final QV strings
-        Map mapInstIdUniqueName = validationSearchResult.getInstitutes().stream()
-                .collect(Collectors.toMap(Institute::getInstId, Institute::getUniqueName));
+        Map<Integer, InstituteDto> mapInstIdUniqueName = new HashMap();
+        for (Institute institute : validationSearchResult.getInstitutes()) {
+            mapInstIdUniqueName.put(institute.getInstId(), instituteMapper.toDto(institute));
+        }
         validationSearchResult.setInstituteIdNameMap(mapInstIdUniqueName);
 
         validationSearchResult = sahCollectionServiceHelper
                 .validateMultipleInstIdsAndCollName(validationSearchResult, collCode, qualifierType);
-        return SAHResponseMapper.mapResponseDto(validationSearchResult);
+        return sahResponseMapper.mapResponseDto(validationSearchResult);
     }
 
 
