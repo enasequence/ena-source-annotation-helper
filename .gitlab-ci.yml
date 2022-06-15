@@ -44,9 +44,8 @@ deploy_dev:
   stage: deploy
   before_script:
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\tHostKeyAlgorithms +ssh-rsa\n\tPubkeyAcceptedAlgorithms +ssh-rsa\n" > ~/.ssh/config
   script:
@@ -82,9 +81,8 @@ deploy_prod:
   stage: deploy
   before_script:
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
     - chmod 600 ~/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\tHostKeyAlgorithms +ssh-rsa\n\tPubkeyAcceptedAlgorithms +ssh-rsa\n" > ~/.ssh/config
   script:
