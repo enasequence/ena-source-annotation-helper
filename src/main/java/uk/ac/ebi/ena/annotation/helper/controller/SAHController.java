@@ -45,34 +45,34 @@ public class SAHController {
         return new ResponseEntity<>(responseDto, responseDto.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/institution/{ivalue}/collection")
+    @GetMapping("/institution/{institutionUniqueName}/collection")
     @ApiOperation(value = "Get all collections by institution unique name")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format"),
             @ApiResponse(code = 404, message = "Record Not Found")
     })
-    public ResponseEntity<Object> findByAllCollByInstituteUniqueName(@ApiParam(name = "ivalue", type = "String",
-            value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 3, max = 100, message = InstituteNotValidInputMessage) String ivalue,
+    public ResponseEntity<Object> findByAllCollByInstituteUniqueName(@ApiParam(name = "institutionUniqueName", type = "String",
+            value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 3, max = 100, message = InstituteNotValidInputMessage) String institutionUniqueName,
                                                                      @ApiParam(name = "qualifier_type", type = "String[]",
                                                                              value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
                                                                              example = "specimen_voucher", required = false)
                                                                      @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                                                      @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        ResponseDto responseDto = SAHService.findCollectionsByInstUniqueName(ivalue, qualifierType);
+        ResponseDto responseDto = SAHService.findCollectionsByInstUniqueName(institutionUniqueName, qualifierType);
         return new ResponseEntity<>(responseDto, responseDto.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
 
-    @GetMapping("/institution/{ivalue}/collection/{cvalue}")
+    @GetMapping("/institution/{institutionUniqueName}/collection/{cvalue}")
     @ApiOperation(value = "Get collection by institution name and collection code.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format"),
             @ApiResponse(code = 404, message = "Record Not Found")
     })
-    public ResponseEntity<Object> findByInstUniqueNameAndCollCode(@ApiParam(name = "ivalue", type = "String",
-            value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 3, max = 100, message = InstituteNotValidInputMessage) String ivalue,
+    public ResponseEntity<Object> findByInstUniqueNameAndCollCode(@ApiParam(name = "institutionUniqueName", type = "String",
+            value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 3, max = 100, message = InstituteNotValidInputMessage) String institutionUniqueName,
                                                                   @ApiParam(name = "cvalue", type = "String", value = ValidInputSizeMessage)
                                                                   @PathVariable @Size(min = 3, max = 100, message = CollectionNotValidInputMessage) String cvalue,
                                                                   @ApiParam(name = "qualifier_type", type = "String[]",
@@ -80,7 +80,7 @@ public class SAHController {
                                                                           example = "specimen_voucher", required = false)
                                                                   @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                                                   @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        ResponseDto responseDto = SAHService.findByInstUniqueNameAndCollCode(ivalue, cvalue, qualifierType);
+        ResponseDto responseDto = SAHService.findByInstUniqueNameAndCollCode(institutionUniqueName, cvalue, qualifierType);
         return new ResponseEntity<>(responseDto, responseDto.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
