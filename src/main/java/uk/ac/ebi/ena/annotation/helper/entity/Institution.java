@@ -15,8 +15,8 @@ import java.util.Arrays;
 @NoArgsConstructor
 @Setter
 @Getter
-@Document(indexName = "institute")
-public class Institute {
+@Document(indexName = "institution")
+public class Institution {
 
     @Id
     private String id;

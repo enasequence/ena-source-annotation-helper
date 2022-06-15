@@ -2,18 +2,18 @@ package uk.ac.ebi.ena.annotation.helper.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import uk.ac.ebi.ena.annotation.helper.dto.InstituteDto;
-import uk.ac.ebi.ena.annotation.helper.entity.Institute;
+import uk.ac.ebi.ena.annotation.helper.dto.InstitutionDto;
+import uk.ac.ebi.ena.annotation.helper.entity.Institution;
 
 @Mapper(componentModel = "spring")
 public interface InstituteMapper {
 
-    @Mapping(source="instCode", target="instituteCode")
-    @Mapping(source="instName", target="instituteName")
-    InstituteDto toDto(Institute entity);
+    @Mapping(source="instCode", target="institutionCode")
+    @Mapping(source="instName", target="institutionName")
+    InstitutionDto toDto(Institution entity);
 
-    @Mapping(source="instituteCode", target="instCode")
-    @Mapping(source="instituteName", target="instName")
-    Institute toNewEntity(InstituteDto dto);
+    @Mapping(source="institutionCode", target="instCode")
+    @Mapping(source="institutionName", target="instName")
+    Institution toNewEntity(InstitutionDto dto);
 
 }

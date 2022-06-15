@@ -2,38 +2,38 @@ package uk.ac.ebi.ena.annotation.helper.repository;
 
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
-import uk.ac.ebi.ena.annotation.helper.entity.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institution;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface InstituteRepository extends ElasticsearchRepository<Institute, String> {
+public interface InstitutionRepository extends ElasticsearchRepository<Institution, String> {
 
-    List<Institute> findAll();
+    List<Institution> findAll();
 
-    Optional<Institute> findByUniqueName(String uniqueName);
+    Optional<Institution> findByUniqueName(String uniqueName);
 
     @Query("{\"bool\": {\"must\": [{ \"match\": { \"unique_name\": \"?0\" } },{\"terms\": {\"qualifier_type\": ?1 }}]}}")
-    Optional<Institute> findByUniqueNameAndQualifierTypeArray(String uniqueName, List<String> qualifierType);
+    Optional<Institution> findByUniqueNameAndQualifierTypeArray(String uniqueName, List<String> qualifierType);
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
-    List<Institute> findByInstituteUniqueNameFuzzy(String uniqueName);
+    List<Institution> findByInstituteUniqueNameFuzzy(String uniqueName);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}, " +
             "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
-    List<Institute> findByInstituteUniqueNameFuzzyAndQualifierType(String instUniqueName, List<String> qualifierType);
+    List<Institution> findByInstituteUniqueNameFuzzyAndQualifierType(String instUniqueName, List<String> qualifierType);
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
-    List<Institute> findByInstituteNameFuzzy(String instName);
+    List<Institution> findByInstituteNameFuzzy(String instName);
 
     @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
-    List<Institute> findByInstituteFuzzy(String name);
+    List<Institution> findByInstituteFuzzy(String name);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1 }}, " +
             "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
-    List<Institute> findByInstituteFuzzyAndQualifierTypeArray(String name, List<String> qualifierTypeArrray, int limit);
+    List<Institution> findByInstituteFuzzyAndQualifierTypeArray(String name, List<String> qualifierTypeArrray, int limit);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}, " +
             "{\"multi_match\": {\"fields\": [\"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
-    List<Institute> findByInstituteNameFuzzyAndQualifierType(String instName, List<String> qualifierType);
+    List<Institution> findByInstituteNameFuzzyAndQualifierType(String instName, List<String> qualifierType);
 }

@@ -29,7 +29,7 @@ public class SAHCollectionServiceHelper {
         validationSearchResult.setMessage(null);
 
         //step-1 - Exact search on Collection Code
-        int[] listInstituteIds = validationSearchResult.getInstitutes().stream()
+        int[] listInstituteIds = validationSearchResult.getInstitutions().stream()
                 .map(x -> x.getInstId()).mapToInt(i -> i).toArray();
 
         List<Collection> listCollection;

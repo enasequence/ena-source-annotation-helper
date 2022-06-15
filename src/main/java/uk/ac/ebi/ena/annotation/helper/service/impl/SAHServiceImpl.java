@@ -6,13 +6,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.*;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
-import uk.ac.ebi.ena.annotation.helper.entity.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institution;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
+import uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode;
 import uk.ac.ebi.ena.annotation.helper.mapper.CollectionMapper;
 import uk.ac.ebi.ena.annotation.helper.mapper.InstituteMapper;
 import uk.ac.ebi.ena.annotation.helper.mapper.SAHResponseMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
-import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
+import uk.ac.ebi.ena.annotation.helper.repository.InstitutionRepository;
 import uk.ac.ebi.ena.annotation.helper.service.SAHService;
 import uk.ac.ebi.ena.annotation.helper.service.helper.SAHCollectionServiceHelper;
 import uk.ac.ebi.ena.annotation.helper.service.helper.SAHInstituteServiceHelper;
@@ -29,7 +30,7 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 public class SAHServiceImpl implements SAHService {
 
     @Autowired
-    private InstituteRepository instituteRepository;
+    private InstitutionRepository institutionRepository;
 
     @Autowired
     private CollectionRepository collectionRepository;
@@ -54,16 +55,16 @@ public class SAHServiceImpl implements SAHService {
 
     @Override
     public ResponseDto findByInstituteStringFuzzyWithQTArray(String name, String[] qualifierType) {
-        List<Institute> instituteList;
+        List<Institution> institutionList;
         if (isEmpty(qualifierType)) {
-            instituteList = instituteRepository.findByInstituteFuzzy(name);
+            institutionList = institutionRepository.findByInstituteFuzzy(name);
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
-            instituteList = instituteRepository
+            institutionList = institutionRepository
                     .findByInstituteFuzzyAndQualifierTypeArray(name, listQT, QUERY_RESULTS_LIMIT);
         }
-        if (!instituteList.isEmpty()) {
-            return new InstituteResponseDto(instituteList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
+        if (!institutionList.isEmpty()) {
+            return new InstituteResponseDto(institutionList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
                     true, LocalDateTime.now());
         }
         ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
@@ -73,7 +74,7 @@ public class SAHServiceImpl implements SAHService {
     @Override
     public ResponseDto findCollectionsByInstUniqueName(String instUniqueName, String[] qualifierType) {
 
-        Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(instUniqueName);
+        Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
 
         if (!optionalInstitute.isPresent()) {
             log.info("No matching institute found for institute -- {}", instUniqueName);
@@ -81,7 +82,7 @@ public class SAHServiceImpl implements SAHService {
             return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
         }
 
-        InstituteDto instituteDto = instituteMapper.toDto(optionalInstitute.get());
+        InstitutionDto institutionDto = instituteMapper.toDto(optionalInstitute.get());
         List<Collection> listCollection;
         if (isEmpty(qualifierType)) {
             listCollection = collectionRepository
@@ -93,8 +94,8 @@ public class SAHServiceImpl implements SAHService {
         }
 
         if (!listCollection.isEmpty()) {
-            instituteDto.setCollections(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()));
-            return new InstituteResponseDto(Collections.singletonList(instituteDto),
+            institutionDto.setCollections(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()));
+            return new InstituteResponseDto(Collections.singletonList(institutionDto),
                     true, LocalDateTime.now());
         }
 
@@ -106,14 +107,14 @@ public class SAHServiceImpl implements SAHService {
 
     @Override
     public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String[] qualifierType) {
-        Optional<Institute> optionalInstitute = instituteRepository.findByUniqueName(instUniqueName);
+        Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
         if (!optionalInstitute.isPresent()) {
             log.info("No matching institute found for institute -- {}", instUniqueName);
             ErrorResponse error = ErrorResponse.builder().message(NoMatchingInstituteMessage).code(NoMatchingInstituteError).build();
             return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
         }
 
-        InstituteDto instituteDto = instituteMapper.toDto(optionalInstitute.get());
+        InstitutionDto institutionDto = instituteMapper.toDto(optionalInstitute.get());
         List<Collection> listCollection;
         if (isEmpty(qualifierType)) {
             listCollection =
@@ -126,8 +127,8 @@ public class SAHServiceImpl implements SAHService {
         }
 
         if (!listCollection.isEmpty()) {
-            instituteDto.setCollections(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()));
-            return new InstituteResponseDto(Collections.singletonList(instituteDto),
+            institutionDto.setCollections(listCollection.stream().map(collectionMapper::toDto).collect(Collectors.toList()));
+            return new InstituteResponseDto(Collections.singletonList(institutionDto),
                     true, LocalDateTime.now());
         }
 
@@ -175,6 +176,11 @@ public class SAHServiceImpl implements SAHService {
         return validateAndConstruct(instUniqueName, collCode, identifier, qualifierType);
     }
 
+    @Override
+    public ResponseDto getErrorCodes() {
+        return new ResponseDto(true, LocalDateTime.now(), SAHErrorCode.errorCodesMap);
+    }
+
     private SAHResponseDto validateAndConstruct(String instUniqueName, String collCode, String identifier, String[] qualifierType) {
         //[<Institution Unique Name>:]<identifier>
         ValidationSearchResult validationSearchResult = sahInstituteServiceHelper.validateInstitute(instUniqueName, qualifierType);
@@ -196,9 +202,9 @@ public class SAHServiceImpl implements SAHService {
         //also within suggestions limits
         validationSearchResult.setCollectionAvailable(true);
         //Map will further help in contructing the final QV strings
-        Map<Integer, InstituteDto> mapInstIdUniqueName = new HashMap();
-        for (Institute institute : validationSearchResult.getInstitutes()) {
-            mapInstIdUniqueName.put(institute.getInstId(), instituteMapper.toDto(institute));
+        Map<Integer, InstitutionDto> mapInstIdUniqueName = new HashMap();
+        for (Institution institution : validationSearchResult.getInstitutions()) {
+            mapInstIdUniqueName.put(institution.getInstId(), instituteMapper.toDto(institution));
         }
         validationSearchResult.setInstituteIdNameMap(mapInstIdUniqueName);
 

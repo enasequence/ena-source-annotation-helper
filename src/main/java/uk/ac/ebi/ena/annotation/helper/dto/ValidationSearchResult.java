@@ -3,7 +3,7 @@ package uk.ac.ebi.ena.annotation.helper.dto;
 import lombok.Builder;
 import lombok.Data;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
-import uk.ac.ebi.ena.annotation.helper.entity.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institution;
 
 import java.util.List;
 import java.util.Map;
@@ -17,8 +17,8 @@ public class ValidationSearchResult {
 
     int match;
     String identifier;
-    List<Institute> institutes;
-    Map<Integer, InstituteDto> instituteIdNameMap;
+    List<Institution> institutions;
+    Map<Integer, InstitutionDto> instituteIdNameMap;
     List<Collection> collections;
     private String message;
     private boolean success;

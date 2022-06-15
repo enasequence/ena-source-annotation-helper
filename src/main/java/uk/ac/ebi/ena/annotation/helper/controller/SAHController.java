@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import uk.ac.ebi.ena.annotation.helper.dto.QualifierValuesAllowed;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
-import uk.ac.ebi.ena.annotation.helper.service.GraphQLService;
 import uk.ac.ebi.ena.annotation.helper.service.SAHService;
 
 import javax.validation.Valid;
@@ -21,36 +20,33 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 @RestController
 @Slf4j
 @Api(tags = "ENA Source Annotations Helper APIs")
-@RequestMapping({"/ena/source-annotation-helper/api/", "/ena/sah/api/"})
+@RequestMapping({"/ena/sah/api/"})
 @Validated
 public class SAHController {
 
     @Autowired
-    GraphQLService graphQLService;
-
-    @Autowired
     SAHService SAHService;
 
-    @GetMapping("/institute/{ivalue}")
-    @ApiOperation(value = "Get institute. In case no exact match is found, fetches similar institute matches by either institute name or institute code.")
+    @GetMapping("/institution/{ivalue}")
+    @ApiOperation(value = "Get institution. In case no exact match is found, fetches similar institution matches by either institution name or institution code.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully queried the institute(s) information."),
+            @ApiResponse(code = 200, message = "Successfully queried the institution(s) information."),
             @ApiResponse(code = 400, message = "Invalid request format"),
             @ApiResponse(code = 404, message = "Record Not Found")
     })
-    public ResponseEntity<Object> findByInstituteValue(@ApiParam(name = "ivalue", type = "String",
+    public ResponseEntity<Object> findByInstitutionValue(@ApiParam(name = "ivalue", type = "String",
             value = ValidInputSizeMessage) @PathVariable @Size(min = 3, max = 100, message = InstituteNotValidInputMessage) String ivalue,
-                                                       @ApiParam(name = "qualifier_type", type = "String[]",
-                                                               value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
-                                                               example = "specimen_voucher", required = false)
-                                                       @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
-                                                       @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
+                                                         @ApiParam(name = "qualifier_type", type = "String[]",
+                                                                 value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
+                                                                 example = "specimen_voucher", required = false)
+                                                         @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
+                                                         @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
         ResponseDto responseDto = SAHService.findByInstituteStringFuzzyWithQTArray(ivalue, qualifierType);
         return new ResponseEntity<>(responseDto, responseDto.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/institute/{ivalue}/collection")
-    @ApiOperation(value = "Get all collections by institute unique name")
+    @GetMapping("/institution/{ivalue}/collection")
+    @ApiOperation(value = "Get all collections by institution unique name")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format"),
@@ -68,8 +64,8 @@ public class SAHController {
     }
 
 
-    @GetMapping("/institute/{ivalue}/collection/{cvalue}")
-    @ApiOperation(value = "Get collection by institute name and collection code.")
+    @GetMapping("/institution/{ivalue}/collection/{cvalue}")
+    @ApiOperation(value = "Get collection by institution name and collection code.")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully queried the information."),
             @ApiResponse(code = 400, message = "Invalid request format"),
@@ -115,8 +111,8 @@ public class SAHController {
             @ApiResponse(code = 400, message = "Invalid request format"),
             @ApiResponse(code = 404, message = "Record Not Found")
     })
-    public ResponseEntity<Object> construct(@ApiParam(name = "institute", type = "String",
-            value = ProvideValidInstituteUniqueName) @RequestParam(name = "institute") String institute,
+    public ResponseEntity<Object> construct(@ApiParam(name = "institution", type = "String",
+            value = ProvideValidInstituteUniqueName) @RequestParam(name = "institution") String institution,
                                             @ApiParam(name = "collection", type = "String",
                                                     value = ProvideValidCollectionCode)
                                             @RequestParam(name = "collection", required = false) String collection,
@@ -128,33 +124,21 @@ public class SAHController {
                                                     example = "specimen_voucher", required = false)
                                             @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                             @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        SAHResponseDto responseDto = SAHService.construct(institute, collection, id, qualifierType);
+        SAHResponseDto responseDto = SAHService.construct(institution, collection, id, qualifierType);
 
         return new ResponseEntity<>(responseDto, responseDto.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/error-codes")
+    @ApiOperation(value = "Get application error codes metadata for reference.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched the error codes."),
+            @ApiResponse(code = 400, message = "Invalid request format"),
+            @ApiResponse(code = 404, message = "Record Not Found")
+    })
+    public ResponseEntity<Object> getErrorCodes() {
+        ResponseDto responseDto = SAHService.getErrorCodes();
+        return new ResponseEntity<>(responseDto, responseDto.isSuccess() ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
 
-    //-------------
-
-    //todo -- commented graphql for now; will look at this later for future extensibility
-//    @PostMapping("/graphql")
-//    @ApiOperation(value = "GraphQL interface to fetch the Institutes and the Collections")
-//    @ApiResponses(value = {
-//            @ApiResponse(code = 200, message = "Successfully fetched the required information."),
-//            @ApiResponse(code = 400, message = "Invalid request format")
-//    })
-//    @Deprecated
-//    private ResponseEntity<Object> fetchInstCollMeta(@RequestBody Data query) {
-//        ExecutionResult execute;
-//        if (isNull(query.getVariables())) {
-//            execute = graphQLService.getGraphQL().execute(query.getQuery());
-//        } else {
-//            ExecutionInput executionInput = ExecutionInput.newExecutionInput()
-//                    .query(query.getQuery())
-//                    .variables(query.getVariables())
-//                    .build();
-//            execute = graphQLService.getGraphQL().execute(executionInput);
-//        }
-//        return new ResponseEntity<>(execute, HttpStatus.OK);
-//    }
 }

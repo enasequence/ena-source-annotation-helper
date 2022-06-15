@@ -14,5 +14,7 @@ public interface SAHService {
     public SAHResponseDto validate(String qualifierValue, String[] qualifierType);
 
     public SAHResponseDto construct(String instCode, String collCode, String identifier, String[] qualifierType);
-    
+
+    public ResponseDto getErrorCodes();
+
 }

@@ -9,11 +9,11 @@ import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class InstituteDto {
+public class InstitutionDto {
 
-    private String instituteCode;
+    private String institutionCode;
     private String uniqueName;
-    private String instituteName;
+    private String institutionName;
     private String country;
     private String address;
     private String collectionType;
@@ -24,9 +24,9 @@ public class InstituteDto {
     @Override
     public String toString() {
         return "InstituteDto{" +
-                "instituteCode='" + instituteCode + '\'' +
+                "instituteCode='" + institutionCode + '\'' +
                 ", uniqueName='" + uniqueName + '\'' +
-                ", instituteName='" + instituteName + '\'' +
+                ", instituteName='" + institutionName + '\'' +
                 ", country='" + country + '\'' +
                 ", address='" + address + '\'' +
                 ", collectionType='" + collectionType + '\'' +

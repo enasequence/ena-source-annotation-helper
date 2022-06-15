@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
-import uk.ac.ebi.ena.annotation.helper.entity.Institute;
-import uk.ac.ebi.ena.annotation.helper.repository.InstituteRepository;
+import uk.ac.ebi.ena.annotation.helper.entity.Institution;
+import uk.ac.ebi.ena.annotation.helper.repository.InstitutionRepository;
 import uk.ac.ebi.ena.annotation.helper.utils.SAHConstants;
 
 import java.util.Arrays;
@@ -22,7 +22,7 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.MultipleMat
 public class SAHInstituteServiceHelper {
 
     @Autowired
-    private InstituteRepository instituteRepository;
+    private InstitutionRepository institutionRepository;
 
     @Value("${ena.annotation.helper.suggestions.limit}")
     private int SUGGESTIONS_LIMIT;
@@ -53,17 +53,17 @@ public class SAHInstituteServiceHelper {
      */
     private ValidationSearchResult isValidInstituteUniqueName(String instCode, String[] qualifierType) {
         //Exact Search on InstUniqueName
-        Optional<Institute> optionalInstitute;
+        Optional<Institution> optionalInstitute;
         if (isEmpty(qualifierType)) {
-            optionalInstitute = instituteRepository.findByUniqueName(instCode);
+            optionalInstitute = institutionRepository.findByUniqueName(instCode);
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
-            optionalInstitute = instituteRepository.findByUniqueNameAndQualifierTypeArray(instCode, listQT);
+            optionalInstitute = institutionRepository.findByUniqueNameAndQualifierTypeArray(instCode, listQT);
         }
         if (optionalInstitute.isPresent()) {
             log.debug("found exact match -- " + instCode);
             return ValidationSearchResult.builder()
-                    .institutes(Collections.singletonList(optionalInstitute.get()))
+                    .institutions(Collections.singletonList(optionalInstitute.get()))
                     .match(SAHConstants.EXACT_MATCH)
                     .success(true)
                     .build();
@@ -76,30 +76,30 @@ public class SAHInstituteServiceHelper {
 
     private ValidationSearchResult searchSimilarInstitutesByUniqueName(String instUniqueName, String[] qualifierType) {
         //Similar Search on InstUniqueName
-        List<Institute> listInstitute;
+        List<Institution> listInstitution;
         if (isEmpty(qualifierType)) {
-            listInstitute = instituteRepository.findByInstituteUniqueNameFuzzy(instUniqueName);
+            listInstitution = institutionRepository.findByInstituteUniqueNameFuzzy(instUniqueName);
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
-            listInstitute = instituteRepository.findByInstituteUniqueNameFuzzyAndQualifierType(instUniqueName, listQT);
+            listInstitution = institutionRepository.findByInstituteUniqueNameFuzzyAndQualifierType(instUniqueName, listQT);
         }
-        return getQVSearchResult(listInstitute);
+        return getQVSearchResult(listInstitution);
     }
 
     private ValidationSearchResult searchSimilarInstitutesByName(String instName, String[] qualifierType) {
         //Similar Search with more fuzziness on InstName
-        List<Institute> listInstitute;
+        List<Institution> listInstitution;
         if (isEmpty(qualifierType)) {
-            listInstitute = instituteRepository.findByInstituteNameFuzzy(instName);
+            listInstitution = institutionRepository.findByInstituteNameFuzzy(instName);
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
-            listInstitute = instituteRepository.findByInstituteNameFuzzyAndQualifierType(instName, listQT);
+            listInstitution = institutionRepository.findByInstituteNameFuzzyAndQualifierType(instName, listQT);
         }
-        return getQVSearchResult(listInstitute);
+        return getQVSearchResult(listInstitution);
     }
 
-    private ValidationSearchResult getQVSearchResult(List<Institute> listInstitute) {
-        if (!listInstitute.isEmpty() && listInstitute.size() >= 1) {
+    private ValidationSearchResult getQVSearchResult(List<Institution> listInstitution) {
+        if (!listInstitution.isEmpty() && listInstitution.size() >= 1) {
             //todo verify -- later to restrict if query fails because of search data load
 //            if(listInstitute.size() > SUGGESTIONS_LIMIT){
 //                log.debug("found similar {} institutes, beyond configured limit", listInstitute.size());
@@ -109,11 +109,11 @@ public class SAHInstituteServiceHelper {
 //                        .success(true)
 //                        .build();
 //            }
-            log.debug("found similar {} institutes", listInstitute.size());
+            log.debug("found similar {} institutes", listInstitution.size());
             return ValidationSearchResult.builder()
-                    .institutes(listInstitute)
-                    .match(listInstitute.size() == 1 ? SAHConstants.EXACT_MATCH : SAHConstants.MULTI_NEAR_MATCH)
-                    .message(listInstitute.size() > 1 ? MultipleMatchesFoundMessage : null)
+                    .institutions(listInstitution)
+                    .match(listInstitution.size() == 1 ? SAHConstants.EXACT_MATCH : SAHConstants.MULTI_NEAR_MATCH)
+                    .message(listInstitution.size() > 1 ? MultipleMatchesFoundMessage : null)
                     .success(true)
                     .build();
 

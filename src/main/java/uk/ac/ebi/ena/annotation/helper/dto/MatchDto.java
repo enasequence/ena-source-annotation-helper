@@ -8,6 +8,6 @@ import lombok.Data;
 public class MatchDto {
 
     String match;
-    InstituteDto institute;
+    InstitutionDto institution;
 
 }
