@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "d93d1346-142f-45bc-a174-4a2c9419d1c1",
-		"name": "ValidationTool",
+		"name": "ENASourceAnnotationHelper",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19420352"
 	},
