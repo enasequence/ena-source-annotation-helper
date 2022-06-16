@@ -20,6 +20,7 @@ test:
   script:
     - sed -i 's/<env>/test/' src/main/resources/application.properties
     - ./gradlew clean test
+  allow_failure: true
   tags:
     - dcap-gitlab-runner
 
@@ -42,20 +43,11 @@ build_dev:
 deploy_dev:
   stage: deploy
   before_script:
-    - echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
-    # As suggested by a user, for some people this line works instead of the first one. Use whichever works for your case
-    # RUN echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie main" > /etc/apt/sources.list.d/jessie.list
-    - sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
-    - apt-get -o Acquire::Check-Valid-Until=false update
-    - gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys AA8E81B4331F7F50
-    - gpg --export AA8E81B4331F7F50  | apt-key add -
-    - apt-get -o Acquire::Check-Valid-Until=false update -qq
-#    - apt-get install -qq git
     # Setup SSH deploy keys
-    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   script:
     - chmod u+x build/libs/source-annotation-helper-${VERSION}.jar
     - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.jar ena_adm@wp-p1m2-69:/nfs/public/rw/ena/source-annotation-helper/deploy
@@ -88,20 +80,11 @@ build_prod:
 deploy_prod:
   stage: deploy
   before_script:
-    - echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/jessie-backports.list
-    # As suggested by a user, for some people this line works instead of the first one. Use whichever works for your case
-    # RUN echo "deb [check-valid-until=no] http://archive.debian.org/debian jessie main" > /etc/apt/sources.list.d/jessie.list
-    - sed -i '/deb http:\/\/deb.debian.org\/debian jessie-updates main/d' /etc/apt/sources.list
-    - apt-get -o Acquire::Check-Valid-Until=false update
-    - gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys AA8E81B4331F7F50
-    - gpg --export AA8E81B4331F7F50  | apt-key add -
-    - apt-get -o Acquire::Check-Valid-Until=false update -qq
-#     - apt-get install -qq git
     # Setup SSH deploy keys
-    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
-    - eval $(ssh-agent -s)
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")
     - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   script:
     - chmod u+x build/libs/source-annotation-helper-${VERSION}.jar
     - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.jar ena_adm@SERVER_NAME:/nfs/public/rw/ena/source-annotation-helper/deploy

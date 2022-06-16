@@ -1,3 +1,21 @@
+/*
+ * ******************************************************************************
+ *  * Copyright 2021 EMBL-EBI, Hinxton outstation
+ *  *
+ *  * Licensed under the Apache License, Version 2.0 (the "License");
+ *  * you may not use this file except in compliance with the License.
+ *  * You may obtain a copy of the License at
+ *  *
+ *  *   http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  * Unless required by applicable law or agreed to in writing, software
+ *  * distributed under the License is distributed on an "AS IS" BASIS,
+ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  * See the License for the specific language governing permissions and
+ *  * limitations under the License.
+ *  *****************************************************************************
+ */
+
 package uk.ac.ebi.ena.annotation.helper.controller;
 
 import org.junit.jupiter.api.AfterAll;
@@ -23,10 +41,9 @@ class SAHControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    private static final String META_SEARCH_BASE_ENDPOINT = "/ena/source-annotation-helper/api/institute/";
-    private static final String META_SEARCH_BASE_ENDPOINT2 = "/ena/sah/api/institute/";
-    private static final String VALIDATE_BASE_ENDPOINT = "/ena/source-annotation-helper/api/validate";
-    private static final String CONSTRUCT_BASE_ENDPOINT = "/ena/source-annotation-helper/api/construct";
+    private static final String META_SEARCH_BASE_ENDPOINT = "/ena/sah/api/institution/";
+    private static final String VALIDATE_BASE_ENDPOINT = "/ena/sah/api/validate";
+    private static final String CONSTRUCT_BASE_ENDPOINT = "/ena/sah/api/construct";
 
     @BeforeAll
     public static void before() {
@@ -43,17 +60,7 @@ class SAHControllerTest {
         String params = "ANS";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
-                .andExpect(jsonPath("$.success").value(equalTo(true)))
-                .andReturn();
-    }
-
-    @Test
-    void findByInstituteValueMappingSAH() throws Exception {
-        String params = "ANS";
-        MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT2 + params))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
+                .andExpect(jsonPath("$.institutions").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
     }
@@ -64,7 +71,7 @@ class SAHControllerTest {
         String params = "CIS<USA-CA>";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
+                .andExpect(jsonPath("$.institutions").exists())
                 //.andExpect(jsonPath("$.institutes.*", hasSize(1)))
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
@@ -75,8 +82,8 @@ class SAHControllerTest {
         String params = "MSNT<ITA-Torino>/collection/FAZC";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
-                .andExpect(jsonPath("$.institutes[0].collections").exists())
+                .andExpect(jsonPath("$.institutions").exists())
+                .andExpect(jsonPath("$.institutions[0].collections").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
     }
@@ -93,7 +100,7 @@ class SAHControllerTest {
 
     @Test
     void construct() throws Exception {
-        String params = "?institute=MSNT<ITA-Torino>&collection=FAZC&id=123456";
+        String params = "?institution=MSNT<ITA-Torino>&collection=FAZC&id=123456";
         MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.matches").exists())
@@ -106,7 +113,7 @@ class SAHControllerTest {
         String params = "ANS";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
+                .andExpect(jsonPath("$.institutions").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
     }
@@ -127,7 +134,7 @@ class SAHControllerTest {
         String params = "ANS?qualifier_type=bio_material";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
+                .andExpect(jsonPath("$.institutions").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
 
@@ -138,7 +145,7 @@ class SAHControllerTest {
         String params = "ANS?qualifier_type=specimen_voucher,bio_material";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
+                .andExpect(jsonPath("$.institutions").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
 
@@ -149,7 +156,7 @@ class SAHControllerTest {
         String params = "ANS?qualifier_type=";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
+                .andExpect(jsonPath("$.institutions").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
 
@@ -171,8 +178,8 @@ class SAHControllerTest {
         String params = "CMN/collection";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
-                .andExpect(jsonPath("$.institutes[0].collections").exists())
+                .andExpect(jsonPath("$.institutions").exists())
+                .andExpect(jsonPath("$.institutions[0].collections").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
     }
@@ -183,8 +190,8 @@ class SAHControllerTest {
         String params = "CMN/collection?qualifier_type=specimen_voucher";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.institutes").exists())
-                .andExpect(jsonPath("$.institutes[0].collections").exists())
+                .andExpect(jsonPath("$.institutions").exists())
+                .andExpect(jsonPath("$.institutions[0].collections").exists())
                 .andExpect(jsonPath("$.success").value(equalTo(true)))
                 .andReturn();
 
@@ -268,7 +275,7 @@ class SAHControllerTest {
 
     @Test
     void constructExactMatchInstOnly() throws Exception {
-        String params = "?institute=MSNT<ITA-Torino>&id=123456";
+        String params = "?institution=MSNT<ITA-Torino>&id=123456";
         MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.matches").exists())
@@ -278,7 +285,7 @@ class SAHControllerTest {
 
     @Test
     void constructExactMatchInstWithQT() throws Exception {
-        String params = "?institute=MSNT<ITA-Torino>&id=123456&qualifier_type=specimen_voucher";
+        String params = "?institution=MSNT<ITA-Torino>&id=123456&qualifier_type=specimen_voucher";
         MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.matches").exists())
@@ -288,7 +295,7 @@ class SAHControllerTest {
 
     @Test
     void constructSimilarMatchInstOnly() throws Exception {
-        String params = "?institute=NYX&id=123456&qualifier_type=specimen_voucher";
+        String params = "?institution=NYX&id=123456&qualifier_type=specimen_voucher";
         MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.matches").exists())
@@ -298,7 +305,7 @@ class SAHControllerTest {
 
     @Test
     void constructSimilarMatchInstWithCollWithQT() throws Exception {
-        String params = "?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material";
+        String params = "?institution=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material";
         MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.matches").exists())
@@ -308,7 +315,7 @@ class SAHControllerTest {
 
     @Test
     void constructSimilarMatchInstWithCollWithQTNoMatch() throws Exception {
-        String params = "?institute=HSUV&collection=Bird&id=123456&qualifier_type=bio_material";
+        String params = "?institution=HSUV&collection=Bird&id=123456&qualifier_type=bio_material";
         MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.success").value(equalTo(false)))

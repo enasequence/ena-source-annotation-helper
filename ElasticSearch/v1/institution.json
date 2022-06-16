@@ -29,61 +29,61 @@
       "inst_id": {
         "type": "long",
         "meta": {
-          "description": "Institute Identifier"
+          "description": "Institution Identifier"
         }
       },
       "inst_code": {
         "type": "text",
         "meta": {
-          "description": "Institute Code"
+          "description": "Institution Code"
         }
       },
       "unique_name": {
         "type": "text",
         "meta": {
-          "description": "Institute Unique Name"
+          "description": "Institution Unique Name"
         }
       },
       "inst_name": {
         "type": "text",
         "meta": {
-          "description": "Institute Name"
+          "description": "Institution Name"
         }
       },
       "country": {
         "type": "text",
         "meta": {
-          "description": "Institute Country"
+          "description": "Institution Country"
         }
       },
       "address": {
         "type": "text",
         "meta": {
-          "description": "Institute Address"
+          "description": "Institution Address"
         }
       },
       "coll_type": {
         "type": "text",
         "meta": {
-          "description": "Institute Collection Type"
+          "description": "Institution Collection Type"
         }
       },
       "qualifier_type": {
         "type": "text",
         "meta": {
-          "description": "Institute Qualifier Type"
+          "description": "Institution Qualifier Type"
         }
       },
       "home_url": {
         "type": "text",
         "meta": {
-          "description": "Institute Home URL"
+          "description": "Institution Home URL"
         }
       },
       "url_rule": {
         "type": "text",
         "meta": {
-          "description": "Institute URL Rule"
+          "description": "Institution URL Rule"
         }
       }
     }

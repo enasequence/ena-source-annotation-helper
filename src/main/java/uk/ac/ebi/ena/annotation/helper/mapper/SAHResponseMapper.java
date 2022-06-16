@@ -1,14 +1,32 @@
+/*
+ * ******************************************************************************
+ *  * Copyright 2021 EMBL-EBI, Hinxton outstation
+ *  *
+ *  * Licensed under the Apache License, Version 2.0 (the "License");
+ *  * you may not use this file except in compliance with the License.
+ *  * You may obtain a copy of the License at
+ *  *
+ *  *   http://www.apache.org/licenses/LICENSE-2.0
+ *  *
+ *  * Unless required by applicable law or agreed to in writing, software
+ *  * distributed under the License is distributed on an "AS IS" BASIS,
+ *  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  * See the License for the specific language governing permissions and
+ *  * limitations under the License.
+ *  *****************************************************************************
+ */
+
 package uk.ac.ebi.ena.annotation.helper.mapper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import uk.ac.ebi.ena.annotation.helper.dto.InstituteDto;
+import uk.ac.ebi.ena.annotation.helper.dto.InstitutionDto;
 import uk.ac.ebi.ena.annotation.helper.dto.MatchDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
-import uk.ac.ebi.ena.annotation.helper.entity.Institute;
+import uk.ac.ebi.ena.annotation.helper.entity.Institution;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
@@ -61,22 +79,22 @@ public class SAHResponseMapper {
         if (validationSearchResult.isCollectionAvailable()) {
             log.debug("Collection Available");
             for (Collection collection : validationSearchResult.getCollections()) {
-                InstituteDto instituteDto = validationSearchResult.getInstituteIdNameMap().get(collection.getInstId());
-                String qualifierValueStr = buildQualifierValueString(instituteDto.getUniqueName(), collection.getCollCode(),
+                InstitutionDto institutionDto = validationSearchResult.getInstituteIdNameMap().get(collection.getInstId());
+                String qualifierValueStr = buildQualifierValueString(institutionDto.getUniqueName(), collection.getCollCode(),
                         validationSearchResult.getIdentifier(), true);
-                instituteDto.setCollections(Collections.singletonList(collectionMapper.toDto(collection)));
+                institutionDto.setCollections(Collections.singletonList(collectionMapper.toDto(collection)));
                 matchDtoList.add(MatchDto.builder().match(qualifierValueStr)
-                        .institute(instituteDto)
+                        .institution(institutionDto)
                         .build());
             }
         } else {
             log.debug("Collection Not Available");
-            for (Institute institute : validationSearchResult.getInstitutes()) {
-                String instUniqueName = institute.getUniqueName();
+            for (Institution institution : validationSearchResult.getInstitutions()) {
+                String instUniqueName = institution.getUniqueName();
                 String qualifierValueStr = buildQualifierValueString(instUniqueName, null,
                         validationSearchResult.getIdentifier(), false);
                 matchDtoList.add(MatchDto.builder().match(qualifierValueStr)
-                        .institute(instituteMapper.toDto(institute))
+                        .institution(instituteMapper.toDto(institution))
                         .build());
             }
         }

@@ -23,8 +23,7 @@ Swagger API documentation can be launched by pointing the browser to [Swagger-UI
 
 
 ## Document References
-Docker integration [Document](./docs/DockerIntegration.md)
-GraphQL Reference [Document](./docs/GraphQL-Reference.md)
+- Docker integration [Document](./docs/DockerIntegration.md)
 
 
 ## Future Roadmap items

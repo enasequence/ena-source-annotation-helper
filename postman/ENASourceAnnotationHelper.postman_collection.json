@@ -1,13 +1,13 @@
 {
 	"info": {
 		"_postman_id": "d93d1346-142f-45bc-a174-4a2c9419d1c1",
-		"name": "ValidationTool",
+		"name": "ENASourceAnnotationHelper",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19420352"
 	},
 	"item": [
 		{
-			"name": "Institute-Index",
+			"name": "Institution-Index",
 			"item": [
 				{
 					"name": "AddMapping-Institute",
@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"settings\": {\n        \"number_of_shards\": 1,\n        \"number_of_replicas\": 0,\n        \"analysis\": {\n            \"analyzer\": {\n                \"folding\": {\n                    \"tokenizer\": \"standard\",\n                    \"filter\": [\n                        \"lowercase\",\n                        \"asciifolding\"\n                    ]\n                }\n            },\n            \"normalizer\": {\n                \"lowerasciinormalizer\": {\n                    \"type\": \"custom\",\n                    \"filter\": [\n                        \"lowercase\",\n                        \"asciifolding\"\n                    ]\n                }\n            }\n        }\n    },\n    \"mappings\": {\n        \"dynamic\": \"false\",\n        \"properties\": {\n            \"inst_id\": {\n                \"type\": \"long\",\n                \"meta\": {\n                    \"description\": \"Institute Identifier\"\n                }\n            },\n            \"inst_code\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Code\"\n                }\n            },\n            \"unique_name\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Unique Name\"\n                }\n            },\n            \"inst_name\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Name\"\n                }\n            },\n            \"country\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Country\"\n                }\n            },\n            \"address\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Address\"\n                }\n            },\n            \"coll_type\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Collection Type\"\n                }\n            },\n            \"qualifier_type\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Qualifier Type\"\n                }\n            },\n            \"home_url\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute Home URL\"\n                }\n            },\n            \"url_rule\": {\n                \"type\": \"text\",\n                \"meta\": {\n                    \"description\": \"Institute URL Rule\"\n                }\n            }\n        }\n    }\n}\n",
+							"raw": "{\n  \"settings\": {\n    \"number_of_shards\": 1,\n    \"number_of_replicas\": 0,\n    \"analysis\": {\n      \"analyzer\": {\n        \"folding\": {\n          \"tokenizer\": \"standard\",\n          \"filter\": [\n            \"lowercase\",\n            \"asciifolding\"\n          ]\n        }\n      },\n      \"normalizer\": {\n        \"lowerasciinormalizer\": {\n          \"type\": \"custom\",\n          \"filter\": [\n            \"lowercase\",\n            \"asciifolding\"\n          ]\n        }\n      }\n    }\n  },\n  \"mappings\": {\n    \"dynamic\": \"false\",\n    \"properties\": {\n      \"inst_id\": {\n        \"type\": \"long\",\n        \"meta\": {\n          \"description\": \"Institution Identifier\"\n        }\n      },\n      \"inst_code\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Code\"\n        }\n      },\n      \"unique_name\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Unique Name\"\n        }\n      },\n      \"inst_name\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Name\"\n        }\n      },\n      \"country\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Country\"\n        }\n      },\n      \"address\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Address\"\n        }\n      },\n      \"coll_type\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Collection Type\"\n        }\n      },\n      \"qualifier_type\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Qualifier Type\"\n        }\n      },\n      \"home_url\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Home URL\"\n        }\n      },\n      \"url_rule\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution URL Rule\"\n        }\n      }\n    }\n  }\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -24,14 +24,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute"
+								"institution"
 							],
 							"query": [
 								{
@@ -44,25 +44,25 @@
 					"response": []
 				},
 				{
-					"name": "Add-Bulk-Institutes-v1",
+					"name": "Add-Bulk-Institutions-v1",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "file",
 							"file": {
-								"src": "/Users/vikasg/Documents/ws/github/embl/ena-source-annotation-helper/ElascticSearch/v1/AllInstitituesData.json"
+								"src": "/Users/vikasg/Documents/ws/github/embl/ena-source-annotation-helper/ElascticSearch/v1/AllInstitutionsData.json"
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_bulk",
+							"raw": "http://dca-wh-es-test:9200/institution/_bulk",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_bulk"
 							]
 						}
@@ -84,14 +84,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_doc/1?refresh",
+							"raw": "http://dca-wh-es-test:9200/institution/_doc/1?refresh",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_doc",
 								"1"
 							],
@@ -111,14 +111,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_search"
 							],
 							"query": [
@@ -149,14 +149,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_search"
 							],
 							"query": [
@@ -187,14 +187,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_search"
 							],
 							"query": [
@@ -225,14 +225,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_search"
 							],
 							"query": [
@@ -263,14 +263,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_search"
 							],
 							"query": [
@@ -301,14 +301,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_search"
 							],
 							"query": [
@@ -339,14 +339,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute/_search?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute",
+								"institution",
 								"_search"
 							],
 							"query": [
@@ -374,14 +374,14 @@
 							}
 						},
 						"url": {
-							"raw": "http://dca-wh-es-test:9200/institute?pretty",
+							"raw": "http://dca-wh-es-test:9200/institution?pretty",
 							"protocol": "http",
 							"host": [
 								"dca-wh-es-test"
 							],
 							"port": "9200",
 							"path": [
-								"institute"
+								"institution"
 							],
 							"query": [
 								{
@@ -1114,13 +1114,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CAMZX?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CAMZX?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CAMZX"
 									],
 									"query": [
@@ -1147,7 +1147,7 @@
 											"",
 											"pm.test(\"Inst-FuzzySearchStr-QTArrayMultiple-Good-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											""
 										],
@@ -1166,13 +1166,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CGEX?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CGEX?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CGEX"
 									],
 									"query": [
@@ -1213,13 +1213,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/QQQ",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/QQQ",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"QQQ"
 									]
 								}
@@ -1240,12 +1240,12 @@
 											"",
 											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-Inst-Present\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											"",
 											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes[0].collections.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions[0].collections.length).to.greaterThan(0);",
 											"});",
 											"",
 											""
@@ -1258,13 +1258,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CMN",
 										"collection"
 									],
@@ -1292,12 +1292,12 @@
 											"",
 											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-Inst-Present\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											"",
 											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes[0].collections.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions[0].collections.length).to.greaterThan(0);",
 											"});",
 											"",
 											""
@@ -1310,13 +1310,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CMN",
 										"collection"
 									],
@@ -1344,7 +1344,7 @@
 											"",
 											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-Good-01-institute-check\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1355,13 +1355,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection/herp?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection/herp?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CMN",
 										"collection",
 										"herp"
@@ -1538,7 +1538,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -1548,7 +1548,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSNT"
 										},
 										{
@@ -1590,7 +1590,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&collection=FAZC&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&collection=FAZC&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -1600,7 +1600,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSNT"
 										},
 										{
@@ -1642,7 +1642,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -1652,7 +1652,445 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
+											"value": "HSUV"
+										},
+										{
+											"key": "collection",
+											"value": "Bird"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										},
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetErrorCodes Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GetErrorCodes-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/error-codes",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"error-codes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ValidationToolPresentation",
+					"item": [
+						{
+							"name": "Inst-FuzzySearchStr-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CAMZX?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"CAMZX"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-FuzzySearchStr-Multiple-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-QTArrayMultiple-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Inst-FuzzySearchStr-QTArrayMultiple-Good-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CGEX?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"CGEX"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCode-AllColl-WithQT-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-Inst-Present\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).to.greaterThan(0);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"CMN",
+										"collection"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCodeandCollCode-WithQT-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-Good-01-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-Good-01-institute-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection/herp?qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"CMN",
+										"collection",
+										"herp"
+									],
+									"query": [
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-ExactMatch-WithColl-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-ExactMatch-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-ExactMatch-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:FAZC:123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "MSNT:FAZC:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatchMultiple-WithColl-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HSUV:Bird:123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "HSUV:Bird:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatch-WithColl-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatch-WithColl-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatch-WithColl-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&collection=FAZC&id=123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institution",
+											"value": "MSNT"
+										},
+										{
+											"key": "collection",
+											"value": "FAZC"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-SimilarMatchMultiple-WithCollAndQT-Good-01 Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institution",
 											"value": "HSUV"
 										},
 										{
@@ -1691,12 +2129,12 @@
 											"",
 											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Inst-Present\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											"",
 											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes[0].collections.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions[0].collections.length).to.greaterThan(0);",
 											"});",
 											"",
 											""
@@ -1709,13 +2147,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CMN",
 										"collection"
 									]
@@ -1737,12 +2175,12 @@
 											"",
 											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Good-01-Inst-Present\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											"",
 											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes[0].collections.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions[0].collections.length).to.greaterThan(0);",
 											"});",
 											"",
 											""
@@ -1755,13 +2193,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CMN",
 										"collection"
 									],
@@ -1801,13 +2239,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CMN/collection?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection?qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CMN",
 										"collection"
 									],
@@ -1848,13 +2286,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/QQQ/collection",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/QQQ/collection",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"QQQ",
 										"collection"
 									]
@@ -1887,13 +2325,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/AMG/collection",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/AMG/collection",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"AMG",
 										"collection"
 									]
@@ -1921,13 +2359,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/MSNT<ITA-Torino>/collection/FAZC",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/MSNT<ITA-Torino>/collection/FAZC",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"MSNT<ITA-Torino>",
 										"collection",
 										"FAZC"
@@ -1956,13 +2394,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/USNM/collection/herp",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/USNM/collection/herp",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"USNM",
 										"collection",
 										"herp"
@@ -1985,7 +2423,7 @@
 											"",
 											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-Good-01-institute-check\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1996,13 +2434,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/USNM/collection/herp?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/USNM/collection/herp?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"USNM",
 										"collection",
 										"herp"
@@ -2031,7 +2469,7 @@
 											"",
 											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-Good-02-institute-check\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -2042,13 +2480,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/USNM/collection/herp?qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/USNM/collection/herp?qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"USNM",
 										"collection",
 										"herp"
@@ -2083,13 +2521,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/USNM/collection/herp?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/USNM/collection/herp?qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"USNM",
 										"collection",
 										"herp"
@@ -2131,13 +2569,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/MRAC/collection/FAZC",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/MRAC/collection/FAZC",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"MRAC",
 										"collection",
 										"FAZC"
@@ -2149,7 +2587,7 @@
 					]
 				},
 				{
-					"name": "Institute-APIs",
+					"name": "Institution-APIs",
 					"item": [
 						{
 							"name": "Inst-FuzzySearchStr-Good-01",
@@ -2179,13 +2617,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"ANS"
 									]
 								}
@@ -2220,13 +2658,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS?qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"ANS"
 									],
 									"query": [
@@ -2253,7 +2691,7 @@
 											"",
 											"pm.test(\"Inst-FuzzySearchStr-QTArray-Good-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											""
 										],
@@ -2272,13 +2710,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS?qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"ANS"
 									],
 									"query": [
@@ -2305,7 +2743,7 @@
 											"",
 											"pm.test(\"Inst-FuzzySearchStr-QTArrayMultiple-Good-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											""
 										],
@@ -2324,13 +2762,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS?qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"ANS"
 									],
 									"query": [
@@ -2357,7 +2795,7 @@
 											"",
 											"pm.test(\"Inst-FuzzySearchStr-QTArrayEmpty-Good-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											""
 										],
@@ -2376,13 +2814,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS?qualifier_type=",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"ANS"
 									],
 									"query": [
@@ -2409,7 +2847,7 @@
 											"",
 											"pm.test(\"Inst-FuzzySearchStr-NoQT-Good-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											""
 										],
@@ -2428,13 +2866,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"ANS"
 									]
 								}
@@ -2474,13 +2912,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=ABC",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS?qualifier_type=ABC",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"ANS"
 									],
 									"query": [
@@ -2507,7 +2945,7 @@
 											"",
 											"pm.test(\"Inst-FuzzySearchStr-QTArray-EmptyQT-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.institutes.length).to.greaterThan(0);",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
 											"});",
 											""
 										],
@@ -2526,13 +2964,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/ANS?qualifier_type=",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS?qualifier_type=",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"ANS"
 									],
 									"query": [
@@ -2578,13 +3016,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/AN?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/AN?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"AN"
 									],
 									"query": [
@@ -2630,13 +3068,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/AN?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/AN?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"AN"
 									],
 									"query": [
@@ -2677,13 +3115,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/QQQ",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/QQQ",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"QQQ"
 									]
 								}
@@ -2718,13 +3156,13 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institute/CIS<USA-CA>",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CIS<USA-CA>",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"institute",
+										"institution",
 										"CIS<USA-CA>"
 									]
 								}
@@ -3302,7 +3740,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT<ITA-Torino>&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT<ITA-Torino>&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3312,7 +3750,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSNT<ITA-Torino>"
 										},
 										{
@@ -3350,7 +3788,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3360,7 +3798,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSNT"
 										},
 										{
@@ -3402,7 +3840,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3412,7 +3850,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSNT"
 										},
 										{
@@ -3450,7 +3888,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=NYX&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=NYX&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3460,7 +3898,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "NYX"
 										},
 										{
@@ -3493,7 +3931,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSN&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSN&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3503,7 +3941,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSN"
 										},
 										{
@@ -3541,7 +3979,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT<ITA-Torino>&collection=FAZC&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT<ITA-Torino>&collection=FAZC&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3551,7 +3989,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSNT<ITA-Torino>"
 										},
 										{
@@ -3593,7 +4031,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&collection=FAZC&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&collection=FAZC&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3603,7 +4041,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSNT"
 										},
 										{
@@ -3645,7 +4083,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=MSNT&collection=FAZ&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&collection=FAZ&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3655,7 +4093,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "MSNT"
 										},
 										{
@@ -3697,7 +4135,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=HSUV&collection=Bird&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3707,7 +4145,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "HSUV"
 										},
 										{
@@ -3749,7 +4187,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3759,7 +4197,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "HSUV"
 										},
 										{
@@ -3805,7 +4243,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=HSUV&collection=Bird&id=123456&qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456&qualifier_type=bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3815,7 +4253,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "HSUV"
 										},
 										{
@@ -3861,7 +4299,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institute=TSUV&collection=Bird&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=TSUV&collection=Bird&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3871,7 +4309,7 @@
 									],
 									"query": [
 										{
-											"key": "institute",
+											"key": "institution",
 											"value": "TSUV"
 										},
 										{
@@ -3890,8 +4328,49 @@
 					]
 				},
 				{
-					"name": "TestBed-APIs",
-					"item": []
+					"name": "Error-Codes",
+					"item": [
+						{
+							"name": "GetErrorCodes",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"GetErrorCodes-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/error-codes",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"error-codes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
