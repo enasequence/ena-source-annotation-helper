@@ -1,0 +1,200 @@
+<!-- HTML for static distribution bundle build -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ENA Source Annotation Helper</title>
+    <link href="springfox-swagger-ui/springfox.css?v=2.8.0-SNAPSHOT" rel="stylesheet" type="text/css">
+    <link href="springfox-swagger-ui/swagger-ui.css?v=2.8.0-SNAPSHOT" rel="stylesheet" type="text/css">
+    <link href="springfox-swagger-ui/favicon-32x32.png?v=2.8.0-SNAPSHOT" rel="icon" sizes="32x32" type="image/png"/>
+    <link href="springfox-swagger-ui/favicon-16x16.png?v=2.8.0-SNAPSHOT" rel="icon" sizes="16x16" type="image/png"/>
+    <style>
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            background: #fafafa;
+        }
+
+        .topbar, .information-container, .models {
+            display: none !important;
+        }
+    </style>
+
+    <!-- EBI Styling -->
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/favicon.ico" rel="icon"
+          type="image/x-icon"/>
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/favicon-32x32.png"
+          rel="icon"
+          type="image/png"/>
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/android-chrome-192x192.png"
+          rel="icon" sizes="192×192"
+          type="image/png"/>
+    <!-- Android (192px) -->
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/apple-icon-114x114.png"
+          rel="apple-touch-icon-precomposed"
+          sizes="114x114"/>
+    <!-- For iPhone 4 Retina display (114px) -->
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/apple-icon-72x72.png"
+          rel="apple-touch-icon-precomposed"
+          sizes="72x72"/>
+    <!-- For iPad (72px) -->
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/apple-icon-144x144.png"
+          rel="apple-touch-icon-precomposed"
+          sizes="144x144"/>
+    <!-- For iPad retinat (144px) -->
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/apple-icon-57x57.png"
+          rel="apple-touch-icon-precomposed"/>
+    <!-- For iPhone (57px) -->
+    <link color="#ffffff"
+          href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/safari-pinned-tab.svg"
+          rel="mask-icon"/> <!-- Safari icon for pinned tab -->
+    <meta content="#2b5797" name="msapplication-TileColor"/> <!-- MS Icons -->
+    <meta content="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/mstile-144x144.png"
+          name="msapplication-TileImage"/>
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/libraries/foundation-6/css/foundation-lite.min.css"
+          media="all"
+          rel="stylesheet" type="text/css"/>
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/css/ebi-global.css" media="all" rel="stylesheet"
+          type="text/css"/>
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Icon-fonts/v1.2/fonts.css" media="all" rel="stylesheet"
+          type="text/css"/>
+    <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/css/theme-embl-petrol.css" media="all"
+          rel="stylesheet" type="text/css"/>
+    <meta content="#70BDBD" name="ebi:masthead-color"/>
+    <!--end EBI styling-->
+</head>
+
+<body class="level2 swagger-section">
+
+<header class="clearfix masthead-black-bar" id="masthead-black-bar">
+    <nav class="row">
+        <ul class="menu" id="global-nav">
+            <!-- set active class as appropriate -->
+            <li class="home-mobile"><a href="//www.ebi.ac.uk"></a></li>
+            <li class="home active"><a href="//www.ebi.ac.uk">EMBL-EBI</a></li>
+            <li class="services"><a href="//www.ebi.ac.uk/services">Services</a></li>
+            <li class="research"><a href="//www.ebi.ac.uk/research">Research</a></li>
+            <li class="training"><a href="//www.ebi.ac.uk/training">Training</a></li>
+            <li class="about"><a href="//www.ebi.ac.uk/about">About us</a></li>
+            <li class="search">
+                <a data-toggle="search-global-dropdown" href="#"><span class="show-for-small-only">Search</span></a>
+                <div class="dropdown-pane" data-dropdown data-options="closeOnClick:true;" id="search-global-dropdown">
+                    <!-- The dropdown menu will be programatically added by script.js -->
+                </div>
+            </li>
+            <li class="float-right show-for-medium embl-selector">
+                <button class="button float-right" data-toggle="embl-dropdown" type="button">Hinxton</button>
+                <!-- The dropdown menu will be programatically added by script.js -->
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <symbol id="unlocked" viewBox="0 0 20 20">
+            <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V6h2v-.801C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8z"></path>
+        </symbol>
+
+        <symbol id="locked" viewBox="0 0 20 20">
+            <path d="M15.8 8H14V5.6C14 2.703 12.665 1 10 1 7.334 1 6 2.703 6 5.6V8H4c-.553 0-1 .646-1 1.199V17c0 .549.428 1.139.951 1.307l1.197.387C5.672 18.861 6.55 19 7.1 19h5.8c.549 0 1.428-.139 1.951-.307l1.196-.387c.524-.167.953-.757.953-1.306V9.199C17 8.646 16.352 8 15.8 8zM12 8H8V5.199C8 3.754 8.797 3 10 3c1.203 0 2 .754 2 2.199V8z"/>
+        </symbol>
+
+        <symbol id="close" viewBox="0 0 20 20">
+            <path d="M14.348 14.849c-.469.469-1.229.469-1.697 0L10 11.819l-2.651 3.029c-.469.469-1.229.469-1.697 0-.469-.469-.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-.469-.469-.469-1.228 0-1.697.469-.469 1.228-.469 1.697 0L10 8.183l2.651-3.031c.469-.469 1.228-.469 1.697 0 .469.469.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c.469.469.469 1.229 0 1.698z"/>
+        </symbol>
+
+        <symbol id="large-arrow" viewBox="0 0 20 20">
+            <path d="M13.25 10L6.109 2.58c-.268-.27-.268-.707 0-.979.268-.27.701-.27.969 0l7.83 7.908c.268.271.268.709 0 .979l-7.83 7.908c-.268.271-.701.27-.969 0-.268-.269-.268-.707 0-.979L13.25 10z"/>
+        </symbol>
+
+        <symbol id="large-arrow-down" viewBox="0 0 20 20">
+            <path d="M17.418 6.109c.272-.268.709-.268.979 0s.271.701 0 .969l-7.908 7.83c-.27.268-.707.268-.979 0l-7.908-7.83c-.27-.268-.27-.701 0-.969.271-.268.709-.268.979 0L10 13.25l7.418-7.141z"/>
+        </symbol>
+
+
+        <symbol id="jump-to" viewBox="0 0 24 24">
+            <path d="M19 7v4H5.83l3.58-3.59L8 6l-6 6 6 6 1.41-1.41L5.83 13H21V7z"/>
+        </symbol>
+
+        <symbol id="expand" viewBox="0 0 24 24">
+            <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+        </symbol>
+
+    </defs>
+</svg>
+
+<div id="content">
+    <div data-sticky-container>
+        <header class="masthead" data-btm-anchor="main-content-area:bottom" data-sticky data-sticky-on="large"
+                data-top-anchor="main-content-area:top" id="masthead">
+            <div class="masthead-inner row">
+                <div class="columns medium-12" id="local-title">
+                    <h1>
+                        <a href="../.." title="Back to ENA">
+                            <img alt="ENA Source Annotation Helper" class="logo" height="" src="ENA-logo.png"/>
+                        </a>
+                    </h1>
+                </div>
+            </div>
+            <div class="swagger-ui-wrap" style="display: none">
+                <a href="http://swagger.io" id="logo">swagger</a>
+
+                <form id='api_selector'>
+                    <div class='input'>
+                        <select id="select_baseUrl" name="select_baseUrl"/>
+                    </div>
+                    <div class='input'><input id="input_baseUrl" name="baseUrl"
+                                              placeholder="https://www.ebi.ac.uk/ena/sah/api/"
+                                              type="text"/>
+                    </div>
+                    <div class='input'><input id="input_apiKey" name="apiKey" placeholder="api_key" type="text"/></div>
+                    <div class='input'><a data-sw-translate href="#" id="explore">Explore</a></div>
+                </form>
+            </div>
+        </header>
+    </div>
+
+
+    <div class="row" id="main-content-area">
+        <div class="columns">
+            <section>
+
+                <div id="swagger-ui"></div>
+            </section>
+
+        </div>
+    </div>
+
+</div>
+<!--<div id="swagger-ui"></div>-->
+<footer>
+    <div class="global-footer" id="global-footer">
+        <nav class="global-nav-expanded row" id="global-nav-expanded">
+            <!-- Footer will be automatically inserted by footer.js -->
+        </nav>
+        <section class="ebi-footer-meta row" id="ebi-footer-meta">
+            <!-- Footer meta will be automatically inserted by footer.js -->
+        </section>
+    </div>
+</footer>
+
+<script src="springfox-swagger-ui/swagger-ui-bundle.js?v=2.8.0-SNAPSHOT"></script>
+<script src="springfox-swagger-ui/swagger-ui-standalone-preset.js?v=2.8.0-SNAPSHOT"></script>
+<script src="springfox-swagger-ui/springfox.js?v=2.8.0-SNAPSHOT"></script>
+<script defer="defer" src="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/js/script.js"></script>
+
+</body>
+
+</html>
