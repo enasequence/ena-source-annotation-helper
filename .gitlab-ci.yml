@@ -62,7 +62,6 @@ deploy_dev:
     url: https://wwwdev.ebi.ac.uk/ena/sah/api/
   only:
     - master
-    - dcp-3148-initial
 
 build_prod:
   stage: build
