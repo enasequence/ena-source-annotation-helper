@@ -36,12 +36,10 @@ public class ElasticSearchConnectionKeepAlive {
     // ElasticSearch KeepAlive Prob Configuration -- default is 5 minutes
     @Scheduled(fixedRate = ES_KEEP_ALIVE_FREQUENCY, initialDelay = ES_INITIAL_DELAY)
     public void keepConnectionAlive() {
-        log.debug("Trying to ping Elasticsearch Datastore...");
         try {
-            final long noOfCollections = collectionRepository.count();
-            log.info("Ping succeeded for CollectionRepository, it contains {} entities", noOfCollections);
+            collectionRepository.count();
         } catch (Exception e) {
-            log.info("Ping failed for CollectionRepository");
+            log.error("Ping failed for CollectionRepository");
         }
     }
 }
