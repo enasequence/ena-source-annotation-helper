@@ -18,12 +18,14 @@
 
 package uk.ac.ebi.ena.annotation.helper.config;
 
+import org.apache.http.HttpHost;
+import org.apache.http.impl.nio.reactor.IOReactorConfig;
+import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.elasticsearch.client.ClientConfiguration;
-import org.springframework.data.elasticsearch.client.RestClients;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
 
@@ -39,14 +41,21 @@ public class EsConfig {
     @Value("${elasticsearch.clustername}")
     private String EsClusterName;
 
+    // Not in use for now. ElasticSearch Library enhancement expected in future releases
+    @Value("${elasticsearch.keepalive.frequency}")
+    private int EsKeepAliveInSeconds;
+
     @Bean
     public RestHighLevelClient client() {
-        ClientConfiguration clientConfiguration
-                = ClientConfiguration.builder()
-                .connectedTo(EsHost + ":" + EsPort)
-                .build();
-
-        return RestClients.create(clientConfiguration).rest();
+        RestClientBuilder builder = RestClient.builder(new HttpHost(EsHost, EsPort))
+                .setHttpClientConfigCallback(
+                        httpClientBuilder -> httpClientBuilder.setKeepAliveStrategy(
+                                        (response, context) -> EsKeepAliveInSeconds * 1000/* 30 minutes*/)
+                                .setDefaultIOReactorConfig(
+                                        IOReactorConfig.custom()
+                                                .setSoKeepAlive(true)
+                                                .build()));
+        return new RestHighLevelClient(builder);
     }
 
     @Bean
