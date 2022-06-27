@@ -31,6 +31,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.util.StringUtils;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -52,6 +53,7 @@ import java.util.List;
 
 @Configuration
 @EnableSwagger2
+@EnableWebMvc
 @ImportAutoConfiguration({SecurityConfiguration.class})
 public class SwaggerConfig implements WebMvcConfigurer {
 
