@@ -19,27 +19,31 @@
 package uk.ac.ebi.ena.annotation.helper.repository;
 
 import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.client.RequestOptions;
+import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.GetMappingsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.ES_INITIAL_DELAY;
-import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.ES_KEEP_ALIVE_FREQUENCY;
+import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.*;
 
 @Component
 @Slf4j
 public class ElasticSearchConnectionKeepAlive {
 
     @Autowired
-    private CollectionRepository collectionRepository;
+    private RestHighLevelClient restHighLevelClient;
 
     // ElasticSearch KeepAlive Prob Configuration -- default is 5 minutes
     @Scheduled(fixedRate = ES_KEEP_ALIVE_FREQUENCY, initialDelay = ES_INITIAL_DELAY)
     public void keepConnectionAlive() {
         try {
-            collectionRepository.count();
-        } catch (Exception e) {
-            log.error("Ping failed for CollectionRepository");
+            GetMappingsRequest request = new GetMappingsRequest();
+            request.indices(INDEX_COLLECTION);
+            restHighLevelClient.indices().getMapping(request, RequestOptions.DEFAULT);
+        } catch (Exception ex) {
+            log.error("KeepAlive failed for CollectionRepository", ex);
         }
     }
 }

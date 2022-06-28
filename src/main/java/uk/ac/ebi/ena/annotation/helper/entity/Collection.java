@@ -28,12 +28,14 @@ import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.Arrays;
 
+import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.INDEX_COLLECTION;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Document(indexName = "collection")
+@Document(indexName = INDEX_COLLECTION)
 public class Collection {
 
     @Id
