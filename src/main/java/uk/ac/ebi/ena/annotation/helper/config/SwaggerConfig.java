@@ -53,7 +53,7 @@ import java.util.List;
 
 @Configuration
 @EnableSwagger2
-@EnableWebMvc
+//@EnableWebMvc
 @ImportAutoConfiguration({SecurityConfiguration.class})
 public class SwaggerConfig implements WebMvcConfigurer {
 
