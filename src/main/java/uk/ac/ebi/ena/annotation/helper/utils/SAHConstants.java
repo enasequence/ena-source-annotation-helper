@@ -30,4 +30,11 @@ public interface SAHConstants {
     String MATCH_LEVEL_TOO_MANY = "Too Many Partial Matches";
     String MATCH_LEVEL_NONE = "None";
 
+    String INDEX_COLLECTION = "collection";
+    String INDEX_INSTITUTION = "institution";
+
+    // ElasticSearch KeepAlive Configuration -- default is 5 minutes
+    int ES_KEEP_ALIVE_FREQUENCY = 300000; //300000 millis
+    int ES_INITIAL_DELAY = 300000; //300000 millis
+
 }

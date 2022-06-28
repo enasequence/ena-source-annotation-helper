@@ -22,9 +22,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableElasticsearchRepositories(basePackages = "uk.ac.ebi.ena.annotation.helper.repository")
+@EnableScheduling
 @Slf4j
 public class SourceAnnotationHelperApplication {
 

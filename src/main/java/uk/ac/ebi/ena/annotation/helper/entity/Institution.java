@@ -28,12 +28,14 @@ import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.Arrays;
 
+import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.INDEX_INSTITUTION;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Document(indexName = "institution")
+@Document(indexName = INDEX_INSTITUTION)
 public class Institution {
 
     @Id
@@ -44,6 +46,8 @@ public class Institution {
     private String instCode;
     @Field(name = "unique_name")
     private String uniqueName;
+    @Field(name = "synonyms")
+    private String synonyms;
     @Field(name = "inst_name")
     private String instName;
     private String country;
@@ -60,11 +64,12 @@ public class Institution {
 
     @Override
     public String toString() {
-        return "Institute{" +
+        return "Institution{" +
                 "id='" + id + '\'' +
                 ", instId=" + instId +
                 ", instCode='" + instCode + '\'' +
                 ", uniqueName='" + uniqueName + '\'' +
+                ", synonyms='" + synonyms + '\'' +
                 ", instName='" + instName + '\'' +
                 ", country='" + country + '\'' +
                 ", address='" + address + '\'' +

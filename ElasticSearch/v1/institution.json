@@ -44,6 +44,12 @@
           "description": "Institution Unique Name"
         }
       },
+      "synonyms": {
+        "type": "text",
+        "meta": {
+          "description": "Institution synonyms"
+        }
+      },
       "inst_name": {
         "type": "text",
         "meta": {

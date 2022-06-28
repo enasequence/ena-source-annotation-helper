@@ -28,12 +28,14 @@ import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.Arrays;
 
+import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.INDEX_COLLECTION;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Document(indexName = "collection")
+@Document(indexName = INDEX_COLLECTION)
 public class Collection {
 
     @Id
@@ -52,6 +54,8 @@ public class Collection {
     private String[] qualifierType;
     @Field(name = "coll_url")
     private String collUrl;
+    @Field(name = "coll_url_rule")
+    private String collUrlRule;
 
     @Override
     public String toString() {
@@ -61,9 +65,10 @@ public class Collection {
                 ", instId=" + instId +
                 ", collCode='" + collCode + '\'' +
                 ", collName='" + collName + '\'' +
-                ", collectionType='" + collType + '\'' +
+                ", collType='" + collType + '\'' +
                 ", qualifierType=" + Arrays.toString(qualifierType) +
                 ", collUrl='" + collUrl + '\'' +
+                ", collUrlRule='" + collUrlRule + '\'' +
                 '}';
     }
 }
