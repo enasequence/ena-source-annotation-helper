@@ -67,6 +67,12 @@
         "meta": {
           "description": "Collection URL"
         }
+      },
+      "coll_url_rule": {
+        "type": "text",
+        "meta": {
+          "description": "Collection URL Rule"
+        }
       }
     }
   }

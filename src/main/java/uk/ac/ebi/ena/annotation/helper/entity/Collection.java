@@ -52,6 +52,8 @@ public class Collection {
     private String[] qualifierType;
     @Field(name = "coll_url")
     private String collUrl;
+    @Field(name = "coll_url_rule")
+    private String collUrlRule;
 
     @Override
     public String toString() {
@@ -61,9 +63,10 @@ public class Collection {
                 ", instId=" + instId +
                 ", collCode='" + collCode + '\'' +
                 ", collName='" + collName + '\'' +
-                ", collectionType='" + collType + '\'' +
+                ", collType='" + collType + '\'' +
                 ", qualifierType=" + Arrays.toString(qualifierType) +
                 ", collUrl='" + collUrl + '\'' +
+                ", collUrlRule='" + collUrlRule + '\'' +
                 '}';
     }
 }

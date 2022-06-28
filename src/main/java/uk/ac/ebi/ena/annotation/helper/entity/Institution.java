@@ -44,6 +44,8 @@ public class Institution {
     private String instCode;
     @Field(name = "unique_name")
     private String uniqueName;
+    @Field(name = "synonyms")
+    private String synonyms;
     @Field(name = "inst_name")
     private String instName;
     private String country;
@@ -60,11 +62,12 @@ public class Institution {
 
     @Override
     public String toString() {
-        return "Institute{" +
+        return "Institution{" +
                 "id='" + id + '\'' +
                 ", instId=" + instId +
                 ", instCode='" + instCode + '\'' +
                 ", uniqueName='" + uniqueName + '\'' +
+                ", synonyms='" + synonyms + '\'' +
                 ", instName='" + instName + '\'' +
                 ", country='" + country + '\'' +
                 ", address='" + address + '\'' +
