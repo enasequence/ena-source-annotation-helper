@@ -2780,6 +2780,102 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Validate-NoValue-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-NoValue-Bad-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Validate-NoValue-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validate-NoValue-Bad-01-error-code\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).eq(3008);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-DummyValue-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-DummyValue-Bad-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Validate-DummyValue-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validate-DummyValue-Bad-01-error-code\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).eq(3008);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=QWERTY",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "QWERTY"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3395,6 +3491,118 @@
 										{
 											"key": "id",
 											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-NoInst-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-NoInst-Bad-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoInst-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoInst-Bad-01-error-code\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).eq(3010);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=&collection=Bird&id=123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institution",
+											"value": ""
+										},
+										{
+											"key": "collection",
+											"value": "Bird"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-NoIdentifier-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-NoIdentifier-Bad-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoIdentifier-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoIdentifier-Bad-01-error-code\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).eq(3011);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institution",
+											"value": "HSUV"
+										},
+										{
+											"key": "collection",
+											"value": "Bird"
+										},
+										{
+											"key": "id",
+											"value": ""
 										}
 									]
 								}

@@ -97,7 +97,7 @@ public class SAHControllerAdvice {
      */
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<ResponseDto> handleBadRequestException(BadRequestException ex) {
-        ErrorResponse errorItem = ErrorResponse.builder().message(ex.getMessage()).build();
+        ErrorResponse errorItem = ErrorResponse.builder().message(ex.getMessage()).code(ex.getErrorCode()).build();
         ResponseDto responseDto = new ResponseDto();
         responseDto.setErrors(Collections.singletonList(errorItem));
         responseDto.setSuccess(false);

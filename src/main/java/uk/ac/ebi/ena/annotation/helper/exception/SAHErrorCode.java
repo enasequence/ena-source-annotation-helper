@@ -42,7 +42,7 @@ public class SAHErrorCode {
     public static final String RecordNotFoundMessage = "Requested record not found";
     public static final String NoMatchingInstituteMessage = "No matching institution found";
     public static final String NoMatchingCollectionMessage = "No matching collection found";
-    public static final String InvalidFormatProvidedMessage = "Invalid Qualifier Value Format Provided. Please provide input " +
+    public static final String InvalidFormatProvidedMessage = "Invalid Attribute Value Format Provided. Please provide input " +
             "in the format - [<Institution Unique Name>:[<collection-code>:]]<identifier>";
     public static final String TooManyMatchesMessage = "Too many similar matches found. Please verify and try again";
     public static final String MultipleMatchesFoundMessage = "Multiple similar matches found. Please select the appropriate one or retry the search";

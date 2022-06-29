@@ -29,4 +29,8 @@ public class BadRequestException extends SAHBaseException {
     public BadRequestException(String message, Throwable exp) {
         super(message, HttpStatus.BAD_REQUEST, SAHErrorCode.BadRequestData, exp);
     }
+
+    public BadRequestException(int errorCode, String message) {
+        super(message, HttpStatus.BAD_REQUEST, errorCode);
+    }
 }

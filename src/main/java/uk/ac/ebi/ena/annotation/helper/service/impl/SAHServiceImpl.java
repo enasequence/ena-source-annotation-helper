@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.*;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institution;
+import uk.ac.ebi.ena.annotation.helper.exception.BadRequestException;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 import uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode;
 import uk.ac.ebi.ena.annotation.helper.mapper.CollectionMapper;
@@ -166,14 +167,13 @@ public class SAHServiceImpl implements SAHService {
     @Override
     public SAHResponseDto validate(String qualifierValue, String[] qualifierType) {
 
-        log.debug("Validating the qualifier value -- " + qualifierValue);
+        log.debug("Validating the attribute value -- " + qualifierValue);
 
         String[] tokenizedQV = qualifierValue.split(":");
 
         if (tokenizedQV.length < 2 || tokenizedQV.length > 3) {
-            log.info("Invalid qualifier format -- {} ", qualifierValue);
-            return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
-                    code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
+            log.info("Invalid attribute format -- {} ", qualifierValue);
+            throw new BadRequestException(InvalidFormatProvidedError, InvalidFormatProvidedMessage);
         }
 
         if (tokenizedQV.length == 2) {
@@ -187,14 +187,12 @@ public class SAHServiceImpl implements SAHService {
     public SAHResponseDto construct(String instUniqueName, String collCode, String identifier, String[] qualifierType) {
         if (isEmpty(instUniqueName)) {
             log.info("Missing institute unique name");
-            return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
-                    code(InstituteMissingError).message(InstituteMissingMessage).build()).build();
+            throw new BadRequestException(InstituteMissingError, InstituteMissingMessage);
         }
 
         if (isEmpty(identifier)) {
             log.info("Missing identifier");
-            return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
-                    code(IdentifierMissingError).message(IdentifierMissingMessage).build()).build();
+            throw new BadRequestException(IdentifierMissingError, IdentifierMissingMessage);
         }
 
         return validateAndConstruct(instUniqueName, collCode, identifier, qualifierType);
