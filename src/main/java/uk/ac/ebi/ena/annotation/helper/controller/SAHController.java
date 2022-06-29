@@ -33,11 +33,12 @@ import uk.ac.ebi.ena.annotation.helper.service.SAHService;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
+import static org.springframework.util.ObjectUtils.isEmpty;
 import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 
 @RestController
 @Slf4j
-@Api(tags = "ENA Source Annotations Helper APIs")
+@Api(tags = "ENA Source Attribute Helper APIs")
 @RequestMapping({"/ena/sah/api/"})
 @Validated
 public class SAHController {
@@ -58,7 +59,7 @@ public class SAHController {
                                                                  example = "specimen_voucher", required = false)
                                                          @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                                          @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        ResponseDto responseDto = SAHService.findByInstituteStringFuzzyWithQTArray(ivalue, qualifierType);
+        ResponseDto responseDto = SAHService.findByInstituteStringFuzzyWithQTArray(ivalue.trim(), qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
@@ -75,7 +76,7 @@ public class SAHController {
                                                                              example = "specimen_voucher", required = false)
                                                                      @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                                                      @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        ResponseDto responseDto = SAHService.findCollectionsByInstUniqueName(institutionUniqueName, qualifierType);
+        ResponseDto responseDto = SAHService.findCollectionsByInstUniqueName(institutionUniqueName.trim(), qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
@@ -95,7 +96,7 @@ public class SAHController {
                                                                           example = "specimen_voucher", required = false)
                                                                   @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                                                   @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        ResponseDto responseDto = SAHService.findByInstUniqueNameAndCollCode(institutionUniqueName, cvalue, qualifierType);
+        ResponseDto responseDto = SAHService.findByInstUniqueNameAndCollCode(institutionUniqueName.trim(), cvalue.trim(), qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
@@ -113,7 +114,7 @@ public class SAHController {
                                                    example = "specimen_voucher", required = false)
                                            @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                            @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        SAHResponseDto responseDto = SAHService.validate(value, qualifierType);
+        SAHResponseDto responseDto = SAHService.validate(value.trim(), qualifierType);
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
@@ -136,7 +137,7 @@ public class SAHController {
                                                     example = "specimen_voucher", required = false)
                                             @QualifierValuesAllowed(propName = "qualifier_type", values = {"specimen_voucher", "bio_material", "culture_collection"})
                                             @Valid @RequestParam(name = "qualifier_type", required = false) String[] qualifierType) {
-        SAHResponseDto responseDto = SAHService.construct(institution, collection, id, qualifierType);
+        SAHResponseDto responseDto = SAHService.construct(institution.trim(), isEmpty(collection) ? collection : collection.trim(), id.trim(), qualifierType);
 
         return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
