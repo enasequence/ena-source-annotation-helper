@@ -86,7 +86,7 @@ public class SAHControllerAdvice {
         responseDto.setErrors(Collections.singletonList(errorItem));
         responseDto.setSuccess(false);
         responseDto.setTimestamp(LocalDateTime.now());
-        return new ResponseEntity<>(responseDto, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(responseDto, HttpStatus.OK);
     }
 
     /**
