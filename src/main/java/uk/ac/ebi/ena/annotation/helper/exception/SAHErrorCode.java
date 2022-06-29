@@ -68,13 +68,14 @@ public class SAHErrorCode {
         errorCodesMap.put(BadRequestData, BadRequestDataMessage);
         errorCodesMap.put(FieldValidationError, FieldValidationMessage);
         errorCodesMap.put(RecordNotFoundError, RecordNotFoundMessage);
-        errorCodesMap.put(NoMatchingInstituteError, NoMatchingInstituteMessage);
-        errorCodesMap.put(NoMatchingCollectionError, NoMatchingCollectionMessage);
         errorCodesMap.put(InvalidFormatProvidedError, InvalidFormatProvidedMessage);
-        errorCodesMap.put(TooManyMatchesError, TooManyMatchesMessage);
         errorCodesMap.put(InstituteMissingError, InstituteMissingMessage);
         errorCodesMap.put(IdentifierMissingError, IdentifierMissingMessage);
-        errorCodesMap.put(NoMatchError, NoMatchMessage);
         errorCodesMap.put(QualifierTypeInvalidError, QualifierTypeInvalidCompleteMessage);
+        // [NOT IN USE FOR NOW]
+        // errorCodesMap.put(NoMatchingInstituteError, NoMatchingInstituteMessage);
+        // errorCodesMap.put(NoMatchingCollectionError, NoMatchingCollectionMessage);
+        // errorCodesMap.put(TooManyMatchesError, TooManyMatchesMessage);
+        // errorCodesMap.put(NoMatchError, NoMatchMessage);
     }
 }
