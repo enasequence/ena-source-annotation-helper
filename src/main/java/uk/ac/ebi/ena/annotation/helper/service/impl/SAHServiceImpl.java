@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.*;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institution;
+import uk.ac.ebi.ena.annotation.helper.exception.BadRequestException;
 import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 import uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode;
 import uk.ac.ebi.ena.annotation.helper.mapper.CollectionMapper;
@@ -85,8 +86,9 @@ public class SAHServiceImpl implements SAHService {
             return new InstituteResponseDto(institutionList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
                     true, LocalDateTime.now());
         }
-        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
-        return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
+        //no record found scenario
+        return new InstituteResponseDto(institutionList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
+                false, LocalDateTime.now());
     }
 
     @Override
@@ -95,9 +97,10 @@ public class SAHServiceImpl implements SAHService {
         Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
 
         if (!optionalInstitute.isPresent()) {
+            //no record found scenario
             log.info("No matching institute found for institute -- {}", instUniqueName);
-            ErrorResponse error = ErrorResponse.builder().message(NoMatchingInstituteMessage).code(NoMatchingInstituteError).build();
-            return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
+            return new InstituteResponseDto(new ArrayList<InstitutionDto>(),
+                    false, LocalDateTime.now());
         }
 
         InstitutionDto institutionDto = instituteMapper.toDto(optionalInstitute.get());
@@ -117,19 +120,21 @@ public class SAHServiceImpl implements SAHService {
                     true, LocalDateTime.now());
         }
 
+        //no record found scenario
         log.info("No matching collection found for institute -- {}", instUniqueName);
-        ErrorResponse error = ErrorResponse.builder().message(NoMatchingCollectionMessage).code(NoMatchingCollectionError).build();
-        return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
-
+        institutionDto.setCollections(new ArrayList<CollectionDto>());
+        return new InstituteResponseDto(Collections.singletonList(institutionDto),
+                false, LocalDateTime.now());
     }
 
     @Override
     public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String[] qualifierType) {
         Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
         if (!optionalInstitute.isPresent()) {
+            //no record found scenario
             log.info("No matching institute found for institute -- {}", instUniqueName);
-            ErrorResponse error = ErrorResponse.builder().message(NoMatchingInstituteMessage).code(NoMatchingInstituteError).build();
-            return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
+            return new InstituteResponseDto(new ArrayList<InstitutionDto>(),
+                    false, LocalDateTime.now());
         }
 
         InstitutionDto institutionDto = instituteMapper.toDto(optionalInstitute.get());
@@ -150,9 +155,11 @@ public class SAHServiceImpl implements SAHService {
                     true, LocalDateTime.now());
         }
 
+        //no record found scenario
         log.info("No matching collection found for institute -- {}", instUniqueName);
-        ErrorResponse error = ErrorResponse.builder().message(NoMatchingCollectionMessage).code(NoMatchingCollectionError).build();
-        return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
+        institutionDto.setCollections(new ArrayList<CollectionDto>());
+        return new InstituteResponseDto(Collections.singletonList(institutionDto),
+                false, LocalDateTime.now());
 
     }
 
@@ -160,14 +167,13 @@ public class SAHServiceImpl implements SAHService {
     @Override
     public SAHResponseDto validate(String qualifierValue, String[] qualifierType) {
 
-        log.debug("Validating the qualifier value -- " + qualifierValue);
+        log.debug("Validating the attribute value -- " + qualifierValue);
 
         String[] tokenizedQV = qualifierValue.split(":");
 
         if (tokenizedQV.length < 2 || tokenizedQV.length > 3) {
-            log.info("Invalid qualifier format -- {} ", qualifierValue);
-            return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
-                    code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
+            log.info("Invalid attribute format -- {} ", qualifierValue);
+            throw new BadRequestException(InvalidFormatProvidedError, InvalidFormatProvidedMessage);
         }
 
         if (tokenizedQV.length == 2) {
@@ -181,14 +187,12 @@ public class SAHServiceImpl implements SAHService {
     public SAHResponseDto construct(String instUniqueName, String collCode, String identifier, String[] qualifierType) {
         if (isEmpty(instUniqueName)) {
             log.info("Missing institute unique name");
-            return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
-                    code(InstituteMissingError).message(InstituteMissingMessage).build()).build();
+            throw new BadRequestException(InstituteMissingError, InstituteMissingMessage);
         }
 
         if (isEmpty(identifier)) {
             log.info("Missing identifier");
-            return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
-                    code(IdentifierMissingError).message(IdentifierMissingMessage).build()).build();
+            throw new BadRequestException(IdentifierMissingError, IdentifierMissingMessage);
         }
 
         return validateAndConstruct(instUniqueName, collCode, identifier, qualifierType);

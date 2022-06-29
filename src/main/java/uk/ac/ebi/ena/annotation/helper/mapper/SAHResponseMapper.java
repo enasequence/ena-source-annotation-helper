@@ -27,7 +27,6 @@ import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institution;
-import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ import java.util.List;
 import java.util.StringJoiner;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.*;
 
 @Component
@@ -121,21 +119,22 @@ public class SAHResponseMapper {
     }
 
     private SAHResponseDto buildTooManyMatchErrorResponse(ValidationSearchResult validationSearchResult) {
-        //build error object and return
+        //build an empty object and return
         log.info("Too many matches found for the given input -- {}", validationSearchResult.getInputParams());
         return SAHResponseDto.builder().success(false)
-                .error(ErrorResponse.builder().code(TooManyMatchesError).message(TooManyMatchesMessage).build())
                 .matchLevel(MATCH_LEVEL_TOO_MANY)
-                .inputValue(validationSearchResult.getInputParams()).build();
+                .matches(new ArrayList<MatchDto>())
+                .inputValue(validationSearchResult.getInputParams())
+                .build();
     }
 
     private SAHResponseDto buildMatchErrorResponse(ValidationSearchResult validationSearchResult) {
-        //build error object and return
+        //build an empty object and return
         log.info("No match found for the given input -- {}", validationSearchResult.getInputParams());
         return SAHResponseDto.builder().success(false)
-                .error(ErrorResponse.builder().code(NoMatchError).message(NoMatchMessage).build())
                 .matchLevel(MATCH_LEVEL_NONE)
-                .inputValue(validationSearchResult.getInputParams()).build();
+                .matches(new ArrayList<MatchDto>())
+                .inputValue(validationSearchResult.getInputParams())
+                .build();
     }
-
 }

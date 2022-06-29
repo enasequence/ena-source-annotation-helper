@@ -1,1016 +1,11 @@
 {
 	"info": {
-		"_postman_id": "d93d1346-142f-45bc-a174-4a2c9419d1c1",
-		"name": "ENASourceAnnotationHelper",
+		"_postman_id": "e2a3edb1-cd05-458f-835e-da77a336adb5",
+		"name": "ENA-SourceAttributeHelper-IntegrationTests",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "19420352"
 	},
 	"item": [
-		{
-			"name": "Institution-Index",
-			"item": [
-				{
-					"name": "AddMapping-Institute",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"settings\": {\n    \"number_of_shards\": 1,\n    \"number_of_replicas\": 0,\n    \"analysis\": {\n      \"analyzer\": {\n        \"folding\": {\n          \"tokenizer\": \"standard\",\n          \"filter\": [\n            \"lowercase\",\n            \"asciifolding\"\n          ]\n        }\n      },\n      \"normalizer\": {\n        \"lowerasciinormalizer\": {\n          \"type\": \"custom\",\n          \"filter\": [\n            \"lowercase\",\n            \"asciifolding\"\n          ]\n        }\n      }\n    }\n  },\n  \"mappings\": {\n    \"dynamic\": \"false\",\n    \"properties\": {\n      \"inst_id\": {\n        \"type\": \"long\",\n        \"meta\": {\n          \"description\": \"Institution Identifier\"\n        }\n      },\n      \"inst_code\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Code\"\n        }\n      },\n      \"unique_name\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Unique Name\"\n        }\n      },\n      \"inst_name\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Name\"\n        }\n      },\n      \"country\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Country\"\n        }\n      },\n      \"address\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Address\"\n        }\n      },\n      \"coll_type\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Collection Type\"\n        }\n      },\n      \"qualifier_type\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Qualifier Type\"\n        }\n      },\n      \"home_url\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution Home URL\"\n        }\n      },\n      \"url_rule\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Institution URL Rule\"\n        }\n      }\n    }\n  }\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add-Bulk-Institutions-v1",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "file",
-							"file": {
-								"src": "/Users/vikasg/Documents/ws/github/embl/ena-source-annotation-helper/ElascticSearch/v1/AllInstitutionsData.json"
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_bulk",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_bulk"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add-Test-Institute-01",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"inst_id\": 1,\n  \"inst_code\": \"TestMe\",\n  \"unique_name\": \"TestMe<Today>\",\n  \"inst_name\": \"TestMe American Entomological Institute\",\n  \"country\": \"USA\",\n  \"address\": \"3005 SW 56th Avenue, Gainesville, Florida 32608-5047\",\n  \"collection_type\": \"museum\",\n  \"qualifier_type\": \"specimen_voucher\",\n  \"home_url\": \"http:\\/\\/aei.tamu.edu\\/projects\\/17\\/public\\/site\\/aei\\/home\",\n  \"url_rule\": \"      \"\n }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_doc/1?refresh",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_doc",
-								"1"
-							],
-							"query": [
-								{
-									"key": "refresh",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-ALL-Institutes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-FuzzyQuery-01",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"query\": {\n    \"multi_match\": {\n      \"fields\":  [ \"inst_code\", \"unique_name\", \"inst_name\" ],\n      \"query\":     \"ANS\",\n      \"fuzziness\": \"AUTO\"\n    }\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-FuzzyQuery-WithQT-01",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"size\": 2, \"query\": {\"bool\": {\"must\": [{\"match\": {\"qualifier_type\": \"specimen_voucher\"}}, {\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"ANS\", \"fuzziness\": \"AUTO\" }}]}}}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-FuzzyQuery-WithQTArray-01",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\n{\"size\": 2, \"query\": {\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": [\"specimen_voucher\",\"bio_material\"] }}, {\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"ANS\", \"fuzziness\": \"AUTO\" }}]}}}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-ByInstCode",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"query\": {\n    \"match\": {\n      \"inst_code\": {\n        \"query\": \"AMG\"\n      }\n    }\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-ByInstUniqueNameAndQT-01",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"query\": {\"bool\": {\"must\": [{ \"match\": { \"unique_name\": \"AEI\" } },{\"terms\": {\"qualifier_type\": [\"specimen_voucher\"] }}]}}}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-MultiMatchInst-MaxCheck-01",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\"query\": {\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\"], \"query\": \"MSG\", \"fuzziness\": \"AUTO\" }}}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete-Institute-Index",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/institution?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"institution"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Collection-Index",
-			"item": [
-				{
-					"name": "AddMapping-Collection",
-					"request": {
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"settings\": {\n    \"number_of_shards\": 1,\n    \"number_of_replicas\": 0,\n    \"analysis\": {\n      \"analyzer\": {\n        \"folding\": {\n          \"tokenizer\": \"standard\",\n          \"filter\": [\n            \"lowercase\",\n            \"asciifolding\"\n          ]\n        }\n      },\n      \"normalizer\": {\n        \"lowerasciinormalizer\": {\n          \"type\": \"custom\",\n          \"filter\": [\n            \"lowercase\",\n            \"asciifolding\"\n          ]\n        }\n      }\n    }\n  },\n  \"mappings\": {\n    \"dynamic\": \"false\",\n    \"properties\": {\n      \"coll_id\": {\n        \"type\": \"long\",\n        \"meta\": {\n          \"description\": \"Collection Identifier\"\n        }\n      },\n      \"inst_id\": {\n        \"type\": \"long\",\n        \"meta\": {\n          \"description\": \"Institute Identifier\"\n        }\n      },\n      \"coll_code\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Collection Code\"\n        }\n      },\n      \"coll_name\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Collection Name\"\n        }\n      },\n      \"coll_type\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Collection Type\"\n        }\n      },\n      \"qualifier_type\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Qualifier Type\"\n        }\n      },\n      \"coll_url\": {\n        \"type\": \"text\",\n        \"meta\": {\n          \"description\": \"Collection URL\"\n        }\n      }\n    }\n  }\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add-Bulk-Collections-v1",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "file",
-							"file": {
-								"src": "/Users/vikasg/Documents/ws/github/embl/ena-source-annotation-helper/ElascticSearch/v1/AllCollectionsData.json"
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_doc/_bulk",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_doc",
-								"_bulk"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add-Test-Collection-01",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"coll_id\": \"7421\",\n  \"inst_id\": \"10\",\n  \"coll_code\": \"TestMe\",\n  \"coll_name\": \"Test Arachnida (Mites, Ticks, Spiders)\",\n  \"coll_type\": \"museum\",\n  \"qualifier_type\": \"specimen_voucher\",\n  \"coll_url\": \"http:\\/\\/www.canacoll.org\\/Arach\\/Main\\/arachnid.htm\"\n }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_doc/1?refresh",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_doc",
-								"1"
-							],
-							"query": [
-								{
-									"key": "refresh",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-Collections-ALL",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-FuzzyQuery-01",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"query\": {\n    \"multi_match\": {\n      \"fields\":  [ \"coll_code\", \"coll_name\" ],\n      \"query\":     \"Arachnida\",\n      \"fuzziness\": \"AUTO\"\n    }\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-FuzzyWithInstId-01",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"match\": {\n                        \"inst_id\": 10\n                    }\n                },\n                {\n                    \"multi_match\": {\n                        \"fields\": [\n                            \"coll_code\",\n                            \"coll_name\"\n                        ],\n                        \"query\": \"Arachnida\",\n                        \"fuzziness\": \"AUTO\"\n                    }\n                }\n            ]\n        }\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-FuzzyWithInstId-QT-01",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"match\": {\n                        \"inst_id\": 10\n                    }\n                },\n                {\n                    \"match\": {\n                        \"qualifier_type\": \"specimen_voucher\"\n                    }\n                },\n                {\n                    \"multi_match\": {\n                        \"fields\": [\n                            \"coll_code\",\n                            \"coll_name\"\n                        ],\n                        \"query\": \"Arachnida\",\n                        \"fuzziness\": \"AUTO\"\n                    }\n                }\n            ]\n        }\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-FuzzyWithInstIdMuseum",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                    \"match\": {\n                        \"inst_id\": 10\n                    }\n                },\n                {\n                    \"multi_match\": {\n                        \"fields\": [\n                            \"coll_type\",\n                            \"coll_name\"\n                        ],\n                        \"query\": \"museum\",\n                        \"fuzziness\": \"AUTO\"\n                    }\n                }\n            ]\n        }\n    },\n\t\"size\": 1\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-FuzzyWithInstIdMultiple",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"query\": {\n        \"bool\": {\n            \"must\": [\n                {\n                \"terms\": {\n                    \"inst_id\": [10, 362]\n                }\n            },\n                {\n                    \"multi_match\": {\n                        \"fields\": [\n                            \"coll_type\",\n                            \"coll_name\"\n                        ],\n                        \"query\": \"museum\",\n                        \"fuzziness\": \"AUTO\"\n                    }\n                }\n            ]\n        }\n    }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "QueryDocs-ByCollCode",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"query\": {\n    \"match\": {\n      \"inst_code\": {\n        \"query\": \"Arachnida\"\n      }\n    }\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection/_search?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection",
-								"_search"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete-Collection-Index",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://dca-wh-es-test:9200/collection?pretty",
-							"protocol": "http",
-							"host": [
-								"dca-wh-es-test"
-							],
-							"port": "9200",
-							"path": [
-								"collection"
-							],
-							"query": [
-								{
-									"key": "pretty",
-									"value": null
-								}
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "GraphQL-APIs",
-			"item": [
-				{
-					"name": "Institutes-GraphQL",
-					"item": [
-						{
-							"name": "App-GraphQL-FetchAll",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "{\n   institutes {\n     instId\n     instCode\n     uniqueName\n     instName\n   }\n }",
-										"variables": ""
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-GraphQL-FuzzySearch",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"query\": \"{ institutes (query: \\\"ANS\\\") { instId instCode uniqueName instName }}\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-GraphQL-FuzzySearch-GQLPayload",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "query institutes ($queryStr: String) {\n   institutes (query: $queryStr) {\n     instId\n     instCode\n     instName\n     uniqueName\n   }\n }",
-										"variables": "{\"queryStr\":\"ANS\"}"
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-GraphQL-All-Inst-GQLPayload",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "query institutes ($queryStr: String) {\n   institutes (query: $queryStr) {\n     instId\n     instCode\n     instName\n     uniqueName\n   }\n }",
-										"variables": "{\"queryStr\":\"ANS\"}"
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
-					"name": "Collections-GraphQL",
-					"item": [
-						{
-							"name": "App-GraphQL-FetchAll",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "{\n   collections {\n     collId\n     collCode\n     instId\n     collName\n   }\n } ",
-										"variables": ""
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-GraphQL-FetchByCode",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "{\n   collections (query: \"AMG\"){\n     collId\n     collCode\n     instId\n     collName\n   }\n } ",
-										"variables": ""
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-GraphQL-FuzzySearch",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"query\": \"{ collections (query: \\\"MQtes\\\") { collId instId collCode collName }}\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-GraphQL-FuzzyCollSearch-GQLPayload",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "query collections($queryStr: String) {\n    collections (query: $queryStr) {\n     collId\n     instId\n     collCode\n     collName\n   }\n }",
-										"variables": "{\"queryStr\":\"MQtes\"}"
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "App-GraphQL-All-Coll-GQLPayload",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "{\n  collections {\n    collId\n    collCode\n    collName\n  }\n}",
-										"variables": ""
-									}
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/graphql",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				}
-			]
-		},
 		{
 			"name": "RESTFul-APIs",
 			"item": [
@@ -1037,11 +32,12 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/actuator/health",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/actuator/health",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
+										"{{sah_app_context}}",
 										"actuator",
 										"health"
 									]
@@ -1058,7 +54,7 @@
 										"exec": [
 											"pm.test(\"Actuator-Links-Test\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData._links.info.href).to.eql(\"http://localhost:8080/actuator/info\");",
+											"    pm.expect(jsonData._links.info.href).to.eql(\"http://localhost:8080/ena/sah/api/actuator/info\");",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1069,12 +65,44 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/actuator/",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/actuator/",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
+										"{{sah_app_context}}",
 										"actuator",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Swagger-Page-Query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
 										""
 									]
 								}
@@ -2225,9 +1253,14 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Bad-01-errorCode\", function () {",
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3006);",
+											"    pm.expect(jsonData.institutions.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Bad-01-coll-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).eq(0);",
 											"});",
 											""
 										],
@@ -2266,14 +1299,18 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-01-check\", function () {",
+											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-check\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-ErrorCode\", function () {",
+											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3005);",
+											"    pm.expect(jsonData.institutions.length).eq(0);",
 											"});",
 											"",
 											""
@@ -2312,10 +1349,20 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-ErrorCode\", function () {",
+											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3006);",
-											"});"
+											"    pm.expect(jsonData.institutions.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).eq(0);",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -2511,6 +1558,21 @@
 											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-NoRecord-Bad-01-check\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-NoRecord-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-NoRecord-Bad-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-NoRecord-Bad-01-coll-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).eq(0);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -2554,10 +1616,64 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
 											"",
-											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-ErrorCode\", function () {",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3006);",
+											"    pm.expect(jsonData.institutions.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-coll-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).eq(0);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/MRAC/collection/QQQ",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"MRAC",
+										"collection",
+										"QQQ"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCodeandCollCode-Bad-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).eq(0);",
 											"});",
 											""
 										],
@@ -2569,16 +1685,16 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/MRAC/collection/FAZC",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/QQQ/collection/Bird",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"MRAC",
+										"QQQ",
 										"collection",
-										"FAZC"
+										"Bird"
 									]
 								}
 							},
@@ -2625,6 +1741,50 @@
 										"{{sah_app_context}}",
 										"institution",
 										"ANS"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-FuzzySearchStr-SingleChar-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-FuzzySearchStr-SingleChar-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Inst-FuzzySearchStr-SingleChar-Good-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/R   ",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"R   "
 									]
 								}
 							},
@@ -2891,6 +2051,10 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
+											"pm.test(\"Inst-FuzzySearchStr-QTArray-BadQT-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
 											"pm.test(\"Inst-FuzzySearchStr-QTArray-BadQT-01-error-code\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.errors[0].code).to.eq(3015);",
@@ -2943,6 +2107,7 @@
 											"    pm.expect(jsonData.success).to.eql(true);",
 											"});",
 											"",
+											"",
 											"pm.test(\"Inst-FuzzySearchStr-QTArray-EmptyQT-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
@@ -2984,110 +2149,6 @@
 							"response": []
 						},
 						{
-							"name": "Inst-FuzzySearchStr-QTArray-ShortInst-Bad-01",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-FuzzySearchStr-QTArray-ShortInst-Bad-01-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(false);",
-											"});",
-											"",
-											"pm.test(\"Inst-FuzzySearchStr-QTArray-ShortInst-Bad-01-error-code\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3015);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/AN?qualifier_type=specimen_voucher",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"{{sah_app_context}}",
-										"institution",
-										"AN"
-									],
-									"query": [
-										{
-											"key": "qualifier_type",
-											"value": "specimen_voucher"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Inst-FuzzySearchStr-QTArray-ShortInst-NoQT-Bad-02",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Inst-FuzzySearchStr-QTArray-ShortInst-NoQT-Bad-02-Success-Check\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.success).to.eql(false);",
-											"});",
-											"",
-											"pm.test(\"Inst-FuzzySearchStr-QTArray-ShortInst-NoQT-Bad-02-error-code\", function () {",
-											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3015);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/AN?qualifier_type=specimen_voucher",
-									"host": [
-										"{{current-sv-env}}"
-									],
-									"path": [
-										"{{sah_app_context}}",
-										"institution",
-										"AN"
-									],
-									"query": [
-										{
-											"key": "qualifier_type",
-											"value": "specimen_voucher"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Inst-FuzzySearchStr-Bad-01",
 							"event": [
 								{
@@ -3098,7 +2159,15 @@
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
-											""
+											"",
+											"pm.test(\"Inst-FuzzySearchStr-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Inst-FuzzySearchStr-Bad-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).eq(0);",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -3414,11 +2483,10 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Validate-SimilarMatchMultiple-Inst-WithQT-Bad-01-error-check\", function () {",
+											"pm.test(\"Validate-SimilarMatchMultiple-Inst-WithQT-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(3012);",
-											"});",
-											""
+											"    pm.expect(jsonData.matches.length).eq(0);",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -3677,9 +2745,13 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Validate-NoMatch-WithColl-01-ErrorCode\", function () {",
+											"pm.test(\"Validate-NoMatch-WithColl-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Validate-NoMatch-WithColl-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(3012);",
+											"    pm.expect(jsonData.matches.length).eq(0);",
 											"});",
 											""
 										],
@@ -3703,6 +2775,102 @@
 										{
 											"key": "value",
 											"value": "TSUV:Bird:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-NoValue-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-NoValue-Bad-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Validate-NoValue-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validate-NoValue-Bad-01-error-code\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).eq(3008);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-DummyValue-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-DummyValue-Bad-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Validate-DummyValue-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validate-DummyValue-Bad-01-error-code\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).eq(3008);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=QWERTY",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "QWERTY"
 										}
 									]
 								}
@@ -4229,9 +3397,9 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Bad-01-error\", function () {",
+											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(3012);",
+											"    pm.expect(jsonData.matches.length).eq(0);",
 											"});",
 											""
 										],
@@ -4285,9 +3453,13 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Construct-NoMatch-WithColl-01-ErrorCode\", function () {",
+											"pm.test(\"Construct-NoMatch-WithColl-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoMatch-WithColl-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(3012);",
+											"    pm.expect(jsonData.matches.length).eq(0);",
 											"});",
 											""
 										],
@@ -4319,6 +3491,118 @@
 										{
 											"key": "id",
 											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-NoInst-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-NoInst-Bad-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoInst-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoInst-Bad-01-error-code\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).eq(3010);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=&collection=Bird&id=123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institution",
+											"value": ""
+										},
+										{
+											"key": "collection",
+											"value": "Bird"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-NoIdentifier-Bad-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-NoIdentifier-Bad-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoIdentifier-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Construct-NoIdentifier-Bad-01-error-code\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).eq(3011);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institution",
+											"value": "HSUV"
+										},
+										{
+											"key": "collection",
+											"value": "Bird"
+										},
+										{
+											"key": "id",
+											"value": ""
 										}
 									]
 								}
