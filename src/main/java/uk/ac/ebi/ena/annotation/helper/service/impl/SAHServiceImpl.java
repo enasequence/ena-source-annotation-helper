@@ -75,11 +75,11 @@ public class SAHServiceImpl implements SAHService {
     public ResponseDto findByInstituteStringFuzzyWithQTArray(String name, String[] qualifierType) {
         List<Institution> institutionList;
         if (isEmpty(qualifierType)) {
-            institutionList = institutionRepository.findByInstituteFuzzy(name);
+            institutionList = institutionRepository.findByInstituteFuzzy(name.trim());
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
             institutionList = institutionRepository
-                    .findByInstituteFuzzyAndQualifierTypeArray(name, listQT, QUERY_RESULTS_LIMIT);
+                    .findByInstituteFuzzyAndQualifierTypeArray(name.trim(), listQT, QUERY_RESULTS_LIMIT);
         }
         if (!institutionList.isEmpty()) {
             return new InstituteResponseDto(institutionList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
@@ -93,11 +93,11 @@ public class SAHServiceImpl implements SAHService {
     @Override
     public ResponseDto findCollectionsByInstUniqueName(String instUniqueName, String[] qualifierType) {
 
-        Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
+        Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName.trim());
 
         if (!optionalInstitute.isPresent()) {
             //no record found scenario
-            log.info("No matching institute found for institute -- {}", instUniqueName);
+            log.info("No matching institute found for institute -- {}", instUniqueName.trim());
             return new InstituteResponseDto(new ArrayList<InstitutionDto>(),
                     false, LocalDateTime.now());
         }
@@ -120,7 +120,7 @@ public class SAHServiceImpl implements SAHService {
         }
 
         //no record found scenario
-        log.info("No matching collection found for institute -- {}", instUniqueName);
+        log.info("No matching collection found for institute -- {}", instUniqueName.trim());
         institutionDto.setCollections(new ArrayList<CollectionDto>());
         return new InstituteResponseDto(Collections.singletonList(institutionDto),
                 false, LocalDateTime.now());
@@ -131,7 +131,7 @@ public class SAHServiceImpl implements SAHService {
         Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
         if (!optionalInstitute.isPresent()) {
             //no record found scenario
-            log.info("No matching institute found for institute -- {}", instUniqueName);
+            log.info("No matching institute found for institute -- {}", instUniqueName.trim());
             return new InstituteResponseDto(new ArrayList<InstitutionDto>(),
                     false, LocalDateTime.now());
         }
@@ -140,12 +140,12 @@ public class SAHServiceImpl implements SAHService {
         List<Collection> listCollection;
         if (isEmpty(qualifierType)) {
             listCollection =
-                    collectionRepository.findByInstIdAndCollNameFuzzy(optionalInstitute.get().getInstId(), collCode);
+                    collectionRepository.findByInstIdAndCollNameFuzzy(optionalInstitute.get().getInstId(), collCode.trim());
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
             listCollection =
                     collectionRepository.findByInstIdAndCollNameFuzzyWithQualifierType(optionalInstitute.get().getInstId(),
-                            collCode, listQT);
+                            collCode.trim(), listQT);
         }
 
         if (!listCollection.isEmpty()) {
@@ -155,7 +155,7 @@ public class SAHServiceImpl implements SAHService {
         }
 
         //no record found scenario
-        log.info("No matching collection found for institute -- {}", instUniqueName);
+        log.info("No matching collection found for institute -- {}", instUniqueName.trim());
         institutionDto.setCollections(new ArrayList<CollectionDto>());
         return new InstituteResponseDto(Collections.singletonList(institutionDto),
                 false, LocalDateTime.now());
@@ -166,20 +166,20 @@ public class SAHServiceImpl implements SAHService {
     @Override
     public SAHResponseDto validate(String qualifierValue, String[] qualifierType) {
 
-        log.debug("Validating the qualifier value -- " + qualifierValue);
+        log.debug("Validating the qualifier value -- " + qualifierValue.trim());
 
-        String[] tokenizedQV = qualifierValue.split(":");
+        String[] tokenizedQV = qualifierValue.trim().split(":");
 
         if (tokenizedQV.length < 2 || tokenizedQV.length > 3) {
-            log.info("Invalid qualifier format -- {} ", qualifierValue);
+            log.info("Invalid qualifier format -- {} ", qualifierValue.trim());
             return SAHResponseDto.builder().success(false).error(ErrorResponse.builder().
                     code(InvalidFormatProvidedError).message(InvalidFormatProvidedMessage).build()).build();
         }
 
         if (tokenizedQV.length == 2) {
-            return validateAndConstruct(tokenizedQV[0], null, tokenizedQV[1], qualifierType);
+            return validateAndConstruct(tokenizedQV[0].trim(), null, tokenizedQV[1].trim(), qualifierType);
         } else {
-            return validateAndConstruct(tokenizedQV[0], tokenizedQV[1], tokenizedQV[2], qualifierType);
+            return validateAndConstruct(tokenizedQV[0].trim(), tokenizedQV[1].trim(), tokenizedQV[2].trim(), qualifierType);
         }
     }
 
@@ -197,7 +197,8 @@ public class SAHServiceImpl implements SAHService {
                     code(IdentifierMissingError).message(IdentifierMissingMessage).build()).build();
         }
 
-        return validateAndConstruct(instUniqueName, collCode, identifier, qualifierType);
+        return validateAndConstruct(instUniqueName.trim(), isEmpty(collCode) ? null : collCode.trim(),
+                identifier.trim(), qualifierType);
     }
 
     @Override
