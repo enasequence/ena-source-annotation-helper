@@ -1253,9 +1253,14 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Bad-01-errorCode\", function () {",
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3006);",
+											"    pm.expect(jsonData.institutions.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-WithQT-Bad-01-coll-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).eq(0);",
 											"});",
 											""
 										],
@@ -1303,9 +1308,9 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
-											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-ErrorCode\", function () {",
+											"pm.test(\"Coll-ByInstCode-NoInst-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3005);",
+											"    pm.expect(jsonData.institutions.length).eq(0);",
 											"});",
 											"",
 											""
@@ -1348,10 +1353,16 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
-											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-ErrorCode\", function () {",
+											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3006);",
-											"});"
+											"    pm.expect(jsonData.institutions.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-NoColl-Bad-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).eq(0);",
+											"});",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -1554,9 +1565,14 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
-											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-NoRecord-Bad-01-ErrorCode\", function () {",
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-NoRecord-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3006);",
+											"    pm.expect(jsonData.institutions.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-WithQT-NoRecord-Bad-01-coll-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).eq(0);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -1604,9 +1620,60 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
-											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-ErrorCode\", function () {",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.errors[0].code).to.eq(3006);",
+											"    pm.expect(jsonData.institutions.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-coll-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections.length).eq(0);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/MRAC/collection/QQQ",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"MRAC",
+										"collection",
+										"QQQ"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCodeandCollCode-Bad-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-Success-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-HTTPResponseCode\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCodeandCollCode-Bad-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).eq(0);",
 											"});",
 											""
 										],
@@ -1618,16 +1685,16 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/MRAC/collection/FAZC",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/QQQ/collection/Bird",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"MRAC",
+										"QQQ",
 										"collection",
-										"FAZC"
+										"Bird"
 									]
 								}
 							},
@@ -2095,6 +2162,11 @@
 											"",
 											"pm.test(\"Inst-FuzzySearchStr-Bad-01-HTTPResponseCode\", function () {",
 											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Inst-FuzzySearchStr-Bad-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).eq(0);",
 											"});"
 										],
 										"type": "text/javascript"
@@ -2411,11 +2483,10 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Validate-SimilarMatchMultiple-Inst-WithQT-Bad-01-error-check\", function () {",
+											"pm.test(\"Validate-SimilarMatchMultiple-Inst-WithQT-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(3012);",
-											"});",
-											""
+											"    pm.expect(jsonData.matches.length).eq(0);",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -2678,9 +2749,9 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
-											"pm.test(\"Validate-NoMatch-WithColl-01-ErrorCode\", function () {",
+											"pm.test(\"Validate-NoMatch-WithColl-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(3012);",
+											"    pm.expect(jsonData.matches.length).eq(0);",
 											"});",
 											""
 										],
@@ -3230,9 +3301,9 @@
 											"    pm.expect(jsonData.success).to.eql(false);",
 											"});",
 											"",
-											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Bad-01-error\", function () {",
+											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Bad-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(3012);",
+											"    pm.expect(jsonData.matches.length).eq(0);",
 											"});",
 											""
 										],
@@ -3290,9 +3361,9 @@
 											"    pm.response.to.have.status(200);",
 											"});",
 											"",
-											"pm.test(\"Construct-NoMatch-WithColl-01-ErrorCode\", function () {",
+											"pm.test(\"Construct-NoMatch-WithColl-01-array-len\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.error.code).to.eq(3012);",
+											"    pm.expect(jsonData.matches.length).eq(0);",
 											"});",
 											""
 										],
