@@ -85,8 +85,9 @@ public class SAHServiceImpl implements SAHService {
             return new InstituteResponseDto(institutionList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
                     true, LocalDateTime.now());
         }
-        ErrorResponse error = ErrorResponse.builder().message(RecordNotFoundMessage).code(RecordNotFoundError).build();
-        return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
+        //no record found scenario
+        return new InstituteResponseDto(institutionList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
+                false, LocalDateTime.now());
     }
 
     @Override
@@ -95,9 +96,10 @@ public class SAHServiceImpl implements SAHService {
         Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
 
         if (!optionalInstitute.isPresent()) {
+            //no record found scenario
             log.info("No matching institute found for institute -- {}", instUniqueName);
-            ErrorResponse error = ErrorResponse.builder().message(NoMatchingInstituteMessage).code(NoMatchingInstituteError).build();
-            return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
+            return new InstituteResponseDto(new ArrayList<InstitutionDto>(),
+                    false, LocalDateTime.now());
         }
 
         InstitutionDto institutionDto = instituteMapper.toDto(optionalInstitute.get());
@@ -117,19 +119,21 @@ public class SAHServiceImpl implements SAHService {
                     true, LocalDateTime.now());
         }
 
+        //no record found scenario
         log.info("No matching collection found for institute -- {}", instUniqueName);
-        ErrorResponse error = ErrorResponse.builder().message(NoMatchingCollectionMessage).code(NoMatchingCollectionError).build();
-        return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
-
+        institutionDto.setCollections(new ArrayList<CollectionDto>());
+        return new InstituteResponseDto(Collections.singletonList(institutionDto),
+                false, LocalDateTime.now());
     }
 
     @Override
     public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String[] qualifierType) {
         Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
         if (!optionalInstitute.isPresent()) {
+            //no record found scenario
             log.info("No matching institute found for institute -- {}", instUniqueName);
-            ErrorResponse error = ErrorResponse.builder().message(NoMatchingInstituteMessage).code(NoMatchingInstituteError).build();
-            return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
+            return new InstituteResponseDto(new ArrayList<InstitutionDto>(),
+                    false, LocalDateTime.now());
         }
 
         InstitutionDto institutionDto = instituteMapper.toDto(optionalInstitute.get());
@@ -150,9 +154,11 @@ public class SAHServiceImpl implements SAHService {
                     true, LocalDateTime.now());
         }
 
+        //no record found scenario
         log.info("No matching collection found for institute -- {}", instUniqueName);
-        ErrorResponse error = ErrorResponse.builder().message(NoMatchingCollectionMessage).code(NoMatchingCollectionError).build();
-        return new ResponseDto(false, LocalDateTime.now(), Collections.singletonList(error));
+        institutionDto.setCollections(new ArrayList<CollectionDto>());
+        return new InstituteResponseDto(Collections.singletonList(institutionDto),
+                false, LocalDateTime.now());
 
     }
 
