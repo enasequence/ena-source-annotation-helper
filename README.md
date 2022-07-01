@@ -11,7 +11,7 @@ Following applications must be installed, configured and accessible for the buil
 - ElasticSearch
 
 ## Swagger Documentation
-Swagger API documentation can be launched by pointing the browser to [Swagger-UI](http://localhost:8080/swagger-ui/)
+Swagger API documentation can be launched by pointing the browser to [Swagger-UI](https://wwwdev.ebi.ac.uk/ena/sah/api/)
 
 ## Actuator Endpoints
 - **Health**
@@ -20,6 +20,16 @@ Swagger API documentation can be launched by pointing the browser to [Swagger-UI
 - **Info**
   - Displays application information (to be extended to desired attributes)
   - URL to access - `http://localhost:8080/actuator/`
+
+## Migrate Data from NCBI Biocollections FTP Server (Manual Process)
+### Step - 1 execute `./ElasticSearch/scripts/process-ncbi-biocollections-data.sh`
+- this will process the input files for institutions and collections, and will generate the output files in  `./ElasticSearch/scripts/output` directory
+
+### Step - 2 replace filenames and Elastic URL before executing `./ElasticSearch/scripts/persist-ncbi-biocollections-data.sh`
+- replace the generated output file names from the files generated in `./ElasticSearch/scripts/output` directory
+- replace the variable occurrences `$ELASTIC_DATASTORE_URL` with the actual ElasticSearch URL
+- execute the script `./ElasticSearch/scripts/persist-ncbi-biocollections-data.sh`
+
 
 
 ## Document References
