@@ -47,6 +47,12 @@ public class SAHResponseMapper {
     @Autowired
     InstituteMapper instituteMapper;
 
+    /**
+     * mapResponseDto - Mapper to Map ValidationSearchResult with ResponseDto.
+     *
+     * @param validationSearchResult
+     * @return
+     */
     public SAHResponseDto mapResponseDto(ValidationSearchResult validationSearchResult) {
 
         log.debug("Processing Search Result with {}", validationSearchResult.getMatch());
@@ -69,6 +75,12 @@ public class SAHResponseMapper {
         return buildMatchErrorResponse(validationSearchResult);
     }
 
+    /**
+     * buildSuccessMatchResponse.
+     *
+     * @param validationSearchResult
+     * @return
+     */
     private SAHResponseDto buildSuccessMatchResponse(ValidationSearchResult validationSearchResult) {
         //mean only single entry in response array
         log.debug("Building Success Match Response");
@@ -107,6 +119,15 @@ public class SAHResponseMapper {
                 .build();
     }
 
+    /**
+     * buildQualifierValueString.
+     *
+     * @param instUniqueName
+     * @param collCode
+     * @param identifier
+     * @param collectionAvailable
+     * @return
+     */
     private String buildQualifierValueString(String instUniqueName, String collCode,
                                              String identifier, boolean collectionAvailable) {
         StringJoiner sjQualifierValue = new StringJoiner(":");
