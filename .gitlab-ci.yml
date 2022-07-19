@@ -2,6 +2,10 @@ image: java:8
 
 variables:
   VERSION: "1.0.0"
+  DOCKER_DRIVER: overlay2
+  CONTAINER_BUILD_IMAGE: build:latest
+  CONTAINER_RUNTIME_IMAGE: runtime
+  DOCKER_TLS_CERTDIR: ""
 
 stages:
   - test
@@ -25,7 +29,10 @@ test:
   tags:
     - dcap-gitlab-runner
 
-build_dev:
+build_docker_image:
+  image: docker:latest
+  services:
+    - docker:dind
   stage: build
   before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
@@ -33,14 +40,20 @@ build_dev:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
     - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker build --no-cache --rm=true -t dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper .
+    - docker push dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper
+  after_script:
+    - docker logout ${CI_REGISTRY}
   tags:
     - dcap-gitlab-runner
   artifacts:
+    expire_in: 1 day
     paths:
-      - build/libs/source-annotation-helper-${VERSION}.jar
+      - dist
   only:
     - master
-    - dcp-3148-initial
+    - dcp-3300-prod-deploy
 
 deploy_dev:
   stage: deploy
@@ -81,19 +94,11 @@ build_prod:
 
 deploy_prod:
   stage: deploy
-  before_script:
-    # Setup SSH deploy keys
-    - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   script:
-    - chmod u+x build/libs/source-annotation-helper-${VERSION}.jar
-    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.jar ena_adm@SERVER_NAME:/nfs/public/rw/ena/source-annotation-helper/deploy
+    - sed -i "s|TAG|$CI_COMMIT_SHA|g" k8s-deployment.yaml
+    - export KUBECONFIG=/home/gitlab-runner/.kube/<<webadmin-01-team-adm>> &&  kubectl apply -f k8s-deployment.yaml
   tags:
     - dcap-gitlab-runner
-  dependencies:
-    - build_prod
   environment:
     name: prod
     url: https://www.ebi.ac.uk/ena/sah/api/
