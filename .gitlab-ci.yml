@@ -69,7 +69,7 @@ deploy_dev:
   tags:
     - dcap-gitlab-runner
   dependencies:
-    - build_dev
+    - build_docker_image
   environment:
     name: dev
     url: https://wwwdev.ebi.ac.uk/ena/sah/api/
