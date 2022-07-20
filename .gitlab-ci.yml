@@ -10,6 +10,7 @@ variables:
 stages:
   - test
   - build
+  - dockerise
   - deploy
 
 cache:
@@ -50,7 +51,7 @@ build_docker_image:
   image: docker:latest
   services:
     - docker:dind
-  stage: build
+  stage: dockerise
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build --no-cache --rm=true -t dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper .
