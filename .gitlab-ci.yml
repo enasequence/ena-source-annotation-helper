@@ -45,7 +45,7 @@ build_dev:
       - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
-    - dcp-3148-initial
+    - dcp-3300-prod-deploy
 
 build_docker_image:
   image: docker:latest
