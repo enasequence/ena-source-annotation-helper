@@ -36,7 +36,8 @@ build_docker_image:
   stage: build
   before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
-    - export JAVA_HOME=/usr/local/openjdk-8/bin
+    - echo $JAVA_HOME
+    - export JAVA_HOME=/usr/local/openjdk-8
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
     - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
