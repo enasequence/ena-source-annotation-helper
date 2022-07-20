@@ -48,7 +48,7 @@ build_dev:
     - dcp-3300-prod-deploy
 
 build_docker_image:
-  image: docker:stable
+  image: docker:latest
   services:
     - docker:dind
   stage: dockerise
@@ -58,6 +58,8 @@ build_docker_image:
     - docker push dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper
   after_script:
     - docker logout dockerhub.ebi.ac.uk
+  tags:
+    - dcap-gitlab-runner
   dependencies:
     - build_dev
   artifacts:
