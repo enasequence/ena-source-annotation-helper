@@ -21,6 +21,11 @@ test:
   stage: test
   before_script:
     - export GRADLE_USER_HOME=`pwd`/.gradle
+    - whereis java
+    - which java
+    - echo `which java`
+    - echo `whereis java`
+    - export JAVA_HOME=`which java`
   script:
     - sed -i 's/<env>/test/' src/main/resources/application.properties
     - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-test.properties
