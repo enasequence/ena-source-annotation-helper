@@ -53,11 +53,11 @@ build_docker_image:
     - docker:dind
   stage: dockerise
   script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN dockerhub.ebi.ac.uk
     - docker build --no-cache --rm=true -t dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper .
     - docker push dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper
   after_script:
-    - docker logout ${CI_REGISTRY}
+    - docker logout dockerhub.ebi.ac.uk
   tags:
     - dcap-gitlab-runner
   dependencies:
@@ -84,7 +84,7 @@ deploy_dev:
   tags:
     - dcap-gitlab-runner
   dependencies:
-    - build_docker_image
+    - build_dev
   environment:
     name: dev
     url: https://wwwdev.ebi.ac.uk/ena/sah/api/
