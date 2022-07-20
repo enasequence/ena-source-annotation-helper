@@ -29,19 +29,29 @@ test:
   tags:
     - dcap-gitlab-runner
 
+build_dev:
+  stage: build
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  script:
+    - sed -i 's/<env>/dev/' src/main/resources/application.properties
+    - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
+    - ./gradlew clean build -x test
+  tags:
+    - dcap-gitlab-runner
+  artifacts:
+    paths:
+      - build/libs/source-annotation-helper-${VERSION}.jar
+  only:
+    - master
+    - dcp-3148-initial
+
 build_docker_image:
   image: docker:latest
   services:
     - docker:dind
   stage: build
-  before_script:
-    - export GRADLE_USER_HOME=`pwd`/.gradle
-    - echo $JAVA_HOME
-    - export JAVA_HOME=/usr/local/openjdk-8
   script:
-    - sed -i 's/<env>/dev/' src/main/resources/application.properties
-    - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
-    - ./gradlew clean build -x test
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
     - docker build --no-cache --rm=true -t dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper .
     - docker push dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper
@@ -49,6 +59,8 @@ build_docker_image:
     - docker logout ${CI_REGISTRY}
   tags:
     - dcap-gitlab-runner
+  dependencies:
+    - build_dev
   artifacts:
     expire_in: 1 day
     paths:
