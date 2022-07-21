@@ -42,35 +42,6 @@ build_dev:
       - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
-    - dcp-3300-prod-deploy
-
-build_docker_image:
-  image: docker:stable
-  services:
-    - docker:dind
-  stage: dockerise
-  variables:
-    DOCKER_HOST: tcp://docker:2375
-    DOCKER_TLS_CERTDIR: ""
-    CONTAINER_RUNTIME_IMAGE: runtime
-    CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
-  script:
-    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
-    - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE .
-    - docker push $CONTAINER_APP_IMAGE
-  after_script:
-    - docker logout ${CI_REGISTRY}
-  tags:
-    - dcap-gitlab-runner-docker
-  dependencies:
-    - build_dev
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - dist
-  only:
-    - master
-    - dcp-3300-prod-deploy
 
 deploy_dev:
   stage: deploy
@@ -92,6 +63,51 @@ deploy_dev:
     url: https://wwwdev.ebi.ac.uk/ena/sah/api/
   only:
     - master
+
+build_prod:
+  stage: build
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  script:
+    - sed -i 's/<env>/prod/' src/main/resources/application.properties
+    - sed -i -e "s/<es-cluster-name>/$ES_PROD_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_PROD_HOST_NAME/" -e "s/<es-port>/$ES_PROD_PORT/" src/main/resources/application-prod.properties
+    - ./gradlew clean build -x test
+  tags:
+    - dcap-gitlab-runner
+  artifacts:
+    paths:
+      - build/libs/source-annotation-helper-${VERSION}.jar
+  only:
+    - master
+    - dcp-3300-prod-deploy
+
+build_docker_image:
+  image: docker:stable
+  services:
+    - docker:dind
+  stage: dockerise
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    CONTAINER_RUNTIME_IMAGE: runtime
+    CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
+  script:
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
+    - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE .
+    - docker push $CONTAINER_APP_IMAGE
+  after_script:
+    - docker logout ${CI_REGISTRY}
+  tags:
+    - dcap-gitlab-runner-docker
+  dependencies:
+    - build_prod
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - dist
+  only:
+    - master
+    - dcp-3300-prod-deploy
 
 deploy_prod:
   stage: deploy
