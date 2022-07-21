@@ -3,10 +3,6 @@ image: openjdk:8
 variables:
   VERSION: "1.0.0"
   DOCKER_DRIVER: overlay2
-  CONTAINER_BUILD_IMAGE: build:latest
-  CONTAINER_RUNTIME_IMAGE: runtime
-  DOCKER_TLS_CERTDIR: ""
-  DOCKER_HOST: "tcp://docker:2375"
 
 stages:
 #  - test
@@ -53,21 +49,17 @@ build_docker_image:
   services:
     - docker:dind
   stage: dockerise
-  before_script:
-    - echo "$CI_REGISTRY"
-    - echo "$CI_REGISTRY_USER"
-    - echo "$CI_REGISTRY_PASSWORD"
-    - echo "$CI_BUILD_TOKEN"
-    - echo "$DOCKER_HOST"
-    - echo "$CI_REGISTRY_IMAGE"
-    - echo "$CI_COMMIT_REF_SLUG"
-    - echo "$CI_COMMIT_SHA"
+  variables:
+    DOCKER_HOST: tcp://docker:2376
+    DOCKER_TLS_CERTDIR: ""
+    CONTAINER_RUNTIME_IMAGE: runtime
+    CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
   script:
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
-    - docker build --no-cache --rm=true -t dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper .
-    - docker push dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper
+    - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE .
+    - docker push $CONTAINER_APP_IMAGE
   after_script:
-    - docker logout dockerhub.ebi.ac.uk
+    - docker logout ${CI_REGISTRY}
   tags:
     - dcap-gitlab-runner
   dependencies:
