@@ -46,6 +46,8 @@ build_dev:
 
 build_docker_image:
   image: docker:stable
+  tls_verify: false
+  privileged: true
   services:
     - docker:dind
   stage: dockerise
