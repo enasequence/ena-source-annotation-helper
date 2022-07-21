@@ -46,8 +46,6 @@ build_dev:
 
 build_docker_image:
   image: docker:stable
-  tls_verify: false
-  privileged: true
   services:
     - docker:dind
   stage: dockerise
@@ -63,7 +61,7 @@ build_docker_image:
   after_script:
     - docker logout ${CI_REGISTRY}
   tags:
-    - dcap-gitlab-runner
+    - dcap-gitlab-runner-docker
   dependencies:
     - build_dev
   artifacts:
