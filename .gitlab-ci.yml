@@ -90,7 +90,7 @@ build_docker_image:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
     CONTAINER_RUNTIME_IMAGE: runtime
-    CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
+    CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE:$VERSION
   script:
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
     - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE .
