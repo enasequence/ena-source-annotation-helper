@@ -1,11 +1,11 @@
 image: openjdk:8
 
 variables:
-  VERSION: "1.0.0"
+  SAH_APP_VERSION: "1.0.0"
   DOCKER_DRIVER: overlay2
 
 stages:
-#  - test
+  - test
   - build
   - dockerise
   - deploy
@@ -15,17 +15,17 @@ cache:
     - .gradle/wrapper
     - .gradle/caches
 
-#test:
-#  stage: test
-#  before_script:
-#    - export GRADLE_USER_HOME=`pwd`/.gradle
-#  script:
-#    - sed -i 's/<env>/test/' src/main/resources/application.properties
-#    - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-test.properties
-#    - ./gradlew clean test
-#  allow_failure: true
-#  tags:
-#    - dcap-gitlab-runner
+test:
+  stage: test
+  before_script:
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  script:
+    - sed -i 's/<env>/test/' src/main/resources/application.properties
+    - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-test.properties
+    - ./gradlew clean test
+  allow_failure: true
+  tags:
+    - dcap-gitlab-runner
 
 build_dev:
   stage: build
@@ -39,7 +39,7 @@ build_dev:
     - dcap-gitlab-runner
   artifacts:
     paths:
-      - build/libs/source-annotation-helper-${VERSION}.jar
+      - build/libs/source-annotation-helper-${SAH_APP_VERSION}.jar
   only:
     - master
     - dcp-3300-prod-deploy
@@ -53,7 +53,7 @@ build_docker_image:
     DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
     CONTAINER_RUNTIME_IMAGE: runtime
-    CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
+    CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$SAH_APP_VERSION
   script:
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
     - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE .
@@ -81,8 +81,8 @@ deploy_dev:
     - chmod 600 ~/.ssh/id_rsa
     - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   script:
-    - chmod u+x build/libs/source-annotation-helper-${VERSION}.jar
-    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.jar ena_adm@wp-p1m2-69:/nfs/public/rw/ena/source-annotation-helper/deploy
+    - chmod u+x build/libs/source-annotation-helper-${SAH_APP_VERSION}.jar
+    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${SAH_APP_VERSION}.jar ena_adm@wp-p1m2-69:/nfs/public/rw/ena/source-annotation-helper/deploy
   tags:
     - dcap-gitlab-runner
   dependencies:
@@ -96,7 +96,7 @@ deploy_dev:
 deploy_prod:
   stage: deploy
   script:
-    - sed -i "s|TAG|$CI_COMMIT_SHA|g" k8s-deployment.yaml
+    - sed -i "s|TAG|$SAH_APP_VERSION|g" k8s-deployment.yaml
     - export KUBECONFIG=/home/gitlab-runner/.kube/<<webadmin-01-team-adm>> &&  kubectl apply -f k8s-deployment.yaml
   tags:
     - dcap-gitlab-runner
