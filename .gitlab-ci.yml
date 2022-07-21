@@ -9,7 +9,7 @@ variables:
   DOCKER_HOST: "tcp://docker:2375"
 
 stages:
-  - test
+#  - test
   - build
   - dockerise
   - deploy
@@ -19,17 +19,17 @@ cache:
     - .gradle/wrapper
     - .gradle/caches
 
-test:
-  stage: test
-  before_script:
-    - export GRADLE_USER_HOME=`pwd`/.gradle
-  script:
-    - sed -i 's/<env>/test/' src/main/resources/application.properties
-    - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-test.properties
-    - ./gradlew clean test
-  allow_failure: true
-  tags:
-    - dcap-gitlab-runner
+#test:
+#  stage: test
+#  before_script:
+#    - export GRADLE_USER_HOME=`pwd`/.gradle
+#  script:
+#    - sed -i 's/<env>/test/' src/main/resources/application.properties
+#    - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-test.properties
+#    - ./gradlew clean test
+#  allow_failure: true
+#  tags:
+#    - dcap-gitlab-runner
 
 build_dev:
   stage: build
@@ -49,10 +49,15 @@ build_dev:
     - dcp-3300-prod-deploy
 
 build_docker_image:
-  image: docker:latest
+  image: docker:stable
   services:
     - docker:dind
   stage: dockerise
+  before_script:
+    - echo "$CI_REGISTRY"
+    - echo "$CI_REGISTRY_USER"
+    - echo "$CI_REGISTRY_PASSWORD"
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password-stdin
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN dockerhub.ebi.ac.uk
     - docker build --no-cache --rm=true -t dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper .
