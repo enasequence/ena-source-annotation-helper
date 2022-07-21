@@ -50,7 +50,7 @@ build_docker_image:
     - docker:dind
   stage: dockerise
   variables:
-    DOCKER_HOST: tcp://docker:2376
+    DOCKER_HOST: tcp://docker:2375
     DOCKER_TLS_CERTDIR: ""
     CONTAINER_RUNTIME_IMAGE: runtime
     CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA
