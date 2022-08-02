@@ -37,6 +37,18 @@ process_input_data_files() {
     REPLACE_WITH="|"
     sed -i -e "s/${EXP_TO_SEARCH}/${REPLACE_WITH}/g" $inst_input_file
     sed -i -e "s/${EXP_TO_SEARCH}/${REPLACE_WITH}/g" $coll_input_file
+
+    # Clean up the double quotes in the texts
+    sed -i -e "s/\"//g" $inst_input_file
+    sed -i -e "s/\"//g" $coll_input_file
+
+    # Clean up the tab chars
+    sed -i -e "s/\t/ /g" $inst_input_file
+    sed -i -e "s/\t/ /g" $coll_input_file
+
+    # Clean up the backslash chars and replace them with forward slashes
+    sed -i -e "s/\\/\//g" $inst_input_file
+    sed -i -e "s/\\/\//g" $coll_input_file
 }
 
 # Generate the ElasticSearch bulk upload json file for institutions
