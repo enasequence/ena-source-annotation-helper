@@ -31,16 +31,10 @@ Swagger API documentation can be launched by pointing the browser to [Swagger-UI
 - execute the script `./ElasticSearch/scripts/persist-ncbi-biocollections-data.sh`
 
 
-
-## Document References
-- Docker integration [Document](./docs/DockerIntegration.md)
-
-
 ## Future Roadmap items
 - [ ] Performance / Elastic Queries Optimisation
 - [ ] Top 10 limit implementation
 - [ ] Review Messages to be displayed in responses
-- [ ] Add unit tests
 
 
 
