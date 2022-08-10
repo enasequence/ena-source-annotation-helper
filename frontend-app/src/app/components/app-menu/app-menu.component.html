@@ -1,0 +1,38 @@
+<section class="header-menu">
+    <h1>Source Attribute Helper</h1>
+    <div>
+        <p>
+        The tool is backed by the Representational State Transfer (REST) API Architecture
+        and it is designed to use the data available in the
+            <a target='_blank' href='https://www.ncbi.nlm.nih.gov/biocollections' class='white-color'>NCBI BioCollections</a>.
+        NCBI Biocollections is a curated database of metadata for natural history collections, associated with records in INSDC,
+        that includes the institution and collection codes.</p>
+        <p>
+        The API main functions include the querying of the metadata (the API presents both exact matches and
+            similar matches) for the institutions and collections based on the user input, validation of institution
+            and collection codes in the attribute strings provided by the user, and the construction of the attribute string
+            based on the user-provided information.
+        </p>
+        <p>
+            Noticeable: <i>The API does not include the search or validation of the voucher specimen codes.</i>
+        </p>
+    </div>
+
+
+    <mat-tab-group someGroup>
+<!--        <mat-tab label="Validate">-->
+<!--            &lt;!&ndash; Validate Component &ndash;&gt;-->
+<!--            <h2>Validate</h2>-->
+<!--            <div>-->
+<!--                <app-validate></app-validate>-->
+<!--            </div>-->
+<!--        </mat-tab>-->
+        <mat-tab label="Construct">
+            <!-- Construct Component -->
+            <h2>Construct</h2>
+            <div>
+                <app-construct></app-construct>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</section>

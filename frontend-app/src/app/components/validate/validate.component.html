@@ -1,0 +1,106 @@
+<div>
+    <section class="attrib-validate-section" [formGroup]="validateFormGroup">
+        <table [cellPadding]="10">
+            <tr>
+                <td [width]="200">Attribute Type:</td>
+                <td>
+                    <mat-checkbox class="example-margin" checked=false formControlName="specimen_voucher">Specimen
+                        Voucher
+                    </mat-checkbox>
+                    <span class="span-space-text"></span>
+                    <mat-checkbox class="example-margin" checked=false formControlName="culture_collection">Culture
+                        Collection
+                    </mat-checkbox>
+                    <span class="span-space-text"></span>
+                    <mat-checkbox class="example-margin" checked=false formControlName="bio_material">Biomaterial
+                    </mat-checkbox>
+                </td>
+            </tr>
+            <tr>
+                <td>Enter Attribute Value:</td>
+                <td>
+                    <input [size]="50" ngModel maxlength="100" type="text" id="attribVal" class="form-control"
+                           name="attribute" formControlName="attribute"
+                           value={{attribVal}} required/> <br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <button (click)="validate()">Validate</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+<!--                <td>-->
+<!--                    <div *ngIf="attribute..invalid && (name.dirty || name.touched)"-->
+<!--                         class="alert">-->
+<!--                </td>-->
+            </tr>
+        </table>
+        <!-- <div *ngIf="attribVal.errors?.['required']">
+            Attribute Vaue is required.
+          </div> -->
+    </section>
+
+    <section class="matches-display-section" *ngIf="matchesResponse.length > 0">
+        <table>
+            <tr>
+                <td>
+                    <h4>Matches:</h4>
+                </td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let list of matchesResponse">
+                <td>
+                    Match: {{list.match}}, Inst_code: {{list.institution.institutionCode}}
+                </td>
+                <td>
+                    <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
+                            value="{{list.match}}">Add to my Matches
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="matches-display-section" *ngIf="localStorageObj.length > 0">
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <div id="savedAttribBox">
+            <table>
+                <tr>
+                    <td>
+                        <h4>My Matches:
+                        <button (click)="clearAllSavedResults()">Remove All</button></h4>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let list of localStorageObj">
+                    <td>
+                        {{list.toString()}}
+                    </td>
+                    <td>
+                        <button (click)="copyToClipboard(list.toString())">Copy</button>
+                        <button (click)="clearSavedResult(list.toString())">Remove</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+
+    <!-- your content-->
+
+
+    <!--    <section class="example-section" [formGroup]="validateFormGroup">-->
+    <!--        <h4>You chose:</h4>-->
+    <!--        {{validateFormGroup.value | json}}-->
+    <!--    </section>-->
+
+
+</div>

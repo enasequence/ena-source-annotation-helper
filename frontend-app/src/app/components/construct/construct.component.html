@@ -1,0 +1,94 @@
+<div>
+    <section class="attrib-validate-section" [formGroup]="constructFormGroup">
+        <table [cellPadding]="10">
+            <tr>
+                <td [width]="200">Attribute Type:</td>
+                <td>
+                    <mat-checkbox checked=false formControlName="specimen_voucher">Specimen Voucher
+                    </mat-checkbox>
+                    <span class="span-space-text"></span>
+                    <mat-checkbox checked=false formControlName="culture_collection">Culture Collection
+                    </mat-checkbox>
+                    <span class="span-space-text"></span>
+                    <mat-checkbox checked=false formControlName="bio_material">Biomaterial</mat-checkbox>
+                </td>
+            </tr>
+            <tr>
+                <td [width]="200">Select Institution:</td>
+                <td>
+                    <div class="wrapper">
+                        <mat-form-field class="form-full-width">
+                            <input [size]="50" matInput placeholder="Search Institution"
+                                   [(ngModel)]="selectedInstitution" [matAutocomplete]="auto"
+                                   [formControl]="searchInstitutionCtrl"
+                                   placeholder="Start typing Institution name / code">
+                            <button *ngIf="selectedInstitution" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="clearSelection()">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-autocomplete [panelWidth]="300" #auto="matAutocomplete" (optionSelected)="onSelected()"
+                                              [displayWith]="displayWith">
+                                <ng-container *ngIf="!isLoading">
+                                    <mat-option *ngFor="let institution of filteredInstitutions" [value]="institution">
+                                        <span><b>{{institution.institutionCode}}</b> - ({{institution.institutionName}})</span>
+                                    </mat-option>
+                                </ng-container>
+                            </mat-autocomplete>
+                        </mat-form-field>
+
+                        <br>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td [width]="200">Select Collection:</td>
+                <td>
+                    <div class="wrapper">
+                        <mat-form-field class="form-full-width">
+                            <input [size]="50" matInput placeholder="Search Collection"
+                                   [(ngModel)]="selectedInstitution" [matAutocomplete]="auto"
+                                   [formControl]="searchInstitutionCtrl"
+                                   placeholder="Start typing Collection name / code">
+                            <button *ngIf="selectedInstitution" matSuffix mat-icon-button aria-label="Clear"
+                                    (click)="clearSelection()">
+                                <mat-icon>close</mat-icon>
+                            </button>
+                            <mat-autocomplete [panelWidth]="300" #auto="matAutocomplete" (optionSelected)="onSelected()"
+                                              [displayWith]="displayWith">
+                                <ng-container *ngIf="!isLoading">
+                                    <mat-option *ngFor="let collection of filteredCollections" [value]="collection">
+                                        <span><b>{{collection.collectionCode}}</b> - ({{collection.collectionName}}
+                                            )</span>
+                                    </mat-option>
+                                </ng-container>
+                            </mat-autocomplete>
+                        </mat-form-field>
+
+                        <br>
+
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>Enter Specimen id:</td>
+                <td>
+                    <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
+                           name="specimen" formControlName="specimen" placeholder="Enter the specimen id"
+                           value={{specimenVal}} required/> <br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <button (click)="construct()">Construct Attribute Value</button>
+                </td>
+            </tr>
+        </table>
+
+    </section>
+
+
+</div>
