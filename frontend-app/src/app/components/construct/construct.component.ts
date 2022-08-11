@@ -2,13 +2,14 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {MatchData} from "../../models/MatchData";
 import {Clipboard} from '@angular/cdk/clipboard';
-import {debounceTime, distinctUntilChanged, filter, finalize, switchMap, tap} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged, filter, finalize, switchMap, tap, catchError, map} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Institution} from "../../models/Institution";
 import {InstitutionService} from "../../services/institution.service";
 import {ConstructValidateService} from "../../services/construct-validate.service";
-import {of} from "rxjs";
+import {Observable, of, startWith} from "rxjs";
 import {Collection} from "../../models/Collection";
+import {SahCommonsService} from "../../services/sah-commons.service";
 
 
 @Component({
@@ -27,9 +28,9 @@ export class ConstructComponent implements OnInit {
 
     //
     searchInstitutionCtrl = new FormControl();
-    searchCollectionCtrl = new FormControl();
-    filteredInstitutions: Institution[];
-    filteredCollections: Collection[];
+    //searchCollectionCtrl = new FormControl();
+    filteredInstitutions: Observable<Institution[]> = null as any;
+    //filteredCollections: Collection[];
     isLoading = false;
     errorMsg!: string;
     minLengthTerm = 1;
@@ -45,8 +46,11 @@ export class ConstructComponent implements OnInit {
     }
 
     clearSelection() {
-        this.selectedInstitution = "";
-        this.filteredInstitutions = [];
+        this.selectedInstitution =
+            new Institution("", "", "", "",
+                "", "", [""], "",
+                new Array(new Collection("", "", "", [""], "")));
+        this.filteredInstitutions = new Observable<Institution[]>;
     }
 
     //
@@ -63,6 +67,7 @@ export class ConstructComponent implements OnInit {
 
     constructor(private institutionService: InstitutionService,
                 private constructValidateService: ConstructValidateService,
+                private sahCommonsService: SahCommonsService,
                 private _formBuilder: FormBuilder,
                 private clipboard: Clipboard,
                 private http: HttpClient) {
@@ -70,29 +75,39 @@ export class ConstructComponent implements OnInit {
         this.matchesResponse = new Array();
         this.localStorageObj = new Array();
         //this.fetchFromLocalStorage();
-        this.filteredInstitutions = new Array<Institution>();
-        this.filteredCollections= new Array<Collection>();
+        //this.filteredInstitutions = new Observable<Institution[]>;
+        //this.filteredCollections = new Array<Collection>();
+        // this.selectedInstitution =
+        //     new Institution("", "", "", "",
+        //         "", "", [""], "",
+        //         new Array(new Collection("", "", "", [""], "")));
     }
 
+    lookup(value: string): Observable<Institution[]> {
+        return this.institutionService.findByInstitutionValue(value.toLowerCase(), [""]);
+    }
 
-    ngOnInit(): void {
-
-        this.searchInstitutionCtrl.valueChanges.pipe(
+    ngOnInit() {
+        this.filteredInstitutions = this.searchInstitutionCtrl.valueChanges.pipe(
             filter(data => data.trim().length > this.minLengthTerm),
-            distinctUntilChanged(),
-            debounceTime(500),
-            tap(() => {
-                this.errorMsg = "";
-                this.filteredInstitutions = [];
-            }),
-            switchMap((id: string) => {
-                return id ? this.institutionService
-                    .findByInstitutionValue(id, ["specimen_voucher"]) : of([]);
+            // delay emits
+            debounceTime(300),
+            //     tap(() => {
+            //         this.errorMsg = "";
+            //         this.filteredInstitutions = new Observable<Institution[]>;
+            //     }),
+            // use switch map so as to cancel previous subscribed events, before creating new once
+            switchMap(value => {
+                if (value !== '') {
+                    // lookup from github
+                    return this.institutionService
+                        .findByInstitutionValue(value, ["specimen_voucher"]);
+                } else {
+                    // if no value is present, return null
+                    return of(null as any);
+                }
             })
-        ).subscribe(data => {
-            this.filteredInstitutions = data as Institution[];
-        });
-
+        );
     }
 
     construct(): void {
@@ -118,6 +133,7 @@ export class ConstructComponent implements OnInit {
             })
 
     };
+
     //
     // storeResultInLocal(matchString: string): void {
     //     //alert(matchString);
