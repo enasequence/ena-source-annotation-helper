@@ -1,78 +1,17 @@
-//table {
-//    color: black;
-//    background-color: white;
-//    border-color: black;
-//    border-style: none;
-//    border-width: 0 1px 1px 1px;
-//    border-radius: 5px;
-//    border-collapse: collapse;
-//    border-spacing: 0;
-//    display: block;
-//    overflow: auto;
-//    width: 100%;
-//
-//    thead {
-//        th {
-//            color: white;
-//            background-color: black;
-//            font-weight: bold;
-//            font-size: 0.8em;
-//            padding: 50px 10px;
-//            vertical-align: bottom;
-//        }
-//
-//        th:first-child {
-//            border-top-left-radius: 5px;
-//        }
-//
-//        th:last-child {
-//            border-top-right-radius: 5px;
-//        }
-//    }
-//
-//    tbody {
-//        td {
-//            border-top: 0px;
-//            padding: 50px 100px;
-//            vertical-align: top;
-//            width: 40%;
-//        }
-//
-//        tr:nth-child(2n) {
-//            background-color: white;
-//        }
-//    }
-//}
 
-// Background border
-//.mat-checkbox .mat-checkbox-frame {
-//    border-color: black;
-//    background-color: #dddddd
-//}
-//
-//.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
-//.mat-checkbox-checked.mat-accent .mat-checkbox-background {
-//    margin-top: 1px;
-//    margin-left: 1px;
-//    width: 18px;
-//    height: 18px;
-//}
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+.mat-checkbox-checked.mat-accent .mat-checkbox-background {
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 18px;
+    height: 18px;
+}
 
 .span-space-text {
     display: inline-block;
     width: 2ch;
 }
 
-//#validateButton {
-//    background-color: #008CBA; /* Green */
-//    border: none;
-//    color: dodgerblue;
-//    padding: 15px 32px;
-//    text-align: center;
-//    text-decoration: none;
-//    display: inline-block;
-//    font-size: 16px;
-//  }
 
 #savedAttribBox {
     background: #ffffff;

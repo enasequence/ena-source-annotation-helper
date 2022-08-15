@@ -87,6 +87,7 @@ frontend-app/.vscode/*
 
 # Miscellaneous
 /.angular/cache
+/frontend-app/.angular/
 .sass-cache/
 /connect.lock
 /coverage

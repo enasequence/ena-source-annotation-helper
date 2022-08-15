@@ -9,23 +9,24 @@ import { AppComponent } from './app.component';
 import { ConstructComponent } from './components/construct/construct.component';
 import { ValidateComponent } from './components/validate/validate.component';
 import {MatGridListModule} from "@angular/material/grid-list";
-import { AppMenuComponent } from './components/app-menu/app-menu.component';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatAutocompleteModule} from "@angular/material/autocomplete";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
     AppComponent,
     ConstructComponent,
-    ValidateComponent,
-    AppMenuComponent
+    ValidateComponent
   ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
         AppRoutingModule,
@@ -37,6 +38,7 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
         MatIconModule,
         MatTabsModule,
         MatFormFieldModule,
+        MatInputModule,
         MatAutocompleteModule
     ],
   exports:[

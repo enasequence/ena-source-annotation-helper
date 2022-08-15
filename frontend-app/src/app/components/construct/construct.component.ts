@@ -110,6 +110,45 @@ export class ConstructComponent implements OnInit {
         );
     }
 
+
+    // ngOnInit(): void {
+    //     //this.filteredInstitutions = new Array<Institution>();
+    //     this.searchInstitutionCtrl.valueChanges.pipe(
+    //         startWith(''),
+    //         // delay emits
+    //         debounceTime(300),
+    //         // use switch map so as to cancel previous subscribed events, before creating new once
+    //         switchMap(value => {
+    //             if (value !== '') {
+    //                 // lookup from github
+    //                 return this.institutionService
+    //                     .findByInstitutionValue(value, ["specimen_voucher"]);
+    //             } else {
+    //                 // if no value is present, return null
+    //                 return of(null as any);
+    //             }
+    //         })
+    //     );
+
+    // valueChanges.pipe(
+    //     filter(data => data.trim().length > this.minLengthTerm),
+    //     distinctUntilChanged(),
+    //     debounceTime(500),
+    //     tap(() => {
+    //         this.errorMsg = "";
+    //         this.filteredInstitutions = new Observable<Institution[]>;
+    //     }),
+    //     switchMap((id: string) => {
+    //         return this.institutionService
+    //             .findByInstitutionValue(id, ["specimen_voucher"]);
+    //     })
+    // )
+    //     .subscribe(data => {
+    //     this.filteredInstitutions = data;
+    // });
+
+    // }
+
     construct(): void {
         var inputVal: string = this.constructFormGroup.get("specimen")?.value!;
         var qualifierArray = new Array<string>();
