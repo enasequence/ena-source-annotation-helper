@@ -33,15 +33,6 @@ export class ConstructValidateService {
 
                     }
                 ));
-        // return this.responseObj;
-        // return this.http.get<SAHResponse>(urlString, options).subscribe(response =>
-        // {
-        //   console.log(response.success)
-        //   console.log(response.inputValue)
-        //   console.log(response.matches);
-        //   console.log(response.error);
-        // })
-
     };
 
 }

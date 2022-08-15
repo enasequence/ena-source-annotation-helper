@@ -23,14 +23,15 @@ export class ConstructComponent implements OnInit {
     specimenVal: string = "";
     matchesResponse: MatchData[];
     localStorageObj: Array<string>;
-    selectedInstitution: any = "";
-    selectedCollection: any = "";
+    typedInstitution: string = "";
+    selectedInstitution: string = "";
+    selectedCollection: string = "";
 
     //
     searchInstitutionCtrl = new FormControl();
     //searchCollectionCtrl = new FormControl();
     filteredInstitutions: Observable<Institution[]> = null as any;
-    //filteredCollections: Collection[];
+    filteredCollections: Observable<Collection[]> = null as any;
     isLoading = false;
     errorMsg!: string;
     minLengthTerm = 1;
@@ -38,7 +39,13 @@ export class ConstructComponent implements OnInit {
 
     onSelected() {
         console.log(this.selectedInstitution);
-        this.selectedInstitution = this.selectedInstitution;
+        this.selectedInstitution = this.typedInstitution;
+        this.filteredCollections = this.getfilteredCollections();
+    }
+
+    collectionChangeAction(selectedVal: string) {
+        console.log(this.selectedCollection);
+        this.selectedCollection = selectedVal;
     }
 
     displayWith(value: any) {
@@ -46,10 +53,7 @@ export class ConstructComponent implements OnInit {
     }
 
     clearSelection() {
-        this.selectedInstitution =
-            new Institution("", "", "", "",
-                "", "", [""], "",
-                new Array(new Collection("", "", "", [""], "")));
+        this.selectedInstitution = "";
         this.filteredInstitutions = new Observable<Institution[]>;
     }
 
@@ -83,13 +87,9 @@ export class ConstructComponent implements OnInit {
         //         new Array(new Collection("", "", "", [""], "")));
     }
 
-    lookup(value: string): Observable<Institution[]> {
-        return this.institutionService.findByInstitutionValue(value.toLowerCase(), [""]);
-    }
-
     ngOnInit() {
         this.filteredInstitutions = this.searchInstitutionCtrl.valueChanges.pipe(
-            filter(data => data.trim().length > this.minLengthTerm),
+            filter(data => data.trim().length > this.minLengthTerm && data.trim() !== this.selectedInstitution),
             // delay emits
             debounceTime(300),
             //     tap(() => {
@@ -99,9 +99,8 @@ export class ConstructComponent implements OnInit {
             // use switch map so as to cancel previous subscribed events, before creating new once
             switchMap(value => {
                 if (value !== '') {
-                    // lookup from github
                     return this.institutionService
-                        .findByInstitutionValue(value, ["specimen_voucher"]);
+                        .findByInstitutionValue(value, this.buildAttributeTypeArray());
                 } else {
                     // if no value is present, return null
                     return of(null as any);
@@ -110,50 +109,28 @@ export class ConstructComponent implements OnInit {
         );
     }
 
+    getfilteredCollections(): Observable<Collection[]> {
+        return this.institutionService
+            .findByAllCollByInstituteUniqueName(this.selectedInstitution, this.buildAttributeTypeArray());
 
-    // ngOnInit(): void {
-    //     //this.filteredInstitutions = new Array<Institution>();
-    //     this.searchInstitutionCtrl.valueChanges.pipe(
-    //         startWith(''),
-    //         // delay emits
-    //         debounceTime(300),
-    //         // use switch map so as to cancel previous subscribed events, before creating new once
-    //         switchMap(value => {
-    //             if (value !== '') {
-    //                 // lookup from github
-    //                 return this.institutionService
-    //                     .findByInstitutionValue(value, ["specimen_voucher"]);
-    //             } else {
-    //                 // if no value is present, return null
-    //                 return of(null as any);
-    //             }
-    //         })
-    //     );
-
-    // valueChanges.pipe(
-    //     filter(data => data.trim().length > this.minLengthTerm),
-    //     distinctUntilChanged(),
-    //     debounceTime(500),
-    //     tap(() => {
-    //         this.errorMsg = "";
-    //         this.filteredInstitutions = new Observable<Institution[]>;
-    //     }),
-    //     switchMap((id: string) => {
-    //         return this.institutionService
-    //             .findByInstitutionValue(id, ["specimen_voucher"]);
-    //     })
-    // )
-    //     .subscribe(data => {
-    //     this.filteredInstitutions = data;
-    // });
-
-    // }
+    }
 
     construct(): void {
         var inputVal: string = this.constructFormGroup.get("specimen")?.value!;
-        var qualifierArray = new Array<string>();
         console.log(inputVal);
         //alert(inputVal);
+
+        // call the validate request
+        this.constructValidateService.validateAttribute(inputVal, this.buildAttributeTypeArray())
+            .subscribe(resp => {
+                this.matchesResponse = resp.matches;
+            })
+
+    };
+
+    buildAttributeTypeArray(): Array<string> {
+
+        var qualifierArray = new Array<string>();
 
         // prepare the request
         if (this.constructFormGroup.get("specimen_voucher")?.value == true) {
@@ -165,13 +142,8 @@ export class ConstructComponent implements OnInit {
         if (this.constructFormGroup.get("bio_material")?.value == true) {
             qualifierArray.push("bio_material");
         }
-        // call the validate request
-        this.constructValidateService.validateAttribute(inputVal, qualifierArray)
-            .subscribe(resp => {
-                this.matchesResponse = resp.matches;
-            })
-
-    };
+        return qualifierArray;
+    }
 
     //
     // storeResultInLocal(matchString: string): void {

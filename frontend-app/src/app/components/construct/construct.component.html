@@ -18,20 +18,21 @@
                 <td>
                     <div class="wrapper">
                         <form class="institution-search">
-                            <mat-form-field>
+                            <mat-form-field [floatLabel]="'never'">
                                 <input
                                         [size]="50"
                                         type="text"
                                         placeholder="..."
                                         [formControl]="searchInstitutionCtrl"
                                         matInput
-                                        [matAutocomplete]="auto">
-                                <mat-autocomplete [panelWidth]="500" #auto="matAutocomplete">
+                                        [matAutocomplete]="auto"
+                                        [(ngModel)]="typedInstitution">
+                                <mat-autocomplete [panelWidth]="500" #auto="matAutocomplete"
+                                                  (optionSelected)="onSelected()">
                                     <mat-option [id]="institution.uniqueName"
                                                 *ngFor="let institution of filteredInstitutions | async"
                                                 [value]=institution.uniqueName>
-                                        <span><b>{{institution.uniqueName}}</b> - ({{institution.institutionName}}
-                                            )</span>
+                                        <span><b>{{institution.uniqueName}}</b> - ({{institution.institutionName}})</span>
                                     </mat-option>
                                 </mat-autocomplete>
                             </mat-form-field>
@@ -39,51 +40,37 @@
                     </div>
                 </td>
             </tr>
-            <!--            <tr>-->
-            <!--                <td [width]="200">Select Collection:</td>-->
-            <!--                <td>-->
-            <!--                    <div class="wrapper">-->
-            <!--                        <mat-form-field class="form-full-width">-->
-            <!--                            <input [size]="50" matInput placeholder="Search Collection"-->
-            <!--                                   [(ngModel)]="selectedInstitution" [matAutocomplete]="auto"-->
-            <!--                                   [formControl]="searchInstitutionCtrl"-->
-            <!--                                   placeholder="Start typing Collection name / code">-->
-            <!--                            <button *ngIf="selectedInstitution" matSuffix mat-icon-button aria-label="Clear"-->
-            <!--                                    (click)="clearSelection()">-->
-            <!--                                <mat-icon>close</mat-icon>-->
-            <!--                            </button>-->
-            <!--                            <mat-autocomplete [panelWidth]="300" #auto="matAutocomplete" (optionSelected)="onSelected()"-->
-            <!--                                              [displayWith]="displayWith">-->
-            <!--                                <ng-container *ngIf="!isLoading">-->
-            <!--                                    <mat-option *ngFor="let collection of filteredCollections" [value]="collection">-->
-            <!--                                        <span><b>{{collection.collectionCode}}</b> - ({{collection.collectionName}}-->
-            <!--                                            )</span>-->
-            <!--                                    </mat-option>-->
-            <!--                                </ng-container>-->
-            <!--                            </mat-autocomplete>-->
-            <!--                        </mat-form-field>-->
+            <tr>
+                <td [width]="200">Select Collection:</td>
+                <td>
+                    <mat-form-field [floatLabel]="'never'">
+                        <mat-select placeholder="Select Collection"
+                                    name="collection_dd"
+                                    [(ngModel)]="selectedCollection" >
+                            <mat-option *ngFor="let collection of filteredCollections | async" [value]=collection.collectionCode >
+                                {{collection.collectionCode}} - ({{collection.collectionName}})
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
 
-            <!--                        <br>-->
-
-            <!--                    </div>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!--            <tr>-->
-            <!--                <td>Enter Specimen id:</td>-->
-            <!--                <td>-->
-            <!--                    <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"-->
-            <!--                           name="specimen" formControlName="specimen" placeholder="Enter the specimen id"-->
-            <!--                           value={{specimenVal}} required/> <br/>-->
-            <!--                </td>-->
-            <!--            </tr>-->
-            <!--            <tr>-->
-            <!--                <td>-->
-            <!--                    &nbsp;-->
-            <!--                </td>-->
-            <!--                <td>-->
-            <!--                    <button (click)="construct()">Construct Attribute Value</button>-->
-            <!--                </td>-->
-            <!--            </tr>-->
+                </td>
+            </tr>
+                        <tr>
+                            <td>Enter Specimen id:</td>
+                            <td>
+                                <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
+                                       name="specimen" formControlName="specimen" placeholder="Enter the specimen id"
+                                       value={{specimenVal}} required/> <br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                <button (click)="construct()">Construct Attribute Value</button>
+                            </td>
+                        </tr>
         </table>
 
     </section>
