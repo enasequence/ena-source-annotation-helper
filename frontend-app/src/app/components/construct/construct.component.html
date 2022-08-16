@@ -18,8 +18,7 @@
                 <td>
                     <div class="wrapper">
                         <form class="institution-search">
-<!--                            <mat-form-field [floatLabel]="'never'" class="example-full-width">-->
-                            <mat-form-field [floatLabel]="'never'" >
+                            <mat-form-field [floatLabel]="'never'">
                                 <input
                                         [size]="50"
                                         type="text"
@@ -34,7 +33,7 @@
                                     <mat-option [id]="institution.uniqueName"
                                                 *ngFor="let institution of filteredInstitutions | async"
                                                 [value]=institution.uniqueName>
-                                        {{institution.uniqueName}}
+                                        {{institution.uniqueName}} - ({{institution.institutionName}}
                                     </mat-option>
                                 </mat-autocomplete>
                             </mat-form-field>
@@ -47,6 +46,7 @@
                 <td>
                     <mat-form-field [floatLabel]="'never'">
                         <mat-select placeholder="Select Collection"
+                                    (selectionChange)="collectionChangeAction($event.value)"
                                     name="collection_dd"
                                     [(ngModel)]="selectedCollection">
                             <mat-option *ngFor="let collection of filteredCollections | async"
@@ -89,7 +89,7 @@
             </tr>
             <tr *ngFor="let list of matchesResponse">
                 <td>
-                    {{list.match}}, Inst_code: {{list.institution.institutionCode}}
+                    {{list.match}}
                 </td>
                 <td>
                     <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"

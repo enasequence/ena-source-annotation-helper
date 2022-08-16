@@ -44,12 +44,12 @@ export class InstitutionService {
      * @param qualifierArray
      */
     findByAllCollByInstituteUniqueName(instVal: string, qualifierArray: string[]): Observable<Collection[]> {
-        var filterdCollections: Collection[] = null as any;
+        var filterdCollections: Collection[] = [] as any;
         const headers = new HttpHeaders({'Accept': 'application/json'});
         const options = {headers: headers};
         var urlString = environment.sahAPIURL + 'institution/' + instVal + '/collection';
         if (qualifierArray.length > 0) {
-            urlString = urlString + '&qualifier_type=' + qualifierArray;
+            urlString = urlString + '?qualifier_type=' + qualifierArray;
         }
         //alert(urlString);
         return this.http.get<MetaResponse>(urlString, options)

@@ -44,6 +44,7 @@ export class ConstructComponent implements OnInit {
     }
 
     collectionChangeAction(selectedVal: string) {
+        alert(selectedVal);
         console.log(this.selectedCollection);
         this.selectedCollection = selectedVal;
     }
@@ -119,7 +120,7 @@ export class ConstructComponent implements OnInit {
         var inputVal: string = this.constructFormGroup.get("specimen")?.value!;
         console.log(inputVal);
         //alert(inputVal);
-
+        alert(this.selectedCollection);
         // call the validate request
         this.constructValidateService
             .constructAttribute(this.selectedInstitution, this.selectedCollection, inputVal, this.buildAttributeTypeArray())
