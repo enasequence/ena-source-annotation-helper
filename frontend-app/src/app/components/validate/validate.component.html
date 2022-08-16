@@ -36,10 +36,10 @@
                 <td>
                     &nbsp;
                 </td>
-<!--                <td>-->
-<!--                    <div *ngIf="attribute..invalid && (name.dirty || name.touched)"-->
-<!--                         class="alert">-->
-<!--                </td>-->
+                <!--                <td>-->
+                <!--                    <div *ngIf="attribute..invalid && (name.dirty || name.touched)"-->
+                <!--                         class="alert">-->
+                <!--                </td>-->
             </tr>
         </table>
         <!-- <div *ngIf="attribVal.errors?.['required']">
@@ -57,7 +57,7 @@
             </tr>
             <tr *ngFor="let list of matchesResponse">
                 <td>
-                    Match: {{list.match}}, Inst_code: {{list.institution.institutionCode}}
+                    Match: {{list.match}}
                 </td>
                 <td>
                     <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
@@ -76,7 +76,8 @@
                 <tr>
                     <td>
                         <h4>My Matches:
-                        <button (click)="clearAllSavedResults()">Remove All</button></h4>
+                            <button (click)="clearAllSavedResults()">Remove All</button>
+                        </h4>
                     </td>
                     <td></td>
                 </tr>

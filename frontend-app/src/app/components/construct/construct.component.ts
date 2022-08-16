@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {MatchData} from "../../models/MatchData";
 import {Clipboard} from '@angular/cdk/clipboard';
-import {debounceTime, distinctUntilChanged, filter, finalize, switchMap, tap, catchError, map} from "rxjs/operators";
+import {debounceTime, filter, switchMap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {Institution} from "../../models/Institution";
 import {InstitutionService} from "../../services/institution.service";
 import {ConstructValidateService} from "../../services/construct-validate.service";
-import {Observable, of, startWith} from "rxjs";
+import {Observable, of} from "rxjs";
 import {Collection} from "../../models/Collection";
 import {SahCommonsService} from "../../services/sah-commons.service";
 
@@ -19,6 +19,9 @@ import {SahCommonsService} from "../../services/sah-commons.service";
 })
 
 export class ConstructComponent implements OnInit {
+
+    static STORAGE_PREFIX: string = "construct@";
+
     IsChecked: boolean;
     specimenVal: string = "";
     matchesResponse: MatchData[];
@@ -26,16 +29,12 @@ export class ConstructComponent implements OnInit {
     typedInstitution: string = "";
     selectedInstitution: string = "";
     selectedCollection: string = "";
-
-    //
     searchInstitutionCtrl = new FormControl();
-    //searchCollectionCtrl = new FormControl();
     filteredInstitutions: Observable<Institution[]> = null as any;
     filteredCollections: Observable<Collection[]> = null as any;
     isLoading = false;
     errorMsg!: string;
     minLengthTerm = 1;
-
 
     onSelected() {
         console.log(this.selectedInstitution);
@@ -44,7 +43,6 @@ export class ConstructComponent implements OnInit {
     }
 
     collectionChangeAction(selectedVal: string) {
-        alert(selectedVal);
         console.log(this.selectedCollection);
         this.selectedCollection = selectedVal;
     }
@@ -57,8 +55,6 @@ export class ConstructComponent implements OnInit {
         this.selectedInstitution = "";
         this.filteredInstitutions = new Observable<Institution[]>;
     }
-
-    //
 
     constructFormGroup = this._formBuilder.group({
         specimen_voucher: false,
@@ -81,11 +77,6 @@ export class ConstructComponent implements OnInit {
         this.localStorageObj = new Array();
         this.fetchFromLocalStorage();
         this.filteredInstitutions = new Observable<Institution[]>;
-        // this.filteredCollections = new Array<Collection>();
-        // this.selectedInstitution =
-        //     new Institution("", "", "", "",
-        //         "", "", [""], "",
-        //         new Array(new Collection("", "", "", [""], "")));
     }
 
     ngOnInit() {
@@ -119,21 +110,16 @@ export class ConstructComponent implements OnInit {
     construct(): void {
         var inputVal: string = this.constructFormGroup.get("specimen")?.value!;
         console.log(inputVal);
-        //alert(inputVal);
-        alert(this.selectedCollection);
         // call the validate request
         this.constructValidateService
             .constructAttribute(this.selectedInstitution, this.selectedCollection, inputVal, this.buildAttributeTypeArray())
             .subscribe(resp => {
                 this.matchesResponse = resp.matches;
             })
-
     };
 
     buildAttributeTypeArray(): Array<string> {
-
         var qualifierArray = new Array<string>();
-
         // prepare the request
         if (this.constructFormGroup.get("specimen_voucher")?.value == true) {
             qualifierArray.push("specimen_voucher");
@@ -149,19 +135,14 @@ export class ConstructComponent implements OnInit {
 
 
     storeResultInLocal(matchString: string): void {
-        //alert(matchString);
-        //this.localStorageObj.push(matchString);
-        //TODO discuss if this is necessary
-        localStorage.setItem(matchString, matchString);
+        localStorage.setItem(ConstructComponent.STORAGE_PREFIX + matchString, matchString);
         this.fetchFromLocalStorage();
     }
 
     copyToClipboard(matchString: string): void {
-        //alert(matchString);
         this.clipboard.copy(matchString);
     }
 
-    //TODO need to see when to use this??
     fetchFromLocalStorage(): void {
         //clear all before building
         while (this.localStorageObj.length) {
@@ -174,9 +155,11 @@ export class ConstructComponent implements OnInit {
                 break;
             }
             console.log(key);
-            var dd = localStorage.getItem(key);
-            if (dd !== null) {
-                this.localStorageObj.push(dd);
+            if (key.startsWith(ConstructComponent.STORAGE_PREFIX)) {
+                var dd = localStorage.getItem(key);
+                if (dd !== null) {
+                    this.localStorageObj.push(dd);
+                }
             }
         }
     }
@@ -184,14 +167,26 @@ export class ConstructComponent implements OnInit {
     //clear result
     clearSavedResult(matchString: string): void {
         //clear all before building
-        localStorage.removeItem(matchString);
+        localStorage.removeItem(ConstructComponent.STORAGE_PREFIX + matchString);
         window.location.reload();
     }
 
-    //clear all saved results
+    /**
+     * clear all construct strings.
+     */
     clearAllSavedResults(): void {
-        //clear all before building
-        localStorage.clear();
+        var keysToRemove: string[] = [];
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key !== null && key.startsWith(ConstructComponent.STORAGE_PREFIX)) {
+                keysToRemove.push(key);
+            }
+        }
+        while (keysToRemove.length > 0) {
+            localStorage.removeItem(keysToRemove.pop()!);
+        }
+
+        //TODO - should not use this to reload the table
         window.location.reload();
     }
 

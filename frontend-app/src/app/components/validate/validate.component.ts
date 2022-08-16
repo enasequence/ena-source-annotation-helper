@@ -11,6 +11,9 @@ import {Clipboard} from '@angular/cdk/clipboard';
 })
 
 export class ValidateComponent implements OnInit {
+
+    static STORAGE_PREFIX: string = "validate@";
+
     IsChecked: boolean;
     attribVal: string = "";
     matchesResponse: MatchData[];
@@ -42,10 +45,16 @@ export class ValidateComponent implements OnInit {
 
     validate(): void {
         var inputVal: string = this.validateFormGroup.get("attribute")?.value!;
-        var qualifierArray = new Array<string>();
         console.log(inputVal);
-        //alert(inputVal);
+        // call the validate request
+        this.backendService.validateAttribute(inputVal, this.buildAttributeTypeArray())
+            .subscribe(resp => {
+                this.matchesResponse = resp.matches;
+            })
+    };
 
+    buildAttributeTypeArray(): Array<string> {
+        var qualifierArray = new Array<string>();
         // prepare the request
         if (this.validateFormGroup.get("specimen_voucher")?.value == true) {
             qualifierArray.push("specimen_voucher");
@@ -56,28 +65,19 @@ export class ValidateComponent implements OnInit {
         if (this.validateFormGroup.get("bio_material")?.value == true) {
             qualifierArray.push("bio_material");
         }
-        // call the validate request
-        this.backendService.validateAttribute(inputVal, qualifierArray)
-            .subscribe(resp => {
-                this.matchesResponse = resp.matches;
-            })
-
-    };
+        return qualifierArray;
+    }
 
     storeResultInLocal(matchString: string): void {
-        //alert(matchString);
-        //this.localStorageObj.push(matchString);
         //TODO discuss if this is necessary
-        localStorage.setItem(matchString, matchString);
+        localStorage.setItem(ValidateComponent.STORAGE_PREFIX + matchString, matchString);
         this.fetchFromLocalStorage();
     }
 
     copyToClipboard(matchString: string): void {
-        //alert(matchString);
         this.clipboard.copy(matchString);
     }
 
-    //TODO need to see when to use this??
     fetchFromLocalStorage(): void {
         //clear all before building
         while (this.localStorageObj.length) {
@@ -90,9 +90,11 @@ export class ValidateComponent implements OnInit {
                 break;
             }
             console.log(key);
-            var dd = localStorage.getItem(key);
-            if (dd !== null) {
-                this.localStorageObj.push(dd);
+            if (key.startsWith(ValidateComponent.STORAGE_PREFIX)) {
+                var dd = localStorage.getItem(key);
+                if (dd !== null) {
+                    this.localStorageObj.push(dd);
+                }
             }
         }
     }
@@ -100,14 +102,25 @@ export class ValidateComponent implements OnInit {
     //clear result
     clearSavedResult(matchString: string): void {
         //clear all before building
-        localStorage.removeItem(matchString);
+        localStorage.removeItem(ValidateComponent.STORAGE_PREFIX + matchString);
         window.location.reload();
     }
 
-    //clear all saved results
+    /**
+     * clear all validate strings.
+     */
     clearAllSavedResults(): void {
-        //clear all before building
-        localStorage.clear();
+        var keysToRemove: string[] = [];
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key !== null && key.startsWith(ValidateComponent.STORAGE_PREFIX)) {
+                keysToRemove.push(key);
+            }
+        }
+        while (keysToRemove.length > 0) {
+            localStorage.removeItem(keysToRemove.pop()!);
+        }
+        //TODO - should not use this to reload the table
         window.location.reload();
     }
 
