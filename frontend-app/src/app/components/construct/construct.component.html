@@ -32,7 +32,8 @@
                                     <mat-option [id]="institution.uniqueName"
                                                 *ngFor="let institution of filteredInstitutions | async"
                                                 [value]=institution.uniqueName>
-                                        <span><b>{{institution.uniqueName}}</b> - ({{institution.institutionName}})</span>
+                                        <span><b>{{institution.uniqueName}}</b> - ({{institution.institutionName}}
+                                            )</span>
                                     </mat-option>
                                 </mat-autocomplete>
                             </mat-form-field>
@@ -46,8 +47,9 @@
                     <mat-form-field [floatLabel]="'never'">
                         <mat-select placeholder="Select Collection"
                                     name="collection_dd"
-                                    [(ngModel)]="selectedCollection" >
-                            <mat-option *ngFor="let collection of filteredCollections | async" [value]=collection.collectionCode >
+                                    [(ngModel)]="selectedCollection">
+                            <mat-option *ngFor="let collection of filteredCollections | async"
+                                        [value]=collection.collectionCode>
                                 {{collection.collectionCode}} - ({{collection.collectionName}})
                             </mat-option>
                         </mat-select>
@@ -55,24 +57,72 @@
 
                 </td>
             </tr>
-                        <tr>
-                            <td>Enter Specimen id:</td>
-                            <td>
-                                <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
-                                       name="specimen" formControlName="specimen" placeholder="Enter the specimen id"
-                                       value={{specimenVal}} required/> <br/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                &nbsp;
-                            </td>
-                            <td>
-                                <button (click)="construct()">Construct Attribute Value</button>
-                            </td>
-                        </tr>
+            <tr>
+                <td>Enter Specimen id:</td>
+                <td>
+                    <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
+                           name="specimen" formControlName="specimen" placeholder="Enter the specimen id"
+                           value={{specimenVal}} required/> <br/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    &nbsp;
+                </td>
+                <td>
+                    <button (click)="construct()">Construct Attribute Value</button>
+                </td>
+            </tr>
         </table>
 
+    </section>
+
+
+    <section class="contructs-display-section" *ngIf="matchesResponse.length > 0">
+        <table>
+            <tr>
+                <td>
+                    <h4>Constructed Attributes:</h4>
+                </td>
+                <td></td>
+            </tr>
+            <tr *ngFor="let list of matchesResponse">
+                <td>
+                    {{list.match}}, Inst_code: {{list.institution.institutionCode}}
+                </td>
+                <td>
+                    <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
+                            value="{{list.match}}">Add to my Constructed Attributes
+                    </button>
+                </td>
+            </tr>
+        </table>
+    </section>
+
+    <section class="my-constructs-display-section" *ngIf="localStorageObj.length > 0">
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <div id="savedAttribBox">
+            <table>
+                <tr>
+                    <td>
+                        <h4>My constructed Attributes:
+                            <button (click)="clearAllSavedResults()">Remove All</button>
+                        </h4>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let list of localStorageObj">
+                    <td>
+                        {{list.toString()}}
+                    </td>
+                    <td>
+                        <button (click)="copyToClipboard(list.toString())">Copy</button>
+                        <button (click)="clearSavedResult(list.toString())">Remove</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </section>
 
 

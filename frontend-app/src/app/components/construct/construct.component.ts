@@ -78,9 +78,9 @@ export class ConstructComponent implements OnInit {
         this.IsChecked = false;
         this.matchesResponse = new Array();
         this.localStorageObj = new Array();
-        //this.fetchFromLocalStorage();
-        //this.filteredInstitutions = new Observable<Institution[]>;
-        //this.filteredCollections = new Array<Collection>();
+        this.fetchFromLocalStorage();
+        this.filteredInstitutions = new Observable<Institution[]>;
+        // this.filteredCollections = new Array<Collection>();
         // this.selectedInstitution =
         //     new Institution("", "", "", "",
         //         "", "", [""], "",
@@ -121,7 +121,8 @@ export class ConstructComponent implements OnInit {
         //alert(inputVal);
 
         // call the validate request
-        this.constructValidateService.validateAttribute(inputVal, this.buildAttributeTypeArray())
+        this.constructValidateService
+            .constructAttribute(this.selectedInstitution, this.selectedCollection, inputVal, this.buildAttributeTypeArray())
             .subscribe(resp => {
                 this.matchesResponse = resp.matches;
             })
@@ -145,52 +146,52 @@ export class ConstructComponent implements OnInit {
         return qualifierArray;
     }
 
-    //
-    // storeResultInLocal(matchString: string): void {
-    //     //alert(matchString);
-    //     //this.localStorageObj.push(matchString);
-    //     //TODO discuss if this is necessary
-    //     localStorage.setItem(matchString, matchString);
-    //     this.fetchFromLocalStorage();
-    // }
-    //
-    // copyToClipboard(matchString: string): void {
-    //     //alert(matchString);
-    //     this.clipboard.copy(matchString);
-    // }
-    //
-    // //TODO need to see when to use this??
-    // fetchFromLocalStorage(): void {
-    //     //clear all before building
-    //     while (this.localStorageObj.length) {
-    //         this.localStorageObj.pop();
-    //     }
-    //
-    //     for (var i = 0; i < localStorage.length; i++) {
-    //         var key = localStorage.key(i);
-    //         if (key == null) {
-    //             break;
-    //         }
-    //         console.log(key);
-    //         var dd = localStorage.getItem(key);
-    //         if (dd !== null) {
-    //             this.localStorageObj.push(dd);
-    //         }
-    //     }
-    // }
-    //
-    // //clear result
-    // clearSavedResult(matchString: string): void {
-    //     //clear all before building
-    //     localStorage.removeItem(matchString);
-    //     window.location.reload();
-    // }
-    //
-    // //clear all saved results
-    // clearAllSavedResults(): void {
-    //     //clear all before building
-    //     localStorage.clear();
-    //     window.location.reload();
-    // }
+
+    storeResultInLocal(matchString: string): void {
+        //alert(matchString);
+        //this.localStorageObj.push(matchString);
+        //TODO discuss if this is necessary
+        localStorage.setItem(matchString, matchString);
+        this.fetchFromLocalStorage();
+    }
+
+    copyToClipboard(matchString: string): void {
+        //alert(matchString);
+        this.clipboard.copy(matchString);
+    }
+
+    //TODO need to see when to use this??
+    fetchFromLocalStorage(): void {
+        //clear all before building
+        while (this.localStorageObj.length) {
+            this.localStorageObj.pop();
+        }
+
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key == null) {
+                break;
+            }
+            console.log(key);
+            var dd = localStorage.getItem(key);
+            if (dd !== null) {
+                this.localStorageObj.push(dd);
+            }
+        }
+    }
+
+    //clear result
+    clearSavedResult(matchString: string): void {
+        //clear all before building
+        localStorage.removeItem(matchString);
+        window.location.reload();
+    }
+
+    //clear all saved results
+    clearAllSavedResults(): void {
+        //clear all before building
+        localStorage.clear();
+        window.location.reload();
+    }
 
 }
