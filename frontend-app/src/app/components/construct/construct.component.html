@@ -18,7 +18,8 @@
                 <td>
                     <div class="wrapper">
                         <form class="institution-search">
-                            <mat-form-field [floatLabel]="'never'">
+<!--                            <mat-form-field [floatLabel]="'never'" class="example-full-width">-->
+                            <mat-form-field [floatLabel]="'never'" >
                                 <input
                                         [size]="50"
                                         type="text"
@@ -26,14 +27,14 @@
                                         [formControl]="searchInstitutionCtrl"
                                         matInput
                                         [matAutocomplete]="auto"
+                                        matAutocompletePosition="above"
                                         [(ngModel)]="typedInstitution">
                                 <mat-autocomplete [panelWidth]="500" #auto="matAutocomplete"
                                                   (optionSelected)="onSelected()">
                                     <mat-option [id]="institution.uniqueName"
                                                 *ngFor="let institution of filteredInstitutions | async"
                                                 [value]=institution.uniqueName>
-                                        <span><b>{{institution.uniqueName}}</b> - ({{institution.institutionName}}
-                                            )</span>
+                                        {{institution.uniqueName}}
                                     </mat-option>
                                 </mat-autocomplete>
                             </mat-form-field>
