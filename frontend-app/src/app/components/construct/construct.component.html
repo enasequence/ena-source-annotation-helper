@@ -14,7 +14,16 @@
                 </td>
             </tr>
             <tr>
-                <td [width]="200">Select Institution:</td>
+                <td [width]="200">
+                    Select Institution:
+                    <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="select the institution..."
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                </td>
                 <td>
                     <div class="wrapper">
                         <form class="institution-search">
@@ -71,7 +80,7 @@
                     &nbsp;
                 </td>
                 <td>
-                    <button (click)="construct()">Construct Attribute Value</button>
+                    <button mat-raised-button color="primary" (click)="construct()">Construct Attribute Value</button>
                 </td>
             </tr>
         </table>

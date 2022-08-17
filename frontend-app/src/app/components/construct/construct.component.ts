@@ -10,6 +10,7 @@ import {ConstructValidateService} from "../../services/construct-validate.servic
 import {Observable, of} from "rxjs";
 import {Collection} from "../../models/Collection";
 import {SahCommonsService} from "../../services/sah-commons.service";
+import {MatDialog} from "@angular/material/dialog";
 
 
 @Component({
@@ -35,6 +36,8 @@ export class ConstructComponent implements OnInit {
     isLoading = false;
     errorMsg!: string;
     minLengthTerm = 1;
+
+    institutionHelp: string = "Mandatory Field. Select the institution by keying-in the name";
 
     onSelected() {
         console.log(this.selectedInstitution);
@@ -71,12 +74,13 @@ export class ConstructComponent implements OnInit {
                 private sahCommonsService: SahCommonsService,
                 private _formBuilder: FormBuilder,
                 private clipboard: Clipboard,
-                private http: HttpClient) {
+                private http: HttpClient, private dialog: MatDialog) {
         this.IsChecked = false;
         this.matchesResponse = new Array();
         this.localStorageObj = new Array();
         this.fetchFromLocalStorage();
         this.filteredInstitutions = new Observable<Institution[]>;
+
     }
 
     ngOnInit() {
