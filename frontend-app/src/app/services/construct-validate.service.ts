@@ -51,14 +51,17 @@ export class ConstructValidateService {
         // alert(attribVal);
         const headers = new HttpHeaders({'Accept': 'application/json'});
         const options = {headers: headers};
-        var urlString = environment.sahAPIURL + '/construct?institution='+instVal+'&collection='+collVal+'&id=' + attribVal;
+        var urlString = environment.sahAPIURL + '/construct?institution='+instVal+'&id=' + attribVal;
+
+        if(collVal.trim() != '') {
+            urlString = urlString + '&collection='+collVal;
+        }
+
         if (qualifierArray.length > 0) {
             urlString = urlString + '&qualifier_type=' + qualifierArray;
         }
+        
         // alert(urlString);
-
-        // return this.http.get<SAHResponse>(urlString, options);
-
         return this.http.get<SAHResponse>(urlString, options)
             .pipe(
                 map(response => {

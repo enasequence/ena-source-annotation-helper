@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {MenuListItem} from "./models/MenuListItem";
 import {Router} from "@angular/router";
+import {environment} from "@env";
 
 @Component({
     selector: 'app-root',
@@ -10,6 +11,7 @@ import {Router} from "@angular/router";
 export class AppComponent {
     title = 'ena-sah-frontend';
     public selectedTab = 0;
+    sahAPIURL = environment.sahAPIURL;
 
     public tab = Object.seal({
         CONSTRUCT: 0,
