@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {ConstructValidateService} from 'src/app/services/construct-validate.service';
 import {MatchData} from "../../models/MatchData";
 import {Clipboard} from '@angular/cdk/clipboard';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-validate',
@@ -31,7 +32,8 @@ export class ValidateComponent implements OnInit {
 
     constructor(private backendService: ConstructValidateService,
                 private _formBuilder: FormBuilder,
-                private clipboard: Clipboard) {
+                private clipboard: Clipboard,
+                private router: Router) {
         this.IsChecked = false;
         this.matchesResponse = new Array();
         this.localStorageObj = new Array();
@@ -122,6 +124,10 @@ export class ValidateComponent implements OnInit {
         }
         //TODO - should not use this to reload the table
         window.location.reload();
+        //TODO - need to try something like component refresh
+        // this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+        //     this.router.navigate(['./validate']);
+        // });
     }
 
 }
