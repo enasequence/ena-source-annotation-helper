@@ -1,4 +1,19 @@
 <div>
+    <div class="sah-sub-header-content">
+        <p>
+            Users may use this tool to validate the attribute string. The user needs to provide the attribute string
+            in the required format, according to the attribute type.
+        </p>
+        <p>
+            The type of attribute (‘qualifier_type’: specimen voucher, culture collection, or bio material) can also
+            be
+            selected to narrow the search, but if none is provided the the tool will search within all attribute
+            values.
+        </p>
+        <p>
+            <i>Fields marked with astricks '*' are mandatory</i>
+        </p>
+    </div>
     <section class="attrib-validate-section" [formGroup]="validateFormGroup">
         <table [cellPadding]="10">
             <tr>
@@ -17,7 +32,18 @@
                 </td>
             </tr>
             <tr>
-                <td>Enter Attribute Value:</td>
+                <td>
+                    <mat-label>Enter Attribute Value:
+                        <span class="required-asterisk">*&nbsp;</span>
+                    </mat-label>
+                    <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Enter the attribute value..."
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                </td>
                 <td>
                     <input [size]="50" ngModel maxlength="100" type="text" id="attribVal" class="form-control"
                            name="attribute" formControlName="attribute"

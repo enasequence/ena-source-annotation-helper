@@ -1,4 +1,19 @@
 <div>
+    <div class="sah-sub-header-content">
+        <p>
+            Users may use this tool to construct the Attribute to help them obtain the correct attribute string for
+            referring to the biological source of the voucher linked with the sequence data.
+        </p>
+        <p>
+            The type of attribute (‘qualifier_type’: specimen voucher, culture collection, or bio material) can also
+            be
+            selected to narrow the search, but if none is provided the the tool will search within all attribute
+            values.
+        </p>
+        <p>
+            <i>Fields marked with astricks '*' are mandatory</i>
+        </p>
+    </div>
     <section class="attrib-validate-section" [formGroup]="constructFormGroup">
         <table [cellPadding]="10">
             <tr>
@@ -37,9 +52,8 @@
                 <td>
                     <div class="wrapper">
                         <form class="institution-search">
-                            <mat-form-field [floatLabel]="'never'" size="150">
+                            <mat-form-field [floatLabel]="'never'" [style.width.px]=350>
                                 <input
-                                        [size]="150"
                                         type="text"
                                         placeholder="Start typing the code / name..."
                                         [formControl]="searchInstitutionCtrl"
@@ -47,7 +61,7 @@
                                         [matAutocomplete]="auto"
                                         matAutocompletePosition="above"
                                         [(ngModel)]="typedInstitution">
-                                <mat-autocomplete [panelWidth]="500" #auto="matAutocomplete"
+                                <mat-autocomplete [panelWidth]="350" #auto="matAutocomplete"
                                                   (optionSelected)="onSelected()">
                                     <mat-option [id]="institution.uniqueName"
                                                 *ngFor="let institution of filteredInstitutions | async"
@@ -73,8 +87,8 @@
                                     </span>
                 </td>
                 <td>
-                    <mat-form-field [floatLabel]="'never'">
-                        <mat-select placeholder="Select Collection"
+                    <mat-form-field [floatLabel]="'never'" [style.width.px]=350>
+                        <mat-select [style.width.px]="350" placeholder="Select Collection"
                                     (selectionChange)="collectionChangeAction($event.value)"
                                     name="collection_dd"
                                     [(ngModel)]="selectedCollection" disableOptionCentering>
@@ -104,7 +118,9 @@
                     <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
                            name="specimen" formControlName="specimen" placeholder="Specimen Id / Code"
                            value={{specimenVal}} required/>
-                            <br/><mat-hint><i>Note: The tool does not include search or validation of the voucher specimen id/codes.</i></mat-hint>
+                    <br/>
+                    <mat-hint><i>Note: The tool does not include search or validation of the voucher specimen
+                        id/codes.</i></mat-hint>
                 </td>
             </tr>
             <tr>
