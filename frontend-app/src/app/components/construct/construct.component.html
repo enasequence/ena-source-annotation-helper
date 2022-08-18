@@ -2,7 +2,15 @@
     <section class="attrib-validate-section" [formGroup]="constructFormGroup">
         <table [cellPadding]="10">
             <tr>
-                <td [width]="200">Attribute Type:</td>
+                <td [width]="220">Attribute Type:
+                    <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Optionally select the Attribute Types to filter the search results"
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                </td>
                 <td>
                     <mat-checkbox checked=false formControlName="specimen_voucher">Specimen Voucher
                     </mat-checkbox>
@@ -14,8 +22,10 @@
                 </td>
             </tr>
             <tr>
-                <td [width]="200">
-                    Select Institution:
+                <td [width]="220">
+                    <mat-label>Select Institution:
+                        <span class="required-asterisk">*&nbsp;</span>
+                    </mat-label>
                     <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="select the institution..."
                                            matTooltipPosition="right"
@@ -27,11 +37,11 @@
                 <td>
                     <div class="wrapper">
                         <form class="institution-search">
-                            <mat-form-field [floatLabel]="'never'">
+                            <mat-form-field [floatLabel]="'never'" size="150">
                                 <input
-                                        [size]="50"
+                                        [size]="150"
                                         type="text"
-                                        placeholder="..."
+                                        placeholder="Start typing the code / name..."
                                         [formControl]="searchInstitutionCtrl"
                                         matInput
                                         [matAutocomplete]="auto"
@@ -51,13 +61,23 @@
                 </td>
             </tr>
             <tr>
-                <td [width]="200">Select Collection:</td>
+                <td [width]="220">
+                    <mat-label>Select Collection: &nbsp;
+                    </mat-label>
+                    <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Optionally select the Collection to which the specimen id/code belongs"
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                </td>
                 <td>
                     <mat-form-field [floatLabel]="'never'">
                         <mat-select placeholder="Select Collection"
                                     (selectionChange)="collectionChangeAction($event.value)"
                                     name="collection_dd"
-                                    [(ngModel)]="selectedCollection">
+                                    [(ngModel)]="selectedCollection" disableOptionCentering>
                             <mat-option *ngFor="let collection of filteredCollections | async"
                                         [value]=collection.collectionCode>
                                 {{collection.collectionCode}} - ({{collection.collectionName}})
@@ -68,11 +88,23 @@
                 </td>
             </tr>
             <tr>
-                <td>Enter Specimen id:</td>
+                <td [width]="220">
+                    <mat-label>Enter Specimen Id / Code:
+                        <span class="required-asterisk">*&nbsp;</span>
+                    </mat-label>
+                    <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Enter the specimen Id / code"
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                </td>
                 <td>
                     <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
-                           name="specimen" formControlName="specimen" placeholder="Enter the specimen id"
-                           value={{specimenVal}} required/> <br/>
+                           name="specimen" formControlName="specimen" placeholder="Specimen Id / Code"
+                           value={{specimenVal}} required/>
+                            <br/><mat-hint><i>Note: The tool does not include search or validation of the voucher specimen id/codes.</i></mat-hint>
                 </td>
             </tr>
             <tr>

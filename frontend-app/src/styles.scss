@@ -31,3 +31,21 @@ button.mat-mini-fab.help {
   color: #337ab7;
   padding-left:1px;
 }
+
+.mat-tooltip.infobox{ // making the font size on the mat-tooltip 1.5rem globally
+  font-size: 0.75rem;
+  color: #ffffff;
+  background-color: #337ab7;
+  &.exaggerated-tooltip{  // to modify the tooltip create a class like this
+    font-size: 0.75rem;  // and use it like this: *matTooltipClass="exaggerated-tooltip"* in the
+    color: #ffffff;         // component in which you are putting the tooltip
+    background-color: #337ab7;
+  }
+}
+
+.required-asterisk{
+  color: red;
+  font-weight: bold;
+  margin-left: 3px;
+  font-size: 1.2em;
+}
