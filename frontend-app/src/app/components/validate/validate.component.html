@@ -5,9 +5,8 @@
             in the required format, according to the attribute type.
         </p>
         <p>
-            The type of attribute (‘qualifier_type’: specimen voucher, culture collection, or bio material) can also
-            be
-            selected to narrow the search, but if none is provided the the tool will search within all attribute
+            The type of attribute (‘qualifier_type’: specimen voucher, culture collection, or bio material) can
+            be selected to narrow the search, but if none is provided, the the tool will search within all attribute
             values.
         </p>
         <p>
@@ -17,7 +16,17 @@
     <section class="attrib-validate-section" [formGroup]="validateFormGroup">
         <table [cellPadding]="10">
             <tr>
-                <td [width]="200">Attribute Type:</td>
+                <td [width]="250">
+                    <mat-label>Attribute Type:
+                    </mat-label>
+                    <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Optionally select the Attribute Types to filter the search results"
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                </td>
                 <td>
                     <mat-checkbox class="example-margin" checked=false formControlName="specimen_voucher">Specimen
                         Voucher
