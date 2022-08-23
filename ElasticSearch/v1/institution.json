@@ -2,22 +2,22 @@
   "settings": {
     "number_of_shards": 1,
     "number_of_replicas": 0,
+    "max_ngram_diff": "5",
     "analysis": {
+      "filter": {
+        "autocomplete_filter": {
+          "type": "edge_ngram",
+          "min_gram": 1,
+          "max_gram": 5
+        }
+      },
       "analyzer": {
-        "folding": {
+        "autocomplete": {
+          "type": "custom",
           "tokenizer": "standard",
           "filter": [
             "lowercase",
-            "asciifolding"
-          ]
-        }
-      },
-      "normalizer": {
-        "lowerasciinormalizer": {
-          "type": "custom",
-          "filter": [
-            "lowercase",
-            "asciifolding"
+            "autocomplete_filter"
           ]
         }
       }
@@ -36,13 +36,17 @@
         "type": "text",
         "meta": {
           "description": "Institution Code"
-        }
+        },
+        "analyzer": "autocomplete",
+        "search_analyzer": "standard"
       },
       "unique_name": {
         "type": "text",
         "meta": {
           "description": "Institution Unique Name"
-        }
+        },
+        "analyzer": "autocomplete",
+        "search_analyzer": "standard"
       },
       "synonyms": {
         "type": "text",
@@ -54,7 +58,9 @@
         "type": "text",
         "meta": {
           "description": "Institution Name"
-        }
+        },
+        "analyzer": "autocomplete",
+        "search_analyzer": "standard"
       },
       "country": {
         "type": "text",
