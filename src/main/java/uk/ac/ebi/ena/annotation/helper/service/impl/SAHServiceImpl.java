@@ -135,7 +135,6 @@ public class SAHServiceImpl implements SAHService {
 
     @Override
     public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String[] qualifierType) {
-        log.debug("*********institution string: " + instUniqueName);
         Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
         if (!optionalInstitute.isPresent()) {
             //no record found scenario
