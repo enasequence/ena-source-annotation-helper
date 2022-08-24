@@ -45,13 +45,11 @@ public interface InstitutionRepository extends ElasticsearchRepository<Instituti
     @Query("{\"multi_match\": {\"fields\": [\"inst_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institution> findByInstituteNameFuzzy(String instName);
 
-    //TODO make changes here
-    @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\"}}")
+    @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^3.0\", \"unique_name^2.0\", \"inst_name^1.0\" ] } }")
     List<Institution> findByInstituteFuzzy(String name, PageRequest pageable);
 
-    //TODO make changes here
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1 }}, " +
-            "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\"}}]}}")
+            "{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^3.0\", \"unique_name^2.0\", \"inst_name^1.0\" ] } }]}}")
     List<Institution> findByInstituteFuzzyAndQualifierTypeArray(String name, List<String> qualifierTypeArrray, PageRequest pageable);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}, " +

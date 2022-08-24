@@ -78,14 +78,14 @@ public class SAHServiceImpl implements SAHService {
         List<Institution> institutionList;
         if (isEmpty(qualifierType)) {
             institutionList = institutionRepository.findByInstituteFuzzy(name, PageRequest.of(0, QUERY_RESULTS_LIMIT,
-                    Sort.by("_score").descending().and(Sort.by("unique_name").ascending()))
+                    Sort.by("_score").descending())
             );
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
             institutionList = institutionRepository
                     .findByInstituteFuzzyAndQualifierTypeArray(name, listQT,
                             PageRequest.of(0, QUERY_RESULTS_LIMIT,
-                                    Sort.by("_score").descending().and(Sort.by("unique_name").ascending()))
+                                    Sort.by("_score").descending())
                     );
         }
         if (!institutionList.isEmpty()) {
@@ -135,6 +135,7 @@ public class SAHServiceImpl implements SAHService {
 
     @Override
     public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String[] qualifierType) {
+        log.debug("*********institution string: " + instUniqueName);
         Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
         if (!optionalInstitute.isPresent()) {
             //no record found scenario

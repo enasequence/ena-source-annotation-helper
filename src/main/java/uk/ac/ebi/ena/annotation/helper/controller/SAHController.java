@@ -37,6 +37,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 
 @RestController
+@CrossOrigin
 @Slf4j
 @Api(tags = "ENA Source Attribute Helper APIs")
 @RequestMapping({"/ena/sah/api/"})
