@@ -42,6 +42,7 @@
       },
       "unique_name": {
         "type": "text",
+        "fielddata": "true",
         "meta": {
           "description": "Institution Unique Name"
         },

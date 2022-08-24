@@ -18,6 +18,7 @@
 
 package uk.ac.ebi.ena.annotation.helper.repository;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.annotations.Query;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import uk.ac.ebi.ena.annotation.helper.entity.Institution;
@@ -44,12 +45,14 @@ public interface InstitutionRepository extends ElasticsearchRepository<Instituti
     @Query("{\"multi_match\": {\"fields\": [\"inst_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
     List<Institution> findByInstituteNameFuzzy(String instName);
 
-    @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
-    List<Institution> findByInstituteFuzzy(String name);
+    //TODO make changes here
+    @Query("{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\"}}")
+    List<Institution> findByInstituteFuzzy(String name, PageRequest pageable);
 
+    //TODO make changes here
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1 }}, " +
-            "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
-    List<Institution> findByInstituteFuzzyAndQualifierTypeArray(String name, List<String> qualifierTypeArrray, int limit);
+            "{\"multi_match\": {\"fields\": [\"inst_code\", \"unique_name\", \"inst_name\" ], \"query\": \"?0\"}}]}}")
+    List<Institution> findByInstituteFuzzyAndQualifierTypeArray(String name, List<String> qualifierTypeArrray, PageRequest pageable);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}, " +
             "{\"multi_match\": {\"fields\": [\"inst_name\" ], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}]}}")
