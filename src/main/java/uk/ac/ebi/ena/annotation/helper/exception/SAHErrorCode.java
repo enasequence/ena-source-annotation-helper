@@ -49,14 +49,14 @@ public class SAHErrorCode {
     public static final String InstituteMissingMessage = "Institution Unique Code is mandatory";
     public static final String IdentifierMissingMessage = "Identifier is mandatory";
     public static final String NoMatchMessage = "No Matching Institution/Collection found";
-    public static final String ValidInputSizeMessage = "for search, accepts minimum 3 chars and maximum 100 chars";
+    public static final String ValidInputSizeMessage = "for search, accepts minimum 1 char and maximum 100 chars";
     public static final String ValidInstituteUniqueNameRequiredMessage = "a valid institution unique name is required to search";
     public static final String ProvideValidInstituteUniqueName = "a valid institution unique name is required";
     public static final String ProvideValidCollectionCode = "a valid collection code is required";
     public static final String ProvideValidId = "an identifier is required";
     public static final String ProvideQualifierString = "qualifier string is required";
-    public static final String InstituteNotValidInputMessage = "For institution name/code, please provide at least 3 chars to search and max 100 chars";
-    public static final String CollectionNotValidInputMessage = "For collection name/code, please provide at least 3 chars to search and max 100 chars";
+    public static final String InstituteNotValidInputMessage = "For institution name/code, please provide at least 1 char to search and max 100 chars";
+    public static final String CollectionNotValidInputMessage = "For collection name/code, please provide at least 1 char to search and max 100 chars";
     public static final String QualifierTypeInvalidMessage = "QualifierType values should be from list of ";
     public static final String QualifierTypeInvalidCompleteMessage = "QualifierType values should be from list of {specimen_voucher, bio_material, culture_collection}";
 

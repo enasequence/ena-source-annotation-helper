@@ -47,12 +47,6 @@
         <appender-ref ref="Console"/>
     </logger>
 
-    <!-- LOG "graphql*" at INFO level -->
-    <logger name="graphql" level="INFO" additivity="false">
-        <appender-ref ref="RollingFile"/>
-        <appender-ref ref="Console"/>
-    </logger>
-
     <!-- LOG "org.springframework*" at ERROR level -->
     <logger name="org.springframework" level="ERROR" additivity="false">
         <appender-ref ref="RollingFile"/>

@@ -42,8 +42,8 @@ public class SAHInstituteServiceHelper {
     @Autowired
     private InstitutionRepository institutionRepository;
 
-    @Value("${ena.annotation.helper.suggestions.limit}")
-    private int SUGGESTIONS_LIMIT;
+    //@Value("${ena.annotation.helper.suggestions.limit}")
+    //private int SUGGESTIONS_LIMIT;
 
     public ValidationSearchResult validateInstitute(String instituteString, String[] qualifierType) {
         log.debug("Validating the institute -- " + instituteString);

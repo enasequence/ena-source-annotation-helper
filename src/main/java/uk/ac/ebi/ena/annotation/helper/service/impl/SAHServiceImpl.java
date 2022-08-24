@@ -21,12 +21,13 @@ package uk.ac.ebi.ena.annotation.helper.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.*;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institution;
 import uk.ac.ebi.ena.annotation.helper.exception.BadRequestException;
-import uk.ac.ebi.ena.annotation.helper.exception.ErrorResponse;
 import uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode;
 import uk.ac.ebi.ena.annotation.helper.mapper.CollectionMapper;
 import uk.ac.ebi.ena.annotation.helper.mapper.InstituteMapper;
@@ -76,11 +77,16 @@ public class SAHServiceImpl implements SAHService {
     public ResponseDto findByInstituteStringFuzzyWithQTArray(String name, String[] qualifierType) {
         List<Institution> institutionList;
         if (isEmpty(qualifierType)) {
-            institutionList = institutionRepository.findByInstituteFuzzy(name);
+            institutionList = institutionRepository.findByInstituteFuzzy(name, PageRequest.of(0, QUERY_RESULTS_LIMIT,
+                    Sort.by("_score").descending())
+            );
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
             institutionList = institutionRepository
-                    .findByInstituteFuzzyAndQualifierTypeArray(name, listQT, QUERY_RESULTS_LIMIT);
+                    .findByInstituteFuzzyAndQualifierTypeArray(name, listQT,
+                            PageRequest.of(0, QUERY_RESULTS_LIMIT,
+                                    Sort.by("_score").descending())
+                    );
         }
         if (!institutionList.isEmpty()) {
             return new InstituteResponseDto(institutionList.stream().map(instituteMapper::toDto).collect(Collectors.toList()),
