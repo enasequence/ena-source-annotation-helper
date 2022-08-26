@@ -20,16 +20,17 @@ body {
 }
 
 button.mat-mini-fab.help {
-  width: 20px;
-  height: 20px;
-  line-height: 10px;
+  width: 16px;
+  height: 16px;
+  line-height: 20px;
   font-size: 11px;
 }
 
 .help-icon {
-  font-size: 14px;
+  font-size: 12px;
   color: #337ab7;
   padding-left:1px;
+  vertical-align: text-bottom;
 }
 
 .mat-tooltip.infobox{ // making the font size on the mat-tooltip 1.5rem globally

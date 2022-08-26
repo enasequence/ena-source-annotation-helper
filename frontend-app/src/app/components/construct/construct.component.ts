@@ -35,7 +35,7 @@ export class ConstructComponent implements OnInit {
     filteredCollections: Observable<Collection[]> = null as any;
     isLoading = false;
     errorMsg!: string;
-    minLengthTerm = 1;
+    minLengthTerm = 0;
 
     institutionHelp: string = "Mandatory Field. Select the institution by keying-in the name";
 
@@ -46,7 +46,8 @@ export class ConstructComponent implements OnInit {
     }
 
     collectionChangeAction(selectedVal: string) {
-        console.log(this.selectedCollection);
+        //alert(selectedVal);
+        console.log(selectedVal);
         this.selectedCollection = selectedVal;
     }
 
