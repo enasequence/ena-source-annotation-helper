@@ -103,32 +103,7 @@
         </table>
     </section>
 
-    <section class="matches-display-section" *ngIf="localStorageObj.length > 0">
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-        <div id="savedAttribBox">
-            <table>
-                <tr>
-                    <td>
-                        <h4>My Matches:
-                            <button (click)="clearAllSavedResults()">Remove All</button>
-                        </h4>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr *ngFor="let list of localStorageObj">
-                    <td>
-                        {{list.toString()}}
-                    </td>
-                    <td>
-                        <button (click)="copyToClipboard(list.toString())">Copy</button>
-                        <button (click)="clearSavedResult(list.toString())">Remove</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </section>
-
+    <app-validatestore *ngIf="showValidateStore" (refreshStoreComponent)="refreshStoreComponent()"></app-validatestore>
 
     <!-- your content-->
 

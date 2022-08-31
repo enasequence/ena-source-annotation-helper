@@ -1,16 +1,14 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {MatchData} from "../../models/MatchData";
-import {Clipboard} from '@angular/cdk/clipboard';
 import {debounceTime, filter, switchMap} from "rxjs/operators";
-import {HttpClient} from "@angular/common/http";
 import {Institution} from "../../models/Institution";
 import {InstitutionService} from "../../services/institution.service";
 import {ConstructValidateService} from "../../services/construct-validate.service";
 import {Observable, of} from "rxjs";
 import {Collection} from "../../models/Collection";
 import {SahCommonsService} from "../../services/sah-commons.service";
-import {MatDialog} from "@angular/material/dialog";
+import {ConstructstoreComponent} from "./constructstore/constructstore.component";
 
 
 @Component({
@@ -37,27 +35,21 @@ export class ConstructComponent implements OnInit {
     errorMsg!: string;
     minLengthTerm = 0;
 
+    @ViewChild(ConstructstoreComponent, {static: false})
+    showConstructStore: boolean = true;
+
     institutionHelp: string = "Mandatory Field. Select the institution by keying-in the name";
 
-    onSelected() {
-        console.log(this.selectedInstitution);
-        this.selectedInstitution = this.typedInstitution;
-        this.filteredCollections = this.getfilteredCollections();
-    }
-
-    collectionChangeAction(selectedVal: string) {
-        //alert(selectedVal);
-        console.log(selectedVal);
-        this.selectedCollection = selectedVal;
-    }
-
-    displayWith(value: any) {
-        return value?.Title;
-    }
-
-    clearSelection() {
-        this.selectedInstitution = "";
+    constructor(private institutionService: InstitutionService,
+                private constructValidateService: ConstructValidateService,
+                private sahCommonsService: SahCommonsService,
+                private _formBuilder: FormBuilder) {
+        this.IsChecked = false;
+        this.matchesResponse = new Array();
+        this.localStorageObj = new Array();
         this.filteredInstitutions = new Observable<Institution[]>;
+        //this.childC = constructstoreComponent;
+
     }
 
     constructFormGroup = this._formBuilder.group({
@@ -67,22 +59,9 @@ export class ConstructComponent implements OnInit {
         specimen: new FormControl(this.specimenVal, [
             Validators.required,
             Validators.minLength(3)
-        ])
+        ]),
+        inputCollection: new FormControl(this.selectedCollection)
     });
-
-    constructor(private institutionService: InstitutionService,
-                private constructValidateService: ConstructValidateService,
-                private sahCommonsService: SahCommonsService,
-                private _formBuilder: FormBuilder,
-                private clipboard: Clipboard,
-                private http: HttpClient, private dialog: MatDialog) {
-            this.IsChecked = false;
-        this.matchesResponse = new Array();
-        this.localStorageObj = new Array();
-        this.fetchFromLocalStorage();
-        this.filteredInstitutions = new Observable<Institution[]>;
-
-    }
 
     ngOnInit() {
         this.filteredInstitutions = this.searchInstitutionCtrl.valueChanges.pipe(
@@ -106,7 +85,7 @@ export class ConstructComponent implements OnInit {
         );
     }
 
-    getfilteredCollections(): Observable<Collection[]> {
+    getFilteredCollections(): Observable<Collection[]> {
         return this.institutionService
             .findByAllCollByInstituteUniqueName(this.selectedInstitution, this.buildAttributeTypeArray());
 
@@ -142,10 +121,7 @@ export class ConstructComponent implements OnInit {
     storeResultInLocal(matchString: string): void {
         localStorage.setItem(ConstructComponent.STORAGE_PREFIX + matchString, matchString);
         this.fetchFromLocalStorage();
-    }
-
-    copyToClipboard(matchString: string): void {
-        this.clipboard.copy(matchString);
+        this.refreshStoreComponent();
     }
 
     fetchFromLocalStorage(): void {
@@ -169,30 +145,32 @@ export class ConstructComponent implements OnInit {
         }
     }
 
-    //clear result
-    clearSavedResult(matchString: string): void {
-        //clear all before building
-        localStorage.removeItem(ConstructComponent.STORAGE_PREFIX + matchString);
-        window.location.reload();
+    onSelected() {
+        console.log(this.selectedInstitution);
+        this.selectedInstitution = this.typedInstitution;
+        this.filteredCollections = this.getFilteredCollections();
     }
 
-    /**
-     * clear all construct strings.
-     */
-    clearAllSavedResults(): void {
-        var keysToRemove: string[] = [];
-        for (var i = 0; i < localStorage.length; i++) {
-            var key = localStorage.key(i);
-            if (key !== null && key.startsWith(ConstructComponent.STORAGE_PREFIX)) {
-                keysToRemove.push(key);
-            }
-        }
-        while (keysToRemove.length > 0) {
-            localStorage.removeItem(keysToRemove.pop()!);
-        }
+    collectionChangeAction(selectedVal: string) {
+        //alert(selectedVal);
+        console.log(selectedVal);
+        this.selectedCollection = selectedVal;
+    }
 
-        //TODO - should not use this to reload the table
-        window.location.reload();
+    displayWith(value: any) {
+        return value?.Title;
+    }
+
+    clearSelection() {
+        this.selectedInstitution = "";
+        this.filteredInstitutions = new Observable<Institution[]>;
+    }
+
+    refreshStoreComponent() {
+        this.showConstructStore = false;
+        setTimeout(() => {
+            this.showConstructStore = true
+        }, 50);
     }
 
 }

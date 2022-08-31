@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {ConstructValidateService} from 'src/app/services/construct-validate.service';
 import {MatchData} from "../../models/MatchData";
-import {Clipboard} from '@angular/cdk/clipboard';
 import {Router} from "@angular/router";
+import {ValidatestoreComponent} from "./validatestore/validatestore.component";
 
 @Component({
     selector: 'app-validate',
@@ -20,6 +20,9 @@ export class ValidateComponent implements OnInit {
     matchesResponse: MatchData[];
     localStorageObj: Array<string>;
 
+    @ViewChild(ValidatestoreComponent, {static: false})
+    showValidateStore: boolean = true;
+
     validateFormGroup = this._formBuilder.group({
         specimen_voucher: false,
         culture_collection: false,
@@ -31,9 +34,7 @@ export class ValidateComponent implements OnInit {
     });
 
     constructor(private backendService: ConstructValidateService,
-                private _formBuilder: FormBuilder,
-                private clipboard: Clipboard,
-                private router: Router) {
+                private _formBuilder: FormBuilder) {
         this.IsChecked = false;
         this.matchesResponse = new Array();
         this.localStorageObj = new Array();
@@ -74,10 +75,7 @@ export class ValidateComponent implements OnInit {
         //TODO discuss if this is necessary
         localStorage.setItem(ValidateComponent.STORAGE_PREFIX + matchString, matchString);
         this.fetchFromLocalStorage();
-    }
-
-    copyToClipboard(matchString: string): void {
-        this.clipboard.copy(matchString);
+        this.refreshStoreComponent();
     }
 
     fetchFromLocalStorage(): void {
@@ -101,33 +99,12 @@ export class ValidateComponent implements OnInit {
         }
     }
 
-    //clear result
-    clearSavedResult(matchString: string): void {
-        //clear all before building
-        localStorage.removeItem(ValidateComponent.STORAGE_PREFIX + matchString);
-        window.location.reload();
+    refreshStoreComponent() {
+        this.showValidateStore = false;
+        setTimeout(() => {
+            this.showValidateStore = true
+        }, 50);
     }
 
-    /**
-     * clear all validate strings.
-     */
-    clearAllSavedResults(): void {
-        var keysToRemove: string[] = [];
-        for (var i = 0; i < localStorage.length; i++) {
-            var key = localStorage.key(i);
-            if (key !== null && key.startsWith(ValidateComponent.STORAGE_PREFIX)) {
-                keysToRemove.push(key);
-            }
-        }
-        while (keysToRemove.length > 0) {
-            localStorage.removeItem(keysToRemove.pop()!);
-        }
-        //TODO - should not use this to reload the table
-        window.location.reload();
-        //TODO - need to try something like component refresh
-        // this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-        //     this.router.navigate(['./validate']);
-        // });
-    }
 
 }

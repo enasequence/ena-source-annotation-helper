@@ -23,12 +23,16 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
+import { ConstructstoreComponent } from './components/construct/constructstore/constructstore.component';
+import { ValidatestoreComponent } from './components/validate/validatestore/validatestore.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         ConstructComponent,
-        ValidateComponent
+        ValidateComponent,
+        ConstructstoreComponent,
+        ValidatestoreComponent
     ],
     imports: [
         BrowserModule,

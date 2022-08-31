@@ -1,0 +1,30 @@
+<section class="my-constructs-display-section" *ngIf="localStorageObj.length > 0">
+    <p>&nbsp;</p>
+    <div id="savedAttribBox">
+        <table>
+            <tr>
+                <td [width]="20">
+                    &nbsp;
+                </td>
+                <td [width]="500">
+                    <h4>My Matches:</h4>
+                </td>
+                <td [width]="300">
+                    <button (click)="clearAllSavedResults()">Remove All</button>
+                </td>
+            </tr>
+            <tr *ngFor="let list of localStorageObj">
+                <td [width]="20">
+                    &nbsp;
+                </td>
+                <td [width]="500">
+                    {{list.toString()}}
+                </td>
+                <td [width]="300">
+                    <button (click)="copyToClipboard(list.toString())">Copy</button>&nbsp;&nbsp;
+                    <button (click)="clearSavedResult(list.toString())">Remove</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</section>
