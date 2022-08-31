@@ -90,7 +90,8 @@
                         <mat-select [style.width.px]="350" placeholder="Select Collection"
                                     (selectionChange)="collectionChangeAction($event.value)"
                                     name="collection_dd"
-                                    [(ngModel)]="selectedCollection" disableOptionCentering>
+                                    formControlName="inputCollection" value={{selectedCollection}}
+                                    disableOptionCentering>
                             <mat-option *ngFor="let collection of filteredCollections | async"
                                         [value]=collection.collectionCode>
                                 {{collection.collectionCode}} - {{collection.collectionName}}
@@ -162,19 +163,26 @@
         <div id="savedAttribBox">
             <table>
                 <tr>
-                    <td>
-                        <h4>My Constructed Attributes:
-                            <button (click)="clearAllSavedResults()">Remove All</button>
-                        </h4>
+                    <td [width]="20">
+                        &nbsp;
                     </td>
-                    <td></td>
+                    <td [width]="400">
+                        <h4>My Constructed Attributes:</h4>
+                    </td>
+                    <td [width]="200" >
+                        <button (click)="clearAllSavedResults()">Remove All</button>
+                    </td>
+                    <td [width]="200"></td>
                 </tr>
                 <tr *ngFor="let list of localStorageObj">
-                    <td>
+                    <td [width]="20">
+                        &nbsp;
+                    </td>
+                    <td [width]="400">
                         {{list.toString()}}
                     </td>
-                    <td>
-                        <button (click)="copyToClipboard(list.toString())">Copy</button>
+                    <td [width]="200">
+                        <button (click)="copyToClipboard(list.toString())">Copy</button>&nbsp;&nbsp;
                         <button (click)="clearSavedResult(list.toString())">Remove</button>
                     </td>
                 </tr>
