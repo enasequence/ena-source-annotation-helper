@@ -76,7 +76,7 @@ export class ConstructComponent implements OnInit {
                 private _formBuilder: FormBuilder,
                 private clipboard: Clipboard,
                 private http: HttpClient, private dialog: MatDialog) {
-        this.IsChecked = false;
+            this.IsChecked = false;
         this.matchesResponse = new Array();
         this.localStorageObj = new Array();
         this.fetchFromLocalStorage();
