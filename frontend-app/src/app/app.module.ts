@@ -1,8 +1,8 @@
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -23,8 +23,11 @@ import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatDialogModule} from "@angular/material/dialog";
-import { ConstructstoreComponent } from './components/construct/constructstore/constructstore.component';
-import { ValidatestoreComponent } from './components/validate/validatestore/validatestore.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {ConstructstoreComponent} from './components/construct/constructstore/constructstore.component';
+import {ValidatestoreComponent} from './components/validate/validatestore/validatestore.component';
+import {GlobalErrorHandler} from "./global-error-handler";
+import {ServerErrorInterceptor} from "./server-error.interceptor";
 
 @NgModule({
     declarations: [
@@ -55,12 +58,16 @@ import { ValidatestoreComponent } from './components/validate/validatestore/vali
         MatButtonModule,
         MatButtonToggleModule,
         MatCardModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatSnackBarModule
     ],
     exports: [
         MatCheckboxModule
     ],
-    providers: [],
+    providers: [
+        {provide: ErrorHandler, useClass: GlobalErrorHandler},
+        {provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true}
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

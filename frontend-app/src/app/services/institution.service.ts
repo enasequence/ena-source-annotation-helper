@@ -28,10 +28,14 @@ export class InstitutionService {
         if (qualifierArray.length > 0) {
             urlString = urlString + '?qualifier_type=' + qualifierArray;
         }
-        //alert(urlString);
+        alert(urlString);
         return this.http.get<MetaResponse>(urlString, options)
             .pipe(
                 map(response => {
+                        if (response.institutions.length <= 0) {
+                            throw new Error('No Institutions found for the selected criteria');
+                            console.log("No Institutions found for the selected criteria");
+                        }
                         console.log(response.institutions);
                         return response.institutions;
                     }
