@@ -26,7 +26,7 @@ export class InstitutionService {
         const options = {headers: headers};
         var urlString = environment.sahAPIURL + 'institution/' + instVal;
         if (qualifierArray.length > 0) {
-            urlString = urlString + '&qualifier_type=' + qualifierArray;
+            urlString = urlString + '?qualifier_type=' + qualifierArray;
         }
         //alert(urlString);
         return this.http.get<MetaResponse>(urlString, options)

@@ -2,7 +2,6 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {ConstructValidateService} from 'src/app/services/construct-validate.service';
 import {MatchData} from "../../models/MatchData";
-import {Router} from "@angular/router";
 import {ValidatestoreComponent} from "./validatestore/validatestore.component";
 
 @Component({

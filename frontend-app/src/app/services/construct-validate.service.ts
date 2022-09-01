@@ -26,7 +26,7 @@ export class ConstructValidateService {
         if (qualifierArray.length > 0) {
             urlString = urlString + '&qualifier_type=' + qualifierArray;
         }
-        // alert(urlString);
+        alert(urlString);
 
         // return this.http.get<SAHResponse>(urlString, options);
 
