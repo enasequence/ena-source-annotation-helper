@@ -9,6 +9,7 @@ import {Observable, of} from "rxjs";
 import {Collection} from "../../models/Collection";
 import {SahCommonsService} from "../../services/sah-commons.service";
 import {ConstructstoreComponent} from "./constructstore/constructstore.component";
+import {AppConstants} from "../../app.constants";
 
 
 @Component({
@@ -18,8 +19,6 @@ import {ConstructstoreComponent} from "./constructstore/constructstore.component
 })
 
 export class ConstructComponent implements OnInit {
-
-    static STORAGE_PREFIX: string = "construct@";
 
     IsChecked: boolean;
     specimenVal: string = "";
@@ -119,7 +118,7 @@ export class ConstructComponent implements OnInit {
 
 
     storeResultInLocal(matchString: string): void {
-        localStorage.setItem(ConstructComponent.STORAGE_PREFIX + matchString, matchString);
+        localStorage.setItem(AppConstants.CONSTRUCT_STORAGE_PREFIX + matchString, matchString);
         this.fetchFromLocalStorage();
         this.refreshStoreComponent();
     }
@@ -136,7 +135,7 @@ export class ConstructComponent implements OnInit {
                 break;
             }
             console.log(key);
-            if (key.startsWith(ConstructComponent.STORAGE_PREFIX)) {
+            if (key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
                 var dd = localStorage.getItem(key);
                 if (dd !== null) {
                     this.localStorageObj.push(dd);

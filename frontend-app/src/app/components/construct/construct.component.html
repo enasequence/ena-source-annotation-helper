@@ -103,11 +103,11 @@
             </tr>
             <tr>
                 <td [width]="220">
-                    <mat-label>Enter Specimen Id / Code:
+                    <mat-label>Enter Identifier/ Code:
                         <span class="required-asterisk">*&nbsp;</span>
                     </mat-label>
                     <span> <button class="mat-mini-fab help" type="button">
-                                        <i matTooltip="Enter the specimen Id / code"
+                                        <i matTooltip="Enter the identifier / code"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
@@ -116,11 +116,11 @@
                 </td>
                 <td>
                     <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
-                           name="specimen" formControlName="specimen" placeholder="Specimen Id / Code"
+                           name="specimen" formControlName="specimen" placeholder="Identifier / Code"
                            value={{specimenVal}} required/>
                     <br/>
-                    <mat-hint><i>Note: The tool does not include search or validation of the voucher specimen
-                        id/codes.</i></mat-hint>
+                    <mat-hint><i>Note: The tool does not include search or validation of the
+                        voucher identifier/codes.</i></mat-hint>
                 </td>
             </tr>
             <tr>

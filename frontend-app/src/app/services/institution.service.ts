@@ -6,6 +6,7 @@ import {map} from 'rxjs/operators';
 import {MetaResponse} from "../models/MetaResponse";
 import {Institution} from "../models/Institution";
 import {Collection} from "../models/Collection";
+import {AppConstants} from "../app.constants";
 
 
 @Injectable({
@@ -28,15 +29,15 @@ export class InstitutionService {
         if (qualifierArray.length > 0) {
             urlString = urlString + '?qualifier_type=' + qualifierArray;
         }
-        alert(urlString);
+        // alert(urlString);
         return this.http.get<MetaResponse>(urlString, options)
             .pipe(
                 map(response => {
                         if (response.institutions.length <= 0) {
-                            throw new Error('No Institutions found for the selected criteria');
-                            console.log("No Institutions found for the selected criteria");
+                            console.log(AppConstants.NO_INSTITUTIONS_FOUND);
+                            throw new Error(AppConstants.NO_INSTITUTIONS_FOUND);
                         }
-                        console.log(response.institutions);
+                        // console.log(response.institutions);
                         return response.institutions;
                     }
                 ));
@@ -55,11 +56,14 @@ export class InstitutionService {
         if (qualifierArray.length > 0) {
             urlString = urlString + '?qualifier_type=' + qualifierArray;
         }
-        //alert(urlString);
+        // alert(urlString);
         return this.http.get<MetaResponse>(urlString, options)
             .pipe(
                 map(response => {
-                        //console.log(response.institutions);
+                        if (response.institutions[0].collections.length <= 0) {
+                            console.log(AppConstants.NO_COLLECTIONS_FOUND);
+                            throw new Error(AppConstants.NO_COLLECTIONS_FOUND);
+                        }
                         return response.institutions[0] ? response.institutions[0].collections : [];
                     }
                 ));

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
-import {ValidateComponent} from "../validate.component";
 import {Clipboard} from "@angular/cdk/clipboard";
+import {AppConstants} from "../../../app.constants";
 
 @Injectable({
     providedIn: 'root'
@@ -42,7 +42,7 @@ export class ValidatestoreComponent implements OnInit {
                 break;
             }
             console.log(key);
-            if (key.startsWith(ValidateComponent.STORAGE_PREFIX)) {
+            if (key.startsWith(AppConstants.VALIDATE_STORAGE_PREFIX)) {
                 var dd = localStorage.getItem(key);
                 if (dd !== null) {
                     this.localStorageObj.push(dd);
@@ -54,7 +54,7 @@ export class ValidatestoreComponent implements OnInit {
     //clear result
     clearSavedResult(matchString: string): void {
         //clear all before building
-        localStorage.removeItem(ValidateComponent.STORAGE_PREFIX + matchString);
+        localStorage.removeItem(AppConstants.VALIDATE_STORAGE_PREFIX + matchString);
         // refresh the component
         this.refreshStoreComponent.emit();
     }
@@ -66,7 +66,7 @@ export class ValidatestoreComponent implements OnInit {
         var keysToRemove: string[] = [];
         for (var i = 0; i < localStorage.length; i++) {
             var key = localStorage.key(i);
-            if (key !== null && key.startsWith(ValidateComponent.STORAGE_PREFIX)) {
+            if (key !== null && key.startsWith(AppConstants.VALIDATE_STORAGE_PREFIX)) {
                 keysToRemove.push(key);
             }
         }

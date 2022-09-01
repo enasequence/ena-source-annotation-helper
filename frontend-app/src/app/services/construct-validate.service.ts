@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {environment} from '@env';
-import {HttpClient, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {SAHResponse} from "../models/SAHResponse";
 import {Observable} from "rxjs";
-import {map, retry, catchError, shareReplay, finalize, take} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
+import {AppConstants} from "../app.constants";
 
 @Injectable({
     providedIn: 'root'
@@ -26,13 +27,14 @@ export class ConstructValidateService {
         if (qualifierArray.length > 0) {
             urlString = urlString + '&qualifier_type=' + qualifierArray;
         }
-        alert(urlString);
-
-        // return this.http.get<SAHResponse>(urlString, options);
-
+        //alert(urlString);
         return this.http.get<SAHResponse>(urlString, options)
             .pipe(
                 map(response => {
+                        if (response.matches.length <= 0) {
+                            console.log(AppConstants.NO_MATCHES_FOUND);
+                            throw new Error(AppConstants.NO_MATCHES_FOUND);
+                        }
                         console.log(response.matches);
                         return response;
 
@@ -51,10 +53,10 @@ export class ConstructValidateService {
         // alert(attribVal);
         const headers = new HttpHeaders({'Accept': 'application/json'});
         const options = {headers: headers};
-        var urlString = environment.sahAPIURL + '/construct?institution='+instVal+'&id=' + attribVal;
+        var urlString = environment.sahAPIURL + '/construct?institution=' + instVal + '&id=' + attribVal;
 
-        if(collVal.trim() != '') {
-            urlString = urlString + '&collection='+collVal;
+        if (collVal.trim() != '') {
+            urlString = urlString + '&collection=' + collVal;
         }
 
         if (qualifierArray.length > 0) {
@@ -65,6 +67,10 @@ export class ConstructValidateService {
         return this.http.get<SAHResponse>(urlString, options)
             .pipe(
                 map(response => {
+                        if (response.matches.length <= 0) {
+                            console.log(AppConstants.NO_MATCHES_FOUND);
+                            throw new Error(AppConstants.NO_MATCHES_FOUND);
+                        }
                         console.log(response.matches);
                         return response;
 

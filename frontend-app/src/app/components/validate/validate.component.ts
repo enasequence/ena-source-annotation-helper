@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {ConstructValidateService} from 'src/app/services/construct-validate.service';
 import {MatchData} from "../../models/MatchData";
 import {ValidatestoreComponent} from "./validatestore/validatestore.component";
+import {AppConstants} from "../../app.constants";
 
 @Component({
     selector: 'app-validate',
@@ -11,8 +12,6 @@ import {ValidatestoreComponent} from "./validatestore/validatestore.component";
 })
 
 export class ValidateComponent implements OnInit {
-
-    static STORAGE_PREFIX: string = "validate@";
 
     IsChecked: boolean;
     attribVal: string = "";
@@ -72,7 +71,7 @@ export class ValidateComponent implements OnInit {
 
     storeResultInLocal(matchString: string): void {
         //TODO discuss if this is necessary
-        localStorage.setItem(ValidateComponent.STORAGE_PREFIX + matchString, matchString);
+        localStorage.setItem(AppConstants.VALIDATE_STORAGE_PREFIX + matchString, matchString);
         this.fetchFromLocalStorage();
         this.refreshStoreComponent();
     }
@@ -89,7 +88,7 @@ export class ValidateComponent implements OnInit {
                 break;
             }
             console.log(key);
-            if (key.startsWith(ValidateComponent.STORAGE_PREFIX)) {
+            if (key.startsWith(AppConstants.VALIDATE_STORAGE_PREFIX)) {
                 var dd = localStorage.getItem(key);
                 if (dd !== null) {
                     this.localStorageObj.push(dd);

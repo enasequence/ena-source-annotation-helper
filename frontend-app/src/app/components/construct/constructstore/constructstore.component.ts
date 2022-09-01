@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {Clipboard} from '@angular/cdk/clipboard';
 import {ConstructComponent} from "../construct.component";
+import {AppConstants} from "../../../app.constants";
 
 @Injectable({
     providedIn: 'root'
@@ -41,7 +42,7 @@ export class ConstructstoreComponent implements OnInit {
                 break;
             }
             console.log(key);
-            if (key.startsWith(ConstructComponent.STORAGE_PREFIX)) {
+            if (key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
                 var dd = localStorage.getItem(key);
                 if (dd !== null) {
                     this.localStorageObj.push(dd);
@@ -53,7 +54,7 @@ export class ConstructstoreComponent implements OnInit {
     //clear result
     clearSavedResult(matchString: string): void {
         //clear all before building
-        localStorage.removeItem(ConstructComponent.STORAGE_PREFIX + matchString);
+        localStorage.removeItem(AppConstants.CONSTRUCT_STORAGE_PREFIX + matchString);
         // refresh the component
         this.refreshStoreComponent.emit();
     }
@@ -65,7 +66,7 @@ export class ConstructstoreComponent implements OnInit {
         var keysToRemove: string[] = [];
         for (var i = 0; i < localStorage.length; i++) {
             var key = localStorage.key(i);
-            if (key !== null && key.startsWith(ConstructComponent.STORAGE_PREFIX)) {
+            if (key !== null && key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
                 keysToRemove.push(key);
             }
         }
