@@ -1,0 +1,31 @@
+{
+  "description": "ENA Source Attribute Helper: An Application Programming Interface to facilitate accurate reference to biological source data.",
+  "license": "Apache License Version 2.0",
+  "title": "ENA Source Attribute Helper",
+  "version": "v1.0.0",
+  "upload_type": "software",
+  "publication_date": "2022-08-02",
+  "creators": [
+    {
+      "affiliation": "EMBL EBI",
+      "name": "Suran Jayathilaka"
+    },
+    {
+      "affiliation": "EMBL EBI",
+      "name": "Vikas Gupta"
+    }
+  ],
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/enasequence/ena-source-annotation-helper/tree/v1.0.0",
+      "relation": "isSupplementTo"
+    },
+    {
+      "scheme": "doi",
+      "identifier": "10.5281/zenodo.6953742",
+      "relation": "isVersionOf"
+    }
+  ]
+}
