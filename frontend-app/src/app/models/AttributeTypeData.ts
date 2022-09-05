@@ -24,7 +24,7 @@ AttributeTypeData.set("Culture Collection", "culture_collection");
 AttributeTypeData.set("Bio Material", "bio_material");*/
 
 export const AttributeTypeData = [
-    {option: "Specimen Voucher", value: "specimen_voucher"},
-    {option: "Culture Collection", value: "culture_collection"},
-    {option: "Bio Material", value: "bio_material"},
+    {option: "Specimen Voucher (e.g. specimen)", value: "specimen_voucher"},
+    {option: "Culture Collection (e.g. live microbial, viral cultures, cell lines", value: "culture_collection"},
+    {option: "Bio Material (e.g. tissues, DNA, seed banks, zoos, germplasms)", value: "bio_material"},
 ];
