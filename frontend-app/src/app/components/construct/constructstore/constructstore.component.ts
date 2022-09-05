@@ -31,20 +31,11 @@ export class ConstructstoreComponent implements OnInit {
     }
 
     copyAllToClipboard(): void {
-        var savedAttributes = "";
-        for (var i = 0; i < localStorage.length; i++) {
-            var key = localStorage.key(i);
-            if (key == null) {
-                break;
-            }
-            if (key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
-                var dd = localStorage.getItem(key);
-                if (dd !== null) {
-                    savedAttributes += dd;
-                }
-            }
-        }
-        this.clipboard.copy(savedAttributes);
+        var savedAttributes = new Array<string> ();
+        this.localStorageObj.map (savedVal => {
+            savedAttributes.push(savedVal);
+        })
+        this.clipboard.copy(savedAttributes.join(" | "));
     }
 
     fetchFromLocalStorage(): void {
