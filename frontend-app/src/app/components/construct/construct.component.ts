@@ -10,6 +10,8 @@ import {Collection} from "../../models/Collection";
 import {SahCommonsService} from "../../services/sah-commons.service";
 import {ConstructstoreComponent} from "./constructstore/constructstore.component";
 import {AppConstants} from "../../app.constants";
+import {MatSelectChange} from "@angular/material/select";
+import {AttributeTypeData} from '../../models/AttributeTypeData';
 
 
 @Component({
@@ -20,6 +22,9 @@ import {AppConstants} from "../../app.constants";
 
 export class ConstructComponent implements OnInit {
 
+    readonly attributeTypeData = AttributeTypeData;
+
+    attributeVal: string = "";
     specimenVal: string = "";
     matchesResponse: MatchData[];
     localStorageObj: Array<string>;
@@ -65,7 +70,7 @@ export class ConstructComponent implements OnInit {
             switchMap(value => {
                 if (value !== '') {
                     return this.institutionService
-                        .findByInstitutionValue(value, this.buildAttributeTypeArray());
+                        .findByInstitutionValue(value, this.attributeVal);
                 } else {
                     // if no value is present, return null
                     return of(null as any);
@@ -76,7 +81,7 @@ export class ConstructComponent implements OnInit {
 
     getFilteredCollections(): Observable<Collection[]> {
         return this.institutionService
-            .findByAllCollByInstituteUniqueName(this.selectedInstitution, this.buildAttributeTypeArray());
+            .findByAllCollByInstituteUniqueName(this.selectedInstitution, this.attributeVal);
 
     }
 
@@ -85,27 +90,11 @@ export class ConstructComponent implements OnInit {
         console.log(inputVal);
         // call the validate request
         this.constructValidateService
-            .constructAttribute(this.selectedInstitution, this.selectedCollection, inputVal, this.buildAttributeTypeArray())
+            .constructAttribute(this.selectedInstitution, this.selectedCollection, inputVal, this.attributeVal)
             .subscribe(resp => {
                 this.matchesResponse = resp.matches;
             })
     };
-
-    buildAttributeTypeArray(): Array<string> {
-        var qualifierArray = new Array<string>();
-        // prepare the request
-        if (this.constructFormGroup.get("specimen_voucher")?.value == true) {
-            qualifierArray.push("specimen_voucher");
-        }
-        if (this.constructFormGroup.get("culture_collection")?.value == true) {
-            qualifierArray.push("culture_collection");
-        }
-        if (this.constructFormGroup.get("bio_material")?.value == true) {
-            qualifierArray.push("bio_material");
-        }
-        return qualifierArray;
-    }
-
 
     storeResultInLocal(matchString: string): void {
         localStorage.setItem(AppConstants.CONSTRUCT_STORAGE_PREFIX + matchString, matchString);
@@ -160,6 +149,11 @@ export class ConstructComponent implements OnInit {
         setTimeout(() => {
             this.showConstructStore = true
         }, 50);
+    }
+
+    attributeSelection(event: MatSelectChange) {
+        // alert(event.value);
+        this.attributeVal = event.value;
     }
 
 }

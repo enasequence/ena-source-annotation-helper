@@ -4,6 +4,8 @@ import {ConstructValidateService} from 'src/app/services/construct-validate.serv
 import {MatchData} from "../../models/MatchData";
 import {ValidatestoreComponent} from "./validatestore/validatestore.component";
 import {AppConstants} from "../../app.constants";
+import {MatSelectChange} from "@angular/material/select";
+import {AttributeTypeData} from "../../models/AttributeTypeData";
 
 @Component({
     selector: 'app-validate',
@@ -13,6 +15,9 @@ import {AppConstants} from "../../app.constants";
 
 export class ValidateComponent implements OnInit {
 
+    readonly attributeTypeData = AttributeTypeData;
+
+    attributeVal: string = "";
     IsChecked: boolean;
     attribVal: string = "";
     matchesResponse: MatchData[];
@@ -48,26 +53,11 @@ export class ValidateComponent implements OnInit {
         var inputVal: string = this.validateFormGroup.get("attribute")?.value!;
         console.log(inputVal);
         // call the validate request
-        this.backendService.validateAttribute(inputVal, this.buildAttributeTypeArray())
+        this.backendService.validateAttribute(inputVal, this.attributeVal)
             .subscribe(resp => {
                 this.matchesResponse = resp.matches;
             })
     };
-
-    buildAttributeTypeArray(): Array<string> {
-        var qualifierArray = new Array<string>();
-        // prepare the request
-        if (this.validateFormGroup.get("specimen_voucher")?.value == true) {
-            qualifierArray.push("specimen_voucher");
-        }
-        if (this.validateFormGroup.get("culture_collection")?.value == true) {
-            qualifierArray.push("culture_collection");
-        }
-        if (this.validateFormGroup.get("bio_material")?.value == true) {
-            qualifierArray.push("bio_material");
-        }
-        return qualifierArray;
-    }
 
     storeResultInLocal(matchString: string): void {
         //TODO discuss if this is necessary
@@ -102,6 +92,11 @@ export class ValidateComponent implements OnInit {
         setTimeout(() => {
             this.showValidateStore = true
         }, 50);
+    }
+
+    attributeSelection(event: MatSelectChange) {
+        // alert(event.value);
+        this.attributeVal = event.value;
     }
 
 

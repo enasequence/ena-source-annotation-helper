@@ -19,13 +19,13 @@ export class ConstructValidateService {
      * @param attribVal
      * @param qualifierArray
      */
-    validateAttribute(attribVal: string, qualifierArray: string[]): Observable<SAHResponse> {
+    validateAttribute(attribVal: string, qualifier: string): Observable<SAHResponse> {
         // alert(attribVal);
         const headers = new HttpHeaders({'Accept': 'application/json'});
         const options = {headers: headers};
         var urlString = environment.sahAPIURL + 'validate?value=' + attribVal;
-        if (qualifierArray.length > 0) {
-            urlString = urlString + '&qualifier_type=' + qualifierArray;
+        if (qualifier !== "") {
+            urlString = urlString + '&qualifier_type=' + qualifier;
         }
         //alert(urlString);
         return this.http.get<SAHResponse>(urlString, options)
@@ -49,7 +49,7 @@ export class ConstructValidateService {
      * @param attribVal
      * @param qualifierArray
      */
-    constructAttribute(instVal: string, collVal: string, attribVal: string, qualifierArray: string[]): Observable<SAHResponse> {
+    constructAttribute(instVal: string, collVal: string, attribVal: string, qualifier: string): Observable<SAHResponse> {
         // alert(attribVal);
         const headers = new HttpHeaders({'Accept': 'application/json'});
         const options = {headers: headers};
@@ -59,8 +59,8 @@ export class ConstructValidateService {
             urlString = urlString + '&collection=' + collVal;
         }
 
-        if (qualifierArray.length > 0) {
-            urlString = urlString + '&qualifier_type=' + qualifierArray;
+        if (qualifier !== "") {
+            urlString = urlString + '&qualifier_type=' + qualifier;
         }
 
         // alert(urlString);

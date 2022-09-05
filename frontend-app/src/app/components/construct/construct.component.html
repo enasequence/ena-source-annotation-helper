@@ -13,10 +13,11 @@
             <i>Fields marked with asterisk<i class="required-asterisk">*</i> are mandatory</i>
         </p>
     </div>
-    <section class="attrib-validate-section" [formGroup]="constructFormGroup">
+    <section class="attrib-construct-section" [formGroup]="constructFormGroup">
         <table [cellPadding]="10">
             <tr>
                 <td [width]="220">Attribute Type:
+                    <span class="required-asterisk">*&nbsp;</span>
                     <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Optionally select the Attribute Types to filter the search results"
                                            matTooltipPosition="right"
@@ -26,13 +27,13 @@
                                     </span>
                 </td>
                 <td>
-                    <mat-checkbox checked=false formControlName="specimen_voucher">Specimen Voucher
-                    </mat-checkbox>
-                    <span class="span-space-text"></span>
-                    <mat-checkbox checked=false formControlName="culture_collection">Culture Collection
-                    </mat-checkbox>
-                    <span class="span-space-text"></span>
-                    <mat-checkbox checked=false formControlName="bio_material">Bio Material</mat-checkbox>
+                    <mat-form-field>
+                        <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type">
+                            <mat-option *ngFor="let attribType of attributeTypeData" [value]="attribType.value">
+                                {{ attribType.option }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </td>
             </tr>
             <tr>

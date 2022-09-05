@@ -16,9 +16,15 @@ import {Injectable} from "@angular/core";
  * limitations under the License.
  */
 
-const AttributeTypeMap: Map<string, string> = new Map();
+/*
+export const AttributeTypeData: Map<string, string> = new Map();
 
-AttributeTypeMap.set("Specimen Voucher", "specimen_voucher");
-AttributeTypeMap.set("Culture Collection", "culture_collection");
-AttributeTypeMap.set("Bio Material", "bio_material");
+AttributeTypeData.set("Specimen Voucher", "specimen_voucher");
+AttributeTypeData.set("Culture Collection", "culture_collection");
+AttributeTypeData.set("Bio Material", "bio_material");*/
 
+export const AttributeTypeData = [
+    {option: "Specimen Voucher", value: "specimen_voucher"},
+    {option: "Culture Collection", value: "culture_collection"},
+    {option: "Bio Material", value: "bio_material"},
+];

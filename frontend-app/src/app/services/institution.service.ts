@@ -22,12 +22,12 @@ export class InstitutionService {
      * @param instVal
      * @param qualifierArray
      */
-    findByInstitutionValue(instVal: string, qualifierArray: string[]): Observable<Institution[]> {
+    findByInstitutionValue(instVal: string, qualifier: string): Observable<Institution[]> {
         const headers = new HttpHeaders({'Accept': 'application/json'});
         const options = {headers: headers};
         var urlString = environment.sahAPIURL + 'institution/' + instVal;
-        if (qualifierArray.length > 0) {
-            urlString = urlString + '?qualifier_type=' + qualifierArray;
+        if (qualifier !== "") {
+            urlString = urlString + '?qualifier_type=' + qualifier;
         }
         // alert(urlString);
         return this.http.get<MetaResponse>(urlString, options)
@@ -48,13 +48,13 @@ export class InstitutionService {
      * @param instVal
      * @param qualifierArray
      */
-    findByAllCollByInstituteUniqueName(instVal: string, qualifierArray: string[]): Observable<Collection[]> {
+    findByAllCollByInstituteUniqueName(instVal: string, qualifier: string): Observable<Collection[]> {
         var filterdCollections: Collection[] = [] as any;
         const headers = new HttpHeaders({'Accept': 'application/json'});
         const options = {headers: headers};
         var urlString = environment.sahAPIURL + 'institution/' + instVal + '/collection';
-        if (qualifierArray.length > 0) {
-            urlString = urlString + '?qualifier_type=' + qualifierArray;
+        if (qualifier !== "") {
+            urlString = urlString + '?qualifier_type=' + qualifier;
         }
         // alert(urlString);
         return this.http.get<MetaResponse>(urlString, options)
