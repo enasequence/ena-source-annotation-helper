@@ -15,7 +15,7 @@ export class ValidatestoreComponent implements OnInit {
 
     localStorageObj: Array<string>;
 
-    @Output("refreshStoreComponent") refreshStoreComponent: EventEmitter<any> = new EventEmitter();
+    @Output("refreshStoreComponent") refreshStoreComponent: EventEmitter<any> = new EventEmitter(true);
 
     constructor(private clipboard: Clipboard) {
         this.localStorageObj = new Array();

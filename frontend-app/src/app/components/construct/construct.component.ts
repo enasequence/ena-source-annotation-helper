@@ -20,7 +20,6 @@ import {AppConstants} from "../../app.constants";
 
 export class ConstructComponent implements OnInit {
 
-    IsChecked: boolean;
     specimenVal: string = "";
     matchesResponse: MatchData[];
     localStorageObj: Array<string>;
@@ -30,8 +29,6 @@ export class ConstructComponent implements OnInit {
     searchInstitutionCtrl = new FormControl();
     filteredInstitutions: Observable<Institution[]> = null as any;
     filteredCollections: Observable<Collection[]> = null as any;
-    isLoading = false;
-    errorMsg!: string;
     minLengthTerm = 0;
 
     @ViewChild(ConstructstoreComponent, {static: false})
@@ -43,11 +40,9 @@ export class ConstructComponent implements OnInit {
                 private constructValidateService: ConstructValidateService,
                 private sahCommonsService: SahCommonsService,
                 private _formBuilder: FormBuilder) {
-        this.IsChecked = false;
         this.matchesResponse = new Array();
         this.localStorageObj = new Array();
         this.filteredInstitutions = new Observable<Institution[]>;
-        //this.childC = constructstoreComponent;
 
     }
 
@@ -67,11 +62,6 @@ export class ConstructComponent implements OnInit {
             filter(data => data.trim().length > this.minLengthTerm && data.trim() !== this.selectedInstitution),
             // delay emits
             debounceTime(300),
-            //     tap(() => {
-            //         this.errorMsg = "";
-            //         this.filteredInstitutions = new Observable<Institution[]>;
-            //     }),
-            // use switch map so as to cancel previous subscribed events, before creating new once
             switchMap(value => {
                 if (value !== '') {
                     return this.institutionService
