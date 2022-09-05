@@ -30,6 +30,23 @@ export class ValidatestoreComponent implements OnInit {
         this.clipboard.copy(matchString);
     }
 
+    copyAllToClipboard(): void {
+        var savedAttributes = "";
+        for (var i = 0; i < localStorage.length; i++) {
+            var key = localStorage.key(i);
+            if (key == null) {
+                break;
+            }
+            if (key.startsWith(AppConstants.VALIDATE_STORAGE_PREFIX)) {
+                var dd = localStorage.getItem(key);
+                if (dd !== null) {
+                    savedAttributes += dd;
+                }
+            }
+        }
+        this.clipboard.copy(savedAttributes);
+    }
+
     fetchFromLocalStorage(): void {
         //clear all before building
         while (this.localStorageObj.length) {
