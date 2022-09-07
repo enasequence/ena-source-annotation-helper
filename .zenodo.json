@@ -15,12 +15,5 @@
       "name": "Vikas Gupta"
     }
   ],
-  "access_right": "open",
-  "related_identifiers": [
-    {
-      "scheme": "url",
-      "identifier": "https://github.com/enasequence/ena-source-annotation-helper/tree/v1.0.0",
-      "relation": "isSupplementTo"
-    }
-  ]
+  "access_right": "open"
 }
