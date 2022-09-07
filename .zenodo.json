@@ -8,12 +8,21 @@
   "creators": [
     {
       "affiliation": "EMBL EBI",
-      "name": "Suran Jayathilaka"
+      "name": "Suran Jayathilaka",
+      "orcid": "0000-0002-0154-8807"
     },
     {
       "affiliation": "EMBL EBI",
-      "name": "Vikas Gupta"
+      "name": "Vikas Gupta",
+      "orcid": "0000-0001-9465-8716"
     }
   ],
-  "access_right": "open"
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "scheme": "doi",
+      "identifier": "10.5281/zenodo.6953742",
+      "relation": "isNewVersionOf"
+    }
+  ]
 }
