@@ -29,9 +29,10 @@ export class ConstructComponent implements OnInit {
     matchesResponse: MatchData[];
     localStorageObj: Array<string>;
     typedInstitution: string = "";
-    selectedInstitution: string = "";
+    selectedInstitution: Institution = null as any;
     selectedCollection: string = "";
     searchInstitutionCtrl = new FormControl();
+    institutionsMap: Map<string, Institution> = new Map<string, Institution>();
     filteredInstitutions: Observable<Institution[]> = null as any;
     filteredCollections: Observable<Collection[]> = null as any;
     minLengthTerm = 0;
@@ -64,7 +65,7 @@ export class ConstructComponent implements OnInit {
 
     ngOnInit() {
         this.filteredInstitutions = this.searchInstitutionCtrl.valueChanges.pipe(
-            filter(data => data.trim().length > this.minLengthTerm && data.trim() !== this.selectedInstitution),
+            filter(data => data.trim().length > this.minLengthTerm && data.trim() !== this.typedInstitution),
             // delay emits
             debounceTime(300),
             switchMap(value => {
@@ -76,12 +77,19 @@ export class ConstructComponent implements OnInit {
                     return of(null as any);
                 }
             })
-        );
+        )
+        this.filteredInstitutions.subscribe(institutions => {
+            institutions.map(instObj => {
+                this.institutionsMap.set(instObj.uniqueName, instObj);
+            })
+        });
+
+
     }
 
     getFilteredCollections(): Observable<Collection[]> {
         return this.institutionService
-            .findByAllCollByInstituteUniqueName(this.selectedInstitution, this.attributeVal);
+            .findByAllCollByInstituteUniqueName(this.selectedInstitution.uniqueName, this.attributeVal);
 
     }
 
@@ -90,7 +98,7 @@ export class ConstructComponent implements OnInit {
         console.log(inputVal);
         // call the validate request
         this.constructValidateService
-            .constructAttribute(this.selectedInstitution, this.selectedCollection, inputVal, this.attributeVal)
+            .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
             .subscribe(resp => {
                 this.matchesResponse = resp.matches;
             })
@@ -124,9 +132,11 @@ export class ConstructComponent implements OnInit {
     }
 
     onSelected() {
-        console.log(this.selectedInstitution);
-        this.selectedInstitution = this.typedInstitution;
+        console.log(this.typedInstitution);
+        // @ts-ignore
+        this.selectedInstitution = this.institutionsMap.get(this.typedInstitution);
         this.filteredCollections = this.getFilteredCollections();
+        this.typedInstitution = this.selectedInstitution.uniqueName + "-" + this.selectedInstitution.institutionName;
     }
 
     collectionChangeAction(selectedVal: string) {
@@ -140,7 +150,7 @@ export class ConstructComponent implements OnInit {
     }
 
     clearSelection() {
-        this.selectedInstitution = "";
+        this.selectedInstitution = null as any;
         this.filteredInstitutions = new Observable<Institution[]>;
     }
 
