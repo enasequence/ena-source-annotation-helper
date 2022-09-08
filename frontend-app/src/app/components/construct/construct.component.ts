@@ -33,6 +33,7 @@ export class ConstructComponent implements OnInit {
     selectedCollection: string = "";
     searchInstitutionCtrl = new FormControl();
     institutionsMap: Map<string, Institution> = new Map<string, Institution>();
+    matchesResponseMap: Map<string, MatchData> = new Map<string, MatchData>();
     filteredInstitutions: Observable<Institution[]> = null as any;
     filteredCollections: Observable<Collection[]> = null as any;
     minLengthTerm = 0;
@@ -101,7 +102,8 @@ export class ConstructComponent implements OnInit {
 
     }
 
-    onSubmit(): void {
+    // Construct
+    constructAttribute(): void {
 
         // Get all Form Controls keys and loop them
         Object.keys(this.constructFormGroup.controls).forEach(key => {
@@ -109,7 +111,7 @@ export class ConstructComponent implements OnInit {
             console.log("====>" + this.constructFormGroup.get(key)?.errors);
         });
 
-        var inputVal: string = this.constructFormGroup.get("specimen")?.value!;
+        var inputVal: string = this.constructFormGroup.get("specimenCtrl")?.value!;
         console.log(inputVal);
 
         if (this.selectedInstitution !== null) {
@@ -118,13 +120,20 @@ export class ConstructComponent implements OnInit {
                 .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
                 .subscribe(resp => {
                     this.matchesResponse = resp.matches;
+                    //TODO
+                    this.matchesResponse.map(matchData => {
+                        alert(matchData.match);
+                        this.matchesResponseMap.set(matchData.match, matchData);
+                    })
                 })
         } else {
-            //raise errors
+            //raise errors TODO
             alert('qwert');
         }
+    }
 
-
+    getAttributeMeta(matchString: string) {
+        return this.matchesResponseMap.get(matchString)?.institution.qualifierType;
     }
 
     storeResultInLocal(matchString: string): void {

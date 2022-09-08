@@ -14,7 +14,7 @@
         </p>
     </div>
     <section class="attrib-construct-section">
-        <form [formGroup]="constructFormGroup" (ngSubmit)="onSubmit()">
+        <form [formGroup]="constructFormGroup" (ngSubmit)="constructAttribute()">
             <table [cellPadding]="10">
                 <tr>
                     <td [width]="220">Attribute Type:
@@ -171,12 +171,15 @@
                 <td></td>
             </tr>
             <tr *ngFor="let list of matchesResponse">
-                <td>
+                <td [width]="200">
                     {{list.match}}
+                </td>
+                <td [width]="150">
+                    {{getAttributeMeta(list.match)}}
                 </td>
                 <td>
                     <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
-                            value="{{list.match}}">Add to my Constructed Attributes
+                            value="{{list.match}}">Add to My Constructed Attributes
                     </button>
                 </td>
             </tr>
