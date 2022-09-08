@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +8,7 @@ export class AppConstants {
     // cofiguration constants
     public static CONSTRUCT_STORAGE_PREFIX = "construct@";
     public static VALIDATE_STORAGE_PREFIX = "validate@";
+    public static NEW_LINE_SEPARATOR = "\r\n";
 
     // Error Messages
     public static NO_INSTITUTIONS_FOUND = "No Institutions found for the selected criteria";

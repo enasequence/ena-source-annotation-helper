@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatchData} from "../../models/MatchData";
-import {debounceTime, distinctUntilChanged, filter, switchMap} from "rxjs/operators";
+import {debounceTime, filter, switchMap} from "rxjs/operators";
 import {Institution} from "../../models/Institution";
 import {InstitutionService} from "../../services/institution.service";
 import {ConstructValidateService} from "../../services/construct-validate.service";
@@ -52,16 +52,24 @@ export class ConstructComponent implements OnInit {
 
     }
 
-    constructFormGroup = this._formBuilder.group({
-        specimen_voucher: false,
-        culture_collection: false,
-        bio_material: false,
-        specimen: new FormControl(this.specimenVal, [
-            Validators.required,
-            Validators.minLength(3)
+    constructFormGroup = new FormGroup({
+        attributeCtrl: new FormControl(this.attributeVal, [
+            Validators.required
         ]),
-        inputCollection: new FormControl(this.selectedCollection)
+        specimenCtrl: new FormControl(this.specimenVal, [
+            Validators.required,
+            Validators.minLength(1)
+        ]),
+        inputCollectionCtrl: new FormControl(this.selectedCollection)
     });
+
+    get attributeCtrl() {
+        return this.constructFormGroup.get('attributeCtrl')
+    }
+
+    get specimenCtrl() {
+        return this.constructFormGroup.get('specimenCtrl')
+    }
 
     ngOnInit() {
         this.filteredInstitutions = this.searchInstitutionCtrl.valueChanges.pipe(
@@ -93,16 +101,31 @@ export class ConstructComponent implements OnInit {
 
     }
 
-    construct(): void {
+    onSubmit(): void {
+
+        // Get all Form Controls keys and loop them
+        Object.keys(this.constructFormGroup.controls).forEach(key => {
+            // Get errors of every form control
+            console.log("====>" + this.constructFormGroup.get(key)?.errors);
+        });
+
         var inputVal: string = this.constructFormGroup.get("specimen")?.value!;
         console.log(inputVal);
-        // call the validate request
-        this.constructValidateService
-            .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
-            .subscribe(resp => {
-                this.matchesResponse = resp.matches;
-            })
-    };
+
+        if (this.selectedInstitution !== null) {
+            // call the validate request
+            this.constructValidateService
+                .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
+                .subscribe(resp => {
+                    this.matchesResponse = resp.matches;
+                })
+        } else {
+            //raise errors
+            alert('qwert');
+        }
+
+
+    }
 
     storeResultInLocal(matchString: string): void {
         localStorage.setItem(AppConstants.CONSTRUCT_STORAGE_PREFIX + matchString, matchString);

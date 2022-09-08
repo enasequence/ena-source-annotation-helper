@@ -13,129 +13,152 @@
             <i>Fields marked with asterisk<i class="required-asterisk">*</i> are mandatory</i>
         </p>
     </div>
-    <section class="attrib-construct-section" [formGroup]="constructFormGroup">
-        <table [cellPadding]="10">
-            <tr>
-                <td [width]="220">Attribute Type:
-                    <span class="required-asterisk">*&nbsp;</span>
-                    <span> <button class="mat-mini-fab help" type="button">
+    <section class="attrib-construct-section">
+        <form [formGroup]="constructFormGroup" (ngSubmit)="onSubmit()">
+            <table [cellPadding]="10">
+                <tr>
+                    <td [width]="220">Attribute Type:
+                        <span class="required-asterisk">*&nbsp;</span>
+                        <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Optionally select the Attribute Types to filter the search results"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                </td>
-                <td>
-                    <mat-form-field [style.width.px]=350>
-                        <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type">
-                            <mat-option *ngFor="let attribType of attributeTypeData"
-                                        [value]="attribType.value" [matTooltip]="attribType.option">
-                                {{ attribType.option }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td [width]="220">
-                    <mat-label>Select Institution:
-                        <span class="required-asterisk">*&nbsp;</span>
-                    </mat-label>
-                    <span> <button class="mat-mini-fab help" type="button">
+                    </td>
+                    <td>
+                        <mat-form-field [style.width.px]=350>
+                            <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type"
+                                        class="form-control" id="attributeCtrl" formControlName="attributeCtrl"
+                                        value={{attributeVal}} required>
+                                <mat-option *ngFor="let attribType of attributeTypeData"
+                                            [value]="attribType.value" [matTooltip]="attribType.option">
+                                    {{ attribType.option }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                        <div *ngIf="attributeCtrl?.invalid && (attributeCtrl?.dirty || attributeCtrl?.touched)"
+                             class="alert alert-danger">
+                            <div *ngIf="attributeCtrl?.errors?.['required']">
+                                Attribute is required.
+                            </div>
+                            <!--<div *ngIf="attributeCtrl.errors?.['minlength']">
+                                Name must be at least 4 characters long.
+                            </div>-->
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td [width]="220">
+                        <mat-label>Select Institution:
+                            <span class="required-asterisk">*&nbsp;</span>
+                        </mat-label>
+                        <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="select the institution..."
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                </td>
-                <td>
-                    <div class="wrapper">
-                        <form class="institution-search">
-                            <mat-form-field [floatLabel]="'never'" [style.width.px]=350>
-                                <input
-                                        type="text"
-                                        placeholder="Start typing the code / name..."
-                                        [formControl]="searchInstitutionCtrl"
-                                        matInput
-                                        [matAutocomplete]="auto"
-                                        matAutocompletePosition="below"
-                                        [(ngModel)]="typedInstitution">
-                                <mat-autocomplete [panelWidth]="350" #auto="matAutocomplete"
-                                                  (optionSelected)="onSelected()">
-                                    <mat-option [id]="institution.uniqueName"
-                                                *ngFor="let institution of filteredInstitutions | async"
-                                                [value]=institution.uniqueName
-                                                [matTooltip]="institution.institutionName + ',' + institution.address + ',' + institution.country">
-                                        {{institution.uniqueName}} - {{institution.institutionName}}
-                                    </mat-option>
-                                </mat-autocomplete>
-                            </mat-form-field>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td [width]="220">
-                    <mat-label>Select Collection: &nbsp;
-                    </mat-label>
-                    <span> <button class="mat-mini-fab help" type="button">
+                    </td>
+                    <td>
+                        <div class="wrapper">
+                            <form class="institution-search">
+                                <mat-form-field [floatLabel]="'never'" [style.width.px]=350>
+                                    <input
+                                            type="text"
+                                            placeholder="Start typing the code / name..."
+                                            [formControl]="searchInstitutionCtrl"
+                                            matInput
+                                            required minlength="1"
+                                            [matAutocomplete]="auto"
+                                            matAutocompletePosition="below"
+                                            [(ngModel)]="typedInstitution">
+                                    <mat-autocomplete [panelWidth]="350" #auto="matAutocomplete"
+                                                      (optionSelected)="onSelected()">
+                                        <mat-option [id]="institution.uniqueName"
+                                                    *ngFor="let institution of filteredInstitutions | async"
+                                                    [value]=institution.uniqueName
+                                                    [matTooltip]="institution.institutionName + ',' + institution.address + ',' + institution.country">
+                                            {{institution.uniqueName}} - {{institution.institutionName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td [width]="220">
+                        <mat-label>Select Collection: &nbsp;
+                        </mat-label>
+                        <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Optionally select the Collection to which the specimen id/code belongs"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                </td>
-                <td>
-                    <mat-form-field [floatLabel]="'never'" [style.width.px]=350>
-                        <mat-select [style.width.px]="350" placeholder="Select Collection"
-                                    (selectionChange)="collectionChangeAction($event.value)"
-                                    name="collection_dd"
-                                    formControlName="inputCollection" value={{selectedCollection}}
-                                    disableOptionCentering>
-                            <mat-option *ngFor="let collection of filteredCollections | async"
-                                        [value]=collection.collectionCode>
-                                {{collection.collectionCode}} - {{collection.collectionName}}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
+                    </td>
+                    <td>
 
-                </td>
-            </tr>
-            <tr>
-                <td [width]="220">
-                    <mat-label>Enter Identifier/Code:
-                        <span class="required-asterisk">*&nbsp;</span>
-                    </mat-label>
-                    <span> <button class="mat-mini-fab help" type="button">
+                        <mat-form-field [floatLabel]="'never'" [style.width.px]=350>
+                            <mat-select [style.width.px]="350" placeholder="Select Collection"
+                                        (selectionChange)="collectionChangeAction($event.value)"
+                                        formControlName="inputCollectionCtrl" value={{selectedCollection}}
+                                        disableOptionCentering>
+                                <mat-option *ngFor="let collection of filteredCollections | async"
+                                            [value]=collection.collectionCode>
+                                    {{collection.collectionCode}} - {{collection.collectionName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td [width]="220">
+                        <mat-label>Enter Identifier/Code:
+                            <span class="required-asterisk">*&nbsp;</span>
+                        </mat-label>
+                        <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Enter the identifier / code"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                </td>
-                <td>
-                    <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
-                           name="specimen" formControlName="specimen" placeholder="Identifier / Code"
-                           value={{specimenVal}} required/>
-                    <br/>
-                    <mat-hint><i>Note: The tool does not include search or validation of the
-                        voucher identifier/codes.</i></mat-hint>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    <button mat-raised-button color="primary" (click)="construct()">Construct Attribute Value</button>
-                </td>
-            </tr>
-        </table>
-
+                    </td>
+                    <td>
+                        <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
+                               name="specimen" formControlName="specimenCtrl" placeholder="Identifier / Code"
+                               value={{specimenVal}} required/>
+                        <br/>
+                        <mat-hint><i>Note: The tool does not include search or validation of the
+                            voucher identifier/codes.</i></mat-hint>
+                        <div *ngIf="specimenCtrl?.invalid && (specimenCtrl?.dirty || specimenCtrl?.touched)"
+                             class="alert alert-danger">
+                            <div *ngIf="specimenCtrl?.errors?.['required']">
+                                Specimen code/id is required.
+                            </div>
+                            <!--<div *ngIf="attributeCtrl.errors?.['minlength']">
+                                Name must be at least 4 characters long.
+                            </div>-->
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <button type="submit" mat-raised-button color="primary">Construct Attribute Value</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
     </section>
 
 
@@ -160,6 +183,7 @@
         </table>
     </section>
 
-    <app-constructstore *ngIf="showConstructStore" (refreshStoreComponent)="refreshStoreComponent()"></app-constructstore>
+    <app-constructstore *ngIf="showConstructStore"
+                        (refreshStoreComponent)="refreshStoreComponent()"></app-constructstore>
 
 </div>

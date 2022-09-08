@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {Clipboard} from '@angular/cdk/clipboard';
-import {ConstructComponent} from "../construct.component";
 import {AppConstants} from "../../../app.constants";
 
 @Injectable({
@@ -31,11 +30,11 @@ export class ConstructstoreComponent implements OnInit {
     }
 
     copyAllToClipboard(): void {
-        var savedAttributes = new Array<string> ();
-        this.localStorageObj.map (savedVal => {
+        var savedAttributes = new Array<string>();
+        this.localStorageObj.map(savedVal => {
             savedAttributes.push(savedVal);
         })
-        this.clipboard.copy(savedAttributes.join(" | "));
+        this.clipboard.copy(savedAttributes.join(AppConstants.NEW_LINE_SEPARATOR));
     }
 
     fetchFromLocalStorage(): void {
