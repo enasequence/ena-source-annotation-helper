@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {MatchData} from "../../models/MatchData";
-import {debounceTime, filter, switchMap} from "rxjs/operators";
+import {debounceTime, distinctUntilChanged, filter, switchMap} from "rxjs/operators";
 import {Institution} from "../../models/Institution";
 import {InstitutionService} from "../../services/institution.service";
 import {ConstructValidateService} from "../../services/construct-validate.service";
@@ -154,6 +154,12 @@ export class ConstructComponent implements OnInit {
         this.filteredInstitutions = new Observable<Institution[]>;
     }
 
+    clearInstitutionSelection() {
+        this.selectedInstitution = null as any;
+        //this.filteredInstitutions = new Observable<Institution[]>;
+        this.typedInstitution = "";
+    }
+
     refreshStoreComponent() {
         this.showConstructStore = false;
         setTimeout(() => {
@@ -164,6 +170,7 @@ export class ConstructComponent implements OnInit {
     attributeSelection(event: MatSelectChange) {
         // alert(event.value);
         this.attributeVal = event.value;
+        //this.clearInstitutionSelection();
     }
 
 }
