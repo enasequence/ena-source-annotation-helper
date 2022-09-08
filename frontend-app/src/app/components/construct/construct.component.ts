@@ -11,7 +11,7 @@ import {SahCommonsService} from "../../services/sah-commons.service";
 import {ConstructstoreComponent} from "./constructstore/constructstore.component";
 import {AppConstants} from "../../app.constants";
 import {MatSelectChange} from "@angular/material/select";
-import {AttributeTypeData} from '../../models/AttributeTypeData';
+import {AttributeDisplay, AttributeTypeData} from '../../models/AttributeTypeData';
 
 
 @Component({
@@ -23,6 +23,7 @@ import {AttributeTypeData} from '../../models/AttributeTypeData';
 export class ConstructComponent implements OnInit {
 
     readonly attributeTypeData = AttributeTypeData;
+    readonly attributeDisplay = AttributeDisplay;
 
     attributeVal: string = "";
     specimenVal: string = "";
@@ -122,7 +123,7 @@ export class ConstructComponent implements OnInit {
                     this.matchesResponse = resp.matches;
                     //TODO
                     this.matchesResponse.map(matchData => {
-                        alert(matchData.match);
+                        //alert(matchData.match);
                         this.matchesResponseMap.set(matchData.match, matchData);
                     })
                 })
@@ -133,7 +134,16 @@ export class ConstructComponent implements OnInit {
     }
 
     getAttributeMeta(matchString: string) {
-        return this.matchesResponseMap.get(matchString)?.institution.qualifierType;
+        // pull up the first qualifier value as it will be always single value only in this case
+        return this.attributeDisplay.get(
+            this.matchesResponseMap.get(matchString)?.institution.qualifierType[0]
+        );
+    }
+
+    getInstitutionMeta(matchString: string) {
+        return this.matchesResponseMap.get(matchString)?.institution.institutionName + " , " +
+        this.matchesResponseMap.get(matchString)?.institution.address + " , " +
+        this.matchesResponseMap.get(matchString)?.institution.country;
     }
 
     storeResultInLocal(matchString: string): void {

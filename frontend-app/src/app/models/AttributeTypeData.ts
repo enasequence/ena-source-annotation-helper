@@ -28,3 +28,8 @@ export const AttributeTypeData = [
     {option: "Culture Collection (e.g. live microbial, viral cultures, cell lines", value: "culture_collection"},
     {option: "Bio Material (e.g. tissues, DNA, seed banks, zoos, germplasms)", value: "bio_material"},
 ];
+
+export const AttributeDisplay = new Map()
+    .set("specimen_voucher","Specimen Voucher")
+    .set("culture_collection","Culture Collection")
+    .set("bio_material","Bio Material");

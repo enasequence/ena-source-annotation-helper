@@ -28,6 +28,7 @@ import {ConstructstoreComponent} from './components/construct/constructstore/con
 import {ValidatestoreComponent} from './components/validate/validatestore/validatestore.component';
 import {GlobalErrorHandler} from "./global-error-handler";
 import {ServerErrorInterceptor} from "./server-error.interceptor";
+import {TooltipDirective} from "./tooltip.directive";
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {ServerErrorInterceptor} from "./server-error.interceptor";
         ConstructComponent,
         ValidateComponent,
         ConstructstoreComponent,
-        ValidatestoreComponent
+        ValidatestoreComponent,
+        TooltipDirective
     ],
     imports: [
         BrowserModule,

@@ -163,27 +163,29 @@
 
 
     <section class="contructs-display-section" *ngIf="matchesResponse.length > 0">
-        <table>
-            <tr>
-                <td>
-                    <h4>Constructed Attributes:</h4>
-                </td>
-                <td></td>
-            </tr>
-            <tr *ngFor="let list of matchesResponse">
-                <td [width]="200">
-                    {{list.match}}
-                </td>
-                <td [width]="150">
-                    {{getAttributeMeta(list.match)}}
-                </td>
-                <td>
-                    <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
-                            value="{{list.match}}">Add to My Constructed Attributes
-                    </button>
-                </td>
-            </tr>
-        </table>
+        <div class="tooltip-attribute">
+            <table>
+                <tr>
+                    <td>
+                        <h4>Constructed Attributes:</h4>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr *ngFor="let list of matchesResponse">
+                    <td [width]="200">
+                        <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left" delay="500">{{list.match}}</div>
+                    </td>
+                    <td [width]="150">
+                        {{getAttributeMeta(list.match)}}
+                    </td>
+                    <td>
+                        <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
+                                value="{{list.match}}">Add to My Constructed Attributes
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
     </section>
 
     <app-constructstore *ngIf="showConstructStore"

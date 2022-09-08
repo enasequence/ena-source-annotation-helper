@@ -92,3 +92,40 @@ button.mat-mini-fab.help {
   //height: 10px;
 }
 
+.tooltip-attribute {
+  text-align: center;
+  padding: 0 5px;
+}
+.tooltip-attribute [tooltip] {
+  display: inline-block;
+  margin: 5px 2px;
+  //width: 180px;
+  //height: 50px;
+  //border: 1px solid gray;
+  //border-radius: 5px;
+  //line-height: 50px;
+  text-align: center;
+}
+.ng-tooltip {
+  position: absolute;
+  max-width: 150px;
+  font-size: 14px;
+  text-align: center;
+  color: #f8f8f2;
+  padding: 3px 8px;
+  background: #282a36;
+  border-radius: 4px;
+  z-index: 1000;
+  opacity: 0;
+}
+.ng-tooltip-left:after {
+  top: 50%;
+  left: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-color: transparent transparent transparent black;
+}
+
+.ng-tooltip-show {
+  opacity: 1;
+}
