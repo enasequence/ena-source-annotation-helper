@@ -177,8 +177,8 @@ export class ConstructComponent implements OnInit {
         console.log(this.typedInstitution);
         // @ts-ignore
         this.selectedInstitution = this.institutionsMap.get(this.typedInstitution);
-        this.filteredCollections = this.getFilteredCollections();
         this.typedInstitution = this.selectedInstitution.uniqueName + "-" + this.selectedInstitution.institutionName;
+        this.filteredCollections = this.getFilteredCollections();
     }
 
     collectionChangeAction(selectedVal: string) {
