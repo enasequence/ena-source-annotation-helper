@@ -2,6 +2,8 @@ import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core
 import {Clipboard} from '@angular/cdk/clipboard';
 import {AppConstants} from "../../../app.constants";
 import {MatchData} from "../../../models/MatchData";
+import {Institution} from "../../../models/Institution";
+import {QualifierTypeDisplay} from "../../../models/QualifierTypeData";
 
 @Injectable({
     providedIn: 'root'
@@ -14,12 +16,13 @@ import {MatchData} from "../../../models/MatchData";
 })
 export class ConstructstoreComponent implements OnInit {
 
-    localStorageObj: Map<string, MatchData>;
+    localStorageObj: Map<string, Institution>;
+    readonly qualifierTypeDisplay = QualifierTypeDisplay;
 
     @Output("refreshStoreComponent") refreshStoreComponent: EventEmitter<any> = new EventEmitter();
 
     constructor(private clipboard: Clipboard) {
-        this.localStorageObj = new Map<string, MatchData>();
+        this.localStorageObj = new Map<string, Institution>();
         this.fetchFromLocalStorage();
     }
 
@@ -39,7 +42,6 @@ export class ConstructstoreComponent implements OnInit {
     fetchFromLocalStorage(): void {
         //clear all before building
         this.localStorageObj.clear();
-
         for (var i = 0; i < localStorage.length; i++) {
             var key = localStorage.key(i);
             if (key == null) {
@@ -48,7 +50,7 @@ export class ConstructstoreComponent implements OnInit {
             console.log(key);
             console.log(key);
             if (key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
-                var dd: MatchData = localStorage.getItem(key) as any;
+                var dd: Institution = JSON.parse(localStorage.getItem(key) as any);
                 if (dd !== null) {
                     this.localStorageObj.set(key.split(AppConstants.CONSTRUCT_STORAGE_PREFIX)[1], dd);
                 }
@@ -69,7 +71,7 @@ export class ConstructstoreComponent implements OnInit {
      */
     clearAllSavedResults(): void {
         Object.keys(localStorage).forEach(function(key){
-            console.log(localStorage.getItem(key));
+            // console.log(localStorage.getItem(key));
             if (key !== null && key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
                 localStorage.removeItem(key);
             }
@@ -79,4 +81,7 @@ export class ConstructstoreComponent implements OnInit {
         this.refreshStoreComponent.emit();
     }
 
+    getQualifierMeta(qualifierType: string) {
+        return this.qualifierTypeDisplay.get(qualifierType);
+    }
 }

@@ -1,31 +1,30 @@
-<section class="my-constructs-display-section" *ngIf="localStorageObj.size > 0">
+<section class="my-matches-display-section" *ngIf="localStorageObj.size > 0">
     <p>&nbsp;</p>
     <div id="savedAttribBox">
         <table>
             <tr>
-                <td [width]="20">
-                    &nbsp;
-                </td>
-                <td [width]="500">
+                <td [width]="200">
                     <h4>My Matches:</h4>
                 </td>
-                <td [width]="300">
+                <td [width]="200">
                     <button (click)="copyAllToClipboard()">Copy All</button>&nbsp;&nbsp;
                     <button (click)="clearAllSavedResults()">Remove All</button>
                 </td>
             </tr>
             <tr *ngFor="let list of localStorageObj | keyvalue">
-                <td [width]="20">
-                    &nbsp;
-                </td>
-                <td [width]="500">
+                <td [width]="200">
                     {{list.key.toString()}}
                 </td>
-                <td [width]="300">
-                    <button (click)="copyToClipboard(list.key.toString())">Copy</button>&nbsp;&nbsp;
+                <td [width]="200">
+                    {{getQualifierMeta(list.value.qualifierType[0])}}
+                </td>
+                <td [width]="200">
+                    <button (click)="copyToClipboard(list.key.toString()
+                        + ' -- ' + getQualifierMeta(list.value.qualifierType[0]))">Copy</button>&nbsp;&nbsp;
                     <button (click)="clearSavedResult(list.key.toString())">Remove</button>
                 </td>
             </tr>
         </table>
     </div>
 </section>
+

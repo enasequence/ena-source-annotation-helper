@@ -11,7 +11,7 @@ import {SahCommonsService} from "../../services/sah-commons.service";
 import {ConstructstoreComponent} from "./constructstore/constructstore.component";
 import {AppConstants} from "../../app.constants";
 import {MatSelectChange} from "@angular/material/select";
-import {AttributeDisplay, AttributeTypeData} from '../../models/AttributeTypeData';
+import {QualifierTypeDisplay, QualifierTypeData} from '../../models/QualifierTypeData';
 
 
 @Component({
@@ -22,13 +22,13 @@ import {AttributeDisplay, AttributeTypeData} from '../../models/AttributeTypeDat
 
 export class ConstructComponent implements OnInit {
 
-    readonly attributeTypeData = AttributeTypeData;
-    readonly attributeDisplay = AttributeDisplay;
+    readonly attributeTypeData = QualifierTypeData;
+    readonly qualifierTypeDisplay = QualifierTypeDisplay;
 
     attributeVal: string = "";
     specimenVal: string = "";
     matchesResponse: MatchData[];
-    localStorageObj: Map<string, MatchData>;
+    localStorageObj: Map<string, Institution>;
     typedInstitution: string = "";
     selectedInstitution: Institution = null as any;
     selectedCollection: string = "";
@@ -49,7 +49,7 @@ export class ConstructComponent implements OnInit {
                 private sahCommonsService: SahCommonsService,
                 private _formBuilder: FormBuilder) {
         this.matchesResponse = new Array<MatchData>();
-        this.localStorageObj = new Map<string, MatchData>();
+        this.localStorageObj = new Map<string, Institution>();
         this.filteredInstitutions = new Observable<Institution[]>;
 
     }
@@ -121,7 +121,6 @@ export class ConstructComponent implements OnInit {
                 .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
                 .subscribe(resp => {
                     this.matchesResponse = resp.matches;
-                    //TODO
                     this.matchesResponse.map(matchData => {
                         //alert(matchData.match);
                         this.matchesResponseMap.set(matchData.match, matchData);
@@ -141,20 +140,18 @@ export class ConstructComponent implements OnInit {
 
     getAttributeMeta(matchString: string) {
         // pull up the first qualifier value as it will be always single value only in this case
-        return this.attributeDisplay.get(
+        return this.qualifierTypeDisplay.get(
             this.matchesResponseMap.get(matchString)?.institution.qualifierType[0]
         );
     }
 
     getAttributeInstitution(matchString: string) {
         // pull up the institution as it will be always single value only in this case
-        return this.attributeDisplay.get(
-            this.matchesResponseMap.get(matchString)?.institution
-        );
+            return this.matchesResponseMap.get(matchString)?.institution;
     }
 
     storeResultInLocal(matchString: string): void {
-        localStorage.setItem(AppConstants.CONSTRUCT_STORAGE_PREFIX + matchString, this.getAttributeInstitution(matchString));
+        localStorage.setItem(AppConstants.CONSTRUCT_STORAGE_PREFIX + matchString, JSON.stringify(this.getAttributeInstitution(matchString)));
         this.fetchFromLocalStorage();
         this.refreshStoreComponent();
     }
@@ -170,7 +167,7 @@ export class ConstructComponent implements OnInit {
             }
             console.log(key);
             if (key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
-                var dd: MatchData = localStorage.getItem(key) as any;
+                var dd: Institution = JSON.parse(localStorage.getItem(key) as any);
                 if (dd !== null) {
                     this.localStorageObj.set(key.split(AppConstants.CONSTRUCT_STORAGE_PREFIX)[1], dd);
                 }

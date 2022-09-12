@@ -17,19 +17,19 @@ import {Injectable} from "@angular/core";
  */
 
 /*
-export const AttributeTypeData: Map<string, string> = new Map();
+export const QualifierTypeData: Map<string, string> = new Map();
 
-AttributeTypeData.set("Specimen Voucher", "specimen_voucher");
-AttributeTypeData.set("Culture Collection", "culture_collection");
-AttributeTypeData.set("Bio Material", "bio_material");*/
+QualifierTypeData.set("Specimen Voucher", "specimen_voucher");
+QualifierTypeData.set("Culture Collection", "culture_collection");
+QualifierTypeData.set("Bio Material", "bio_material");*/
 
-export const AttributeTypeData = [
+export const QualifierTypeData = [
     {option: "Specimen Voucher (e.g. specimen)", value: "specimen_voucher"},
     {option: "Culture Collection (e.g. live microbial, viral cultures, cell lines", value: "culture_collection"},
     {option: "Bio Material (e.g. tissues, DNA, seed banks, zoos, germplasms)", value: "bio_material"},
 ];
 
-export const AttributeDisplay = new Map()
+export const QualifierTypeDisplay = new Map()
     .set("specimen_voucher","Specimen Voucher")
     .set("culture_collection","Culture Collection")
     .set("bio_material","Bio Material");

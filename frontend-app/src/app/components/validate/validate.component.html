@@ -69,10 +69,6 @@
                 <td>
                     &nbsp;
                 </td>
-                <!--                <td>-->
-                <!--                    <div *ngIf="attribute..invalid && (name.dirty || name.touched)"-->
-                <!--                         class="alert">-->
-                <!--                </td>-->
             </tr>
         </table>
         <!-- <div *ngIf="attribVal.errors?.['required']">
@@ -89,8 +85,11 @@
                 <td></td>
             </tr>
             <tr *ngFor="let list of matchesResponse">
-                <td>
-                    Match: {{list.match}}
+                <td [width]="300">
+                    <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left" delay="500">Match: {{list.match}}</div>
+                </td>
+                <td [width]="200">
+                    {{getAttributeMeta(list.match)}}
                 </td>
                 <td>
                     <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
