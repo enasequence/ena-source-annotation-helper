@@ -28,7 +28,7 @@ export class ConstructComponent implements OnInit {
     attributeVal: string = "";
     specimenVal: string = "";
     matchesResponse: MatchData[];
-    localStorageObj: Array<string>;
+    localStorageObj: Map<string, MatchData>;
     typedInstitution: string = "";
     selectedInstitution: Institution = null as any;
     selectedCollection: string = "";
@@ -48,8 +48,8 @@ export class ConstructComponent implements OnInit {
                 private constructValidateService: ConstructValidateService,
                 private sahCommonsService: SahCommonsService,
                 private _formBuilder: FormBuilder) {
-        this.matchesResponse = new Array();
-        this.localStorageObj = new Array();
+        this.matchesResponse = new Array<MatchData>();
+        this.localStorageObj = new Map<string, MatchData>();
         this.filteredInstitutions = new Observable<Institution[]>;
 
     }
@@ -133,6 +133,12 @@ export class ConstructComponent implements OnInit {
         }
     }
 
+    getInstitutionMeta(matchString: string) {
+        return this.matchesResponseMap.get(matchString)?.institution.institutionName + " , " +
+            this.matchesResponseMap.get(matchString)?.institution.address + " , " +
+            this.matchesResponseMap.get(matchString)?.institution.country;
+    }
+
     getAttributeMeta(matchString: string) {
         // pull up the first qualifier value as it will be always single value only in this case
         return this.attributeDisplay.get(
@@ -140,23 +146,22 @@ export class ConstructComponent implements OnInit {
         );
     }
 
-    getInstitutionMeta(matchString: string) {
-        return this.matchesResponseMap.get(matchString)?.institution.institutionName + " , " +
-        this.matchesResponseMap.get(matchString)?.institution.address + " , " +
-        this.matchesResponseMap.get(matchString)?.institution.country;
+    getAttributeInstitution(matchString: string) {
+        // pull up the institution as it will be always single value only in this case
+        return this.attributeDisplay.get(
+            this.matchesResponseMap.get(matchString)?.institution
+        );
     }
 
     storeResultInLocal(matchString: string): void {
-        localStorage.setItem(AppConstants.CONSTRUCT_STORAGE_PREFIX + matchString, matchString);
+        localStorage.setItem(AppConstants.CONSTRUCT_STORAGE_PREFIX + matchString, this.getAttributeInstitution(matchString));
         this.fetchFromLocalStorage();
         this.refreshStoreComponent();
     }
 
     fetchFromLocalStorage(): void {
         //clear all before building
-        while (this.localStorageObj.length) {
-            this.localStorageObj.pop();
-        }
+        this.localStorageObj.clear();
 
         for (var i = 0; i < localStorage.length; i++) {
             var key = localStorage.key(i);
@@ -165,9 +170,9 @@ export class ConstructComponent implements OnInit {
             }
             console.log(key);
             if (key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
-                var dd = localStorage.getItem(key);
+                var dd: MatchData = localStorage.getItem(key) as any;
                 if (dd !== null) {
-                    this.localStorageObj.push(dd);
+                    this.localStorageObj.set(key.split(AppConstants.CONSTRUCT_STORAGE_PREFIX)[1], dd);
                 }
             }
         }

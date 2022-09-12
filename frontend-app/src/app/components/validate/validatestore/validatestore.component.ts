@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Injectable, OnInit, Output} from '@angular/core';
 import {Clipboard} from "@angular/cdk/clipboard";
 import {AppConstants} from "../../../app.constants";
+import {MatchData} from "../../../models/MatchData";
 
 @Injectable({
     providedIn: 'root'
@@ -13,12 +14,12 @@ import {AppConstants} from "../../../app.constants";
 })
 export class ValidatestoreComponent implements OnInit {
 
-    localStorageObj: Array<string>;
+    localStorageObj: Map<string, MatchData>;
 
     @Output("refreshStoreComponent") refreshStoreComponent: EventEmitter<any> = new EventEmitter(true);
 
     constructor(private clipboard: Clipboard) {
-        this.localStorageObj = new Array();
+        this.localStorageObj = new Map<string, MatchData>();
         this.fetchFromLocalStorage();
     }
 
@@ -32,17 +33,13 @@ export class ValidatestoreComponent implements OnInit {
 
     copyAllToClipboard(): void {
         var savedAttributes = new Array<string>();
-        this.localStorageObj.map(savedVal => {
-            savedAttributes.push(savedVal);
-        })
+        Array.from(this.localStorageObj.keys()).forEach(key => savedAttributes.push(key));
         this.clipboard.copy(savedAttributes.join(AppConstants.NEW_LINE_SEPARATOR));
     }
 
     fetchFromLocalStorage(): void {
         //clear all before building
-        while (this.localStorageObj.length) {
-            this.localStorageObj.pop();
-        }
+        this.localStorageObj.clear();
 
         for (var i = 0; i < localStorage.length; i++) {
             var key = localStorage.key(i);
@@ -51,9 +48,9 @@ export class ValidatestoreComponent implements OnInit {
             }
             console.log(key);
             if (key.startsWith(AppConstants.VALIDATE_STORAGE_PREFIX)) {
-                var dd = localStorage.getItem(key);
+                var dd: MatchData = localStorage.getItem(key) as any;
                 if (dd !== null) {
-                    this.localStorageObj.push(dd);
+                    this.localStorageObj.set(key.split(AppConstants.VALIDATE_STORAGE_PREFIX)[1], dd);
                 }
             }
         }
@@ -71,16 +68,14 @@ export class ValidatestoreComponent implements OnInit {
      * clear all validate strings.
      */
     clearAllSavedResults(): void {
-        var keysToRemove: string[] = [];
-        for (var i = 0; i < localStorage.length; i++) {
-            var key = localStorage.key(i);
+
+        Object.keys(localStorage).forEach(function(key){
+            console.log(localStorage.getItem(key));
             if (key !== null && key.startsWith(AppConstants.VALIDATE_STORAGE_PREFIX)) {
-                keysToRemove.push(key);
+                localStorage.removeItem(key);
             }
-        }
-        while (keysToRemove.length > 0) {
-            localStorage.removeItem(keysToRemove.pop()!);
-        }
+        });
+        
         // refresh the component
         this.refreshStoreComponent.emit();
     }

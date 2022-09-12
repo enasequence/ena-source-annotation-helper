@@ -21,7 +21,7 @@ export class ValidateComponent implements OnInit {
     IsChecked: boolean;
     attribVal: string = "";
     matchesResponse: MatchData[];
-    localStorageObj: Array<string>;
+    localStorageObj: Map<string, MatchData>;
 
     @ViewChild(ValidatestoreComponent, {static: false})
     showValidateStore: boolean = true;
@@ -40,7 +40,7 @@ export class ValidateComponent implements OnInit {
                 private _formBuilder: FormBuilder) {
         this.IsChecked = false;
         this.matchesResponse = new Array();
-        this.localStorageObj = new Array();
+        this.localStorageObj = new Map<string, MatchData>();
         this.fetchFromLocalStorage();
     }
 
@@ -68,9 +68,7 @@ export class ValidateComponent implements OnInit {
 
     fetchFromLocalStorage(): void {
         //clear all before building
-        while (this.localStorageObj.length) {
-            this.localStorageObj.pop();
-        }
+        this.localStorageObj.clear();
 
         for (var i = 0; i < localStorage.length; i++) {
             var key = localStorage.key(i);
@@ -79,9 +77,9 @@ export class ValidateComponent implements OnInit {
             }
             console.log(key);
             if (key.startsWith(AppConstants.VALIDATE_STORAGE_PREFIX)) {
-                var dd = localStorage.getItem(key);
+                var dd: MatchData = localStorage.getItem(key) as any;
                 if (dd !== null) {
-                    this.localStorageObj.push(dd);
+                    this.localStorageObj.set(key.split(AppConstants.VALIDATE_STORAGE_PREFIX)[1], dd);
                 }
             }
         }

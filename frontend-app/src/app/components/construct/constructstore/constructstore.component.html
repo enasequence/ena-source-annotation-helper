@@ -1,4 +1,4 @@
-<section class="my-constructs-display-section" *ngIf="localStorageObj.length > 0">
+<section class="my-constructs-display-section" *ngIf="localStorageObj.size > 0">
     <p>&nbsp;</p>
     <div id="savedAttribBox">
         <table>
@@ -14,16 +14,16 @@
                     <button (click)="clearAllSavedResults()">Remove All</button>
                 </td>
             </tr>
-            <tr *ngFor="let list of localStorageObj">
+            <tr *ngFor="let list of localStorageObj | keyvalue">
                 <td [width]="20">
                     &nbsp;
                 </td>
                 <td [width]="500">
-                    {{list.toString()}}
+                    {{list.key.toString()}}
                 </td>
                 <td [width]="300">
-                    <button (click)="copyToClipboard(list.toString())">Copy</button>&nbsp;&nbsp;
-                    <button (click)="clearSavedResult(list.toString())">Remove</button>
+                    <button (click)="copyToClipboard(list.key.toString())">Copy</button>&nbsp;&nbsp;
+                    <button (click)="clearSavedResult(list.key.toString())">Remove</button>
                 </td>
             </tr>
         </table>
