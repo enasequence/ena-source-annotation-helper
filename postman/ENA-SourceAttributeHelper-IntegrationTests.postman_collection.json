@@ -142,14 +142,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CAMZX?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CAMZ?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"CAMZX"
+										"CAMZ"
 									],
 									"query": [
 										{
@@ -194,14 +194,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CGEX?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CGE?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"CGEX"
+										"CGE"
 									],
 									"query": [
 										{
@@ -522,7 +522,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HSUV:Bird:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HS:Bird:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -533,7 +533,7 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "HSUV:Bird:123456"
+											"value": "HS:Bird:123456"
 										}
 									]
 								}
@@ -670,7 +670,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HS&collection=Bird&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -681,7 +681,7 @@
 									"query": [
 										{
 											"key": "institution",
-											"value": "HSUV"
+											"value": "HS"
 										},
 										{
 											"key": "collection",
@@ -773,14 +773,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CAMZX?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CAMZ?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"CAMZX"
+										"CAMZ"
 									],
 									"query": [
 										{
@@ -825,14 +825,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CGEX?qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CGE?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"CGEX"
+										"CGE"
 									],
 									"query": [
 										{
@@ -1012,7 +1012,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HSUV:Bird:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HS:Bird:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -1023,7 +1023,7 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "HSUV:Bird:123456"
+											"value": "HS:Bird:123456"
 										}
 									]
 								}
@@ -1108,7 +1108,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HS&collection=Bird&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -1119,7 +1119,7 @@
 									"query": [
 										{
 											"key": "institution",
-											"value": "HSUV"
+											"value": "HS"
 										},
 										{
 											"key": "collection",
@@ -1777,14 +1777,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/R   ",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/R",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"R   "
+										"R"
 									]
 								}
 							},
@@ -1818,19 +1818,19 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CAT?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"ANS"
+										"CAT"
 									],
 									"query": [
 										{
 											"key": "qualifier_type",
-											"value": "bio_material"
+											"value": "specimen_voucher"
 										}
 									]
 								}
@@ -1870,19 +1870,19 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/ANS?qualifier_type=bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CAT?qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"ANS"
+										"CAT"
 									],
 									"query": [
 										{
 											"key": "qualifier_type",
-											"value": "bio_material"
+											"value": "specimen_voucher"
 										}
 									]
 								}
@@ -2225,14 +2225,14 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CIS<USA-CA>",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/MBSN",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
 										"institution",
-										"CIS<USA-CA>"
+										"MBSN"
 									]
 								}
 							},
@@ -2405,7 +2405,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=NYX:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=D:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -2416,7 +2416,7 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "NYX:123456"
+											"value": "D:123456"
 										}
 									]
 								}
@@ -2449,7 +2449,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=NYX:123456&qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=D:123456&qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -2460,7 +2460,7 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "NYX:123456"
+											"value": "D:123456"
 										},
 										{
 											"key": "qualifier_type",
@@ -2715,7 +2715,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HSUV:Bird:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HS:Bird:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -2726,7 +2726,7 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "HSUV:Bird:123456"
+											"value": "HS:Bird:123456"
 										}
 									]
 								}
@@ -3056,7 +3056,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=NYX&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=D&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3067,7 +3067,7 @@
 									"query": [
 										{
 											"key": "institution",
-											"value": "NYX"
+											"value": "D"
 										},
 										{
 											"key": "id",
@@ -3303,7 +3303,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HS&collection=Bird&id=123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3314,7 +3314,7 @@
 									"query": [
 										{
 											"key": "institution",
-											"value": "HSUV"
+											"value": "HS"
 										},
 										{
 											"key": "collection",
@@ -3355,7 +3355,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HSUV&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=HS&collection=Bird&id=123456&qualifier_type=specimen_voucher,bio_material",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3366,7 +3366,7 @@
 									"query": [
 										{
 											"key": "institution",
-											"value": "HSUV"
+											"value": "HS"
 										},
 										{
 											"key": "collection",
