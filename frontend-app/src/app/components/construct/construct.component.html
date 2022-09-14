@@ -138,7 +138,8 @@
                         </mat-form-field>
                         <br/>
                         <div *ngIf="submitted && specimenCtrl?.errors">
-                            <div *ngIf="specimenCtrl?.errors?.['required']" class="error">Identifier/Code is required</div>
+                            <div *ngIf="specimenCtrl?.errors?.['required']" class="error">Identifier/Code is required
+                            </div>
                         </div>
                         <mat-hint><i>Note: The tool does not include search or validation of the
                             voucher identifier/codes.</i></mat-hint>
@@ -159,29 +160,33 @@
 
     <section class="contructs-display-section" *ngIf="matchesResponse.length > 0">
         <div class="tooltip-attribute">
-            <table>
-                <tr>
-                    <td>
-                        <h4>Constructed Attribute:</h4>
-                    </td>
-                    <td></td>
-                </tr>
-                <tr *ngFor="let list of matchesResponse">
-                    <td [width]="180">
-                        <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left"
-                             delay="500">{{list.match}}</div>
-                    </td>
-                    <td [width]="150">
-                        {{getAttributeMeta(list.match)}}
-                    </td>
-                    <td>
-                        <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
-                        <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
-                                value="{{list.match}}">Add to My Constructed Attributes
-                        </button>
-                    </td>
-                </tr>
-            </table>
+                <h4>Constructed Attribute:</h4>
+                <table>
+                    <div class="nu-table-body">
+                        <tr>
+                            <td [width]="180"><h5>Attribute</h5></td>
+                            <td><h5>Attribute Type</h5></td>
+                        </tr>
+                    </div>
+                    <div class="nu-table-body">
+                        <tr *ngFor="let list of matchesResponse">
+                            <td [width]="180">
+                                <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left"
+                                     delay="500">{{list.match}}</div>
+                            </td>
+                            <td [width]="150">
+                                {{getAttributeMeta(list.match)}}
+                            </td>
+                            <td>
+                                <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
+                                <button (click)="storeResultInLocal(list.match)" name="{{list.match}}"
+                                        id="{{list.match}}"
+                                        value="{{list.match}}">Add to My Constructed Attributes
+                                </button>
+                            </td>
+                        </tr>
+                    </div>
+                </table>
         </div>
     </section>
 

@@ -106,10 +106,12 @@
     <section class="matches-display-section" *ngIf="matchesResponse.length > 0">
         <h4>Matches:</h4>
         <table>
+            <div class="nu-table-body">
             <tr>
-                <td><h5>Attribute</h5></td>
-                <td><h5>Type</h5></td>
+                <td [width]="250"><h5>Attribute</h5></td>
+                <td><h5>Attribute Type</h5></td>
             </tr>
+            </div>
             <div class="nu-table-body">
                 <tr *ngFor="let list of matchesResponse">
                     <td [width]="250">
@@ -127,6 +129,7 @@
                     </td>
                 </tr>
             </div>
+
         </table>
 
     </section>
