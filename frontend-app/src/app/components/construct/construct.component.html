@@ -20,7 +20,7 @@
                     <td [width]="220">Attribute Type:
                         <span class="required-asterisk">*&nbsp;</span>
                         <span> <button class="mat-mini-fab help" type="button">
-                                        <i matTooltip="Optionally select the Attribute Types to filter the search results"
+                                        <i matTooltip="Select the Attribute Types to filter the search results"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
@@ -28,7 +28,7 @@
                                     </span>
                     </td>
                     <td>
-                        <mat-form-field [style.width.px]=350>
+                        <mat-form-field [style.width.px]=400>
                             <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type"
                                         class="form-control" id="attributeCtrl" formControlName="attributeCtrl"
                                         value={{attributeVal}} required>
@@ -38,15 +38,8 @@
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-
-                        <div *ngIf="attributeCtrl?.invalid && (attributeCtrl?.dirty || attributeCtrl?.touched)"
-                             class="alert alert-danger">
-                            <div *ngIf="attributeCtrl?.errors?.['required']">
-                                Attribute is required.
-                            </div>
-                            <!--<div *ngIf="attributeCtrl.errors?.['minlength']">
-                                Name must be at least 4 characters long.
-                            </div>-->
+                        <div *ngIf="submitted && attributeCtrl?.errors">
+                            <div *ngIf="attributeCtrl?.errors?.['required']" class="error">Attribute is required</div>
                         </div>
                     </td>
                 </tr>
@@ -56,7 +49,7 @@
                             <span class="required-asterisk">*&nbsp;</span>
                         </mat-label>
                         <span> <button class="mat-mini-fab help" type="button">
-                                        <i matTooltip="select the institution..."
+                                        <i matTooltip="Select the institution"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
@@ -66,7 +59,7 @@
                     <td>
                         <div class="wrapper">
                             <form class="institution-search">
-                                <mat-form-field [floatLabel]="'never'" [style.width.px]=350>
+                                <mat-form-field [floatLabel]="'never'" [style.width.px]=400>
                                     <input
                                             type="text"
                                             placeholder="Start typing the code / name..."
@@ -95,7 +88,7 @@
                         <mat-label>Select Collection: &nbsp;
                         </mat-label>
                         <span> <button class="mat-mini-fab help" type="button">
-                                        <i matTooltip="Optionally select the Collection to which the specimen id/code belongs"
+                                        <i matTooltip="Select the Collection to which the Identifier/code belongs (Optional)"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
@@ -104,7 +97,7 @@
                     </td>
                     <td>
 
-                        <mat-form-field [floatLabel]="'never'" [style.width.px]=350>
+                        <mat-form-field [floatLabel]="'never'" [style.width.px]=400>
                             <mat-select [style.width.px]="350" placeholder="Select Collection"
                                         (selectionChange)="collectionChangeAction($event.value)"
                                         formControlName="inputCollectionCtrl" value={{selectedCollection}}
@@ -132,7 +125,7 @@
                                     </span>
                     </td>
                     <td>
-                        <input [size]="50" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
+                        <input [size]="58" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
                                name="specimen" formControlName="specimenCtrl" placeholder="Identifier / Code"
                                value={{specimenVal}} required/>
                         <br/>

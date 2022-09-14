@@ -14,66 +14,71 @@
         </p>
     </div>
     <section class="attrib-validate-section" [formGroup]="validateFormGroup">
-        <table [cellPadding]="10">
-            <tr>
-                <td [width]="250">
-                    <mat-label>Attribute Type:
-                        <span class="required-asterisk">*&nbsp;</span>
-                    </mat-label>
-                    <span> <button class="mat-mini-fab help" type="button">
-                                        <i matTooltip="Optionally select the Attribute Types to filter the search results"
+        <form [formGroup]="validateFormGroup" (ngSubmit)="validateAttribute()">
+            <table [cellPadding]="10">
+                <tr>
+                    <td [width]="250">
+                        <mat-label>Attribute Type:
+                            <span class="required-asterisk">*&nbsp;</span>
+                        </mat-label>
+                        <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Select the Attribute Types to filter the search results"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                </td>
-                <td>
-                    <mat-form-field>
-                        <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type">
-                            <mat-option *ngFor="let attribType of attributeTypeData" [value]="attribType.value">
-                                {{ attribType.option }}
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <mat-label>Enter Attribute Value:
-                        <span class="required-asterisk">*&nbsp;</span>
-                    </mat-label>
-                    <span> <button class="mat-mini-fab help" type="button">
-                                        <i matTooltip="Enter the attribute value..."
+                    </td>
+                    <td>
+                        <mat-form-field [style.width.px]=400>
+                            <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type"
+                                        class="form-control" id="attributeCtrl" formControlName="attributeCtrl"
+                                        value={{attributeVal}} required>
+                                <mat-option *ngFor="let attribType of attributeTypeData"
+                                            [value]="attribType.value" [matTooltip]="attribType.option">
+                                    {{ attribType.option }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="submitted && attributeCtrl?.errors">
+                            <div *ngIf="attributeCtrl?.errors?.['required']" class="error">Attribute is required</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <mat-label>Enter Attribute Value:
+                            <span class="required-asterisk">*&nbsp;</span>
+                        </mat-label>
+                        <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Enter the attribute value"
                                            matTooltipPosition="right"
                                            [matTooltipShowDelay]="0"
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                </td>
-                <td>
-                    <input [size]="50" ngModel maxlength="100" type="text" id="attribVal" class="form-control"
-                           name="attribute" formControlName="attribute" placeholder="Attribute Value"
-                           value={{attribVal}} required/> <br/>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
-                </td>
-                <td>
-                    <button mat-raised-button color="primary" (click)="validate()">Validate</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    &nbsp;
-                </td>
-            </tr>
-        </table>
-        <!-- <div *ngIf="attribVal.errors?.['required']">
-            Attribute Vaue is required.
-          </div> -->
+                    </td>
+                    <td>
+                        <input [size]="60" ngModel maxlength="100" type="text" id="attribVal" class="form-control"
+                               name="attribute" formControlName="attribute" placeholder="Attribute Value"
+                               value={{attribVal}} required/> <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <button type="submit" mat-raised-button color="primary">Validate</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+        </form>
     </section>
 
     <section class="matches-display-section" *ngIf="matchesResponse.length > 0">
@@ -86,7 +91,7 @@
             </tr>
             <tr *ngFor="let list of matchesResponse">
                 <td [width]="300">
-                    <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left" delay="500">Match: {{list.match}}</div>
+                    <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left" delay="500">{{list.match}}</div>
                 </td>
                 <td [width]="200">
                     {{getAttributeMeta(list.match)}}

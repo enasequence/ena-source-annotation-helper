@@ -38,6 +38,7 @@ export class ConstructComponent implements OnInit {
     filteredInstitutions: Observable<Institution[]> = null as any;
     filteredCollections: Observable<Collection[]> = null as any;
     minLengthTerm = 0;
+    submitted: boolean;
 
     @ViewChild(ConstructstoreComponent, {static: false})
     showConstructStore: boolean = true;
@@ -51,6 +52,7 @@ export class ConstructComponent implements OnInit {
         this.matchesResponse = new Array<MatchData>();
         this.localStorageObj = new Map<string, Institution>();
         this.filteredInstitutions = new Observable<Institution[]>;
+        this.submitted = false;
 
     }
 
@@ -105,7 +107,7 @@ export class ConstructComponent implements OnInit {
 
     // Construct
     constructAttribute(): void {
-
+        this.submitted = true;
         // Get all Form Controls keys and loop them
         Object.keys(this.constructFormGroup.controls).forEach(key => {
             // Get errors of every form control

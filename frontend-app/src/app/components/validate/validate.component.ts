@@ -25,6 +25,7 @@ export class ValidateComponent implements OnInit {
     matchesResponse: MatchData[];
     localStorageObj: Map<string, Institution>;
     matchesResponseMap: Map<string, MatchData> = new Map<string, MatchData>();
+    submitted: boolean;
 
     @ViewChild(ValidatestoreComponent, {static: false})
     showValidateStore: boolean = true;
@@ -33,11 +34,14 @@ export class ValidateComponent implements OnInit {
         specimen_voucher: false,
         culture_collection: false,
         bio_material: false,
-        attribute: new FormControl(this.attribVal, [
-            Validators.required,
-            Validators.minLength(3)
+        attributeCtrl: new FormControl(this.attributeVal, [
+            Validators.required
         ])
     });
+
+    get attributeCtrl() {
+        return this.validateFormGroup.get('attributeCtrl')
+    }
 
     constructor(private backendService: ConstructValidateService,
                 private _formBuilder: FormBuilder) {
@@ -45,13 +49,15 @@ export class ValidateComponent implements OnInit {
         this.matchesResponse = new Array<MatchData>();
         this.localStorageObj = new Map<string, Institution>();
         this.fetchFromLocalStorage();
+        this.submitted = false;
     }
 
     ngOnInit(): void {
 
     }
 
-    validate(): void {
+    validateAttribute(): void {
+        this.submitted = true;
         var inputVal: string = this.validateFormGroup.get("attribute")?.value!;
         console.log(inputVal);
         // call the validate request

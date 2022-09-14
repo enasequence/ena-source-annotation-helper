@@ -44,6 +44,12 @@ button.mat-mini-fab.help {
   }
 }
 
+.error {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ec5840;
+}
+
 .required-asterisk{
   color: red;
   font-weight: bold;
@@ -113,7 +119,7 @@ button.mat-mini-fab.help {
   text-align: center;
   color: #f8f8f2;
   padding: 3px 8px;
-  background: #282a36;
+  background: #337ab7;
   border-radius: 4px;
   z-index: 1000;
   opacity: 0;
@@ -128,4 +134,14 @@ button.mat-mini-fab.help {
 
 .ng-tooltip-show {
   opacity: 1;
+}
+
+.auto-width{
+  .mat-form-field {
+    width: auto !important;
+  }
+  .mat-select-value {
+    max-width: 100%;
+    width: auto;
+  }
 }
