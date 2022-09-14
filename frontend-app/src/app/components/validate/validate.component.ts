@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, ErrorHandler, Injector, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {ConstructValidateService} from 'src/app/services/construct-validate.service';
 import {MatchData} from "../../models/MatchData";
@@ -7,6 +7,10 @@ import {AppConstants} from "../../app.constants";
 import {MatSelectChange} from "@angular/material/select";
 import {QualifierTypeData, QualifierTypeDisplay} from "../../models/QualifierTypeData";
 import {Institution} from "../../models/Institution";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ErrorService} from "../../services/error.service";
+import {LoggingService} from "../../services/logging.service";
+import {NotificationService} from "../../services/notification.service";
 
 @Component({
     selector: 'app-validate',
@@ -19,13 +23,14 @@ export class ValidateComponent implements OnInit {
     readonly attributeTypeData = QualifierTypeData;
     readonly qualifierTypeDisplay = QualifierTypeDisplay;
 
+    attributeTypeVal: string = "";
     attributeVal: string = "";
     IsChecked: boolean;
-    attribVal: string = "";
     matchesResponse: MatchData[];
     localStorageObj: Map<string, Institution>;
     matchesResponseMap: Map<string, MatchData> = new Map<string, MatchData>();
     submitted: boolean;
+    errorMessage: string = "";
 
     @ViewChild(ValidatestoreComponent, {static: false})
     showValidateStore: boolean = true;
@@ -34,17 +39,25 @@ export class ValidateComponent implements OnInit {
         specimen_voucher: false,
         culture_collection: false,
         bio_material: false,
+        attributeTypeCtrl: new FormControl(this.attributeTypeVal, [
+            Validators.required
+        ]),
         attributeCtrl: new FormControl(this.attributeVal, [
             Validators.required
         ])
     });
+
+    get attributeTypeCtrl() {
+        return this.validateFormGroup.get('attributeTypeCtrl')
+    }
 
     get attributeCtrl() {
         return this.validateFormGroup.get('attributeCtrl')
     }
 
     constructor(private backendService: ConstructValidateService,
-                private _formBuilder: FormBuilder) {
+                private _formBuilder: FormBuilder,
+                private injector: Injector) {
         this.IsChecked = false;
         this.matchesResponse = new Array<MatchData>();
         this.localStorageObj = new Map<string, Institution>();
@@ -58,10 +71,14 @@ export class ValidateComponent implements OnInit {
 
     validateAttribute(): void {
         this.submitted = true;
-        var inputVal: string = this.validateFormGroup.get("attribute")?.value!;
+        //if inputs are not valid, return
+        if (!this.validateFormGroup.valid) {
+            return;
+        }
+        var inputVal: string = this.validateFormGroup.get("attributeCtrl")?.value!;
         console.log(inputVal);
         // call the validate request
-        this.backendService.validateAttribute(inputVal, this.attributeVal)
+        this.backendService.validateAttribute(inputVal, this.attributeTypeVal)
             .subscribe(resp => {
                 this.matchesResponse = resp.matches;
                 this.matchesResponse.map(matchData => {
@@ -110,7 +127,7 @@ export class ValidateComponent implements OnInit {
 
     attributeSelection(event: MatSelectChange) {
         // alert(event.value);
-        this.attributeVal = event.value;
+        this.attributeTypeVal = event.value;
     }
 
     getInstitutionMeta(matchString: string) {
@@ -124,6 +141,22 @@ export class ValidateComponent implements OnInit {
         return this.qualifierTypeDisplay.get(
             this.matchesResponseMap.get(matchString)?.institution.qualifierType[0]
         );
+    }
+
+    handleError(error: Error | HttpErrorResponse) {
+        const errorService = this.injector.get(ErrorService);
+        const logger = this.injector.get(LoggingService);
+        let message;
+        if (error instanceof HttpErrorResponse) {
+            // Server error
+            this.errorMessage = errorService.getServerErrorMessage(error);
+        } else {
+            // Client Error
+            this.errorMessage  = errorService.getClientErrorMessage(error);
+        }
+        // Always log errors
+        logger.logError(this.errorMessage, "");
+        console.error(error);
     }
 
 }

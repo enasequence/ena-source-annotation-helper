@@ -32,16 +32,18 @@
                     <td>
                         <mat-form-field [style.width.px]=400>
                             <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type"
-                                        class="form-control" id="attributeCtrl" formControlName="attributeCtrl"
-                                        value={{attributeVal}} required>
+                                        class="form-control" id="attributeTypeCtrl" formControlName="attributeTypeCtrl"
+                                        value={{attributeTypeVal}} required>
                                 <mat-option *ngFor="let attribType of attributeTypeData"
                                             [value]="attribType.value" [matTooltip]="attribType.option">
                                     {{ attribType.option }}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div *ngIf="submitted && attributeCtrl?.errors">
-                            <div *ngIf="attributeCtrl?.errors?.['required']" class="error">Attribute is required</div>
+                        <div *ngIf="submitted && attributeTypeCtrl?.errors">
+                            <div *ngIf="attributeTypeCtrl?.errors?.['required']" class="error">Attribute type is
+                                required
+                            </div>
                         </div>
                     </td>
                 </tr>
@@ -59,9 +61,19 @@
                                     </span>
                     </td>
                     <td>
-                        <input [size]="60" ngModel maxlength="100" type="text" id="attribVal" class="form-control"
-                               name="attribute" formControlName="attribute" placeholder="Attribute Value"
-                               value={{attribVal}} required/> <br/>
+                        <mat-form-field class="example-full-width" [style.width.px]=400>
+                            <input matInput [style.width.px]="350" ngModel maxlength="100" type="text" id="attributeVal"
+                                   class="form-control"
+                                   name="attributeVal" formControlName="attributeCtrl" placeholder="Attribute Value"
+                                   value={{attributeVal}} required>
+                        </mat-form-field>
+                        <br/>
+                        <div *ngIf="submitted && attributeCtrl?.errors">
+                            <div *ngIf="attributeCtrl?.errors?.['required']" class="error">Attribute value is required
+                            </div>
+                        </div>
+                        <mat-hint><i>Note: The tool does not include search or validation of the
+                            voucher identifier/codes.</i></mat-hint>
                     </td>
                 </tr>
                 <tr>
@@ -70,6 +82,7 @@
                     </td>
                     <td>
                         <button type="submit" mat-raised-button color="primary">Validate</button>
+                        <div *ngIf="submitted && errorMessage !== null">{{errorMessage}}</div>
                     </td>
                 </tr>
                 <tr>
@@ -90,7 +103,7 @@
                 <td></td>
             </tr>
             <tr *ngFor="let list of matchesResponse">
-                <td [width]="300">
+                <td [width]="250">
                     <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left" delay="500">{{list.match}}</div>
                 </td>
                 <td [width]="200">

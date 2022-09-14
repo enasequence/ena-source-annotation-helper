@@ -62,7 +62,7 @@
                                 <mat-form-field [floatLabel]="'never'" [style.width.px]=400>
                                     <input
                                             type="text"
-                                            placeholder="Start typing the code / name..."
+                                            placeholder="Start typing the institution code / name..."
                                             [formControl]="searchInstitutionCtrl"
                                             matInput
                                             required minlength="1"
@@ -79,6 +79,11 @@
                                         </mat-option>
                                     </mat-autocomplete>
                                 </mat-form-field>
+                                <div *ngIf="submitted && searchInstitutionCtrl?.errors">
+                                    <div *ngIf="searchInstitutionCtrl?.errors?.['required']" class="error">Institution
+                                        is required
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </td>
@@ -98,7 +103,7 @@
                     <td>
 
                         <mat-form-field [floatLabel]="'never'" [style.width.px]=400>
-                            <mat-select [style.width.px]="350" placeholder="Select Collection"
+                            <mat-select [style.width.px]="400" placeholder="Select Collection"
                                         (selectionChange)="collectionChangeAction($event.value)"
                                         formControlName="inputCollectionCtrl" value={{selectedCollection}}
                                         disableOptionCentering>
@@ -125,21 +130,18 @@
                                     </span>
                     </td>
                     <td>
-                        <input [size]="58" ngModel maxlength="100" type="text" id="specimenVal" class="form-control"
-                               name="specimen" formControlName="specimenCtrl" placeholder="Identifier / Code"
-                               value={{specimenVal}} required/>
+                        <mat-form-field class="example-full-width" [style.width.px]=400>
+                            <input matInput [style.width.px]="350" ngModel maxlength="100" type="text" id="specimenVal"
+                                   class="form-control"
+                                   name="specimen" formControlName="specimenCtrl" placeholder="Identifier / Code"
+                                   value={{specimenVal}} required>
+                        </mat-form-field>
                         <br/>
+                        <div *ngIf="submitted && specimenCtrl?.errors">
+                            <div *ngIf="specimenCtrl?.errors?.['required']" class="error">Identifier/Code is required</div>
+                        </div>
                         <mat-hint><i>Note: The tool does not include search or validation of the
                             voucher identifier/codes.</i></mat-hint>
-                        <div *ngIf="specimenCtrl?.invalid && (specimenCtrl?.dirty || specimenCtrl?.touched)"
-                             class="alert alert-danger">
-                            <div *ngIf="specimenCtrl?.errors?.['required']">
-                                Specimen code/id is required.
-                            </div>
-                            <!--<div *ngIf="attributeCtrl.errors?.['minlength']">
-                                Name must be at least 4 characters long.
-                            </div>-->
-                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -166,7 +168,8 @@
                 </tr>
                 <tr *ngFor="let list of matchesResponse">
                     <td [width]="180">
-                        <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left" delay="500">{{list.match}}</div>
+                        <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left"
+                             delay="500">{{list.match}}</div>
                     </td>
                     <td [width]="150">
                         {{getAttributeMeta(list.match)}}

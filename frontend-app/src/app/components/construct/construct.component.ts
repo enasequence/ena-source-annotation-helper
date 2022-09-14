@@ -108,6 +108,10 @@ export class ConstructComponent implements OnInit {
     // Construct
     constructAttribute(): void {
         this.submitted = true;
+        //if inputs are not valid, return
+        if (!this.constructFormGroup.valid) {
+            return;
+        }
         // Get all Form Controls keys and loop them
         Object.keys(this.constructFormGroup.controls).forEach(key => {
             // Get errors of every form control
@@ -117,21 +121,21 @@ export class ConstructComponent implements OnInit {
         var inputVal: string = this.constructFormGroup.get("specimenCtrl")?.value!;
         console.log(inputVal);
 
-        if (this.selectedInstitution !== null) {
-            // call the validate request
-            this.constructValidateService
-                .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
-                .subscribe(resp => {
-                    this.matchesResponse = resp.matches;
-                    this.matchesResponse.map(matchData => {
-                        //alert(matchData.match);
-                        this.matchesResponseMap.set(matchData.match, matchData);
-                    })
-                })
-        } else {
-            //raise errors TODO
-            alert('qwert');
+        if(this.selectedInstitution.uniqueName === undefined) {
+
         }
+
+        // call the construct request
+        this.constructValidateService
+            .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
+            .subscribe(resp => {
+                this.matchesResponse = resp.matches;
+                this.matchesResponse.map(matchData => {
+                    //alert(matchData.match);
+                    this.matchesResponseMap.set(matchData.match, matchData);
+                })
+            })
+
     }
 
     getInstitutionMeta(matchString: string) {
@@ -149,7 +153,7 @@ export class ConstructComponent implements OnInit {
 
     getAttributeInstitution(matchString: string) {
         // pull up the institution as it will be always single value only in this case
-            return this.matchesResponseMap.get(matchString)?.institution;
+        return this.matchesResponseMap.get(matchString)?.institution;
     }
 
     storeResultInLocal(matchString: string): void {
