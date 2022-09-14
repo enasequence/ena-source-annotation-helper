@@ -31,15 +31,15 @@ export class ConstructValidateService {
         return this.http.get<SAHResponse>(urlString, options)
             .pipe(
                 map(response => {
-                        if (response.matches.length <= 0) {
-                            console.log(AppConstants.NO_MATCHES_FOUND);
-                            throw new Error(AppConstants.NO_MATCHES_FOUND);
-                        }
-                        console.log(response.matches);
-                        return response;
-
+                    if (response.matches.length <= 0) {
+                        console.log(AppConstants.NO_MATCHES_FOUND);
+                        throw new Error(AppConstants.NO_MATCHES_FOUND);
                     }
-                ));
+                    console.log(response.matches);
+                    return response;
+
+                })
+            );
     };
 
     /**

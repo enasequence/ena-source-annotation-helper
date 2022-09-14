@@ -1,4 +1,4 @@
-import {Component, ErrorHandler, Injector, OnInit, ViewChild} from '@angular/core';
+import {Component, Injector, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {ConstructValidateService} from 'src/app/services/construct-validate.service';
 import {MatchData} from "../../models/MatchData";
@@ -12,6 +12,7 @@ import {ErrorService} from "../../services/error.service";
 import {LoggingService} from "../../services/logging.service";
 import {NotificationService} from "../../services/notification.service";
 
+
 @Component({
     selector: 'app-validate',
     templateUrl: './validate.component.html',
@@ -22,6 +23,7 @@ export class ValidateComponent implements OnInit {
 
     readonly attributeTypeData = QualifierTypeData;
     readonly qualifierTypeDisplay = QualifierTypeDisplay;
+    error$ = this.notificationService.errors$();
 
     attributeTypeVal: string = "";
     attributeVal: string = "";
@@ -57,7 +59,7 @@ export class ValidateComponent implements OnInit {
 
     constructor(private backendService: ConstructValidateService,
                 private _formBuilder: FormBuilder,
-                private injector: Injector) {
+                private injector: Injector, private readonly notificationService: NotificationService) {
         this.IsChecked = false;
         this.matchesResponse = new Array<MatchData>();
         this.localStorageObj = new Map<string, Institution>();
@@ -71,6 +73,7 @@ export class ValidateComponent implements OnInit {
 
     validateAttribute(): void {
         this.submitted = true;
+        this.error$ = null as any;
         //if inputs are not valid, return
         if (!this.validateFormGroup.valid) {
             return;
@@ -80,12 +83,16 @@ export class ValidateComponent implements OnInit {
         // call the validate request
         this.backendService.validateAttribute(inputVal, this.attributeTypeVal)
             .subscribe(resp => {
-                this.matchesResponse = resp.matches;
-                this.matchesResponse.map(matchData => {
-                    //alert(matchData.match);
-                    this.matchesResponseMap.set(matchData.match, matchData);
-                })
-            })
+                    this.matchesResponse = resp.matches;
+                    this.matchesResponse.map(matchData => {
+                        //alert(matchData.match);
+                        this.matchesResponseMap.set(matchData.match, matchData);
+                    })
+                }, error => {
+                    console.log('HTTP Error', error);
+                    this.errorMessage = error;
+                }
+            )
     };
 
     storeResultInLocal(matchString: string): void {
@@ -152,7 +159,7 @@ export class ValidateComponent implements OnInit {
             this.errorMessage = errorService.getServerErrorMessage(error);
         } else {
             // Client Error
-            this.errorMessage  = errorService.getClientErrorMessage(error);
+            this.errorMessage = errorService.getClientErrorMessage(error);
         }
         // Always log errors
         logger.logError(this.errorMessage, "");

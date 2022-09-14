@@ -78,11 +78,20 @@
                 </tr>
                 <tr>
                     <td>
-                        &nbsp;
                     </td>
                     <td>
                         <button type="submit" mat-raised-button color="primary">Validate</button>
-                        <div *ngIf="submitted && errorMessage !== null">{{errorMessage}}</div>
+                        <br/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div *ngIf="submitted && errorMessage !== null">
+                            <div class="error">{{errorMessage}}</div>
+                        </div>
+                        <div class="error" *ngIf="(error$ | async) as error">{{ error }}!></div>
                     </td>
                 </tr>
                 <tr>
