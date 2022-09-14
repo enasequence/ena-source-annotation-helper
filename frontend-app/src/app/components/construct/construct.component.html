@@ -162,7 +162,7 @@
             <table>
                 <tr>
                     <td>
-                        <h4>Constructed Attributes:</h4>
+                        <h4>Constructed Attribute:</h4>
                     </td>
                     <td></td>
                 </tr>
@@ -175,6 +175,7 @@
                         {{getAttributeMeta(list.match)}}
                     </td>
                     <td>
+                        <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
                         <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
                                 value="{{list.match}}">Add to My Constructed Attributes
                         </button>

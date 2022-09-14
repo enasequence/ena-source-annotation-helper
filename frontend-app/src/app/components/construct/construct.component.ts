@@ -12,6 +12,7 @@ import {ConstructstoreComponent} from "./constructstore/constructstore.component
 import {AppConstants} from "../../app.constants";
 import {MatSelectChange} from "@angular/material/select";
 import {QualifierTypeDisplay, QualifierTypeData} from '../../models/QualifierTypeData';
+import {Clipboard} from "@angular/cdk/clipboard";
 
 
 @Component({
@@ -48,7 +49,8 @@ export class ConstructComponent implements OnInit {
     constructor(private institutionService: InstitutionService,
                 private constructValidateService: ConstructValidateService,
                 private sahCommonsService: SahCommonsService,
-                private _formBuilder: FormBuilder) {
+                private _formBuilder: FormBuilder,
+                private clipboard: Clipboard) {
         this.matchesResponse = new Array<MatchData>();
         this.localStorageObj = new Map<string, Institution>();
         this.filteredInstitutions = new Observable<Institution[]>;
@@ -139,9 +141,9 @@ export class ConstructComponent implements OnInit {
     }
 
     getInstitutionMeta(matchString: string) {
-        return this.matchesResponseMap.get(matchString)?.institution.institutionName + " , " +
-            this.matchesResponseMap.get(matchString)?.institution.address + " , " +
-            this.matchesResponseMap.get(matchString)?.institution.country;
+        return this.matchesResponseMap.get(matchString)?.institution.institutionName.trim() + ", " +
+            this.matchesResponseMap.get(matchString)?.institution.address.trim() + ", " +
+            this.matchesResponseMap.get(matchString)?.institution.country.trim();
     }
 
     getAttributeMeta(matchString: string) {
@@ -154,6 +156,10 @@ export class ConstructComponent implements OnInit {
     getAttributeInstitution(matchString: string) {
         // pull up the institution as it will be always single value only in this case
         return this.matchesResponseMap.get(matchString)?.institution;
+    }
+
+    copyToClipboard(matchString: string): void {
+        this.clipboard.copy(matchString);
     }
 
     storeResultInLocal(matchString: string): void {

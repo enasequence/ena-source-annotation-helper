@@ -19,8 +19,7 @@
                     {{getQualifierMeta(list.value.qualifierType[0])}}
                 </td>
                 <td [width]="200">
-                    <button (click)="copyToClipboard(list.key.toString()
-                        + ' -- ' + getQualifierMeta(list.value.qualifierType[0]))">Copy</button>&nbsp;&nbsp;
+                    <button (click)="copyToClipboard(list.key.toString())">Copy</button>&nbsp;&nbsp;
                     <button (click)="clearSavedResult(list.key.toString())">Remove</button>
                 </td>
             </tr>

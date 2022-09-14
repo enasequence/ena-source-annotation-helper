@@ -11,6 +11,7 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {ErrorService} from "../../services/error.service";
 import {LoggingService} from "../../services/logging.service";
 import {NotificationService} from "../../services/notification.service";
+import {Clipboard} from "@angular/cdk/clipboard";
 
 
 @Component({
@@ -59,7 +60,9 @@ export class ValidateComponent implements OnInit {
 
     constructor(private backendService: ConstructValidateService,
                 private _formBuilder: FormBuilder,
-                private injector: Injector, private readonly notificationService: NotificationService) {
+                private injector: Injector,
+                private readonly notificationService: NotificationService,
+                private clipboard: Clipboard) {
         this.IsChecked = false;
         this.matchesResponse = new Array<MatchData>();
         this.localStorageObj = new Map<string, Institution>();
@@ -138,9 +141,9 @@ export class ValidateComponent implements OnInit {
     }
 
     getInstitutionMeta(matchString: string) {
-        return this.matchesResponseMap.get(matchString)?.institution.institutionName + " , " +
-            this.matchesResponseMap.get(matchString)?.institution.address + " , " +
-            this.matchesResponseMap.get(matchString)?.institution.country;
+        return this.matchesResponseMap.get(matchString)?.institution.institutionName.trim() + ", " +
+            this.matchesResponseMap.get(matchString)?.institution.address.trim() + ", " +
+            this.matchesResponseMap.get(matchString)?.institution.country.trim();
     }
 
     getAttributeMeta(matchString: string) {
@@ -148,6 +151,10 @@ export class ValidateComponent implements OnInit {
         return this.qualifierTypeDisplay.get(
             this.matchesResponseMap.get(matchString)?.institution.qualifierType[0]
         );
+    }
+
+    copyToClipboard(matchString: string): void {
+        this.clipboard.copy(matchString);
     }
 
     handleError(error: Error | HttpErrorResponse) {

@@ -119,6 +119,7 @@
                     {{getAttributeMeta(list.match)}}
                 </td>
                 <td>
+                    <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
                     <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
                             value="{{list.match}}">Add to my Matches
                     </button>
