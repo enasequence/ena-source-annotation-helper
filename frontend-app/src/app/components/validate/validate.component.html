@@ -104,28 +104,31 @@
     </section>
 
     <section class="matches-display-section" *ngIf="matchesResponse.length > 0">
+        <h4>Matches:</h4>
         <table>
             <tr>
-                <td>
-                    <h4>Matches:</h4>
-                </td>
-                <td></td>
+                <td><h5>Attribute</h5></td>
+                <td><h5>Type</h5></td>
             </tr>
-            <tr *ngFor="let list of matchesResponse">
-                <td [width]="250">
-                    <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left" delay="500">{{list.match}}</div>
-                </td>
-                <td [width]="200">
-                    {{getAttributeMeta(list.match)}}
-                </td>
-                <td>
-                    <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
-                    <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
-                            value="{{list.match}}">Add to my Matches
-                    </button>
-                </td>
-            </tr>
+            <div class="nu-table-body">
+                <tr *ngFor="let list of matchesResponse">
+                    <td [width]="250">
+                        <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left"
+                             delay="500">{{list.match}}</div>
+                    </td>
+                    <td [width]="200">
+                        {{getAttributeMeta(list.match)}}
+                    </td>
+                    <td>
+                        <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
+                        <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
+                                value="{{list.match}}">Add to my Matches
+                        </button>
+                    </td>
+                </tr>
+            </div>
         </table>
+
     </section>
 
     <app-validatestore *ngIf="showValidateStore" (refreshStoreComponent)="refreshStoreComponent()"></app-validatestore>
