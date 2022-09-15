@@ -21,6 +21,8 @@ package uk.ac.ebi.ena.annotation.helper.service.helper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Institution;
@@ -41,6 +43,9 @@ public class SAHInstituteServiceHelper {
 
     @Autowired
     private InstitutionRepository institutionRepository;
+
+    @Value("${query.results.limit}")
+    private int QUERY_RESULTS_LIMIT;
 
     //@Value("${ena.annotation.helper.suggestions.limit}")
     //private int SUGGESTIONS_LIMIT;
@@ -96,10 +101,12 @@ public class SAHInstituteServiceHelper {
         //Similar Search on InstUniqueName
         List<Institution> listInstitution;
         if (isEmpty(qualifierType)) {
-            listInstitution = institutionRepository.findByInstituteUniqueNameFuzzy(instUniqueName);
+            listInstitution = institutionRepository.findByInstituteUniqueNameFuzzy(instUniqueName, PageRequest.of(0, QUERY_RESULTS_LIMIT,
+                    Sort.by("_score").descending()));
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
-            listInstitution = institutionRepository.findByInstituteUniqueNameFuzzyAndQualifierType(instUniqueName, listQT);
+            listInstitution = institutionRepository.findByInstituteUniqueNameFuzzyAndQualifierType(instUniqueName, listQT, PageRequest.of(0, QUERY_RESULTS_LIMIT,
+                    Sort.by("_score").descending()));
         }
         return getQVSearchResult(listInstitution);
     }
@@ -108,10 +115,12 @@ public class SAHInstituteServiceHelper {
         //Similar Search with more fuzziness on InstName
         List<Institution> listInstitution;
         if (isEmpty(qualifierType)) {
-            listInstitution = institutionRepository.findByInstituteNameFuzzy(instName);
+            listInstitution = institutionRepository.findByInstituteNameFuzzy(instName, PageRequest.of(0, QUERY_RESULTS_LIMIT,
+                    Sort.by("_score").descending()));
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
-            listInstitution = institutionRepository.findByInstituteNameFuzzyAndQualifierType(instName, listQT);
+            listInstitution = institutionRepository.findByInstituteNameFuzzyAndQualifierType(instName, listQT, PageRequest.of(0, QUERY_RESULTS_LIMIT,
+                    Sort.by("_score").descending()));
         }
         return getQVSearchResult(listInstitution);
     }

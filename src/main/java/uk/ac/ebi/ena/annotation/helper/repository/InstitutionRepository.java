@@ -36,14 +36,14 @@ public interface InstitutionRepository extends ElasticsearchRepository<Instituti
     Optional<Institution> findByUniqueNameAndQualifierTypeArray(String uniqueName, List<String> qualifierType);
 
     @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^3.0\", \"unique_name^2.0\" ] } }")
-    List<Institution> findByInstituteUniqueNameFuzzy(String uniqueName);
+    List<Institution> findByInstituteUniqueNameFuzzy(String uniqueName, PageRequest pageable);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}," +
             "{\"query_string\": {\"query\": \"?0*\",\"fields\": [\"inst_code^3.0\",\"unique_name^2.0\"]}}]}}")
-    List<Institution> findByInstituteUniqueNameFuzzyAndQualifierType(String instUniqueName, List<String> qualifierType);
+    List<Institution> findByInstituteUniqueNameFuzzyAndQualifierType(String instUniqueName, List<String> qualifierType, PageRequest pageable);
 
     @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_name\" ] } }")
-    List<Institution> findByInstituteNameFuzzy(String instName);
+    List<Institution> findByInstituteNameFuzzy(String instName, PageRequest pageable);
 
     @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^3.0\", \"unique_name^2.0\", \"inst_name^1.0\" ] } }")
     List<Institution> findByInstituteFuzzy(String name, PageRequest pageable);
@@ -54,5 +54,5 @@ public interface InstitutionRepository extends ElasticsearchRepository<Instituti
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}," +
             "{\"query_string\": {\"query\": \"?0*\",\"fields\": [\"inst_name\"]}}]}}")
-    List<Institution> findByInstituteNameFuzzyAndQualifierType(String instName, List<String> qualifierType);
+    List<Institution> findByInstituteNameFuzzyAndQualifierType(String instName, List<String> qualifierType, PageRequest pageable);
 }
