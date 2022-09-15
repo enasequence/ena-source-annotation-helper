@@ -4,6 +4,7 @@ import {AppConstants} from "../../../app.constants";
 import {MatchData} from "../../../models/MatchData";
 import {Institution} from "../../../models/Institution";
 import {QualifierTypeDisplay} from "../../../models/QualifierTypeData";
+import {ConstructValidateService} from "../../../services/construct-validate.service";
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +22,8 @@ export class ValidatestoreComponent implements OnInit {
 
     @Output("refreshStoreComponent") refreshStoreComponent: EventEmitter<any> = new EventEmitter(true);
 
-    constructor(private clipboard: Clipboard) {
+    constructor(private constructValidateService: ConstructValidateService,
+                private clipboard: Clipboard) {
         this.localStorageObj = new Map<string, Institution>();
         this.fetchFromLocalStorage();
     }
@@ -83,5 +85,9 @@ export class ValidatestoreComponent implements OnInit {
 
     getQualifierMeta(qualifierType: string) {
         return this.qualifierTypeDisplay.get(qualifierType);
+    }
+
+    getAttributeDisplayText(attribStr: string) {
+        return this.constructValidateService.getAttributeDisplayText(attribStr, this.localStorageObj);
     }
 }

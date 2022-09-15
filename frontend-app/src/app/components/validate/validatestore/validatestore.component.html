@@ -8,14 +8,14 @@
         <table>
             <div class="nu-table-body">
                 <tr>
-                    <td [width]="200"><h5>Attribute</h5></td>
+                    <td [width]="300"><h5>Attribute</h5></td>
                     <td><h5>Attribute Type</h5></td>
                 </tr>
             </div>
             <div class="nu-table-body">
                 <tr *ngFor="let list of localStorageObj | keyvalue">
-                    <td [width]="200">
-                        {{list.key.toString()}}
+                    <td [width]="300">
+                        <span [innerHTML]="getAttributeDisplayText(list.key.toString())"></span>
                     </td>
                     <td [width]="200">
                         {{getQualifierMeta(list.value.qualifierType[0])}}

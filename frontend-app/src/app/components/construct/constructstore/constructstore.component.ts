@@ -4,6 +4,7 @@ import {AppConstants} from "../../../app.constants";
 import {MatchData} from "../../../models/MatchData";
 import {Institution} from "../../../models/Institution";
 import {QualifierTypeDisplay} from "../../../models/QualifierTypeData";
+import {ConstructValidateService} from "../../../services/construct-validate.service";
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +22,8 @@ export class ConstructstoreComponent implements OnInit {
 
     @Output("refreshStoreComponent") refreshStoreComponent: EventEmitter<any> = new EventEmitter();
 
-    constructor(private clipboard: Clipboard) {
+    constructor(private constructValidateService: ConstructValidateService,
+                private clipboard: Clipboard) {
         this.localStorageObj = new Map<string, Institution>();
         this.fetchFromLocalStorage();
     }
@@ -70,7 +72,7 @@ export class ConstructstoreComponent implements OnInit {
      * clear all construct strings.
      */
     clearAllSavedResults(): void {
-        Object.keys(localStorage).forEach(function(key){
+        Object.keys(localStorage).forEach(function (key) {
             // console.log(localStorage.getItem(key));
             if (key !== null && key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
                 localStorage.removeItem(key);
@@ -83,5 +85,9 @@ export class ConstructstoreComponent implements OnInit {
 
     getQualifierMeta(qualifierType: string) {
         return this.qualifierTypeDisplay.get(qualifierType);
+    }
+
+    getAttributeDisplayText(attribStr: string) {
+        return this.constructValidateService.getAttributeDisplayText(attribStr, this.localStorageObj);
     }
 }
