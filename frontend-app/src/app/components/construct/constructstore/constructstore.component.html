@@ -1,28 +1,31 @@
 <section class="my-constructs-display-section" *ngIf="localStorageObj.size > 0">
     <p>&nbsp;</p>
     <div id="savedAttribBox">
+        <h4>Constructed Attribute:&nbsp;&nbsp;&nbsp;&nbsp;
+            <button (click)="copyAllToClipboard()">Copy All</button>&nbsp;&nbsp;
+            <button (click)="clearAllSavedResults()">Remove All</button>
+        </h4>
         <table>
-            <tr>
-                <td [width]="200">
-                    <h4>My Constructed Attributes:</h4>
-                </td>
-                <td [width]="200">
-                    <button (click)="copyAllToClipboard()">Copy All</button>&nbsp;&nbsp;
-                    <button (click)="clearAllSavedResults()">Remove All</button>
-                </td>
-            </tr>
-            <tr *ngFor="let list of localStorageObj | keyvalue">
-                <td [width]="200">
-                    {{list.key.toString()}}
-                </td>
-                <td [width]="200">
-                    {{getQualifierMeta(list.value.qualifierType[0])}}
-                </td>
-                <td [width]="200">
-                    <button (click)="copyToClipboard(list.key.toString())">Copy</button>&nbsp;&nbsp;
-                    <button (click)="clearSavedResult(list.key.toString())">Remove</button>
-                </td>
-            </tr>
+            <div class="nu-table-body">
+                <tr>
+                    <td [width]="200"><h5>Attribute</h5></td>
+                    <td><h5>Attribute Type</h5></td>
+                </tr>
+            </div>
+            <div class="nu-table-body">
+                <tr *ngFor="let list of localStorageObj | keyvalue">
+                    <td [width]="200">
+                        {{list.key.toString()}}
+                    </td>
+                    <td [width]="200">
+                        {{getQualifierMeta(list.value.qualifierType[0])}}
+                    </td>
+                    <td [width]="200">
+                        <button (click)="copyToClipboard(list.key.toString())">Copy</button>&nbsp;&nbsp;
+                        <button (click)="clearSavedResult(list.key.toString())">Remove</button>
+                    </td>
+                </tr>
+            </div>
         </table>
     </div>
 </section>
