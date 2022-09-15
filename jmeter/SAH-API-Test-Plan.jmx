@@ -197,7 +197,7 @@
             </elementProp>
             <elementProp name="dev_sah_server" elementType="Argument">
               <stringProp name="Argument.name">dev_sah_server</stringProp>
-              <stringProp name="Argument.value">wwwdev.ebi.ac.uk</stringProp>
+              <stringProp name="Argument.value">localhost</stringProp>
               <stringProp name="Argument.metadata">=</stringProp>
             </elementProp>
             <elementProp name="validate_api_context_path" elementType="Argument">
