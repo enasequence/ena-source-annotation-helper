@@ -57,12 +57,10 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
             "{ \"fields\": [ \"coll_code\" ], \"query\": \"?1\" } } ] } }")
     List<Collection> findByMultipleInstIdsAndCollNameExactAndQualifierType(int[] instIdList, String collCode, List<String> qualifierTypeArrray);
 
-    //TODO
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"inst_id\": [?0]}}," +
             "{\"query_string\": {\"query\": \"?1*\",\"fields\": [\"coll_code\"]}}]}}")
     List<Collection> findByMultipleInstIdsAndStartsWithCollName(int[] instIdList, String collCode);
 
-    //TODO
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"inst_id\": [?0]}},{\"terms\": {\"qualifier_type\": ?2 }}," +
             "{\"query_string\": {\"query\": \"?1*\",\"fields\": [\"coll_code\"]}}]}}")
     List<Collection> findByMultipleInstIdsAndStartsWithCollNameAndQualifierType(int[] instIdList, String collCode, List<String> qualifierTypeArrray);
