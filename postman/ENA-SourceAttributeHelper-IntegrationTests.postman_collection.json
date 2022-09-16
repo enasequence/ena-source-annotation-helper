@@ -497,20 +497,25 @@
 							"response": []
 						},
 						{
-							"name": "Validate-SimilarMatchMultiple-WithColl-Good-01 Copy",
+							"name": "Validate-SimilarInstituteMatch-WithColl-Good-01",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-Success\", function () {",
+											"pm.test(\"Validate-SimilarInstituteMatch-WithColl-Good-01-Success\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.success).to.eql(true);",
 											"});",
 											"",
-											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
+											"pm.test(\"Validate-SimilarInstituteMatch-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarInstituteMatch-WithColl-Good-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).eq(\"Partial\");",
 											"});",
 											""
 										],
@@ -645,7 +650,7 @@
 							"response": []
 						},
 						{
-							"name": "Construct-SimilarMatchMultiple-WithCollAndQT-Good-01 Copy",
+							"name": "Construct-SimilarInstituteMatch-WithColl-Good-01",
 							"event": [
 								{
 									"listen": "test",
@@ -656,11 +661,16 @@
 											"    pm.expect(jsonData.success).to.eql(true);",
 											"});",
 											"",
-											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-length\", function () {",
+											"",
+											"pm.test(\"Construct-SimilarInstituteMatch-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).eq(1);",
 											"});",
-											""
+											"",
+											"pm.test(\"Construct-SimilarInstituteMatch-WithColl-Good-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).eq(\"Partial\");",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -1000,7 +1010,12 @@
 											"",
 											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).eq(\"Partial\");",
 											"});",
 											""
 										],
@@ -1096,9 +1111,13 @@
 											"",
 											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).eq(1);",
 											"});",
-											""
+											"",
+											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).eq(\"Partial\");",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -2269,7 +2288,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT<ITA-Torino>:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=CAT:12345",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -2280,7 +2299,51 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "MSNT<ITA-Torino>:123456"
+											"value": "CAT:12345"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-ExactMatch-Inst-WithColl-CMN-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-ExactMatch-Inst-WithColl-CMN-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-ExactMatch-Inst-WithColl-CMN-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=cmn:insect:123",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "cmn:insect:123"
 										}
 									]
 								}
@@ -2703,7 +2766,12 @@
 											"",
 											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).eq(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatchMultiple-WithColl-Good-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).eq(\"Partial\");",
 											"});",
 											""
 										],
@@ -2715,7 +2783,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HS:Bird:123456",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=HSUV:Bird:123456",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -2726,7 +2794,7 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "HS:Bird:123456"
+											"value": "HSUV:Bird:123456"
 										}
 									]
 								}
@@ -2876,6 +2944,349 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Validate-Inst-WithColl-USNM-NoCollMatch-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-WithColl-USNM-NoCollMatch-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-NoCollMatch-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(0);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-NoCollMatch-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).to.eql(\"None\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=USNM:FATA:00917687",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "USNM:FATA:00917687"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-WithColl-USNM-ExactMatch-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-WithColl-USNM-ExactMatch-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-ExactMatch-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-ExactMatch-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).to.eql(\"Exact\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=USNM:ENT:00917687",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "USNM:ENT:00917687"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-WithColl-USNM-ExactMatch-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-WithColl-USNM-ExactMatch-02-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-ExactMatch-02-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-ExactMatch-02-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).to.eql(\"Exact\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=USNM:FISH:00917687",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "USNM:FISH:00917687"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-WithColl-USNM-StartsWithMatch-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-WithColl-USNM-StartsWithMatch-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-StartsWithMatch-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-StartsWithMatch-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).to.eql(\"Partial\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=USNM:FIS:00917687",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "USNM:FIS:00917687"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-WithColl-USNM-SimilarMatch-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).to.eql(\"Partial\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=USNM:ENX:00917687",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "USNM:ENX:00917687"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-WithColl-USNM-SimilarMatch-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-02-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-02-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-02-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).to.eql(\"Partial\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=USNM:ENTE:00917687",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "USNM:ENTE:00917687"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-WithColl-NMV-SimilarMatch-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-02-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-02-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-WithColl-USNM-SimilarMatch-02-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).to.eql(\"Partial\");",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=NMV<AUS>:Crustac:00917687",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "NMV<AUS>:Crustac:00917687"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -2920,6 +3331,58 @@
 										{
 											"key": "institution",
 											"value": "MSNT<ITA-Torino>"
+										},
+										{
+											"key": "id",
+											"value": "123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Construct-ExactMatch-Inst-With Coll-CMN-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Construct-ExactMatch-Inst-With Coll-CMN-Good-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Construct-ExactMatch-Inst-With Coll-CMN-Good-01-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=CMN&collection=insect&id=123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"construct"
+									],
+									"query": [
+										{
+											"key": "institution",
+											"value": "CMN"
+										},
+										{
+											"key": "collection",
+											"value": "insect"
 										},
 										{
 											"key": "id",
@@ -3289,11 +3752,16 @@
 											"    pm.expect(jsonData.success).to.eql(true);",
 											"});",
 											"",
+											"",
 											"pm.test(\"Construct-SimilarMatchMultiple-WithColl-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).eq(1);",
 											"});",
-											""
+											"",
+											"pm.test(\"Construct-SimilarMatchMultiple-WithColl-Good-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).eq(\"Partial\");",
+											"});"
 										],
 										"type": "text/javascript"
 									}
@@ -3343,9 +3811,13 @@
 											"",
 											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.greaterThan(1);",
+											"    pm.expect(jsonData.matches.length).eq(1);",
 											"});",
-											""
+											"",
+											"pm.test(\"Construct-SimilarMatchMultiple-WithCollAndQT-Good-01-MatchLevel\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matchLevel).eq(\"Partial\");",
+											"});"
 										],
 										"type": "text/javascript"
 									}

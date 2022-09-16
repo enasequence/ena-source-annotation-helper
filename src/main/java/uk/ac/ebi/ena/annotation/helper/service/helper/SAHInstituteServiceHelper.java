@@ -139,7 +139,7 @@ public class SAHInstituteServiceHelper {
             log.debug("found similar {} institutes", listInstitution.size());
             return ValidationSearchResult.builder()
                     .institutions(listInstitution)
-                    .match(listInstitution.size() == 1 ? SAHConstants.EXACT_MATCH : SAHConstants.MULTI_NEAR_MATCH)
+                    .match(SAHConstants.MULTI_NEAR_MATCH)
                     .message(listInstitution.size() > 1 ? MultipleMatchesFoundMessage : null)
                     .success(true)
                     .build();

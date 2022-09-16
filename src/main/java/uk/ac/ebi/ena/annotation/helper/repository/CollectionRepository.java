@@ -33,6 +33,9 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
 
     List<Collection> findByInstId(int instId);
 
+    @Query("{\"multi_match\": {\"fields\": [\"coll_code\", \"coll_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
+    List<Collection> findByCollNameFuzzy(String name);
+
     @Query("{\"bool\": {\"must\": [{ \"match\": { \"inst_id\": \"?0\" } },{\"terms\": {\"qualifier_type\": ?1 }}]}}")
     List<Collection> findByInstIdAndQualifierTypeArray(int instId, List<String> qualifierTypeArrray);
 
@@ -44,15 +47,33 @@ public interface CollectionRepository extends ElasticsearchRepository<Collection
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
     List<Collection> findByInstIdAndCollNameFuzzyWithQualifierType(int instId, String name, List<String> qualifierType);
 
+    // validate and construct scenarios - start
+
+    @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"multi_match\": " +
+            "{ \"fields\": [ \"coll_code\"], \"query\": \"?1\" } } ] } }")
+    List<Collection> findByMultipleInstIdsAndCollNameExact(int[] instIdList, String collCode);
+
+    @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"terms\": { \"qualifier_type\": ?2 } }, { \"multi_match\": " +
+            "{ \"fields\": [ \"coll_code\" ], \"query\": \"?1\" } } ] } }")
+    List<Collection> findByMultipleInstIdsAndCollNameExactAndQualifierType(int[] instIdList, String collCode, List<String> qualifierTypeArrray);
+
+    //TODO
+    @Query("{\"bool\": {\"must\": [{\"terms\": {\"inst_id\": [?0]}}," +
+            "{\"query_string\": {\"query\": \"?1*\",\"fields\": [\"coll_code\"]}}]}}")
+    List<Collection> findByMultipleInstIdsAndStartsWithCollName(int[] instIdList, String collCode);
+
+    //TODO
+    @Query("{\"bool\": {\"must\": [{\"terms\": {\"inst_id\": [?0]}},{\"terms\": {\"qualifier_type\": ?2 }}," +
+            "{\"query_string\": {\"query\": \"?1*\",\"fields\": [\"coll_code\"]}}]}}")
+    List<Collection> findByMultipleInstIdsAndStartsWithCollNameAndQualifierType(int[] instIdList, String collCode, List<String> qualifierTypeArrray);
 
     @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"multi_match\": " +
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
     List<Collection> findByMultipleInstIdsAndCollNameFuzzy(int[] instIdList, String name);
 
-    @Query("{\"multi_match\": {\"fields\": [\"coll_code\", \"coll_name\"], \"query\": \"?0\", \"fuzziness\": \"AUTO\" }}")
-    List<Collection> findByCollNameFuzzy(String name);
-
     @Query("{ \"bool\": { \"must\": [ { \"terms\": { \"inst_id\": [?0] } }, { \"terms\": { \"qualifier_type\": ?2 } }, { \"multi_match\": " +
             "{ \"fields\": [ \"coll_code\", \"coll_name\" ], \"query\": \"?1\", \"fuzziness\": \"AUTO\" } } ] } }")
     List<Collection> findByMultipleInstIdsAndCollNameFuzzyAndQualifierType(int[] listInstituteIds, String collectionString, List<String> qualifierType);
+
+    // validate and construct scenarios - end
 }
