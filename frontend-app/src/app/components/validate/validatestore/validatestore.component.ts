@@ -88,6 +88,11 @@ export class ValidatestoreComponent implements OnInit {
     }
 
     getAttributeDisplayText(attribStr: string) {
-        return this.constructValidateService.getAttributeDisplayText(attribStr, this.localStorageObj);
+        var inst = this.localStorageObj.get(attribStr);
+        if(inst !== undefined) {
+            return this.constructValidateService.getAttributeDisplayText(attribStr, inst);
+        } else {
+            return attribStr;
+        }
     }
 }

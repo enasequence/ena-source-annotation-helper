@@ -107,16 +107,18 @@
         <h4>Matches:</h4>
         <table>
             <div class="nu-table-body">
-            <tr>
-                <td [width]="250"><h5>Attribute</h5></td>
-                <td><h5>Attribute Type</h5></td>
-            </tr>
+                <tr>
+                    <td [width]="250"><h5>Attribute</h5></td>
+                    <td><h5>Attribute Type</h5></td>
+                </tr>
             </div>
             <div class="nu-table-body">
                 <tr *ngFor="let list of matchesResponse">
                     <td [width]="250">
                         <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left"
-                             delay="500">{{list.match}}</div>
+                             delay="500">
+                            <span [innerHTML]="getAttributeDisplayText(list.match)"></span>
+                        </div>
                     </td>
                     <td [width]="200">
                         {{getAttributeMeta(list.match)}}

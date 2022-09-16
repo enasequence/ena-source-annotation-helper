@@ -173,4 +173,13 @@ export class ValidateComponent implements OnInit {
         console.error(error);
     }
 
+    getAttributeDisplayText(attribStr: string) {
+        var inst = this.matchesResponseMap.get(attribStr)?.institution;
+        if(inst !== undefined) {
+            return this.backendService.getAttributeDisplayText(attribStr, inst);
+        } else {
+            return attribStr;
+        }
+    }
+
 }

@@ -229,4 +229,13 @@ export class ConstructComponent implements OnInit {
         //this.clearInstitutionSelection();
     }
 
+    getAttributeDisplayText(attribStr: string) {
+        var inst = this.matchesResponseMap.get(attribStr)?.institution;
+        if(inst !== undefined) {
+            return this.constructValidateService.getAttributeDisplayText(attribStr, inst);
+        } else {
+            return attribStr;
+        }
+    }
+
 }

@@ -79,10 +79,9 @@ export class ConstructValidateService {
                 ));
     }
 
-    getAttributeDisplayText(attribStr: string, localStorageObj: Map<string, Institution>) {
-        var attribArrWithLinks = "";
+    getAttributeDisplayText(attribStr: string, inst: Institution) {
 
-        var inst = localStorageObj.get(attribStr);
+        var attribArrWithLinks = "";
         var splittedAttribArr = attribStr.split(":", 3);
 
         //process institution
