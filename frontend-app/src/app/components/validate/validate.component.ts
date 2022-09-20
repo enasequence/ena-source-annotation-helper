@@ -157,22 +157,6 @@ export class ValidateComponent implements OnInit {
         this.clipboard.copy(matchString);
     }
 
-    handleError(error: Error | HttpErrorResponse) {
-        const errorService = this.injector.get(ErrorService);
-        const logger = this.injector.get(LoggingService);
-        let message;
-        if (error instanceof HttpErrorResponse) {
-            // Server error
-            this.errorMessage = errorService.getServerErrorMessage(error);
-        } else {
-            // Client Error
-            this.errorMessage = errorService.getClientErrorMessage(error);
-        }
-        // Always log errors
-        logger.logError(this.errorMessage, "");
-        console.error(error);
-    }
-
     getAttributeDisplayText(attribStr: string) {
         var inst = this.matchesResponseMap.get(attribStr)?.institution;
         if(inst !== undefined) {
@@ -180,6 +164,11 @@ export class ValidateComponent implements OnInit {
         } else {
             return attribStr;
         }
+    }
+
+    clearErrorMessages() {
+        this.backendService.errorMessage = "";
+        this.errorMessage = "";
     }
 
 }

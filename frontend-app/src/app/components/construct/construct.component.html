@@ -153,6 +153,16 @@
                         <button type="submit" mat-raised-button color="primary">Construct Attribute Value</button>
                     </td>
                 </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div *ngIf="submitted && errorMessage !== null">
+                            <div class="error">{{errorMessage}}</div>
+                        </div>
+                        <div class="error" *ngIf="(error$ | async) as error">{{ error }}!</div>
+                    </td>
+                </tr>
             </table>
         </form>
     </section>

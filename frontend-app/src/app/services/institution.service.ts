@@ -1,12 +1,14 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {environment} from '@env';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {map} from 'rxjs/operators';
 import {MetaResponse} from "../models/MetaResponse";
 import {Institution} from "../models/Institution";
 import {Collection} from "../models/Collection";
 import {AppConstants} from "../app.constants";
+import {ErrorService} from "./error.service";
+import {LoggingService} from "./logging.service";
 
 
 @Injectable({
@@ -14,7 +16,10 @@ import {AppConstants} from "../app.constants";
 })
 export class InstitutionService {
 
-    constructor(private http: HttpClient) {
+    errorMessage: string = "";
+
+    constructor(private http: HttpClient,
+                private injector: Injector) {
     }
 
     /**
@@ -35,7 +40,7 @@ export class InstitutionService {
                 map(response => {
                         if (response.institutions.length <= 0) {
                             console.log(AppConstants.NO_INSTITUTIONS_FOUND);
-                            throw new Error(AppConstants.NO_INSTITUTIONS_FOUND);
+                            this.handleError(new Error(AppConstants.NO_INSTITUTIONS_FOUND));
                         }
                         // console.log(response.institutions);
                         return response.institutions;
@@ -62,10 +67,26 @@ export class InstitutionService {
                 map(response => {
                         if (response.institutions[0].collections.length <= 0) {
                             console.log(AppConstants.NO_COLLECTIONS_FOUND);
-                            throw new Error(AppConstants.NO_COLLECTIONS_FOUND);
+                            this.handleError(new Error(AppConstants.NO_COLLECTIONS_FOUND));
                         }
                         return response.institutions[0] ? response.institutions[0].collections : [];
                     }
                 ));
+    }
+
+    handleError(error: Error | HttpErrorResponse) {
+        const errorService = this.injector.get(ErrorService);
+        const logger = this.injector.get(LoggingService);
+        let message;
+        if (error instanceof HttpErrorResponse) {
+            // Server error
+            this.errorMessage = errorService.getServerErrorMessage(error);
+        } else {
+            // Client Error
+            this.errorMessage = errorService.getClientErrorMessage(error);
+        }
+        // Always log errors
+        logger.logError(this.errorMessage, "");
+        console.error(error);
     }
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Injector, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatchData} from "../../models/MatchData";
 import {debounceTime, filter, switchMap} from "rxjs/operators";
@@ -13,6 +13,10 @@ import {AppConstants} from "../../app.constants";
 import {MatSelectChange} from "@angular/material/select";
 import {QualifierTypeDisplay, QualifierTypeData} from '../../models/QualifierTypeData';
 import {Clipboard} from "@angular/cdk/clipboard";
+import {HttpErrorResponse} from "@angular/common/http";
+import {ErrorService} from "../../services/error.service";
+import {LoggingService} from "../../services/logging.service";
+import {NotificationService} from "../../services/notification.service";
 
 
 @Component({
@@ -25,6 +29,7 @@ export class ConstructComponent implements OnInit {
 
     readonly attributeTypeData = QualifierTypeData;
     readonly qualifierTypeDisplay = QualifierTypeDisplay;
+    error$ = this.notificationService.errors$();
 
     attributeVal: string = "";
     specimenVal: string = "";
@@ -40,6 +45,7 @@ export class ConstructComponent implements OnInit {
     filteredCollections: Observable<Collection[]> = null as any;
     minLengthTerm = 0;
     submitted: boolean;
+    errorMessage: string = "";
 
     @ViewChild(ConstructstoreComponent, {static: false})
     showConstructStore: boolean = true;
@@ -49,6 +55,8 @@ export class ConstructComponent implements OnInit {
     constructor(private institutionService: InstitutionService,
                 private constructValidateService: ConstructValidateService,
                 private sahCommonsService: SahCommonsService,
+                private injector: Injector,
+                private readonly notificationService: NotificationService,
                 private _formBuilder: FormBuilder,
                 private clipboard: Clipboard) {
         this.matchesResponse = new Array<MatchData>();
@@ -97,7 +105,7 @@ export class ConstructComponent implements OnInit {
                 this.institutionsMap.set(instObj.uniqueName, instObj);
             })
         });
-
+        this.errorMessage = this.institutionService.errorMessage;
 
     }
 
@@ -109,7 +117,12 @@ export class ConstructComponent implements OnInit {
 
     // Construct
     constructAttribute(): void {
+
+        // on submit, reset the constructed attributes and the error messages
         this.submitted = true;
+        this.clearMatchResponses();
+        this.clearErrorMessages();
+
         //if inputs are not valid, return
         if (!this.constructFormGroup.valid) {
             return;
@@ -125,10 +138,9 @@ export class ConstructComponent implements OnInit {
         console.log(inputVal);
 
         if (this.selectedInstitution.uniqueName === undefined) {
-            alert("undefined institution");
+            //TODO verify the condition -  alert("undefined institution");
         }
         // alert(this.selectedInstitution.uniqueName);
-        this.matchesResponseMap.clear();
         // call the construct request
         this.constructValidateService
             .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
@@ -208,16 +220,6 @@ export class ConstructComponent implements OnInit {
         return value?.Title;
     }
 
-    clearSelection() {
-        this.selectedInstitution = null as any;
-        this.filteredInstitutions = new Observable<Institution[]>;
-    }
-
-    clearInstitutionSelection() {
-        this.selectedInstitution = null as any;
-        //this.filteredInstitutions = new Observable<Institution[]>;
-        this.typedInstitution = "";
-    }
 
     refreshStoreComponent() {
         this.showConstructStore = false;
@@ -229,7 +231,7 @@ export class ConstructComponent implements OnInit {
     attributeSelection(event: MatSelectChange) {
         // alert(event.value);
         this.attributeVal = event.value;
-        //this.clearInstitutionSelection();
+        this.clearInstitutionSelection();
     }
 
     getAttributeDisplayText(attribStr: string) {
@@ -239,6 +241,36 @@ export class ConstructComponent implements OnInit {
         } else {
             return attribStr;
         }
+    }
+
+    clearInstitutionSelection() {
+        this.selectedInstitution = null as any;
+        //this.filteredInstitutions = new Observable<Institution[]>;
+        this.typedInstitution = "";
+        this.filteredInstitutions.forEach(val => val.pop());
+        this.clearCollectionSelection();
+        this.clearErrorMessages();
+    }
+
+    clearCollectionSelection() {
+        this.selectedCollection = "";
+        //this.filteredCollections.forEach(val => val.pop());
+        this.clearSpecimenValSelection();
+    }
+
+    clearSpecimenValSelection() {
+        this.specimenVal = "";
+    }
+
+    clearMatchResponses() {
+        this.matchesResponseMap.clear();
+        this.matchesResponse = new Array<MatchData>();
+    }
+
+    clearErrorMessages() {
+        this.institutionService.errorMessage = "";
+        this.constructValidateService.errorMessage = "";
+        this.errorMessage = "";
     }
 
 }

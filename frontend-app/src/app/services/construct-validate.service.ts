@@ -1,18 +1,23 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {environment} from '@env';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {SAHResponse} from "../models/SAHResponse";
 import {Observable} from "rxjs";
 import {map} from 'rxjs/operators';
 import {AppConstants} from "../app.constants";
 import {Institution} from "../models/Institution";
+import {ErrorService} from "./error.service";
+import {LoggingService} from "./logging.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ConstructValidateService {
 
-    constructor(private http: HttpClient) {
+    errorMessage: string = "";
+
+    constructor(private http: HttpClient,
+                private injector: Injector) {
     }
 
     /**
@@ -28,13 +33,13 @@ export class ConstructValidateService {
         if (qualifier !== "") {
             urlString = urlString + '&qualifier_type=' + qualifier;
         }
-        //alert(urlString);
+        // alert(urlString);
         return this.http.get<SAHResponse>(urlString, options)
             .pipe(
                 map(response => {
                     if (response.matches.length <= 0) {
                         console.log(AppConstants.NO_MATCHES_FOUND);
-                        throw new Error(AppConstants.NO_MATCHES_FOUND);
+                        this.handleError(new Error(AppConstants.NO_MATCHES_FOUND));
                     }
                     console.log(response.matches);
                     return response;
@@ -64,13 +69,13 @@ export class ConstructValidateService {
             urlString = urlString + '&qualifier_type=' + qualifier;
         }
 
-        // alert(urlString);
+        alert(urlString);
         return this.http.get<SAHResponse>(urlString, options)
             .pipe(
                 map(response => {
                         if (response.matches.length <= 0) {
                             console.log(AppConstants.NO_MATCHES_FOUND);
-                            throw new Error(AppConstants.NO_MATCHES_FOUND);
+                            this.handleError(new Error(AppConstants.NO_MATCHES_FOUND));
                         }
                         console.log(response.matches);
                         return response;
@@ -115,6 +120,23 @@ export class ConstructValidateService {
         }
 
         return attribArrWithLinks;
+    }
+
+
+    handleError(error: Error | HttpErrorResponse) {
+        const errorService = this.injector.get(ErrorService);
+        const logger = this.injector.get(LoggingService);
+        let message;
+        if (error instanceof HttpErrorResponse) {
+            // Server error
+            this.errorMessage = errorService.getServerErrorMessage(error);
+        } else {
+            // Client Error
+            this.errorMessage = errorService.getClientErrorMessage(error);
+        }
+        // Always log errors
+        logger.logError(this.errorMessage, "");
+        console.error(error);
     }
 
 }
