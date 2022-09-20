@@ -25,6 +25,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import uk.ac.ebi.ena.annotation.helper.dto.GenericInputValuesAllowed;
 import uk.ac.ebi.ena.annotation.helper.dto.QualifierValuesAllowed;
 import uk.ac.ebi.ena.annotation.helper.dto.ResponseDto;
 import uk.ac.ebi.ena.annotation.helper.dto.SAHResponseDto;
@@ -54,7 +55,8 @@ public class SAHController {
             @ApiResponse(code = 400, message = "Invalid request format"),
     })
     public ResponseEntity<Object> findByInstitutionValue(@ApiParam(name = "ivalue", type = "String",
-            value = ValidInputSizeMessage) @PathVariable @Size(min = 1, max = 100, message = InstituteNotValidInputMessage) String ivalue,
+            value = ValidInputSizeMessage) @PathVariable @Size(min = 1, max = 100, message = InstituteNotValidInputMessage)
+                                                         @GenericInputValuesAllowed(propName = "ivalue") @Valid String ivalue,
                                                          @ApiParam(name = "qualifier_type", type = "String[]",
                                                                  value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
                                                                  example = "specimen_voucher", required = false)
@@ -71,7 +73,8 @@ public class SAHController {
             @ApiResponse(code = 400, message = "Invalid request format"),
     })
     public ResponseEntity<Object> findByAllCollByInstituteUniqueName(@ApiParam(name = "institutionUniqueName", type = "String",
-            value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 1, max = 100, message = InstituteNotValidInputMessage) String institutionUniqueName,
+            value = ValidInstituteUniqueNameRequiredMessage) @PathVariable @Size(min = 1, max = 100, message = InstituteNotValidInputMessage)
+                                                                     @GenericInputValuesAllowed(propName = "institutionUniqueName") @Valid String institutionUniqueName,
                                                                      @ApiParam(name = "qualifier_type", type = "String[]",
                                                                              value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
                                                                              example = "specimen_voucher", required = false)
@@ -109,7 +112,8 @@ public class SAHController {
             @ApiResponse(code = 400, message = "Invalid request format"),
     })
     public ResponseEntity<Object> validate(@ApiParam(name = "value", type = "String",
-            value = ProvideQualifierString) @RequestParam("value") String value,
+            value = ProvideQualifierString) @GenericInputValuesAllowed(propName = "value") @Valid
+                                           @RequestParam("value") String value,
                                            @ApiParam(name = "qualifier_type", type = "String[]",
                                                    value = "Acceptable values are {specimen_voucher, bio_material, culture_collection}",
                                                    example = "specimen_voucher", required = false)
@@ -126,10 +130,12 @@ public class SAHController {
             @ApiResponse(code = 400, message = "Invalid request format"),
     })
     public ResponseEntity<Object> construct(@ApiParam(name = "institution", type = "String",
-            value = ProvideValidInstituteUniqueName) @RequestParam(name = "institution") String institution,
+            value = ProvideValidInstituteUniqueName) @RequestParam(name = "institution")
+                                                @GenericInputValuesAllowed(propName = "institution") @Valid String institution,
                                             @ApiParam(name = "collection", type = "String",
                                                     value = ProvideValidCollectionCode)
-                                            @RequestParam(name = "collection", required = false) String collection,
+                                            @RequestParam(name = "collection", required = false)
+                                            @GenericInputValuesAllowed(propName = "collection") @Valid String collection,
                                             @ApiParam(name = "id", type = "String",
                                                     value = ProvideValidId)
                                             @RequestParam(name = "id") String id,

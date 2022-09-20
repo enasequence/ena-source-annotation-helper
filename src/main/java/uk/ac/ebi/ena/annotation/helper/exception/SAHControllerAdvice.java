@@ -35,7 +35,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.FieldValidationError;
-import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.QualifierTypeInvalidError;
+import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.GenericInputInvalidError;
 
 
 @RestControllerAdvice
@@ -63,7 +63,7 @@ public class SAHControllerAdvice {
 
         final List<ErrorResponse> errors = new ArrayList();
         for (final ConstraintViolation<?> violation : ex.getConstraintViolations()) {
-            errors.add(new ErrorResponse(QualifierTypeInvalidError, violation.getMessage()));
+            errors.add(new ErrorResponse(GenericInputInvalidError, violation.getMessage()));
         }
         ResponseDto responseDto = new ResponseDto();
         responseDto.setErrors(errors);

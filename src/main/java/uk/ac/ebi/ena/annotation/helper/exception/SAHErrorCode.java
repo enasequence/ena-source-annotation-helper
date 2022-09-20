@@ -34,7 +34,7 @@ public class SAHErrorCode {
     public static final int InstituteMissingError = 3010;
     public static final int IdentifierMissingError = 3011;
     public static final int NoMatchError = 3012;
-    public static final int QualifierTypeInvalidError = 3015;
+    public static final int GenericInputInvalidError = 3015;
 
     public static final String ServerProcessingMessage = "Server Processing Error";
     public static final String BadRequestDataMessage = "Bad Request Data";
@@ -59,6 +59,7 @@ public class SAHErrorCode {
     public static final String CollectionNotValidInputMessage = "For collection name/code, please provide at least 1 char to search and max 100 chars";
     public static final String QualifierTypeInvalidMessage = "QualifierType values should be from list of ";
     public static final String QualifierTypeInvalidCompleteMessage = "QualifierType values should be from list of {specimen_voucher, bio_material, culture_collection}";
+    public static final String GenericInputInvalidMessage = "Invalid Input String. Input should not contain invalid characters e.g. brackets and spaces";
 
 
     public static Map<Integer, String> errorCodesMap = new HashMap<>();
@@ -71,7 +72,7 @@ public class SAHErrorCode {
         errorCodesMap.put(InvalidFormatProvidedError, InvalidFormatProvidedMessage);
         errorCodesMap.put(InstituteMissingError, InstituteMissingMessage);
         errorCodesMap.put(IdentifierMissingError, IdentifierMissingMessage);
-        errorCodesMap.put(QualifierTypeInvalidError, QualifierTypeInvalidCompleteMessage);
+        errorCodesMap.put(GenericInputInvalidError, QualifierTypeInvalidCompleteMessage);
         // [NOT IN USE FOR NOW]
         // errorCodesMap.put(NoMatchingInstituteError, NoMatchingInstituteMessage);
         // errorCodesMap.put(NoMatchingCollectionError, NoMatchingCollectionMessage);
