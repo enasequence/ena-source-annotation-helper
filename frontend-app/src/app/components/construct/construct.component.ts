@@ -121,12 +121,14 @@ export class ConstructComponent implements OnInit {
         });
 
         var inputVal: string = this.constructFormGroup.get("specimenCtrl")?.value!;
+        // alert(inputVal);
         console.log(inputVal);
 
-        if(this.selectedInstitution.uniqueName === undefined) {
-
+        if (this.selectedInstitution.uniqueName === undefined) {
+            alert("undefined institution");
         }
-
+        // alert(this.selectedInstitution.uniqueName);
+        this.matchesResponseMap.clear();
         // call the construct request
         this.constructValidateService
             .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
@@ -192,11 +194,12 @@ export class ConstructComponent implements OnInit {
         // @ts-ignore
         this.selectedInstitution = this.institutionsMap.get(this.typedInstitution);
         this.typedInstitution = this.selectedInstitution.uniqueName + "-" + this.selectedInstitution.institutionName;
+        this.selectedCollection = "";
         this.filteredCollections = this.getFilteredCollections();
     }
 
     collectionChangeAction(selectedVal: string) {
-        //alert(selectedVal);
+        // alert(selectedVal);
         console.log(selectedVal);
         this.selectedCollection = selectedVal;
     }
@@ -231,7 +234,7 @@ export class ConstructComponent implements OnInit {
 
     getAttributeDisplayText(attribStr: string) {
         var inst = this.matchesResponseMap.get(attribStr)?.institution;
-        if(inst !== undefined) {
+        if (inst !== undefined) {
             return this.constructValidateService.getAttributeDisplayText(attribStr, inst);
         } else {
             return attribStr;
