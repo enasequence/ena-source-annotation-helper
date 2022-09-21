@@ -29,11 +29,13 @@ public interface CollectionMapper {
     @Mapping(source = "collCode", target = "collectionCode")
     @Mapping(source = "collName", target = "collectionName")
     @Mapping(source = "collUrl", target = "collectionUrl")
+    @Mapping(source = "collType", target = "collectionType")
     CollectionDto toDto(Collection entity);
 
     @Mapping(source = "collectionCode", target = "collCode")
     @Mapping(source = "collectionName", target = "collName")
     @Mapping(source = "collectionUrl", target = "collUrl")
+    @Mapping(source = "collectionType", target = "collType")
     Collection toNewEntity(CollectionDto dto);
 
 }
