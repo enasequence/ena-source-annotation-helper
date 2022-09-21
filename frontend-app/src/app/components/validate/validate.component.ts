@@ -96,6 +96,7 @@ export class ValidateComponent implements OnInit {
                     this.errorMessage = error;
                 }
             )
+        //this.errorMessage = this.backendService.errorMessage;
     };
 
     storeResultInLocal(matchString: string): void {
@@ -141,9 +142,22 @@ export class ValidateComponent implements OnInit {
     }
 
     getInstitutionMeta(matchString: string) {
-        return this.matchesResponseMap.get(matchString)?.institution.institutionName.trim() + ", " +
-            this.matchesResponseMap.get(matchString)?.institution.address.trim() + ", " +
-            this.matchesResponseMap.get(matchString)?.institution.country.trim();
+        var inst = this.matchesResponseMap.get(matchString)?.institution;
+        if (inst !== undefined) {
+            return this.backendService.getInstitutionMeta(matchString, inst);
+        } else {
+            return "";
+        }
+    }
+
+    getCollectionMeta(matchString: string) {
+        var coll = this.matchesResponseMap.get(matchString)?.institution.collections;
+        var inst = this.matchesResponseMap.get(matchString)?.institution;
+        if (inst !== undefined && coll !== undefined) {
+            return this.backendService.getCollectionMeta(matchString, inst);
+        } else {
+            return "";
+        }
     }
 
     getAttributeMeta(matchString: string) {

@@ -155,9 +155,22 @@ export class ConstructComponent implements OnInit {
     }
 
     getInstitutionMeta(matchString: string) {
-        return this.matchesResponseMap.get(matchString)?.institution.institutionName.trim() + ", " +
-            this.matchesResponseMap.get(matchString)?.institution.address.trim() + ", " +
-            this.matchesResponseMap.get(matchString)?.institution.country.trim();
+        var inst = this.matchesResponseMap.get(matchString)?.institution;
+        if (inst !== undefined) {
+            return this.constructValidateService.getInstitutionMeta(matchString, inst);
+        } else {
+            return "";
+        }
+    }
+
+    getCollectionMeta(matchString: string) {
+        var coll = this.matchesResponseMap.get(matchString)?.institution.collections;
+        var inst = this.matchesResponseMap.get(matchString)?.institution;
+        if (inst !== undefined && coll !== undefined) {
+            return this.constructValidateService.getCollectionMeta(matchString, inst);
+        } else {
+            return "";
+        }
     }
 
     getAttributeMeta(matchString: string) {

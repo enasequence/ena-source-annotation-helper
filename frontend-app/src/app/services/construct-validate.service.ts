@@ -69,7 +69,7 @@ export class ConstructValidateService {
             urlString = urlString + '&qualifier_type=' + qualifier;
         }
 
-        alert(urlString);
+        // alert(urlString);
         return this.http.get<SAHResponse>(urlString, options)
             .pipe(
                 map(response => {
@@ -122,6 +122,24 @@ export class ConstructValidateService {
         return attribArrWithLinks;
     }
 
+    getInstitutionMeta(matchString: string, institution: Institution) {
+        let institutionPlaceHolder = "Institution: ";
+        let institutionMeta = [
+            institution.institutionName.trim(),
+            institution.address.trim(),
+            institution.country.trim()
+        ].join(",");
+        return institutionPlaceHolder + institutionMeta;
+    }
+
+    getCollectionMeta(matchString: string, institution: Institution) {
+        let collectionPlaceHolder = "Collection: ";
+        let collectionMeta = [
+            institution.collections[0]?.collectionName,
+            institution.collections[0]?.collectionType
+        ].join(",");
+        return collectionPlaceHolder + collectionMeta;
+    }
 
     handleError(error: Error | HttpErrorResponse) {
         const errorService = this.injector.get(ErrorService);

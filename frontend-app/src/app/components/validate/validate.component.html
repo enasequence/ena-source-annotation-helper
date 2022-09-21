@@ -115,18 +115,18 @@
             <div class="nu-table-body">
                 <tr *ngFor="let list of matchesResponse">
                     <td [width]="250">
-                        <div tooltip="{{getInstitutionMeta(list.match)}}" placement="left"
-                             delay="500">
+                        <div tooltip="{{getInstitutionMeta(list.match)}}
+                                                    {{getCollectionMeta(list.match)}} " placement="left" delay="500">
                             <span [innerHTML]="getAttributeDisplayText(list.match)"></span>
                         </div>
                     </td>
                     <td [width]="200">
                         {{getAttributeMeta(list.match)}}
                     </td>
-                    <td>
+                    <td [width]="250">
                         <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
                         <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
-                                value="{{list.match}}">Add to my Matches
+                                value="{{list.match}}">Add to My Matches
                         </button>
                     </td>
                 </tr>

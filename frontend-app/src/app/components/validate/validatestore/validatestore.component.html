@@ -15,7 +15,10 @@
             <div class="nu-table-body">
                 <tr *ngFor="let list of localStorageObj | keyvalue">
                     <td [width]="300">
-                        <span [innerHTML]="getAttributeDisplayText(list.key.toString())"></span>
+                        <div tooltip="{{getInstitutionMeta(list.key.toString())}}
+                                                    {{getCollectionMeta(list.key.toString())}} " placement="left" delay="500">
+                            <span [innerHTML]="getAttributeDisplayText(list.key.toString())"></span>
+                        </div>
                     </td>
                     <td [width]="200">
                         {{getQualifierMeta(list.value.qualifierType[0])}}

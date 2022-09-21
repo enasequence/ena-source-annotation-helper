@@ -95,4 +95,24 @@ export class ConstructstoreComponent implements OnInit {
             return attribStr;
         }
     }
+
+    getInstitutionMeta(matchString: string) {
+        var inst = this.localStorageObj.get(matchString);
+        if (inst !== undefined) {
+            return this.constructValidateService.getInstitutionMeta(matchString, inst);
+        } else {
+            return "";
+        }
+    }
+
+    getCollectionMeta(matchString: string) {
+        var coll = this.localStorageObj.get(matchString)?.collections;
+        var inst = this.localStorageObj.get(matchString);
+        if (inst !== undefined && coll !== undefined) {
+            return this.constructValidateService.getCollectionMeta(matchString, inst);
+        } else {
+            return "";
+        }
+    }
+
 }
