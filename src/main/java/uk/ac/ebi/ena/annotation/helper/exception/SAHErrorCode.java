@@ -35,6 +35,7 @@ public class SAHErrorCode {
     public static final int IdentifierMissingError = 3011;
     public static final int NoMatchError = 3012;
     public static final int QualifierTypeInvalidError = 3015;
+    public static final int GenericInvalidInputError = 3016;
 
     public static final String ServerProcessingMessage = "Server Processing Error";
     public static final String BadRequestDataMessage = "Bad Request Data";
@@ -59,7 +60,7 @@ public class SAHErrorCode {
     public static final String CollectionNotValidInputMessage = "For collection name/code, please provide at least 1 char to search and max 100 chars";
     public static final String QualifierTypeInvalidMessage = "QualifierType values should be from list of ";
     public static final String QualifierTypeInvalidCompleteMessage = "QualifierType values should be from list of {specimen_voucher, bio_material, culture_collection}";
-
+    public static final String GenericInputInvalidMessage = "Invalid Input";
 
     public static Map<Integer, String> errorCodesMap = new HashMap<>();
 

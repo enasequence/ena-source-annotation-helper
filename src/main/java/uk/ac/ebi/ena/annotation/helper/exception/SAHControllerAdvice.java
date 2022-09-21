@@ -19,6 +19,7 @@
 package uk.ac.ebi.ena.annotation.helper.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import org.springframework.data.elasticsearch.RestStatusException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -67,6 +68,23 @@ public class SAHControllerAdvice {
         }
         ResponseDto responseDto = new ResponseDto();
         responseDto.setErrors(errors);
+        responseDto.setSuccess(false);
+        responseDto.setTimestamp(LocalDateTime.now());
+        return new ResponseEntity<>(responseDto, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     *
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(RestStatusException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ResponseDto> handleRestStatusException(RestStatusException ex) {
+        ErrorResponse errorItem = ErrorResponse.builder().message(SAHErrorCode.GenericInputInvalidMessage)
+                .code(SAHErrorCode.GenericInvalidInputError).build();
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setErrors(Collections.singletonList(errorItem));
         responseDto.setSuccess(false);
         responseDto.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<>(responseDto, HttpStatus.BAD_REQUEST);
