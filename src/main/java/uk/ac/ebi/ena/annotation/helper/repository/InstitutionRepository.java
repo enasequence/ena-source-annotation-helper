@@ -35,21 +35,21 @@ public interface InstitutionRepository extends ElasticsearchRepository<Instituti
     @Query("{\"bool\": {\"must\": [{ \"match\": { \"unique_name\": \"?0\" } },{\"terms\": {\"qualifier_type\": ?1 }}]}}")
     Optional<Institution> findByUniqueNameAndQualifierTypeArray(String uniqueName, List<String> qualifierType);
 
-    @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^3.0\", \"unique_name^2.0\" ] } }")
+    @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^2.0\", \"unique_name^3.0\" ] } }")
     List<Institution> findByInstituteUniqueNameFuzzy(String uniqueName, PageRequest pageable);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}," +
-            "{\"query_string\": {\"query\": \"?0*\",\"fields\": [\"inst_code^3.0\",\"unique_name^2.0\"]}}]}}")
+            "{\"query_string\": {\"query\": \"?0*\",\"fields\": [\"inst_code^2.0\",\"unique_name^3.0\"]}}]}}")
     List<Institution> findByInstituteUniqueNameFuzzyAndQualifierType(String instUniqueName, List<String> qualifierType, PageRequest pageable);
 
     @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_name\" ] } }")
     List<Institution> findByInstituteNameFuzzy(String instName, PageRequest pageable);
 
-    @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^3.0\", \"unique_name^2.0\", \"inst_name^1.0\" ] } }")
+    @Query("{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^2.0\", \"unique_name^3.0\", \"inst_name^1.0\" ] } }")
     List<Institution> findByInstituteFuzzy(String name, PageRequest pageable);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1 }}, " +
-            "{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^3.0\", \"unique_name^2.0\", \"inst_name^1.0\" ] } }]}}")
+            "{ \"query_string\": { \"query\": \"?0*\", \"fields\": [ \"inst_code^2.0\", \"unique_name^3.0\", \"inst_name^1.0\" ] } }]}}")
     List<Institution> findByInstituteFuzzyAndQualifierTypeArray(String name, List<String> qualifierTypeArrray, PageRequest pageable);
 
     @Query("{\"bool\": {\"must\": [{\"terms\": {\"qualifier_type\": ?1}}," +
