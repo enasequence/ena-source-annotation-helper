@@ -1,5 +1,3 @@
-import {Injectable} from "@angular/core";
-
 /**
  * Copyright (C) 2006-2021 EMBL - European Bioinformatics Institute
  *
@@ -15,13 +13,6 @@ import {Injectable} from "@angular/core";
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-/*
-export const QualifierTypeData: Map<string, string> = new Map();
-
-QualifierTypeData.set("Specimen Voucher", "specimen_voucher");
-QualifierTypeData.set("Culture Collection", "culture_collection");
-QualifierTypeData.set("Bio Material", "bio_material");*/
 
 export const QualifierTypeData = [
     {option: "Specimen Voucher (e.g. specimen)", value: "specimen_voucher"},

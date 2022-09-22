@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-import { ErrorResponse } from "./ErrorResponse";
-import { MatchData } from "./MatchData";
+import {ErrorResponse} from "./ErrorResponse";
+import {MatchData} from "./MatchData";
 
 export interface SAHResponse {
     success: boolean;

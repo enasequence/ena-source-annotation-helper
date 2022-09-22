@@ -1,3 +1,19 @@
+/**
+ * Copyright (C) 2006-2021 EMBL - European Bioinformatics Institute
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {Injectable, Injector} from '@angular/core';
 import {environment} from '@env';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
@@ -38,10 +54,8 @@ export class ConstructValidateService {
             .pipe(
                 map(response => {
                     if (response.matches.length <= 0) {
-                        console.log(AppConstants.NO_MATCHES_FOUND);
                         this.handleError(new Error(AppConstants.NO_MATCHES_FOUND));
                     }
-                    console.log(response.matches);
                     return response;
 
                 })
@@ -74,10 +88,8 @@ export class ConstructValidateService {
             .pipe(
                 map(response => {
                         if (response.matches.length <= 0) {
-                            console.log(AppConstants.NO_MATCHES_FOUND);
                             this.handleError(new Error(AppConstants.NO_MATCHES_FOUND));
                         }
-                        console.log(response.matches);
                         return response;
 
                     }
@@ -91,7 +103,6 @@ export class ConstructValidateService {
 
         //process institution
         if (inst?.homeUrl.trim() !== "") {
-            console.log("institution url exists for " + inst?.uniqueName + " : " + inst?.homeUrl.trim());
             attribArrWithLinks = "<a target='_blank' href='" + inst?.homeUrl.trim() + "' class='white-color'>" +
                 splittedAttribArr[0]
                     .replace(/</g, "&lt;")
@@ -105,9 +116,7 @@ export class ConstructValidateService {
 
         //process collection if available and simply add identifier/code
         if (splittedAttribArr.length === 3) {
-            console.log(3);
             if (inst?.collections[0].collectionUrl.trim() !== "") {
-                console.log("collection url exists for " + inst?.collections[0].collectionCode + " : " + inst?.collections[0].collectionUrl.trim());
                 attribArrWithLinks = attribArrWithLinks +
                     ":<a target='_blank' href='" + inst?.collections[0].collectionUrl.trim() + "' class='white-color'>" + splittedAttribArr[1] + "</a>" +
                     ":" + splittedAttribArr[2];
@@ -154,7 +163,6 @@ export class ConstructValidateService {
         }
         // Always log errors
         logger.logError(this.errorMessage, "");
-        console.error(error);
     }
 
 }

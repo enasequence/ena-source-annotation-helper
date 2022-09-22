@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { Institution } from "./Institution";
+import {Institution} from "./Institution";
 
 export interface MatchData {
     institution: Institution;

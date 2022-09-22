@@ -1,3 +1,19 @@
+/**
+ * Copyright (C) 2006-2021 EMBL - European Bioinformatics Institute
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *        http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {Component, Injector, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatchData} from "../../models/MatchData";
@@ -11,11 +27,8 @@ import {SahCommonsService} from "../../services/sah-commons.service";
 import {ConstructstoreComponent} from "./constructstore/constructstore.component";
 import {AppConstants} from "../../app.constants";
 import {MatSelectChange} from "@angular/material/select";
-import {QualifierTypeDisplay, QualifierTypeData} from '../../models/QualifierTypeData';
+import {QualifierTypeData, QualifierTypeDisplay} from '../../models/QualifierTypeData';
 import {Clipboard} from "@angular/cdk/clipboard";
-import {HttpErrorResponse} from "@angular/common/http";
-import {ErrorService} from "../../services/error.service";
-import {LoggingService} from "../../services/logging.service";
 import {NotificationService} from "../../services/notification.service";
 
 
@@ -127,15 +140,9 @@ export class ConstructComponent implements OnInit {
         if (!this.constructFormGroup.valid) {
             return;
         }
-        // Get all Form Controls keys and loop them
-        Object.keys(this.constructFormGroup.controls).forEach(key => {
-            // Get errors of every form control
-            console.log("====>" + this.constructFormGroup.get(key)?.errors);
-        });
 
         var inputVal: string = this.constructFormGroup.get("specimenCtrl")?.value!;
         // alert(inputVal);
-        console.log(inputVal);
 
         if (this.selectedInstitution.uniqueName === undefined) {
             //TODO verify the condition -  alert("undefined institution");
@@ -204,7 +211,6 @@ export class ConstructComponent implements OnInit {
             if (key == null) {
                 break;
             }
-            console.log(key);
             if (key.startsWith(AppConstants.CONSTRUCT_STORAGE_PREFIX)) {
                 var dd: Institution = JSON.parse(localStorage.getItem(key) as any);
                 if (dd !== null) {
@@ -215,7 +221,6 @@ export class ConstructComponent implements OnInit {
     }
 
     onSelected() {
-        console.log(this.typedInstitution);
         // @ts-ignore
         this.selectedInstitution = this.institutionsMap.get(this.typedInstitution);
         this.typedInstitution = this.selectedInstitution.uniqueName + "-" + this.selectedInstitution.institutionName;
@@ -225,7 +230,6 @@ export class ConstructComponent implements OnInit {
 
     collectionChangeAction(selectedVal: string) {
         // alert(selectedVal);
-        console.log(selectedVal);
         this.selectedCollection = selectedVal;
     }
 
