@@ -87,7 +87,7 @@
                                             [(ngModel)]="typedInstitution">
                                     <mat-autocomplete [panelWidth]="350" #auto="matAutocomplete"
                                                       (optionSelected)="onSelected()">
-                                        <mat-option [id]="institution.uniqueName"
+                                        <mat-option
                                                     *ngFor="let institution of filteredInstitutions | async"
                                                     [value]=institution.uniqueName
                                                     [matTooltip]="institution.institutionName + ',' + institution.address + ',' + institution.country">

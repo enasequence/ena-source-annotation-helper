@@ -102,7 +102,7 @@ export class ConstructComponent implements OnInit {
         this.filteredInstitutions = this.searchInstitutionCtrl.valueChanges.pipe(
             filter(data => data.trim().length > this.minLengthTerm && data.trim() !== this.typedInstitution),
             // delay emits
-            debounceTime(300),
+            debounceTime(500),
             switchMap(value => {
                 if (value !== '') {
                     return this.institutionService
@@ -144,10 +144,9 @@ export class ConstructComponent implements OnInit {
         var inputVal: string = this.constructFormGroup.get("specimenCtrl")?.value!;
         // alert(inputVal);
 
-        if (this.selectedInstitution.uniqueName === undefined) {
-            //TODO verify the condition -  alert("undefined institution");
+        if (this.selectedInstitution == null || this.selectedInstitution.uniqueName == null) {
+            return;
         }
-        // alert(this.selectedInstitution.uniqueName);
         // call the construct request
         this.constructValidateService
             .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
@@ -221,11 +220,12 @@ export class ConstructComponent implements OnInit {
     }
 
     onSelected() {
-        // @ts-ignore
-        this.selectedInstitution = this.institutionsMap.get(this.typedInstitution);
-        this.typedInstitution = this.selectedInstitution.uniqueName + "-" + this.selectedInstitution.institutionName;
-        this.selectedCollection = "";
-        this.filteredCollections = this.getFilteredCollections();
+        this.selectedInstitution = this.institutionsMap.get(this.typedInstitution) == null ? null as any : this.institutionsMap.get(this.typedInstitution);
+        if (this.selectedInstitution != null) {
+            this.typedInstitution = this.selectedInstitution.uniqueName + "-" + this.selectedInstitution.institutionName;
+            this.selectedCollection = "";
+            this.filteredCollections = this.getFilteredCollections();
+        }
     }
 
     collectionChangeAction(selectedVal: string) {
