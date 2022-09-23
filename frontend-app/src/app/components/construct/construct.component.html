@@ -1,0 +1,224 @@
+<!--
+  Copyright (C) 2006-2021 EMBL - European Bioinformatics Institute
+
+  Licensed under the Apache License, Version 2.0 (the License);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an AS IS BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ -->
+
+<div>
+    <div class="sah-sub-header-content">
+        <p>
+            Users may use this tool to construct the Attribute to help them obtain the correct attribute string for
+            referring to the biological source of the voucher linked with the sequence data.
+        </p>
+        <p>
+            The type of attribute (‘qualifier_type’: specimen voucher, culture collection, or bio material) can
+            be selected to narrow the search, but if none is provided, the the tool will search within all attribute
+            values.
+        </p>
+        <p>
+            <i>Fields marked with asterisk<i class="required-asterisk">*</i> are mandatory</i>
+        </p>
+    </div>
+    <section class="attrib-construct-section">
+        <form [formGroup]="constructFormGroup" (ngSubmit)="constructAttribute()">
+            <table [cellPadding]="10">
+                <tr>
+                    <td [width]="220">Attribute Type:
+                        <span class="required-asterisk">*&nbsp;</span>
+                        <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Select the Attribute Types to filter the search results"
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                    </td>
+                    <td>
+                        <mat-form-field [style.width.px]=400>
+                            <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type"
+                                        class="form-control" id="attributeCtrl" formControlName="attributeCtrl"
+                                        value={{attributeVal}} required>
+                                <mat-option *ngFor="let attribType of attributeTypeData"
+                                            [value]="attribType.value" [matTooltip]="attribType.option">
+                                    {{ attribType.option }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div *ngIf="submitted && attributeCtrl?.errors">
+                            <div *ngIf="attributeCtrl?.errors?.['required']" class="error">Attribute is required</div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td [width]="220">
+                        <mat-label>Select Institution:
+                            <span class="required-asterisk">*&nbsp;</span>
+                        </mat-label>
+                        <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Select the institution"
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                    </td>
+                    <td>
+                        <div class="wrapper">
+                            <form class="institution-search">
+                                <mat-form-field [floatLabel]="'never'" [style.width.px]=400>
+                                    <input
+                                            type="text"
+                                            placeholder="Start typing the institution code / name..."
+                                            [formControl]="searchInstitutionCtrl"
+                                            matInput
+                                            required minlength="1"
+                                            [matAutocomplete]="auto"
+                                            matAutocompletePosition="below"
+                                            [(ngModel)]="typedInstitution">
+                                    <mat-autocomplete [panelWidth]="350" #auto="matAutocomplete"
+                                                      (optionSelected)="onSelected()">
+                                        <mat-option
+                                                    *ngFor="let institution of filteredInstitutions | async"
+                                                    [value]=institution.uniqueName
+                                                    [matTooltip]="institution.institutionName + ',' + institution.address + ',' + institution.country">
+                                            {{institution.uniqueName}} - {{institution.institutionName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+                                <div *ngIf="submitted && searchInstitutionCtrl?.errors">
+                                    <div *ngIf="searchInstitutionCtrl?.errors?.['required']" class="error">Institution
+                                        is required
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td [width]="220">
+                        <mat-label>Select Collection: &nbsp;
+                        </mat-label>
+                        <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Select the Collection to which the Identifier/code belongs (Optional)"
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                    </td>
+                    <td>
+
+                        <mat-form-field [floatLabel]="'never'" [style.width.px]=400>
+                            <mat-select [style.width.px]="400" placeholder="Select Collection"
+                                        (selectionChange)="collectionChangeAction($event.value)"
+                                        formControlName="inputCollectionCtrl" value={{selectedCollection}}
+                                        disableOptionCentering>
+                                <mat-option *ngFor="let collection of filteredCollections | async"
+                                            [value]=collection.collectionCode>
+                                    {{collection.collectionCode}} - {{collection.collectionName}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td [width]="220">
+                        <mat-label>Enter Identifier/Code:
+                            <span class="required-asterisk">*&nbsp;</span>
+                        </mat-label>
+                        <span> <button class="mat-mini-fab help" type="button">
+                                        <i matTooltip="Enter the identifier / code"
+                                           matTooltipPosition="right"
+                                           [matTooltipShowDelay]="0"
+                                           [matTooltipClass]='{infobox: true}'
+                                           class="material-icons help-icon">?</i></button>
+                                    </span>
+                    </td>
+                    <td>
+                        <mat-form-field class="example-full-width" [style.width.px]=400>
+                            <input matInput [style.width.px]="350" ngModel maxlength="100" type="text" id="specimenVal"
+                                   class="form-control"
+                                   name="specimen" formControlName="specimenCtrl" placeholder="Identifier / Code"
+                                   value={{specimenVal}} required>
+                        </mat-form-field>
+                        <br/>
+                        <div *ngIf="submitted && specimenCtrl?.errors">
+                            <div *ngIf="specimenCtrl?.errors?.['required']" class="error">Identifier/Code is required
+                            </div>
+                        </div>
+                        <mat-hint><i>Note: The tool does not include search or validation of the
+                            voucher identifier/codes.</i></mat-hint>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                    <td>
+                        <button type="submit" mat-raised-button color="primary">Construct Attribute Value</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    </td>
+                    <td>
+                        <div *ngIf="submitted && errorMessage !== null">
+                            <div class="error">{{errorMessage}}</div>
+                        </div>
+                        <div class="error" *ngIf="(error$ | async) as error">{{ error }}!</div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </section>
+
+
+    <section class="constructs-display-section" *ngIf="matchesResponse.length > 0">
+        <div class="tooltip-attribute">
+            <h4>Constructed Attribute:</h4>
+            <table>
+                <div class="nu-table-body">
+                    <tr>
+                        <td [width]="250"><h5>Attribute</h5></td>
+                        <td><h5>Attribute Type</h5></td>
+                    </tr>
+                </div>
+                <div class="nu-table-body">
+                    <tr *ngFor="let list of matchesResponse">
+                        <td [width]="250">
+                            <div tooltip="{{getInstitutionMeta(list.match)}}
+                                                    {{getCollectionMeta(list.match)}} " placement="left" delay="500">
+                                <span [innerHTML]="getAttributeDisplayText(list.match)"></span>
+                            </div>
+                        </td>
+                        <td [width]="150">
+                            {{getAttributeMeta(list.match)}}
+                        </td>
+                        <td>
+                            <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
+                            <button (click)="storeResultInLocal(list.match)" name="{{list.match}}"
+                                    id="{{list.match}}"
+                                    value="{{list.match}}">Add to My Constructed Attributes
+                            </button>
+                        </td>
+                    </tr>
+                </div>
+            </table>
+        </div>
+    </section>
+
+    <app-constructstore *ngIf="showConstructStore"
+                        (refreshStoreComponent)="refreshStoreComponent()"></app-constructstore>
+
+</div>

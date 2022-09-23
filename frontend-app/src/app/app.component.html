@@ -1,0 +1,54 @@
+<!--
+  Copyright (C) 2006-2021 EMBL - European Bioinformatics Institute
+
+  Licensed under the Apache License, Version 2.0 (the License);
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an AS IS BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+ -->
+
+<div style="padding: 0px 50px 0px 50px;">
+    <h1>ENA Source Attribute Helper</h1>
+    <div class="sah-header-content">
+        <p>
+            ENA Source Attribute Helper (SAH) tool is designed to help users accurately report biological source-related sequence and sample
+            attributes.
+        </p>
+        <p>
+            This tool currently focuses on the attributes in which specimens, cultures or other materials are
+            identified,
+            from which the sequence data were derived, and uses curated data to obtain the unique codes for the
+            institutions
+            and collections holding the vouchers.</p>
+        <p>
+            APIs can be accessed directly using
+            <a target='_blank' href='{{sahAPIURL}}' class='white-color'>SAH API URL</a>
+        </p>
+    </div>
+
+    <div style="width:800px; margin:0 auto;">
+        <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)='changeTab()' fxFill
+                       class="explore-filter-tab-group">
+            <mat-tab fxFlexFill opened>
+                <ng-template mat-tab-label>Construct</ng-template>
+                <div class="target-filters" [hidden]="selectedTab !== tab.CONSTRUCT">
+                    <app-construct></app-construct>
+                </div>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>Validate</ng-template>
+                <div class="target-filters" [hidden]="selectedTab !== tab.VALIDATE">
+                    <app-validate></app-validate>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+
+</div>
