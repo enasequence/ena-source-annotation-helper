@@ -82,7 +82,7 @@ export class ValidateComponent implements OnInit {
         this.IsChecked = false;
         this.matchesResponse = new Array<MatchData>();
         this.localStorageObj = new Map<string, Institution>();
-        this.fetchFromLocalStorage();
+        //this.fetchFromLocalStorage();
         this.submitted = false;
     }
 
