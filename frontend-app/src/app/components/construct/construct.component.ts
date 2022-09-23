@@ -105,8 +105,10 @@ export class ConstructComponent implements OnInit {
             debounceTime(500),
             switchMap(value => {
                 if (value !== '') {
-                    return this.institutionService
+                    var results =  this.institutionService
                         .findByInstitutionValue(value, this.attributeVal);
+                    this.errorMessage = this.institutionService.errorMessage;
+                    return results;
                 } else {
                     // if no value is present, return null
                     return of(null as any);
@@ -118,7 +120,6 @@ export class ConstructComponent implements OnInit {
                 this.institutionsMap.set(instObj.uniqueName, instObj);
             })
         });
-        this.errorMessage = this.institutionService.errorMessage;
 
     }
 
@@ -152,12 +153,12 @@ export class ConstructComponent implements OnInit {
             .constructAttribute(this.selectedInstitution.uniqueName, this.selectedCollection, inputVal, this.attributeVal)
             .subscribe(resp => {
                 this.matchesResponse = resp.matches;
+                this.errorMessage = this.constructValidateService.errorMessage;
                 this.matchesResponse.map(matchData => {
                     //alert(matchData.match);
                     this.matchesResponseMap.set(matchData.match, matchData);
                 })
             })
-
     }
 
     getInstitutionMeta(matchString: string) {
@@ -173,7 +174,9 @@ export class ConstructComponent implements OnInit {
         var coll = this.matchesResponseMap.get(matchString)?.institution.collections;
         var inst = this.matchesResponseMap.get(matchString)?.institution;
         if (inst !== undefined && coll !== undefined) {
-            return this.constructValidateService.getCollectionMeta(matchString, inst);
+            var  results = this.constructValidateService.getCollectionMeta(matchString, inst);
+            this.errorMessage = this.institutionService.errorMessage;
+            return results;
         } else {
             return "";
         }

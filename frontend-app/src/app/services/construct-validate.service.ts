@@ -161,8 +161,8 @@ export class ConstructValidateService {
             // Client Error
             this.errorMessage = errorService.getClientErrorMessage(error);
         }
-        // Always log errors
-        logger.logError(this.errorMessage, "");
+        // log errors
+        // logger.logError(this.errorMessage, "");
     }
 
 }

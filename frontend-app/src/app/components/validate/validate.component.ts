@@ -102,6 +102,7 @@ export class ValidateComponent implements OnInit {
         this.backendService.validateAttribute(inputVal, this.attributeTypeVal)
             .subscribe(resp => {
                     this.matchesResponse = resp.matches;
+                    this.errorMessage = this.backendService.errorMessage;
                     this.matchesResponse.map(matchData => {
                         //alert(matchData.match);
                         this.matchesResponseMap.set(matchData.match, matchData);
@@ -110,7 +111,6 @@ export class ValidateComponent implements OnInit {
                     this.errorMessage = error;
                 }
             )
-        //this.errorMessage = this.backendService.errorMessage;
     };
 
     storeResultInLocal(matchString: string): void {
@@ -186,7 +186,7 @@ export class ValidateComponent implements OnInit {
 
     getAttributeDisplayText(attribStr: string) {
         var inst = this.matchesResponseMap.get(attribStr)?.institution;
-        if(inst !== undefined) {
+        if (inst !== undefined) {
             return this.backendService.getAttributeDisplayText(attribStr, inst);
         } else {
             return attribStr;
