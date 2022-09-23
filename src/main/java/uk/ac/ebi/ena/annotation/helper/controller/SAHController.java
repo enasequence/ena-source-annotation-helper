@@ -42,7 +42,6 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 @Api(tags = "ENA Source Attribute Helper APIs")
 @RequestMapping({"/ena/sah/api/"})
 @Validated
-@CrossOrigin
 public class SAHController {
 
     @Autowired
