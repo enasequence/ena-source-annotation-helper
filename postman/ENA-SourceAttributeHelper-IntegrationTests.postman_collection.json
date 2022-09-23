@@ -2256,6 +2256,47 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Inst-ByUniqueName-CTM-Scenario-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ByUniqueName-CTM-Scenario-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CTM",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"CTM"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -3284,6 +3325,103 @@
 											"value": "NMV<AUS>:Crustac:00917687"
 										}
 									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-SP-String-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-SP-String-01-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-SP-String-01-BadRequest\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-SP-String-01-ErrorCode\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).to.eql(3016);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=Vaere 16353 (H:1733681)",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "Vaere 16353 (H:1733681)"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-SP-String-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-SP-String-02-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-SP-String-02-BadRequest\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-SP-String-02-ErrorCode\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.errors[0].code).to.eql(3016);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=dsj23456778*()u@:$#^%$&%",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "dsj23456778*()u@:$"
+										}
+									],
+									"hash": "^%$&%"
 								}
 							},
 							"response": []
