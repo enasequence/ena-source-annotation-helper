@@ -19,6 +19,10 @@
 package uk.ac.ebi.ena.annotation.helper.exception;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import lombok.extern.slf4j.Slf4j;
+import org.elasticsearch.ElasticsearchStatusException;
+import org.elasticsearch.client.ResponseException;
+import org.springframework.data.elasticsearch.RestStatusException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -39,6 +43,7 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.QualifierTy
 
 
 @RestControllerAdvice
+@Slf4j
 public class SAHControllerAdvice {
 
     /**
@@ -67,6 +72,41 @@ public class SAHControllerAdvice {
         }
         ResponseDto responseDto = new ResponseDto();
         responseDto.setErrors(errors);
+        responseDto.setSuccess(false);
+        responseDto.setTimestamp(LocalDateTime.now());
+        return new ResponseEntity<>(responseDto, HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * Method handler for RestStatusException
+     *
+     * @param ex
+     * @return ResponseEntity<ResponseDto>
+     */
+    @ExceptionHandler(RestStatusException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<ResponseDto> handleRestStatusException(RestStatusException ex) {
+        String customErrorMessage = SAHErrorCode.GenericInputInvalidMessage;
+        // custom handling of the exception for non-parseable query
+        if (ex.getCause() instanceof ElasticsearchStatusException) {
+            if (ex.getCause().getSuppressed() != null && ex.getCause().getSuppressed().length > 0) {
+                if (ex.getCause().getSuppressed()[0] instanceof ResponseException) {
+                    String detailedMessage = ex.getCause().getSuppressed()[0].getMessage();
+                    if (detailedMessage.indexOf("Failed to parse query") != -1) {
+                        String err0 = detailedMessage.substring(detailedMessage.indexOf("Failed to parse query"), detailedMessage.length() - 1);
+                        // log the error
+                        log.debug(err0);
+                        //substring to grep exact issue
+                        String errM = err0.substring(0, err0.indexOf("\","));
+                        customErrorMessage = customErrorMessage + ": " + errM;
+                    }
+                }
+            }
+        }
+        ErrorResponse errorItem = ErrorResponse.builder().message(customErrorMessage)
+                .code(SAHErrorCode.GenericInvalidInputError).build();
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.setErrors(Collections.singletonList(errorItem));
         responseDto.setSuccess(false);
         responseDto.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<>(responseDto, HttpStatus.BAD_REQUEST);
