@@ -26,6 +26,16 @@ repositories {
     mavenCentral()
 }
 
+task deleteStaticFolder(type: Delete) {
+    def dirName = "src/main/resources/static"
+    file( dirName ).list().each{
+        f ->
+            delete "${dirName}/${f}"
+    }
+}
+processResources.dependsOn('frontend-app:build')
+
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
