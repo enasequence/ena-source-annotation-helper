@@ -27,7 +27,7 @@ repositories {
 }
 
 task deleteStaticFolder(type: Delete) {
-    def dirName = "src/main/resources/static"
+    def dirName = "src/main/resources/static/ena/sah/gui"
     file( dirName ).list().each{
         f ->
             delete "${dirName}/${f}"
