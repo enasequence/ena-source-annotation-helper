@@ -1,5 +1,3 @@
-import javafx.scene.shape.MoveTo
-
 plugins {
     id 'org.springframework.boot' version '2.6.9'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
