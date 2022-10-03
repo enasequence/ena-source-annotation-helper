@@ -1,3 +1,5 @@
+import javafx.scene.shape.MoveTo
+
 plugins {
     id 'org.springframework.boot' version '2.6.9'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -12,10 +14,6 @@ group = 'uk.ac.ebi.ena.annotation.helper'
 version = System.getenv("VERSION")
 sourceCompatibility = '1.8'
 
-jar {
-    enabled = false
-}
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
@@ -24,6 +22,22 @@ configurations {
 
 repositories {
     mavenCentral()
+}
+
+task deleteStaticFolder(type: Delete) {
+    def dirName = "frontend-app/dist"
+    file( dirName ).list().each{
+        f ->
+            delete "${dirName}/${f}"
+    }
+}
+
+processResources.dependsOn('frontend-app:build')
+
+bootJar {
+    from("${project.projectDir}/frontend-app/dist") {
+        into "BOOT-INF/classes/static/ena/sah"
+    }
 }
 
 dependencies {
