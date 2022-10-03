@@ -106,10 +106,10 @@ public class AppConfig implements WebMvcConfigurer {
                 "forward:/ena/sah/api/index.html");
         registry.addViewController("/ena/sah/api").setViewName(
                 "forward:/ena/sah/api/index.html");
-        registry.addViewController("/ena/sah/gui").setViewName(
-                "forward:/ena/sah/gui/index.html");
-        registry.addViewController("/ena/sah/gui/").setViewName(
-                "forward:/ena/sah/gui/index.html");
+        registry.addViewController("/ena/sah").setViewName(
+                "forward:/ena/sah/index.html");
+        registry.addViewController("/ena/sah/").setViewName(
+                "forward:/ena/sah/index.html");
         registry.addViewController("/ena/sah/api/v2/api-docs").setViewName(
                 "forward:/v2/api-docs");
     }

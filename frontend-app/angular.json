@@ -17,8 +17,8 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../src/main/resources/static/ena/sah/gui",
-            "baseHref": "/ena/sah/gui/",
+            "outputPath": "./dist",
+            "baseHref": "/ena/sah/",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
