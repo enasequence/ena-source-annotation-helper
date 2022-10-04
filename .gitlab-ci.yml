@@ -42,7 +42,6 @@ build_dev:
       - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
-    - sah-gui-deploy
 
 deploy_dev:
   stage: deploy
@@ -64,7 +63,6 @@ deploy_dev:
     url: https://wwwdev.ebi.ac.uk/ena/sah/api/
   only:
     - master
-    - sah-gui-deploy
 
 build_prod:
   stage: build
