@@ -28,6 +28,8 @@ export class AppComponent {
     title = 'ena-sah-frontend';
     public selectedTab = 0;
     sahAPIURL = environment.sahAPIURL;
+    ncbiURL = environment.ncbiURL;
+    insdcFTURL = environment.insdcFTURL;
 
     public tab = Object.seal({
         CONSTRUCT: 0,
