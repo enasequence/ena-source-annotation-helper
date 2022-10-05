@@ -18,6 +18,7 @@ export const environment = {
   name: 'dev',
   production: false,
   sahAPIURL: 'http://localhost:8080/ena/sah/api/',
+  contactSupportURL: "https://www.ebi.ac.uk/ena/browser/support",
   ncbiURL: 'https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/biocollections/',
   insdcFTURL: 'https://www.insdc.org/submitting-standards/feature-table/',
   // 1800

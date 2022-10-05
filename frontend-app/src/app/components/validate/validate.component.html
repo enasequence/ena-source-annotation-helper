@@ -49,7 +49,7 @@
                                         class="form-control" id="attributeTypeCtrl" formControlName="attributeTypeCtrl"
                                         value={{attributeTypeVal}} required>
                                 <mat-option *ngFor="let attribType of attributeTypeData"
-                                            [value]="attribType.value" [matTooltip]="attribType.option">
+                                            [value]="attribType.value" [matTooltip]="attribType.option"  [matTooltipPosition]="'right'">
                                     {{ attribType.option }}
                                 </mat-option>
                             </mat-select>

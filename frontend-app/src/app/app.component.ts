@@ -30,6 +30,7 @@ export class AppComponent {
     sahAPIURL = environment.sahAPIURL;
     ncbiURL = environment.ncbiURL;
     insdcFTURL = environment.insdcFTURL;
+    contactSupportURL = environment.contactSupportURL;
 
     public tab = Object.seal({
         CONSTRUCT: 0,
