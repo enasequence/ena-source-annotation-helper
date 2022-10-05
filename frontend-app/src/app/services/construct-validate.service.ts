@@ -55,6 +55,8 @@ export class ConstructValidateService {
                 map(response => {
                     if (response.matches.length <= 0) {
                         this.handleError(new Error(AppConstants.NO_MATCHES_FOUND));
+                    } else {
+                        this.errorMessage = "";
                     }
                     return response;
 
@@ -89,9 +91,10 @@ export class ConstructValidateService {
                 map(response => {
                         if (response.matches.length <= 0) {
                             this.handleError(new Error(AppConstants.NO_MATCHES_FOUND));
+                        } else {
+                            this.errorMessage = "";
                         }
                         return response;
-
                     }
                 ));
     }

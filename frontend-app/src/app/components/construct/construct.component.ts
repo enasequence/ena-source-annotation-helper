@@ -53,12 +53,15 @@ export class ConstructComponent implements OnInit {
     selectedCollection: string = "";
     searchInstitutionCtrl = new FormControl();
     institutionsMap: Map<string, Institution> = new Map<string, Institution>();
+    collectionsMap: Map<string, Collection> = new Map<string, Collection>();
     matchesResponseMap: Map<string, MatchData> = new Map<string, MatchData>();
     filteredInstitutions: Observable<Institution[]> = null as any;
     filteredCollections: Observable<Collection[]> = null as any;
     minLengthTerm = 0;
     submitted: boolean;
     errorMessage: string = "";
+    errorMessageInst: string = "";
+    errorMessageColl: string = "";
 
     @ViewChild(ConstructstoreComponent, {static: false})
     showConstructStore: boolean = true;
@@ -105,9 +108,8 @@ export class ConstructComponent implements OnInit {
             debounceTime(500),
             switchMap(value => {
                 if (value !== '') {
-                    var results =  this.institutionService
+                    var results = this.institutionService
                         .findByInstitutionValue(value, this.attributeVal);
-                    this.errorMessage = this.institutionService.errorMessage;
                     return results;
                 } else {
                     // if no value is present, return null
@@ -115,7 +117,10 @@ export class ConstructComponent implements OnInit {
                 }
             })
         )
+
         this.filteredInstitutions.subscribe(institutions => {
+            this.errorMessageInst = this.institutionService.errorMessageInst;
+            this.errorMessage = this.institutionService.errorMessage;
             institutions.map(instObj => {
                 this.institutionsMap.set(instObj.uniqueName, instObj);
             })
@@ -124,8 +129,16 @@ export class ConstructComponent implements OnInit {
     }
 
     getFilteredCollections(): Observable<Collection[]> {
-        return this.institutionService
+        var collections = this.institutionService
             .findByAllCollByInstituteUniqueName(this.selectedInstitution.uniqueName, this.attributeVal);
+        collections.subscribe(collections => {
+            this.errorMessageColl = this.institutionService.errorMessageColl;
+            this.errorMessage = this.institutionService.errorMessage;
+            collections.map(collObj => {
+                this.collectionsMap.set(collObj.collectionCode, collObj);
+            })
+        });
+        return collections;
 
     }
 
@@ -174,7 +187,7 @@ export class ConstructComponent implements OnInit {
         var coll = this.matchesResponseMap.get(matchString)?.institution.collections;
         var inst = this.matchesResponseMap.get(matchString)?.institution;
         if (inst !== undefined && coll !== undefined) {
-            var  results = this.constructValidateService.getCollectionMeta(matchString, inst);
+            var results = this.constructValidateService.getCollectionMeta(matchString, inst);
             this.errorMessage = this.institutionService.errorMessage;
             return results;
         } else {

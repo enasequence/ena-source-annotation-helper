@@ -17,13 +17,11 @@
 <div>
     <div class="sah-sub-header-content">
         <p>
-            Users may use this tool to validate the attribute string. The user needs to provide the attribute string
-            in the required format, according to the attribute type.
+            You may use this tool to validate/enhance a constructed attribute string for referring to the
+            biological source of the sequence data. Please provide the attribute string in the accepted format.
         </p>
         <p>
-            The type of attribute (‘qualifier_type’: specimen voucher, culture collection, or bio material) can
-            be selected to narrow the search, but if none is provided, the the tool will search within all attribute
-            values.
+            The Attribute Type (qualifier type) selector constrains the search to institutions that hold the specific type of collection.
         </p>
         <p>
             <i>Fields marked with asterisk<i class="required-asterisk">*</i> are mandatory</i>
@@ -51,7 +49,7 @@
                                         class="form-control" id="attributeTypeCtrl" formControlName="attributeTypeCtrl"
                                         value={{attributeTypeVal}} required>
                                 <mat-option *ngFor="let attribType of attributeTypeData"
-                                            [value]="attribType.value" [matTooltip]="attribType.option">
+                                            [value]="attribType.value" [matTooltip]="attribType.option"  [matTooltipPosition]="'right'">
                                     {{ attribType.option }}
                                 </mat-option>
                             </mat-select>

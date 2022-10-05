@@ -14,22 +14,46 @@
   limitations under the License.
  -->
 
-<div style="padding: 0px 50px 0px 50px;">
-    <h1>ENA Source Attribute Helper</h1>
+<div style="padding: 0px 50px 50px 50px;">
+    <div data-sticky-container>
+        <header class="masthead" data-btm-anchor="main-content-area:bottom" data-sticky data-sticky-on="large"
+                data-top-anchor="main-content-area:top" id="masthead">
+            <div class="masthead-inner row">
+                <div class="feedback-content">
+                    <h5>
+                        <a target='_blank' href='{{contactSupportURL}}' class='white-color'>Feedback</a>
+                    </h5>
+                </div>
+                <div class="columns medium-12" id="local-title">
+                    <h1>
+                        <a href="../" title="Back to ENA">
+                            <img alt="ENA Source Attribute Helper" class="logo" height="" src="ENA-logo.png"/>
+                        </a>
+                    </h1>
+                </div>
+
+            </div>
+            <div class="title-content">
+                <div><h1>ENA Source Attribute Helper</h1></div>
+            </div>
+        </header>
+    </div>
+
     <div class="sah-header-content">
         <p>
-            ENA Source Attribute Helper (SAH) tool is designed to help users accurately report biological source-related sequence and sample
-            attributes.
+            The ENA Source Attribute Helper (SAH) is designed to help users accurately report sequence and sample
+            attributes related to biological sources.
         </p>
         <p>
             This tool currently focuses on the attributes in which specimens, cultures or other materials are
-            identified,
-            from which the sequence data were derived, and uses curated data to obtain the unique codes for the
-            institutions
-            and collections holding the vouchers.</p>
+            identified, from which the sequence data were derived.
+            It uses curated data from <a target='_blank' href='{{ncbiURL}}' class='white-color'>NCBI BioCollections</a>
+            to obtain unique codes for the institutions and collections holding the vouchers.
+            The accepted formats for these qualifiers are detailed in the <a target='_blank' href='{{insdcFTURL}}'
+                                                                             class='white-color'>INSDC Feature Table</a>.
         <p>
-            APIs can be accessed directly using
-            <a target='_blank' href='{{sahAPIURL}}' class='white-color'>SAH API URL</a>
+            SAH can be accessed directly/programmatically using the
+            <a target='_blank' href='{{sahAPIURL}}' class='white-color'>RESTful API</a>
         </p>
     </div>
 

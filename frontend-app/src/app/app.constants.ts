@@ -22,12 +22,12 @@ import {Injectable} from '@angular/core';
 export class AppConstants {
 
     // cofiguration constants
-    public static CONSTRUCT_STORAGE_PREFIX = "construct@";
-    public static VALIDATE_STORAGE_PREFIX = "validate@";
-    public static NEW_LINE_SEPARATOR = "\r\n";
+    public static CONSTRUCT_STORAGE_PREFIX: string = "construct@";
+    public static VALIDATE_STORAGE_PREFIX: string = "validate@";
+    public static NEW_LINE_SEPARATOR: string = "\r\n";
 
     // Error Messages
-    public static NO_INSTITUTIONS_FOUND = "No Institutions found for the selected criteria";
-    public static NO_COLLECTIONS_FOUND = "No Collections found for the selected institution";
-    public static NO_MATCHES_FOUND = "No matches found for the selected criteria";
+    public static NO_INSTITUTIONS_FOUND: string = "No Institutions found for the selected criteria";
+    public static NO_COLLECTIONS_FOUND: string = "No Collections found for the selected institution";
+    public static NO_MATCHES_FOUND: string = "No matches found for the selected criteria";
 }

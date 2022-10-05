@@ -16,7 +16,7 @@
 
 export const QualifierTypeData = [
     {option: "Specimen Voucher (e.g. specimen)", value: "specimen_voucher"},
-    {option: "Culture Collection (e.g. live microbial, viral cultures, cell lines", value: "culture_collection"},
+    {option: "Culture Collection (e.g. live microbial, viral cultures, cell lines)", value: "culture_collection"},
     {option: "Bio Material (e.g. tissues, DNA, seed banks, zoos, germplasms)", value: "bio_material"},
 ];
 

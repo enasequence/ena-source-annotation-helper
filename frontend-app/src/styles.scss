@@ -16,20 +16,31 @@
 
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+.title-content {
+  display: flex;
+}
+
+.feedback-content {
+  text-align: right;
+  width: 100%;
+}
+
 body {
   font-family: Roboto, Arial, sans-serif;
   font-size: 11pt;
   margin: 0;
 }
+
 .basic-container {
   padding: 10px;
 }
+
 .version-info {
   font-size: 8pt;
   float: right;
 }
 
-.mat-raised-button.mat-primary{
+.mat-raised-button.mat-primary {
   color: #f0fff3;
   background-color: #0d81a2;
 }
@@ -44,17 +55,18 @@ button.mat-mini-fab.help {
 .help-icon {
   font-size: 12px;
   color: #337ab7;
-  padding-left:1px;
+  padding-left: 1px;
   vertical-align: text-bottom;
 }
 
-.mat-tooltip.infobox{ // making the font size on the mat-tooltip 1.5rem globally
+.mat-tooltip.infobox { // making the font size on the mat-tooltip 1.5rem globally
   font-size: 0.75rem;
   color: #ffffff;
   background-color: #337ab7;
-  &.exaggerated-tooltip{  // to modify the tooltip create a class like this
-    font-size: 0.75rem;  // and use it like this: *matTooltipClass="exaggerated-tooltip"* in the
-    color: #ffffff;         // component in which you are putting the tooltip
+
+  &.exaggerated-tooltip { // to modify the tooltip create a class like this
+    font-size: 0.75rem; // and use it like this: *matTooltipClass="exaggerated-tooltip"* in the
+    color: #ffffff; // component in which you are putting the tooltip
     background-color: #337ab7;
   }
 }
@@ -65,7 +77,7 @@ button.mat-mini-fab.help {
   color: #ec5840;
 }
 
-.required-asterisk{
+.required-asterisk {
   color: red;
   font-weight: bold;
   margin-left: 3px;
@@ -107,6 +119,7 @@ button.mat-mini-fab.help {
   text-align: left;
   padding: 0 5px;
 }
+
 .tooltip-attribute [tooltip] {
   display: inline-block;
   margin: 5px 2px;
@@ -117,6 +130,7 @@ button.mat-mini-fab.help {
   //line-height: 50px;
   text-align: center;
 }
+
 .ng-tooltip {
   position: absolute;
   max-width: 150px;
@@ -129,6 +143,7 @@ button.mat-mini-fab.help {
   z-index: 1000;
   opacity: 0;
 }
+
 .ng-tooltip-left:after {
   top: 50%;
   left: 100%;
@@ -141,10 +156,11 @@ button.mat-mini-fab.help {
   opacity: 1;
 }
 
-.auto-width{
+.auto-width {
   .mat-form-field {
     width: auto !important;
   }
+
   .mat-select-value {
     max-width: 100%;
     width: auto;
@@ -152,6 +168,6 @@ button.mat-mini-fab.help {
 }
 
 .nu-table-body {
-  overflow-y:auto;
-  max-height:250px;
+  overflow-y: auto;
+  max-height: 250px;
 }

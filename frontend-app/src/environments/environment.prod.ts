@@ -18,6 +18,9 @@ export const environment = {
   name: 'prod',
   production: true,
   sahAPIURL: 'https://www.ebi.ac.uk/ena/sah/api/',
+  contactSupportURL: "https://www.ebi.ac.uk/ena/browser/support",
+  ncbiURL: 'https://www.ncbi.nlm.nih.gov/biocollections',
+  insdcFTURL: 'https://www.insdc.org/submitting-standards/feature-table/',
   // 1800
   sessionTimeout: 1800
 };
