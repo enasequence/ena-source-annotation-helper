@@ -33,6 +33,8 @@ import {LoggingService} from "./logging.service";
 export class InstitutionService {
 
     errorMessage: string = "";
+    errorMessageInst: string = "";
+    errorMessageColl: string = "";
 
     constructor(private http: HttpClient,
                 private injector: Injector) {
@@ -55,7 +57,12 @@ export class InstitutionService {
             .pipe(
                 map(response => {
                         if (response.institutions.length <= 0) {
+                            this.errorMessageInst = AppConstants.NO_INSTITUTIONS_FOUND;
                             this.handleError(new Error(AppConstants.NO_INSTITUTIONS_FOUND));
+                            //alert(this.errorMessage);
+                        } else {
+                            this.errorMessageInst = "";
+                            this.errorMessage = "";
                         }
                         return response.institutions;
                     }
@@ -80,7 +87,11 @@ export class InstitutionService {
             .pipe(
                 map(response => {
                         if (response.institutions[0].collections.length <= 0) {
+                            this.errorMessageColl = AppConstants.NO_COLLECTIONS_FOUND;
                             this.handleError(new Error(AppConstants.NO_COLLECTIONS_FOUND));
+                        } else {
+                            this.errorMessageColl = "";
+                            this.errorMessage = "";
                         }
                         return response.institutions[0] ? response.institutions[0].collections : [];
                     }

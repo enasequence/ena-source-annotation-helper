@@ -21,7 +21,8 @@
             biological source of the sequence data.
         </p>
         <p>
-            The Attribute Type (qualifier type) selector constrains the search to institutions that hold the specific type of collection.
+            The Attribute Type (qualifier type) selector constrains the search to institutions that hold the specific
+            type of collection.
         </p>
         <p>
             <i>Fields marked with asterisk<i class="required-asterisk">*</i> are mandatory</i>
@@ -86,9 +87,9 @@
                                     <mat-autocomplete [panelWidth]="350" #auto="matAutocomplete"
                                                       (optionSelected)="onSelected()">
                                         <mat-option
-                                                    *ngFor="let institution of filteredInstitutions | async"
-                                                    [value]=institution.uniqueName
-                                                    [matTooltip]="institution.institutionName + ',' + institution.address + ',' + institution.country">
+                                                *ngFor="let institution of filteredInstitutions | async"
+                                                [value]=institution.uniqueName
+                                                [matTooltip]="institution.institutionName + ',' + institution.address + ',' + institution.country">
                                             {{institution.uniqueName}} - {{institution.institutionName}}
                                         </mat-option>
                                     </mat-autocomplete>
@@ -97,6 +98,9 @@
                                     <div *ngIf="searchInstitutionCtrl?.errors?.['required']" class="error">Institution
                                         is required
                                     </div>
+                                </div>
+                                <div *ngIf="errorMessageInst !== null">
+                                    <div class="error">{{errorMessageInst}}</div>
                                 </div>
                             </form>
                         </div>
@@ -127,7 +131,9 @@
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-
+                        <div *ngIf="errorMessageColl !== null">
+                            <div class="error">{{errorMessageColl}}</div>
+                        </div>
                     </td>
                 </tr>
                 <tr>
