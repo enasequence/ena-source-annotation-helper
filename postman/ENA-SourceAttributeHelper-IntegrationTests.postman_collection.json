@@ -54,7 +54,7 @@
 										"exec": [
 											"pm.test(\"Actuator-Links-Test\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData._links.info.href).to.eql(\"http://localhost:8080/ena/sah/api/actuator/info\");",
+											"    pm.expect(jsonData._links.info.href).to.eql(\"http://www.ebi.ac.uk/ena/sah/api/actuator/info\");",
 											"});"
 										],
 										"type": "text/javascript"
@@ -430,7 +430,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT<ITA-Torino>:123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -441,7 +441,7 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "MSNT:123456"
+											"value": "MSNT<ITA-Torino>:123456"
 										},
 										{
 											"key": "qualifier_type",
@@ -571,7 +571,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT<ITA-Torino>&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -582,7 +582,7 @@
 									"query": [
 										{
 											"key": "institution",
-											"value": "MSNT"
+											"value": "MSNT<ITA-Torino>"
 										},
 										{
 											"key": "id",
@@ -1766,6 +1766,51 @@
 							"response": []
 						},
 						{
+							"name": "Inst-ExactMatch-Good-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ExactMatch-Good-01-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Inst-ExactMatch-Good-01-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/SMNH<CAN>",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"SMNH<CAN>"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Inst-FuzzySearchStr-SingleChar-Good-01",
 							"event": [
 								{
@@ -2417,7 +2462,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT:123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=MSNT<ITA-Torino>:123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -2428,7 +2473,7 @@
 									"query": [
 										{
 											"key": "value",
-											"value": "MSNT:123456"
+											"value": "MSNT<ITA-Torino>:123456"
 										},
 										{
 											"key": "qualifier_type",
@@ -2453,7 +2498,7 @@
 											"",
 											"pm.test(\"Validate-SimilarMatch-Inst-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).greaterThan(1);",
 											"});",
 											""
 										],
@@ -3557,7 +3602,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT&id=123456&qualifier_type=specimen_voucher",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/construct?institution=MSNT<ITA-Torino>&id=123456&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -3568,7 +3613,7 @@
 									"query": [
 										{
 											"key": "institution",
-											"value": "MSNT"
+											"value": "MSNT<ITA-Torino>"
 										},
 										{
 											"key": "id",
@@ -3597,7 +3642,7 @@
 											"",
 											"pm.test(\"Construct-SimilarMatch-Inst-Good-01-length\", function () {",
 											"    var jsonData = pm.response.json();",
-											"    pm.expect(jsonData.matches.length).to.eql(1);",
+											"    pm.expect(jsonData.matches.length).greaterThan(1);",
 											"});",
 											""
 										],
