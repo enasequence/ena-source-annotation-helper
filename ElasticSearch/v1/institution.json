@@ -39,7 +39,7 @@
         }
       },
       "unique_name": {
-        "type": "text",
+        "type": "keyword",
         "meta": {
           "description": "Institution Unique Name"
         }

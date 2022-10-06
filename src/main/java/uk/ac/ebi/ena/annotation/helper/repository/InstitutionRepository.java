@@ -30,7 +30,8 @@ public interface InstitutionRepository extends ElasticsearchRepository<Instituti
 
     List<Institution> findAll();
 
-    Optional<Institution> findByUniqueName(String uniqueName);
+    @Query("{\"bool\": {\"must\": { \"match_phrase\": { \"unique_name\": \"?0\" } }}}")
+    Optional<Institution> findByUniqueNameExact(String uniqueName);
 
     @Query("{\"bool\": {\"must\": [{ \"match_phrase\": { \"unique_name\": \"?0\" } },{\"terms\": {\"qualifier_type\": ?1 }}]}}")
     Optional<Institution> findByUniqueNameAndQualifierTypeArray(String uniqueName, List<String> qualifierType);

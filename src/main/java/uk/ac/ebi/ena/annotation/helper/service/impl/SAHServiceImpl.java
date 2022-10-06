@@ -80,7 +80,7 @@ public class SAHServiceImpl implements SAHService {
         //lookout for exact match first
         Optional<Institution> optionalInstitute;
         if (isEmpty(qualifierType)) {
-            optionalInstitute  = institutionRepository.findByUniqueName(name);
+            optionalInstitute  = institutionRepository.findByUniqueNameExact(name);
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
             optionalInstitute = institutionRepository
@@ -116,7 +116,7 @@ public class SAHServiceImpl implements SAHService {
     @Override
     public ResponseDto findCollectionsByInstUniqueName(String instUniqueName, String[] qualifierType) {
 
-        Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
+        Optional<Institution> optionalInstitute = institutionRepository.findByUniqueNameExact(instUniqueName);
 
         if (!optionalInstitute.isPresent()) {
             //no record found scenario
@@ -151,7 +151,7 @@ public class SAHServiceImpl implements SAHService {
 
     @Override
     public ResponseDto findByInstUniqueNameAndCollCode(String instUniqueName, String collCode, String[] qualifierType) {
-        Optional<Institution> optionalInstitute = institutionRepository.findByUniqueName(instUniqueName);
+        Optional<Institution> optionalInstitute = institutionRepository.findByUniqueNameExact(instUniqueName);
         if (!optionalInstitute.isPresent()) {
             //no record found scenario
             log.info("No matching institute found for institute -- {}", instUniqueName);
