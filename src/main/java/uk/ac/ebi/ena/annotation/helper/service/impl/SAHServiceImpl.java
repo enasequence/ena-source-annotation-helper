@@ -76,6 +76,22 @@ public class SAHServiceImpl implements SAHService {
     @Override
     public ResponseDto findByInstituteStringFuzzyWithQTArray(String name, String[] qualifierType) {
         List<Institution> institutionList;
+
+        //lookout for exact match first
+        Optional<Institution> optionalInstitute;
+        if (isEmpty(qualifierType)) {
+            optionalInstitute  = institutionRepository.findByUniqueName(name);
+        } else {
+            List<String> listQT = Arrays.asList(qualifierType);
+            optionalInstitute = institutionRepository
+                    .findByUniqueNameAndQualifierTypeArray(name, listQT);
+        }
+        if (optionalInstitute.isPresent()) {
+            return new InstituteResponseDto(Collections.singletonList(instituteMapper.toDto(optionalInstitute.get())),
+                    true, LocalDateTime.now());
+        }
+
+        //perform a fuzzy search next
         if (isEmpty(qualifierType)) {
             institutionList = institutionRepository.findByInstituteFuzzy(name, PageRequest.of(0, QUERY_RESULTS_LIMIT,
                     Sort.by("_score").descending())
