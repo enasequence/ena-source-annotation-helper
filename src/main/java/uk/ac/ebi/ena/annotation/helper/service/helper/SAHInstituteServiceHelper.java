@@ -78,7 +78,7 @@ public class SAHInstituteServiceHelper {
         //Exact Search on InstUniqueName
         Optional<Institution> optionalInstitute;
         if (isEmpty(qualifierType)) {
-            optionalInstitute = institutionRepository.findByUniqueName(instCode);
+            optionalInstitute = institutionRepository.findByUniqueNameExact(instCode);
         } else {
             List<String> listQT = Arrays.asList(qualifierType);
             optionalInstitute = institutionRepository.findByUniqueNameAndQualifierTypeArray(instCode, listQT);
