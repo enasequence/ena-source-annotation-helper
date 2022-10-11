@@ -29,10 +29,7 @@ import uk.ac.ebi.ena.annotation.helper.entity.Institution;
 import uk.ac.ebi.ena.annotation.helper.repository.InstitutionRepository;
 import uk.ac.ebi.ena.annotation.helper.utils.SAHConstants;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
 import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.MultipleMatchesFoundMessage;
@@ -83,6 +80,18 @@ public class SAHInstituteServiceHelper {
             List<String> listQT = Arrays.asList(qualifierType);
             optionalInstitute = institutionRepository.findByUniqueNameAndQualifierTypeArray(instCode, listQT);
         }
+
+        //TODO discuss and later can be optimised for implementation
+        if (!optionalInstitute.isPresent()) {
+            if (isEmpty(qualifierType)) {
+                optionalInstitute  = institutionRepository.findByUniqueNameExact(instCode.toUpperCase(Locale.ROOT));
+            } else {
+                List<String> listQT = Arrays.asList(qualifierType);
+                optionalInstitute = institutionRepository
+                        .findByUniqueNameAndQualifierTypeArray(instCode, listQT);
+            }
+        }
+
         if (optionalInstitute.isPresent()) {
             log.debug("found exact match -- " + instCode);
             return ValidationSearchResult.builder()
