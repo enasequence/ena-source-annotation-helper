@@ -89,7 +89,7 @@ public class SAHInstituteServiceHelper {
             } else {
                 List<String> listQT = Arrays.asList(qualifierType);
                 optionalInstitute = institutionRepository
-                        .findByUniqueNameAndQualifierTypeArray(instCode, listQT);
+                        .findByUniqueNameAndQualifierTypeArray(instCode.toUpperCase(Locale.ROOT), listQT);
             }
         }
 

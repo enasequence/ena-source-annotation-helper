@@ -95,7 +95,7 @@ public class SAHServiceImpl implements SAHService {
             } else {
                 List<String> listQT = Arrays.asList(qualifierType);
                 optionalInstitute = institutionRepository
-                        .findByUniqueNameAndQualifierTypeArray(name, listQT);
+                        .findByUniqueNameAndQualifierTypeArray(name.toUpperCase(Locale.ROOT), listQT);
             }
         }
 
