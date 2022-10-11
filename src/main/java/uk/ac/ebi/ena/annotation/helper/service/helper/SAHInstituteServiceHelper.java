@@ -83,6 +83,7 @@ public class SAHInstituteServiceHelper {
 
         //TODO discuss and later can be optimised for implementation
         if (!optionalInstitute.isPresent()) {
+            log.debug("going for upper case search...");
             if (isEmpty(qualifierType)) {
                 optionalInstitute  = institutionRepository.findByUniqueNameExact(instCode.toUpperCase(Locale.ROOT));
             } else {
