@@ -1811,6 +1811,96 @@
 							"response": []
 						},
 						{
+							"name": "Inst-ExactMatch-Good-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ExactMatch-Good-02-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Inst-ExactMatch-Good-02-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/B",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"B"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Inst-ExactMatch-LowerCase-Good-03",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Inst-ExactMatch-LowerCase-Good-03-Success-Check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Inst-ExactMatch-LowerCase-Good-03-array-len\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions.length).to.greaterThan(0);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/b",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"b"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Inst-FuzzySearchStr-SingleChar-Good-01",
 							"event": [
 								{
@@ -2374,7 +2464,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=CAT:12345",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=CAT:12345&qualifier_type=specimen_voucher",
 									"host": [
 										"{{current-sv-env}}"
 									],
@@ -2386,6 +2476,10 @@
 										{
 											"key": "value",
 											"value": "CAT:12345"
+										},
+										{
+											"key": "qualifier_type",
+											"value": "specimen_voucher"
 										}
 									]
 								}
@@ -2522,6 +2616,94 @@
 										{
 											"key": "value",
 											"value": "MSNT:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatch-Inst-Good-02",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatch-Inst-Good-02-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatch-Inst-Good-02-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).eq(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=CM:123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "CM:123456"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-SimilarMatch-Inst-Good-03",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-SimilarMatch-Inst-Good-02-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-SimilarMatch-Inst-Good-02-length\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.matches.length).eq(1);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=CMF:123456",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "CMF:123456"
 										}
 									]
 								}
@@ -3467,6 +3649,50 @@
 										}
 									],
 									"hash": "^%$&%"
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Validate-Inst-SP-LowerCase-String-03",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Validate-Inst-SP-LowerCase-String-03-Success\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Validate-Inst-SP-LowerCase-String-03-BadRequest\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/validate?value=b:1234",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"validate"
+									],
+									"query": [
+										{
+											"key": "value",
+											"value": "b:1234"
+										}
+									]
 								}
 							},
 							"response": []
