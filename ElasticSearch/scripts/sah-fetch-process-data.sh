@@ -6,8 +6,8 @@ download_ftp_files() {
   ncbi_file_path="$2"
   local_server_path="$3"
   init_time_stamp="$4"
-  ftp_inst_file_name="Institution_codes.txt"
-  ftp_coll_file_name="Collection_codes.txt"
+  ftp_inst_file_name="$5"
+  ftp_coll_file_name="$6"
 
   mkdir -p $local_server_path/ftp
   # download the institutions data file
