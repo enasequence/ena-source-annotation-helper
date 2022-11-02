@@ -37,9 +37,8 @@ persist_processed_data_file() {
 
   echo "Existing index being replaced: $existing_index_name"
 
-  ### construct new index name by incrementing the number
-  num=$(($(cut -d "_" -f2 <<<"$existing_index_name") + 1))
-  new_index_name=$idx_alias"_"$num
+  ### construct new index name
+  new_index_name=$idx_alias"_"$init_time_stamp
   echo "new index to be created: $new_index_name"
 
   ### create new index

@@ -11,7 +11,7 @@ local_server_path=./sah
 es_base_url=http://localhost:9200
 ### -----------------------------
 
-current_date=$(date "+%Y.%m.%d-%H.%M")
+current_date=$(date "+%Y%m%d_%H%M")
 echo "SAH NCBI data import started at: $current_date"
 
 ### Download the data
