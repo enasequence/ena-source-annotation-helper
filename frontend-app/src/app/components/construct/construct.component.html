@@ -15,7 +15,7 @@
  -->
 
 <div>
-    <div class="sah-sub-header-content">
+    <div class="vf-text-body--4">
         <p>
             You may use this tool to construct in the correct format the attribute string for referring to the
             biological source of the sequence data.
@@ -32,8 +32,9 @@
         <form [formGroup]="constructFormGroup" (ngSubmit)="constructAttribute()">
             <table [cellPadding]="10">
                 <tr>
-                    <td [width]="220">Attribute Type:
-                        <span class="required-asterisk">*&nbsp;</span>
+                    <td [width]="220">
+                        <label class="vf-form__label--required">Attribute Type:
+                        <span class="required-asterisk">*&nbsp;</span></label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Select the Attribute Types to filter the search results"
                                            matTooltipPosition="right"
@@ -60,9 +61,8 @@
                 </tr>
                 <tr>
                     <td [width]="220">
-                        <mat-label>Select Institution:
-                            <span class="required-asterisk">*&nbsp;</span>
-                        </mat-label>
+                        <label class="vf-form__label--required">Select Institution:
+                            <span class="required-asterisk">*&nbsp;</span></label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Select the institution"
                                            matTooltipPosition="right"
@@ -108,8 +108,7 @@
                 </tr>
                 <tr>
                     <td [width]="220">
-                        <mat-label>Select Collection: &nbsp;
-                        </mat-label>
+                        <label class="vf-form__label--required">Select Collection:</label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Select the Collection to which the Identifier/code belongs (Optional)"
                                            matTooltipPosition="right"
@@ -138,9 +137,8 @@
                 </tr>
                 <tr>
                     <td [width]="220">
-                        <mat-label>Enter Identifier/Code:
-                            <span class="required-asterisk">*&nbsp;</span>
-                        </mat-label>
+                        <label class="vf-form__label--required">Enter Identifier/Code:
+                            <span class="required-asterisk">*&nbsp;</span></label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Enter the identifier / code"
                                            matTooltipPosition="right"

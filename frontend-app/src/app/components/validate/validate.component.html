@@ -15,7 +15,7 @@
  -->
 
 <div>
-    <div class="sah-sub-header-content">
+    <div class="vf-text-body--4">
         <p>
             You may use this tool to validate/enhance a constructed attribute string for referring to the
             biological source of the sequence data. Please provide the attribute string in the accepted format.
@@ -32,9 +32,8 @@
             <table [cellPadding]="10">
                 <tr>
                     <td [width]="250">
-                        <mat-label>Attribute Type:
-                            <span class="required-asterisk">*&nbsp;</span>
-                        </mat-label>
+                        <label class="vf-form__label--required">Attribute Type:
+                            <span class="required-asterisk">*&nbsp;</span></label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Select the Attribute Types to filter the search results"
                                            matTooltipPosition="right"
@@ -63,9 +62,8 @@
                 </tr>
                 <tr>
                     <td>
-                        <mat-label>Enter Attribute Value:
-                            <span class="required-asterisk">*&nbsp;</span>
-                        </mat-label>
+                        <label class="vf-form__label--required">Enter Attribute Value:
+                            <span class="required-asterisk">*&nbsp;</span></label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Enter the attribute value"
                                            matTooltipPosition="right"

@@ -16,30 +16,30 @@
 
 <div style="padding: 0px 50px 50px 50px;">
     <div data-sticky-container>
-        <header class="masthead" data-btm-anchor="main-content-area:bottom" data-sticky data-sticky-on="large"
-                data-top-anchor="main-content-area:top" id="masthead">
-            <div class="masthead-inner row">
-                <div class="feedback-content">
-                    <h5>
-                        <a target='_blank' href='{{contactSupportURL}}' class='white-color'>Feedback</a>
-                    </h5>
-                </div>
-                <div class="columns medium-12" id="local-title">
-                    <h1>
-                        <a target='_blank' href="https://www.ebi.ac.uk/ena/" title="ENA">
-                            <img alt="ENA Source Attribute Helper" class="logo" height="" src="ENA-logo.png"/>
-                        </a>
-                    </h1>
-                </div>
-
-            </div>
-            <div class="title-content">
-                <div><h1>ENA Source Attribute Helper</h1></div>
+        <header class="vf-global-header | vf-search-client-side--no-index">
+            <div class="feedback-content">
+                <h5>
+                    <a target='_blank' href='{{contactSupportURL}}' class='white-color'>Feedback</a>
+                </h5>
             </div>
         </header>
     </div>
 
-    <div class="sah-header-content">
+    <section class="ebi-homepage-search vf-hero vf-hero--800 vf-hero--search | vf-u-fullbleed"
+             data-vf-google-analytics-region="homepage-search"
+             style="--vf-hero--bg-image: url('https://acxngcvroo.cloudimg.io/v7/www.embl.org/files/wp-content/uploads/EMBL-EBI-home-hero-cells_2021-1-scaled.jpeg');">
+        <div class="vf-hero__content | vf-box | vf-stack vf-stack--200">
+            <p class="vf-hero__kicker">
+                <a target='_blank' href="https://www.ebi.ac.uk/ena/" title="ENA">
+                    <img class="vf-logo__image" src="https://www.ebi.ac.uk/ena/browser/assets/ENA_logo_2021.png"
+                         alt="ENA Source Attribute Helper" loading="eager">
+                </a>
+            </p>
+            <p class="vf-hero__subheading">ENA Source Attribute Helper</p>
+        </div>
+    </section>
+
+    <div class="vf-text-body--2">
         <p>
             The ENA Source Attribute Helper (SAH) is designed to help users accurately report sequence and sample
             attributes related to biological sources.
@@ -57,9 +57,9 @@
         </p>
     </div>
 
-    <div style="width:800px; margin:0 auto;">
+    <div style="margin:0 auto;">
         <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)='changeTab()' fxFill
-                       class="explore-filter-tab-group">
+                       class="vf-tabs">
             <mat-tab fxFlexFill opened>
                 <ng-template mat-tab-label>Construct</ng-template>
                 <div class="target-filters" [hidden]="selectedTab !== tab.CONSTRUCT">
