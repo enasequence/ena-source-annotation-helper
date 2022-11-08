@@ -16,36 +16,41 @@
 
 <section class="my-matches-display-section" *ngIf="localStorageObj.size > 0">
     <p>&nbsp;</p>
-    <div id="savedAttribBox">
-        <h4>My Matches:&nbsp;&nbsp;&nbsp;&nbsp;
-            <button (click)="copyAllToClipboard()">Copy All</button>&nbsp;&nbsp;
-            <button (click)="clearAllSavedResults()">Remove All</button>
+    <div id="savedAttribBox" class="container" style="width:90%; ; float:left;">
+        <h4>My Matches:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="vf-button--primary" (click)="copyAllToClipboard()">Copy All</button>&nbsp;&nbsp;
+            <button class="vf-button--primary" (click)="clearAllSavedResults()">Remove All</button>
         </h4>
-        <table>
-            <div class="nu-table-body">
-                <tr>
-                    <td [width]="300"><h5>Attribute</h5></td>
-                    <td><h5>Attribute Type</h5></td>
-                </tr>
+
+        <!--                ===================  HEADER BLOCK ====================           -->
+        <div class="container" style="width:100%; ; float:left;">
+            <div style="width:250px; float:left;">
+                <h5>Attribute</h5>
             </div>
-            <div class="nu-table-body">
-                <tr *ngFor="let list of localStorageObj | keyvalue">
-                    <td [width]="300">
-                        <div tooltip="{{getInstitutionMeta(list.key.toString())}}
-                                                    {{getCollectionMeta(list.key.toString())}} " placement="left" delay="500">
-                            <span [innerHTML]="getAttributeDisplayText(list.key.toString())"></span>
-                        </div>
-                    </td>
-                    <td [width]="200">
-                        {{getQualifierMeta(list.value.qualifierType[0])}}
-                    </td>
-                    <td [width]="200">
-                        <button (click)="copyToClipboard(list.key.toString())">Copy</button>&nbsp;&nbsp;
-                        <button (click)="clearSavedResult(list.key.toString())">Remove</button>
-                    </td>
-                </tr>
+            <div style="width:200px; float:left;">
+                <h5>Attribute Type</h5>
             </div>
-        </table>
+            <div style="padding-left: 10px; width:200px; float:left;">
+            </div>
+        </div>
+
+        <!--                ===================  ATTRIBUTES BLOCK ====================           -->
+        <div class="container" style="width:100%; float:left;" *ngFor="let list of localStorageObj | keyvalue">
+            <div style="width:250px; float:left;">
+                <div tooltip="{{getInstitutionMeta(list.key.toString())}}
+                                                    {{getCollectionMeta(list.key.toString())}} " placement="left"
+                     delay="500">
+                    <span [innerHTML]="getAttributeDisplayText(list.key.toString())"></span>
+                </div>
+            </div>
+            <div style="width:200px; float:left;">
+                {{getQualifierMeta(list.value.qualifierType[0])}}
+            </div>
+            <div style="padding-left: 10px; width:200px; float:left;">
+                <button class="vf-button--primary" (click)="copyToClipboard(list.key.toString())">Copy</button>&nbsp;&nbsp;
+                <button class="vf-button--primary" (click)="clearSavedResult(list.key.toString())">Remove</button>
+            </div>
+        </div>
     </div>
 </section>
 

@@ -14,7 +14,7 @@
   limitations under the License.
  -->
 
-<div>
+<div class="container" style="width:90%">
     <div class="vf-text-body--4">
         <p>
             You may use this tool to construct in the correct format the attribute string for referring to the
@@ -59,7 +59,7 @@
                     <div style="padding-left: 10px; width:300px; float:left;"
                          *ngIf="submitted && attributeCtrl?.errors">
                         <div *ngIf="attributeCtrl?.errors?.['required']" class="vf-form__helper vf-form__helper--error">
-                            Attribute is required
+                            Attribute Type is required
                         </div>
                     </div>
                 </div>
@@ -109,7 +109,8 @@
                             is required
                         </div>
                     </div>
-                    <div style="padding-left: 10px; padding-top: 15px; width:300px; float:left;" *ngIf="errorMessageInst !== null">
+                    <div style="padding-left: 10px; padding-top: 15px; width:300px; float:left;"
+                         *ngIf="errorMessageInst !== null">
                         <div class="vf-form__helper vf-form__helper--error">{{errorMessageInst}}</div>
                     </div>
                 </div>
@@ -203,7 +204,6 @@
                 </div>
 
                 <!--                =================== GLOBAL ERROR BLOCK ====================           -->
-
                 <div class="container" style="padding-top: 20px; width:100%; float:left;">
                     <div style="width:250px; float:left; padding-top: 15px">
                     </div>
@@ -216,13 +216,13 @@
                         <div class="vf-form__helper vf-form__helper--error">{{ error }}!</div>
                     </div>
                 </div>
-                <!--                =================== BLOCK END ====================           -->
+                <!--                =================== BLOCKS END ====================           -->
             </div>
         </form>
     </section>
 
     <!--                =================== MATCH RESPONSES BLOCK ====================           -->
-    <section class="constructs-display-section">
+    <section class="constructs-display-section" *ngIf="matchesResponse.length > 0">
         <p>&nbsp;</p>
         <div class="container" style="padding-left: 20px; width:100%">
             <h4>Constructed Attribute:</h4>
@@ -258,43 +258,15 @@
                     </button>
                 </div>
             </div>
-            <!--                ===============   -->
         </div>
     </section>
 
-
-    <!--                =================== MATCH RESPONSES BLOCK ====================           -->
-
-    <!--    <section class="constructs-display-section" *ngIf="matchesResponse.length > 0">-->
-    <section class="constructs-display-section">
-        <div class="tooltip-attribute">
-
-            <table>
-                <div class="nu-table-body">
-                    <tr>
-                        <td [width]="250"></td>
-                        <td></td>
-                    </tr>
-                </div>
-                <div class="nu-table-body">
-                    <tr *ngFor="let list of matchesResponse">
-                        <td [width]="250">
-
-                        </td>
-                        <td [width]="150">
-
-                        </td>
-                        <td>
-
-                        </td>
-                    </tr>
-                </div>
-            </table>
-        </div>
-    </section>
+    <!--                =================== SAVED RESPONSES BLOCK ====================           -->
     <div class="container" style="width:100%; float:left; padding-top: 15px">
         <app-constructstore *ngIf="showConstructStore"
                             (refreshStoreComponent)="refreshStoreComponent()"></app-constructstore>
     </div>
+
+    <p>&nbsp;</p>
 
 </div>
