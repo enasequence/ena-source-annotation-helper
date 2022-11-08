@@ -31,7 +31,7 @@
         <form [formGroup]="validateFormGroup" (ngSubmit)="validateAttribute()">
             <table [cellPadding]="10">
                 <tr>
-                    <td [width]="250">
+                    <td>
                         <label class="vf-form__label--required">Attribute Type:
                             <span class="required-asterisk">*&nbsp;</span></label>
                         <span> <button class="mat-mini-fab help" type="button">
@@ -43,7 +43,7 @@
                                     </span>
                     </td>
                     <td>
-                        <mat-form-field [style.width.px]=400>
+                        <mat-form-field>
                             <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type"
                                         class="form-control" id="attributeTypeCtrl" formControlName="attributeTypeCtrl"
                                         value={{attributeTypeVal}} required>
@@ -54,7 +54,7 @@
                             </mat-select>
                         </mat-form-field>
                         <div *ngIf="submitted && attributeTypeCtrl?.errors">
-                            <div *ngIf="attributeTypeCtrl?.errors?.['required']" class="error">Attribute type is
+                            <div *ngIf="attributeTypeCtrl?.errors?.['required']" class="vf-form__helper vf-form__helper--error">Attribute type is
                                 required
                             </div>
                         </div>
@@ -73,15 +73,15 @@
                                     </span>
                     </td>
                     <td>
-                        <mat-form-field class="example-full-width" [style.width.px]=400>
-                            <input matInput [style.width.px]="350" ngModel maxlength="100" type="text" id="attributeVal"
+                        <mat-form-field class="example-full-width" >
+                            <input matInput ngModel maxlength="100" type="text" id="attributeVal"
                                    class="form-control"
                                    name="attributeVal" formControlName="attributeCtrl" placeholder="Attribute Value"
                                    value={{attributeVal}} required>
                         </mat-form-field>
                         <br/>
                         <div *ngIf="submitted && attributeCtrl?.errors">
-                            <div *ngIf="attributeCtrl?.errors?.['required']" class="error">Attribute value is required
+                            <div *ngIf="attributeCtrl?.errors?.['required']" class="vf-form__helper vf-form__helper--error">Attribute value is required
                             </div>
                         </div>
                         <mat-hint><i>Note: The tool does not include search or validation of the
@@ -101,9 +101,9 @@
                     </td>
                     <td>
                         <div *ngIf="submitted && errorMessage !== null">
-                            <div class="error">{{errorMessage}}</div>
+                            <div class="vf-form__helper vf-form__helper--error">{{errorMessage}}</div>
                         </div>
-                        <div class="error" *ngIf="(error$ | async) as error">{{ error }}!</div>
+                        <div class="vf-form__helper vf-form__helper--error" *ngIf="(error$ | async) as error">{{ error }}!</div>
                     </td>
                 </tr>
             </table>
@@ -131,8 +131,8 @@
                         {{getAttributeMeta(list.match)}}
                     </td>
                     <td [width]="250">
-                        <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
-                        <button (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
+                        <button  class="vf-button--primary" (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
+                        <button  class="vf-button--primary" (click)="storeResultInLocal(list.match)" name="{{list.match}}" id="{{list.match}}"
                                 value="{{list.match}}">Add to My Matches
                         </button>
                     </td>

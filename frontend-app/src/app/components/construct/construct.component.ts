@@ -79,7 +79,7 @@ export class ConstructComponent implements OnInit {
         this.localStorageObj = new Map<string, Institution>();
         this.filteredInstitutions = new Observable<Institution[]>;
         this.submitted = false;
-
+        //localStorage.clear();
     }
 
     constructFormGroup = new FormGroup({
