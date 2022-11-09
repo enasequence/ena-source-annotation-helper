@@ -25,26 +25,6 @@
   width: 100%;
 }
 
-body {
-  font-family: Roboto, Arial, sans-serif;
-  font-size: 11pt;
-  margin: 0;
-}
-
-.basic-container {
-  padding: 10px;
-}
-
-.version-info {
-  font-size: 8pt;
-  float: right;
-}
-
-.mat-raised-button.mat-primary {
-  color: #f0fff3;
-  background-color: #0d81a2;
-}
-
 button.mat-mini-fab.help {
   width: 16px;
   height: 16px;
@@ -71,38 +51,11 @@ button.mat-mini-fab.help {
   }
 }
 
-.error {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: #ec5840;
-}
-
 .required-asterisk {
   color: red;
   font-weight: bold;
   margin-left: 3px;
   font-size: 1.2em;
-}
-
-.sah-header-content {
-  color: black;
-  margin-left: 3px;
-  font-size: 1.0em;
-}
-
-.sah-sub-header-content {
-  color: #565555;
-  margin-left: 3px;
-  font-size: 1.0em;
-}
-
-.mat-hint {
-  font-size: 0.8rem;
-}
-
-.span-space-text {
-  display: inline-block;
-  width: 2ch;
 }
 
 #savedAttribBox {
@@ -169,11 +122,6 @@ button.mat-mini-fab.help {
 .nu-table-body {
   overflow-y: auto;
   max-height: 250px;
-}
-
-img.logo {
-  margin-top: 10px;
-  height: 100px!important;
 }
 
 .local-footer {
