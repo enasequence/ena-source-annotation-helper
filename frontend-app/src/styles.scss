@@ -25,6 +25,11 @@
   width: 100%;
 }
 
+.mat-raised-button.mat-primary {
+  color: #f0fff3;
+  background-color: #0d81a2;
+}
+
 button.mat-mini-fab.help {
   width: 16px;
   height: 16px;
@@ -130,7 +135,9 @@ button.mat-mini-fab.help {
 
 .logo {
   height: 100px;
-  overflow: auto;
+  overflow: visible;
+  position: relative;
+  z-index: 1000;
 }
 
 .blue-text {
