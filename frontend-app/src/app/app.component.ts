@@ -19,6 +19,9 @@ import {MenuListItem} from "./models/MenuListItem";
 import {Router} from "@angular/router";
 import {environment} from "@env";
 import {HttpClient} from "@angular/common/http";
+import {SAHResponse} from "./models/SAHResponse";
+import {map} from "rxjs/operators";
+import {AppConstants} from "./app.constants";
 
 @Component({
     selector: 'app-root',
@@ -32,7 +35,7 @@ export class AppComponent {
     ncbiURL = environment.ncbiURL;
     insdcFTURL = environment.insdcFTURL;
     contactSupportURL = environment.contactSupportURL;
-    externalHtml ="";
+    externalHtml = "";
 
     public tab = Object.seal({
         CONSTRUCT: 0,
@@ -52,8 +55,7 @@ export class AppComponent {
     }
 
     ngOnInit(): void {
-        this.http.get(environment.ebiFooterHTML, { responseType: 'text' }).subscribe(
-            data => this.externalHtml
-        );
+        this.http.get(environment.ebiFooterHTML, {responseType: 'text'})
+            .subscribe(data => this.externalHtml=data);
     }
 }
