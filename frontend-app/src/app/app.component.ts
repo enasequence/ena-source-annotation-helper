@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-import {Component} from '@angular/core';
+import {Component, Injector} from '@angular/core';
 import {MenuListItem} from "./models/MenuListItem";
 import {Router} from "@angular/router";
 import {environment} from "@env";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
     selector: 'app-root',
@@ -31,6 +32,7 @@ export class AppComponent {
     ncbiURL = environment.ncbiURL;
     insdcFTURL = environment.insdcFTURL;
     contactSupportURL = environment.contactSupportURL;
+    externalHtml ="";
 
     public tab = Object.seal({
         CONSTRUCT: 0,
@@ -45,11 +47,13 @@ export class AppComponent {
         //alert(this.selectedTab);
     }
 
-    constructor(private router: Router) {
-
+    constructor(private http: HttpClient,
+                private router: Router) {
     }
 
     ngOnInit(): void {
-
+        this.http.get(environment.ebiFooterHTML, { responseType: 'text' }).subscribe(
+            data => this.externalHtml
+        );
     }
 }

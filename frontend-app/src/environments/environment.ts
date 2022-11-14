@@ -24,7 +24,8 @@ export const environment = {
     sahAPIURL: 'http://localhost:8080/ena/sah/api/',
     contactSupportURL: "https://www.ebi.ac.uk/ena/browser/support",
     ncbiURL: 'https://www.ncbi.nlm.nih.gov/biocollections',
-    insdcFTURL: 'https://www.insdc.org/submitting-standards/feature-table/'
+    insdcFTURL: 'https://www.insdc.org/submitting-standards/feature-table/',
+    ebiFooterHTML: "https://www.embl.org/api/v1/pattern.html?filter-content-type=article&filter-id=106902&pattern=node-body&source=contenthub"
 };
 
 /*

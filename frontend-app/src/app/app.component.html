@@ -15,15 +15,6 @@
  -->
 
 <div style="padding: 0px 50px 50px 50px;">
-    <div data-sticky-container>
-        <header class="vf-global-header | vf-search-client-side--no-index">
-            <div class="feedback-content">
-                <h5>
-                    <a target='_blank' href='{{contactSupportURL}}' class='white-color'>Feedback</a>
-                </h5>
-            </div>
-        </header>
-    </div>
 
     <section class="ebi-homepage-search vf-hero vf-hero--800 vf-hero--search | vf-u-fullbleed"
              data-vf-google-analytics-region="homepage-search"
@@ -38,6 +29,12 @@
             <p class="vf-hero__subheading">ENA Source Attribute Helper</p>
         </div>
     </section>
+
+    <div class="feedback-content">
+        <h5>
+            <a target='_blank' href='{{contactSupportURL}}' class='white-color'>Feedback</a>
+        </h5>
+    </div>
 
     <div class="vf-text-body--2">
         <p>
@@ -75,23 +72,19 @@
         </mat-tab-group>
     </div>
 
-    <footer id="local-footer" class="local-footer" role="local-footer">
-        <div class="container">
-            <p class="blue-text">Supported by:</p>
-            <div class="row">
-                <div class="col-md-3">
-                    <a target='_blank' href="https://bicikl-project.eu/" title="BiCIKL Project">
-                        <img class="logo" alt="Biodiversity Community Integrated Knowledge Library"
-                             src="BiCIKL-Logo.png"/>
-                    </a>
-                </div>
+    <hr class="vf-divider"/>
+
+    <div class="container">
+        <p class="blue-text">Supported by:</p>
+        <div class="row">
+            <div class="col-md-3">
+                <a target='_blank' href="https://bicikl-project.eu/" title="BiCIKL Project">
+                    <img class="logo" alt="Biodiversity Community Integrated Knowledge Library"
+                         src="https://www.ebi.ac.uk/ena/sah/BiCIKL-Logo.png"/>
+                </a>
             </div>
         </div>
-    </footer>
-
-    <footer id="global-footer" class="vf-footer">
-        <div class="container">
-        </div>
-    </footer>
+    </div>
+    <div [innerHtml]="externalHtml"></div>
 
 </div>
