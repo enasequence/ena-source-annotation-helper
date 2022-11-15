@@ -41,7 +41,7 @@
 
     </div>
 
-
+    <!--    ====================== Main Heading Content ===========================  -->
     <div class="vf-text-body--2">
         <p>
             The ENA Source Attribute Helper (SAH) is designed to help users accurately report sequence and sample
@@ -60,6 +60,7 @@
         </p>
     </div>
 
+    <!--    ====================== TABS Section ===========================  -->
     <div style="margin:0 auto;">
         <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)='changeTab()' fxFill
                        class="vf-tabs">
@@ -78,6 +79,7 @@
         </mat-tab-group>
     </div>
 
+    <!--    ====================== Acknowledgements Section ===========================  -->
     <hr class="vf-divider"/>
 
     <div class="container">
@@ -91,6 +93,9 @@
             </div>
         </div>
     </div>
-    <div [innerHtml]="externalHtml"></div>
+
+    <!--    ====================== EBI FOOTER - START ===========================  -->
+    <div [innerHtml]="externalEBIFooterHtml"></div>
+    <!--    ====================== EBI FOOTER - END ===========================  -->
 
 </div>

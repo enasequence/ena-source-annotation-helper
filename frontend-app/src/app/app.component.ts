@@ -31,7 +31,7 @@ export class AppComponent {
     ncbiURL = environment.ncbiURL;
     insdcFTURL = environment.insdcFTURL;
     contactSupportURL = environment.contactSupportURL;
-    externalHtml = "";
+    externalEBIFooterHtml = "";
 
     public tab = Object.seal({
         CONSTRUCT: 0,
@@ -53,7 +53,7 @@ export class AppComponent {
     ngOnInit(): void {
         this.http.get(environment.ebiFooterHTML, {responseType: 'text'})
             .subscribe(
-                data => this.externalHtml = data,
+                data => this.externalEBIFooterHtml = data,
                 error => console.log(error)
             )
         ;
