@@ -14,14 +14,10 @@
  * limitations under the License.
  */
 
-import {Component, Injector} from '@angular/core';
-import {MenuListItem} from "./models/MenuListItem";
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 import {environment} from "@env";
 import {HttpClient} from "@angular/common/http";
-import {SAHResponse} from "./models/SAHResponse";
-import {map} from "rxjs/operators";
-import {AppConstants} from "./app.constants";
 
 @Component({
     selector: 'app-root',
@@ -56,6 +52,10 @@ export class AppComponent {
 
     ngOnInit(): void {
         this.http.get(environment.ebiFooterHTML, {responseType: 'text'})
-            .subscribe(data => this.externalHtml=data);
+            .subscribe(
+                data => this.externalHtml = data,
+                error => console.log(error)
+            )
+        ;
     }
 }

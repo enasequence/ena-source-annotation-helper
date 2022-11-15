@@ -21,7 +21,7 @@
 export const environment = {
     name: 'dev',
     production: false,
-    sahAPIURL: 'http://localhost:8080/ena/sah/api/',
+    sahAPIURL: 'https://www.ebi.ac.uk/ena/sah/api/',
     contactSupportURL: "https://www.ebi.ac.uk/ena/browser/support",
     ncbiURL: 'https://www.ncbi.nlm.nih.gov/biocollections',
     insdcFTURL: 'https://www.insdc.org/submitting-standards/feature-table/',
