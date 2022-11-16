@@ -14,8 +14,8 @@
   limitations under the License.
  -->
 
-<div>
-    <div class="sah-sub-header-content">
+<div class="container" style="width:90%">
+    <div class="vf-text-body--4">
         <p>
             You may use this tool to construct in the correct format the attribute string for referring to the
             biological source of the sequence data.
@@ -30,10 +30,12 @@
     </div>
     <section class="attrib-construct-section">
         <form [formGroup]="constructFormGroup" (ngSubmit)="constructAttribute()">
-            <table [cellPadding]="10">
-                <tr>
-                    <td [width]="220">Attribute Type:
-                        <span class="required-asterisk">*&nbsp;</span>
+            <div class="container" style="padding-left: 10px; width:100%">
+                <!--                =================== ATTRIBUTE TYPE BLOCK ====================           -->
+                <div class="container" style="width:100%; padding-top: 15px">
+                    <div style="width:250px; float:left;">
+                        <label class="vf-form__label--required vf-icon">Attribute Type:
+                            <span class="required-asterisk">*&nbsp;</span></label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Select the Attribute Types to filter the search results"
                                            matTooltipPosition="right"
@@ -41,28 +43,31 @@
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                    </td>
-                    <td>
-                        <mat-form-field [style.width.px]=400>
-                            <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type"
-                                        class="form-control" id="attributeCtrl" formControlName="attributeCtrl"
-                                        value={{attributeVal}} required>
-                                <mat-option *ngFor="let attribType of attributeTypeData"
-                                            [value]="attribType.value" [matTooltip]="attribType.option"  [matTooltipPosition]="'right'">
-                                    {{ attribType.option }}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        <div *ngIf="submitted && attributeCtrl?.errors">
-                            <div *ngIf="attributeCtrl?.errors?.['required']" class="error">Attribute is required</div>
+                    </div>
+                    <div style="width:300px; float:left;">
+                        <mat-select (selectionChange)="attributeSelection($event)" placeholder="Attribute Type"
+                                    class="vf-dropdown__menu-item.active" id="attributeCtrl"
+                                    formControlName="attributeCtrl"
+                                    value={{attributeVal}} required>
+                            <mat-option *ngFor="let attribType of attributeTypeData"
+                                        [value]="attribType.value" [matTooltip]="attribType.option"
+                                        [matTooltipPosition]="'right'">
+                                {{ attribType.option }}
+                            </mat-option>
+                        </mat-select>
+                    </div>
+                    <div style="padding-left: 10px; width:300px; float:left;"
+                         *ngIf="submitted && attributeCtrl?.errors">
+                        <div *ngIf="attributeCtrl?.errors?.['required']" class="vf-form__helper vf-form__helper--error">
+                            Attribute Type is required
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td [width]="220">
-                        <mat-label>Select Institution:
-                            <span class="required-asterisk">*&nbsp;</span>
-                        </mat-label>
+                    </div>
+                </div>
+                <!--                =================== INSTITUTION BLOCK =====================           -->
+                <div class="container" style="width:100%; float:left; padding-top: 15px">
+                    <div style="width:250px; float:left; padding-top: 15px">
+                        <mat-label class="vf-form__label--required">Select Institution:
+                            <span class="required-asterisk">*&nbsp;</span></mat-label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Select the institution"
                                            matTooltipPosition="right"
@@ -70,46 +75,50 @@
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                    </td>
-                    <td>
-                        <div class="wrapper">
-                            <form class="institution-search">
-                                <mat-form-field [floatLabel]="'never'" [style.width.px]=400>
-                                    <input
-                                            type="text"
-                                            placeholder="Start typing the institution code / name..."
-                                            [formControl]="searchInstitutionCtrl"
-                                            matInput
-                                            required minlength="1"
-                                            [matAutocomplete]="auto"
-                                            matAutocompletePosition="below"
-                                            [(ngModel)]="typedInstitution">
-                                    <mat-autocomplete [panelWidth]="350" #auto="matAutocomplete"
-                                                      (optionSelected)="onSelected()">
-                                        <mat-option
-                                                *ngFor="let institution of filteredInstitutions | async"
-                                                [value]=institution.uniqueName
-                                                [matTooltip]="institution.institutionName + ',' + institution.address + ',' + institution.country" [matTooltipPosition]="'right'">
-                                            {{institution.uniqueName}} - {{institution.institutionName}}
-                                        </mat-option>
-                                    </mat-autocomplete>
-                                </mat-form-field>
-                                <div *ngIf="submitted && searchInstitutionCtrl?.errors">
-                                    <div *ngIf="searchInstitutionCtrl?.errors?.['required']" class="error">Institution
-                                        is required
-                                    </div>
-                                </div>
-                                <div *ngIf="errorMessageInst !== null">
-                                    <div class="error">{{errorMessageInst}}</div>
-                                </div>
-                            </form>
+                    </div>
+                    <div style="width:300px; float:left;">
+                        <form class="institution-search">
+                            <mat-form-field [floatLabel]="'never'" [style.width.px]=300>
+                                <input
+                                        type="text"
+                                        placeholder="Start typing the institution code / name..."
+                                        [formControl]="searchInstitutionCtrl"
+                                        matInput
+                                        required minlength="1"
+                                        [matAutocomplete]="auto"
+                                        matAutocompletePosition="below"
+                                        [(ngModel)]="typedInstitution">
+                                <mat-autocomplete [panelWidth]="350" #auto="matAutocomplete"
+                                                  (optionSelected)="onSelected()">
+                                    <mat-option
+                                            *ngFor="let institution of filteredInstitutions | async"
+                                            [value]=institution.uniqueName
+                                            [matTooltip]="institution.institutionName + ',' + institution.address + ',' + institution.country"
+                                            [matTooltipPosition]="'right'">
+                                        {{institution.uniqueName}} - {{institution.institutionName}}
+                                    </mat-option>
+                                </mat-autocomplete>
+                            </mat-form-field>
+
+                        </form>
+                    </div>
+                    <div style="padding-left: 10px; padding-top: 15px; width:300px; float:left;"
+                         *ngIf="submitted && searchInstitutionCtrl?.errors">
+                        <div *ngIf="searchInstitutionCtrl?.errors?.['required']"
+                             class="vf-form__helper vf-form__helper--error">Institution
+                            is required
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td [width]="220">
-                        <mat-label>Select Collection: &nbsp;
-                        </mat-label>
+                    </div>
+                    <div style="padding-left: 10px; padding-top: 15px; width:300px; float:left;"
+                         *ngIf="errorMessageInst !== null">
+                        <div class="vf-form__helper vf-form__helper--error">{{errorMessageInst}}</div>
+                    </div>
+                </div>
+
+                <!--                =================== COLLECTION BLOCK ====================           -->
+                <div class="container" style="width:100%; float:left;">
+                    <div style="width:250px; float:left; padding-top: 15px">
+                        <label class="vf-form__label--required">Select Collection:</label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Select the Collection to which the Identifier/code belongs (Optional)"
                                            matTooltipPosition="right"
@@ -117,11 +126,10 @@
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                    </td>
-                    <td>
-
-                        <mat-form-field [floatLabel]="'never'" [style.width.px]=400>
-                            <mat-select [style.width.px]="400" placeholder="Select Collection"
+                    </div>
+                    <div style="width:300px; float:left;">
+                        <mat-form-field [floatLabel]="'never'" [style.width.px]=300>
+                            <mat-select [style.width.px]="300" placeholder="Select Collection"
                                         (selectionChange)="collectionChangeAction($event.value)"
                                         formControlName="inputCollectionCtrl" value={{selectedCollection}}
                                         disableOptionCentering>
@@ -131,16 +139,20 @@
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <div *ngIf="errorMessageColl !== null">
-                            <div class="error">{{errorMessageColl}}</div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td [width]="220">
-                        <mat-label>Enter Identifier/Code:
-                            <span class="required-asterisk">*&nbsp;</span>
-                        </mat-label>
+
+                    </div>
+                    <div style="padding-left: 10px; padding-top: 15px; width:300px; float:left;"
+                         *ngIf="errorMessageColl !== null">
+                        <div class="vf-form__helper vf-form__helper--error">{{errorMessageColl}}</div>
+                    </div>
+                </div>
+
+                <!--                =================== IDENTIFIER BLOCK ====================           -->
+
+                <div class="container" style="width:100%; float:left;">
+                    <div style="width:250px; float:left; padding-top: 15px">
+                        <label class="vf-form__label--required">Enter Identifier/Code:
+                            <span class="required-asterisk">*&nbsp;</span></label>
                         <span> <button class="mat-mini-fab help" type="button">
                                         <i matTooltip="Enter the identifier / code"
                                            matTooltipPosition="right"
@@ -148,81 +160,111 @@
                                            [matTooltipClass]='{infobox: true}'
                                            class="material-icons help-icon">?</i></button>
                                     </span>
-                    </td>
-                    <td>
-                        <mat-form-field class="example-full-width" [style.width.px]=400>
+                    </div>
+                    <div style="width:300px; float:left;">
+                        <mat-form-field class="example-full-width" [style.width.px]=300>
                             <input matInput [style.width.px]="350" ngModel maxlength="100" type="text" id="specimenVal"
                                    class="form-control"
                                    name="specimen" formControlName="specimenCtrl" placeholder="Identifier / Code"
                                    value={{specimenVal}} required>
                         </mat-form-field>
                         <br/>
-                        <div *ngIf="submitted && specimenCtrl?.errors">
-                            <div *ngIf="specimenCtrl?.errors?.['required']" class="error">Identifier/Code is required
-                            </div>
+                    </div>
+                    <div style="padding-left: 10px; padding-top: 15px; width:300px; float:left;"
+                         *ngIf="submitted && specimenCtrl?.errors">
+                        <div *ngIf="specimenCtrl?.errors?.['required']"
+                             class="vf-form__helper vf-form__helper--error">Identifier/Code is required
                         </div>
+                    </div>
+
+                </div>
+
+                <!--                =================== NOTE BLOCK ====================           -->
+
+                <div class="container" style="width:100%; float:left;">
+                    <div style="width:250px; float:left; padding-top: 15px">
+                    </div>
+                    <div style="width:300px; float:left;">
+
+                    </div>
+                    <div style="width:300px; float:left;">
                         <mat-hint><i>Note: The tool does not include search or validation of the
                             voucher identifier/codes.</i></mat-hint>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        &nbsp;
-                    </td>
-                    <td>
+                    </div>
+                </div>
+
+                <!--                =================== SUBMISSION BLOCK ====================           -->
+
+                <div class="container" style="padding-top: 20px; width:100%; float:left;">
+                    <div style="width:250px; float:left; padding-top: 15px">
+                    </div>
+                    <div style="width:300px; float:left;">
                         <button type="submit" mat-raised-button color="primary">Construct Attribute Value</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    </td>
-                    <td>
-                        <div *ngIf="submitted && errorMessage !== null">
-                            <div class="error">{{errorMessage}}</div>
-                        </div>
-                        <div class="error" *ngIf="(error$ | async) as error">{{ error }}!</div>
-                    </td>
-                </tr>
-            </table>
+                    </div>
+                </div>
+
+                <!--                =================== GLOBAL ERROR BLOCK ====================           -->
+                <div class="container" style="padding-top: 20px; width:100%; float:left;">
+                    <div style="width:250px; float:left; padding-top: 15px">
+                    </div>
+                    <div style="padding-left: 10px; padding-top: 15px; width:300px; float:left;"
+                         *ngIf="submitted && errorMessage !== null">
+                        <div class="vf-form__helper vf-form__helper--error">{{errorMessage}}</div>
+                    </div>
+                    <div style="padding-left: 10px; padding-top: 15px; width:300px; float:left;"
+                         *ngIf="(error$ | async) as error">
+                        <div class="vf-form__helper vf-form__helper--error">{{ error }}!</div>
+                    </div>
+                </div>
+                <!--                =================== BLOCKS END ====================           -->
+            </div>
         </form>
     </section>
 
-
+    <!--                =================== MATCH RESPONSES BLOCK ====================           -->
     <section class="constructs-display-section" *ngIf="matchesResponse.length > 0">
-        <div class="tooltip-attribute">
+        <p>&nbsp;</p>
+        <div class="container" style="padding-left: 20px; width:100%">
             <h4>Constructed Attribute:</h4>
-            <table>
-                <div class="nu-table-body">
-                    <tr>
-                        <td [width]="250"><h5>Attribute</h5></td>
-                        <td><h5>Attribute Type</h5></td>
-                    </tr>
+            <!--                =================== RESPONSE HEADER BLOCK ====================           -->
+            <div class="container" style="width:100%;">
+                <div style="width:250px; float:left;">
+                    <h5>Attribute</h5>
                 </div>
-                <div class="nu-table-body">
-                    <tr *ngFor="let list of matchesResponse">
-                        <td [width]="250">
-                            <div tooltip="{{getInstitutionMeta(list.match)}}
+                <div style="width:300px; float:left;">
+                    <h5>Attribute Type</h5>
+                </div>
+                <div style="padding-left: 10px; width:300px; float:left;">
+                </div>
+            </div>
+            <!--                =================== CONSTRUCTED ATTRIBUTES BLOCK ====================           -->
+            <div class="container" style="width:100%; float:left;" *ngFor="let list of matchesResponse">
+                <div style="width:250px; float:left;">
+                    <div tooltip="{{getInstitutionMeta(list.match)}}
                                                     {{getCollectionMeta(list.match)}} " placement="left" delay="500">
-                                <span [innerHTML]="getAttributeDisplayText(list.match)"></span>
-                            </div>
-                        </td>
-                        <td [width]="150">
-                            {{getAttributeMeta(list.match)}}
-                        </td>
-                        <td>
-                            <button (click)="copyToClipboard(list.match.toString())">Copy</button>&nbsp;&nbsp;
-                            <button (click)="storeResultInLocal(list.match)" name="{{list.match}}"
-                                    id="{{list.match}}"
-                                    value="{{list.match}}">Add to My Constructed Attributes
-                            </button>
-                        </td>
-                    </tr>
+                        <span [innerHTML]="getAttributeDisplayText(list.match)"></span>
+                    </div>
                 </div>
-            </table>
+                <div style="width:150px; float:left;">
+                    {{getAttributeMeta(list.match)}}
+                </div>
+                <div style="padding-left: 10px; width:300px; float:left;">
+                    <button class="vf-button--primary" (click)="copyToClipboard(list.match.toString())">Copy
+                    </button>&nbsp;&nbsp;
+                    <button class="vf-button--primary" (click)="storeResultInLocal(list.match)"
+                            name="{{list.match}}"
+                            id="{{list.match}}"
+                            value="{{list.match}}">Add to My Constructed Attributes
+                    </button>
+                </div>
+            </div>
         </div>
     </section>
 
-    <app-constructstore *ngIf="showConstructStore"
-                        (refreshStoreComponent)="refreshStoreComponent()"></app-constructstore>
+    <!--                =================== SAVED RESPONSES BLOCK ====================           -->
+    <div class="container" style="width:100%; float:left; padding-top: 15px; padding-bottom: 30px;">
+        <app-constructstore *ngIf="showConstructStore"
+                            (refreshStoreComponent)="refreshStoreComponent()"></app-constructstore>
+    </div>
 
 </div>

@@ -21,7 +21,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BWTTZZJ6RC"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-BWTTZZJ6RC');
@@ -30,11 +34,26 @@
     <meta charset="utf-8">
     <title>ENA Source Attribute Helper</title>
     <base href="/">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://assets.emblstatic.net/vf/v2.5.8/css/styles.css">
     <link href="//www.ebi.ac.uk/web_guidelines/EBI-Framework/v1.2/images/logos/EMBL-EBI/favicons/favicon.ico" rel="icon"
           type="image/x-icon"/>
+    <!-- Tell the VF 1.4 not to display a data protection banner. -->
+    <!-- You should use the 2.0 data protection banner from the contentHub. -->
+    <span data-protection-message-disable="true"></span>
+    <!--    <link rel="import" href="https://www.embl.org/api/v1/pattern.html?filter-content-type=article&filter-id=6682&pattern=node-body&source=contenthub" data-target="self" data-embl-js-content-hub-loader>-->
+    <link rel="stylesheet" href="//ebi.emblstatic.net/web_guidelines/EBI-Icon-fonts/v1.3/fonts.css" type="text/css"
+          media="all"/>
+    <script defer="defer" src="//ebi.emblstatic.net/web_guidelines/EBI-Framework/v1.4/js/script.js"></script>
+    <link rel="stylesheet"
+          href="https://assets.emblstatic.net/vf/v2.4.12/assets/ebi-header-footer/ebi-header-footer.css" type="text/css"
+          media="all"/>
+    <!-- embl-ebi global header -->
+    <header id="masthead-black-bar"
+            class="clearfix masthead-black-bar | ebi-header-footer vf-content vf-u-fullbleed"></header>
 </head>
-<body>
+<body class="vf-body vf-stack vf-stack--400">
 <app-root></app-root>
 </body>
+
 </html>

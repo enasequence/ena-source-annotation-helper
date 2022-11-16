@@ -14,32 +14,35 @@
   limitations under the License.
  -->
 
-<div style="padding: 0px 50px 50px 50px;">
-    <div data-sticky-container>
-        <header class="masthead" data-btm-anchor="main-content-area:bottom" data-sticky data-sticky-on="large"
-                data-top-anchor="main-content-area:top" id="masthead">
-            <div class="masthead-inner row">
-                <div class="feedback-content">
-                    <h5>
-                        <a target='_blank' href='{{contactSupportURL}}' class='white-color'>Feedback</a>
-                    </h5>
-                </div>
-                <div class="columns medium-12" id="local-title">
-                    <h1>
-                        <a target='_blank' href="https://www.ebi.ac.uk/ena/" title="ENA">
-                            <img alt="ENA Source Attribute Helper" class="logo" height="" src="ENA-logo.png"/>
-                        </a>
-                    </h1>
-                </div>
+<div style="padding: 0px 50px 10px 50px;">
 
-            </div>
-            <div class="title-content">
-                <div><h1>ENA Source Attribute Helper</h1></div>
-            </div>
-        </header>
+    <section class="ebi-homepage-search vf-hero vf-hero--800 vf-hero--search | vf-u-fullbleed"
+             data-vf-google-analytics-region="homepage-search"
+             style="--vf-hero--bg-image: url('https://acxngcvroo.cloudimg.io/v7/www.embl.org/files/wp-content/uploads/EMBL-EBI-home-hero-cells_2021-1-scaled.jpeg');">
+        <div class="logo" id="local-title">
+            <h1>
+                <a target='_blank' href="https://www.ebi.ac.uk/ena/" title="Back to ENA">
+                    <img alt="ENA" class="logo"
+                         src="ENA-logo.png"/>
+                </a>
+            </h1>
+        </div>
+    </section>
+
+    <div class="container" style="width:100%;  float:left; padding-bottom: 30px">
+        <div style="width:600px;  float:left;">
+            <p class="vf-hero__heading">ENA Source Attribute Helper</p>
+        </div>
+        <div style="width:100px; float:right;">
+            <h4>
+                <a target='_blank' href='{{contactSupportURL}}' class='white-color'>Feedback</a>
+            </h4>
+        </div>
+
     </div>
 
-    <div class="sah-header-content">
+    <!--    ====================== Main Heading Content ===========================  -->
+    <div class="vf-text-body--2">
         <p>
             The ENA Source Attribute Helper (SAH) is designed to help users accurately report sequence and sample
             attributes related to biological sources.
@@ -57,9 +60,10 @@
         </p>
     </div>
 
-    <div style="width:800px; margin:0 auto;">
+    <!--    ====================== TABS Section ===========================  -->
+    <div style="margin:0 auto;">
         <mat-tab-group [(selectedIndex)]="selectedTab" (selectedTabChange)='changeTab()' fxFill
-                       class="explore-filter-tab-group">
+                       class="vf-tabs">
             <mat-tab fxFlexFill opened>
                 <ng-template mat-tab-label>Construct</ng-template>
                 <div class="target-filters" [hidden]="selectedTab !== tab.CONSTRUCT">
@@ -75,18 +79,23 @@
         </mat-tab-group>
     </div>
 
-    <footer id="local-footer" class="local-footer" role="local-footer">
-        <div class="container">
-            <p class="blue-text">Supported by:</p>
-            <div class="row">
-                <div class="col-md-3">
-                    <a target='_blank' href="https://bicikl-project.eu/" title="BiCIKL Project">
-                        <img class="logo" alt="Biodiversity Community Integrated Knowledge Library"
-                             src="BiCIKL-Logo.png"/>
-                    </a>
-                </div>
+    <!--    ====================== Acknowledgements Section ===========================  -->
+    <hr class="vf-divider"/>
+
+    <div class="container">
+        <p class="blue-text">Supported by:</p>
+        <div class="row">
+            <div class="col-md-3">
+                <a target='_blank' href="https://bicikl-project.eu/" title="BiCIKL Project">
+                    <img class="logo" alt="Biodiversity Community Integrated Knowledge Library"
+                         src="BiCIKL-Logo.png"/>
+                </a>
             </div>
         </div>
-    </footer>
+    </div>
+
+    <!--    ====================== EBI FOOTER - START ===========================  -->
+    <div [innerHtml]="externalEBIFooterHtml"></div>
+    <!--    ====================== EBI FOOTER - END ===========================  -->
 
 </div>
