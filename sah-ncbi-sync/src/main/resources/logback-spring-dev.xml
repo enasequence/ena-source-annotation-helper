@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="log.folder" value="./log"/>
+    <springProperty scope="context" name="baseLogFolder"
+                     source="logging.path" defaultValue="logs"/>
+    <springProperty scope="context" name="logFileName"
+                     source="logging.file" defaultValue="ena-sah"/>
+
+    <timestamp key="datePattern" datePattern="yy-MM-dd"/>
+    <appender name="Console"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                %black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}):%method:%line - %msg%n%throwable
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="RollingFile"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${baseLogFolder}/${logFileName}-${datePattern}.log</file>
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d %p [%t] %C{1.}:%method:%line - %m%n</Pattern>
+        </encoder>
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily and when the file reaches 10 MegaBytes -->
+            <fileNamePattern>${baseLogFolder}/archived/${logFileName}-%d{yyyy-MM-dd}.%i.log
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- LOG everything at DEBUG level -->
+    <root level="DEBUG">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+    </root>
+
+    <!-- LOG "uk.ac.ebi.ena.annotation.helper*" at DEBUG level -->
+    <logger name="uk.ac.ebi.ena.annotation.helper" level="DEBUG" additivity="false">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <!-- LOG "org.springframework*" at ERROR level -->
+    <logger name="org.springframework" level="ERROR" additivity="false">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <!-- Log all SQL DML statements as they are executed -->
+    <Logger name="org.hibernate.SQL" level="TRACE">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+    </Logger>
+
+    <!-- Log all SQL DML statements as they are executed -->
+    <Logger name="org.hibernate.type" level="TRACE">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+    </Logger>
+
+    <!-- LOG "springfox" at ERROR level -->
+    <logger name="springfox" level="ERROR" additivity="false">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+    <!-- LOG "org.apache.http*" at ERROR level -->
+    <logger name="org.apache.http" level="ERROR" additivity="false">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+    </logger>
+    <!--    logging.level.org.springframework.data.elasticsearch.client.WIRE : trace-->
+    <logger name="org.springframework.data.elasticsearch.client.WIRE" level="TRACE" additivity="false">
+        <appender-ref ref="RollingFile"/>
+        <appender-ref ref="Console"/>
+    </logger>
+
+
+</configuration>

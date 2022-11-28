@@ -1,2 +1,4 @@
 rootProject.name = 'source-annotation-helper'
 include 'frontend-app'
+include 'sah-ncbi-sync'
+
