@@ -20,18 +20,21 @@ package uk.ac.ebi.ena.annotation.helper.ncbi.sync;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableElasticsearchRepositories(basePackages = "uk.ac.ebi.ena.annotation.helper.repository")
-@EnableScheduling
+@EnableElasticsearchRepositories(basePackages = "uk.ac.ebi.ena.annotation.helper.ncbi.sync.repository")
 @Slf4j
 public class SAHNCBISyncApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SAHNCBISyncApplication.class, args);
+        new SpringApplicationBuilder(SAHNCBISyncApplication.class)
+                .web(WebApplicationType.NONE)
+                .run(args);
     }
 
 }

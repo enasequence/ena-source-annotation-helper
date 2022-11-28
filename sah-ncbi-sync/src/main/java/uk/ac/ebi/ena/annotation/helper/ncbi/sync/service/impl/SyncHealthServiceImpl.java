@@ -38,10 +38,6 @@ public class SyncHealthServiceImpl implements SyncHealthService {
     @Autowired
     private CollectionRepository collectionRepository;
 
-
-    @Value("${query.results.limit}")
-    private int QUERY_RESULTS_LIMIT;
-
     @Override
     public SAHSyncResponseDto checkElasticConnectivity() {
         return null;
