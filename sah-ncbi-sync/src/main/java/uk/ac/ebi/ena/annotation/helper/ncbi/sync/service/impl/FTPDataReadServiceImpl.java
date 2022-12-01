@@ -1,6 +1,7 @@
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.core.io.Resource;
@@ -18,18 +19,20 @@ import java.util.StringTokenizer;
 public class FTPDataReadServiceImpl implements FTPDataReadService {
 
     // variables to be configured at the time of script setup
-    public static final String NCBI_FTP_SERVER = "https://ftp.ncbi.nih.gov/";
-    public static final String NCBI_FILE_PATH = "pub/taxonomy/biocollections/";
-    public static final String INST_FILE_TXT = "Institution_codes.txt";
-    public static final String COLL_FILE_TXT = "Collection_codes.txt";
+    //TODO move to application properties
+    @Value("${ftp.ncbi.file.institutions}")
+   private String ncbiInstitutionsFilePath;
 
-    public void fetchInstitutionsFileFromFTP() {
+    @Value("${ftp.ncbi.file.collections}")
+    private String ncbiCollectionsFilePath;
+
+    public boolean fetchInstitutionsFileFromFTP() {
 
         ApplicationContext appContext =
                 new ClassPathXmlApplicationContext();
 
         Resource resource =
-                appContext.getResource(NCBI_FTP_SERVER + NCBI_FILE_PATH + INST_FILE_TXT);
+                appContext.getResource(ncbiInstitutionsFilePath);
 
         try {
             InputStream is = resource.getInputStream();
@@ -48,19 +51,20 @@ public class FTPDataReadServiceImpl implements FTPDataReadService {
                 i++;
             }
             br.close();
-
+            return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            log.debug(e.getLocalizedMessage(), e);
+            return false;
         }
     }
 
-    public void fetchCollectionsFileFromFTP() {
+    public boolean fetchCollectionsFileFromFTP() {
 
         ApplicationContext appContext =
                 new ClassPathXmlApplicationContext();
 
         Resource resource =
-                appContext.getResource(NCBI_FTP_SERVER + NCBI_FILE_PATH + COLL_FILE_TXT);
+                appContext.getResource(ncbiCollectionsFilePath);
 
         try {
             InputStream is = resource.getInputStream();
@@ -79,9 +83,10 @@ public class FTPDataReadServiceImpl implements FTPDataReadService {
                 i++;
             }
             br.close();
-
+            return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            log.debug(e.getLocalizedMessage(), e);
+            return false;
         }
     }
 
