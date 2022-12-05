@@ -18,6 +18,10 @@
 
 package uk.ac.ebi.ena.annotation.helper.config;
 
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Contact;
+import io.swagger.v3.oas.models.info.Info;
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties;
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties;
 import org.springframework.boot.actuate.autoconfigure.web.server.ManagementPortType;
@@ -29,6 +33,7 @@ import org.springframework.boot.actuate.endpoint.web.servlet.WebMvcEndpointHandl
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -39,8 +44,22 @@ import java.util.List;
 
 
 @Configuration
+//@EnableSwagger2
+//@ImportAutoConfiguration({SecurityConfiguration.class})
 public class AppConfig implements WebMvcConfigurer {
 
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .components(new Components())
+                .info(new Info()
+                        .title("ENA Source Attribute Helper (SAH)")
+                        .description("")
+                        .version("1.1.0")
+                        .contact(new Contact().name("ENA Support").email("")
+                                .url("https://www.ebi.ac.uk/ena/sah/#:~:text=Source%20Attribute%20Helper-,Feedback,-The%20ENA%20Source"))
+                );
+    }
 
     /**
      * Set the forwards for swagger-ui handling.
@@ -50,16 +69,16 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         // forward requests to /ena/sah/api/ to the index.html and swagger mappings
-        registry.addViewController("/ena/sah/api/").setViewName(
-                "forward:/ena/sah/api/index.html");
         registry.addViewController("/ena/sah/api").setViewName(
+                "forward:/ena/sah/api/index.html");
+        registry.addViewController("/ena/sah/api/").setViewName(
                 "forward:/ena/sah/api/index.html");
         registry.addViewController("/ena/sah").setViewName(
                 "forward:/ena/sah/index.html");
         registry.addViewController("/ena/sah/").setViewName(
                 "forward:/ena/sah/index.html");
-        registry.addViewController("/ena/sah/api/v2/api-docs").setViewName(
-                "forward:/v2/api-docs");
+        registry.addRedirectViewController("/ena/sah/swagger-ui/index.html",
+                "/ena/sah/api/index.html").setStatusCode(HttpStatus.PERMANENT_REDIRECT);
     }
 
 

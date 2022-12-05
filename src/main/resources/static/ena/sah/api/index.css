@@ -1,0 +1,28 @@
+html {
+    box-sizing: border-box;
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    background: #fafafa;
+}
+
+.logo {
+    height: 100px;
+    overflow: visible;
+    position: relative;
+    z-index: 1000;
+    padding-left: 50px;
+}
+
+.topbar {
+    display:none;
+}
