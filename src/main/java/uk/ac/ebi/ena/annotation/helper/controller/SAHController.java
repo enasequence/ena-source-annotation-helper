@@ -43,7 +43,7 @@ import static uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode.*;
 @CrossOrigin
 @Slf4j
 //@Api(tags = "ENA Source Attribute Helper APIs")
-@Tag(name = "SAH", description = "Source Attribute Helper APIs")
+@Tag(name = "ENA Source Attribute Helper (SAH) APIs", description = "")
 @RequestMapping({"/ena/sah/api/"})
 @Validated
 public class SAHController {
