@@ -11,7 +11,7 @@
               class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>
-                %black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1.}):%method:%line - %msg%n%throwable
+                %black(%d{ISO8601}) %highlight(%-5level) [%blue(%t)] %yellow(%C{1}):%method:%line - %msg%n%throwable
             </Pattern>
         </layout>
     </appender>
@@ -21,7 +21,7 @@
         <file>${baseLogFolder}/${logFileName}-${datePattern}.log</file>
         <encoder
                 class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d %p [%t] %C{1.}:%method:%line - %m%n</Pattern>
+            <Pattern>%d %p [%t] %C{1}:%method:%line - %m%n</Pattern>
         </encoder>
         <rollingPolicy
                 class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">

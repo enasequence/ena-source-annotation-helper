@@ -40,10 +40,9 @@ public class ElasticsearchClientConfig {
     @SneakyThrows
     @Bean
     public ElasticsearchClient client() {
-        // ES 8.5 client approac
+        // ES 8.5 client approach
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("certificates/elasticsearch-prod-es-http.default.es" +
-                ".download.crt");
+        InputStream inputStream = classLoader.getResourceAsStream("certificates/elasticsearch-ssl.crt");
         SSLContext sslContext = TransportUtils
                 .sslContextFromHttpCaCrt(inputStream);
 
