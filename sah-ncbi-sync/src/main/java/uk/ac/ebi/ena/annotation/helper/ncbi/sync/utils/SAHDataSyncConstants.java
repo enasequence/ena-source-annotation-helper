@@ -18,10 +18,32 @@
 
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils;
 
-public interface SAHDataSyncConstants {
+public class SAHDataSyncConstants {
 
-    String INDEX_COLLECTION = "collection";
-    String INDEX_INSTITUTION = "institution";
+    public static final String INDEX_COLLECTION = "collection";
+    public static final String INDEX_INSTITUTION = "institution";
 
+    public static final int INST_ID_POS = 1;
+    public static final int INST_CODE_POS = 2;
+    public static final int UNIQUE_NAME_POS = 3;
+    public static final int SYNONYMS_POS = 4;
+    public static final int INST_NAME_POS = 5;
+    public static final int COUNTRY_POS = 6;
+    public static final int ADDRESS_POS = 7;
+    public static final int PHONE_POS = 8;
+    public static final int FAX_POS = 9;
+    public static final int HOME_URL_POS = 10;
+    public static final int INS_COMMENTS_POS = 11;
+
+    public static final int COLL_ID_POS = 1;
+    public static final int COLL_INST_ID_POS = 2;
+    public static final int COLL_NAME_POS = 3;
+    public static final int COLL_CODE_POS = 4;
+    public static final int COLL_SIZE_POS = 5;
+    public static final int COLLECTION_TYPE_POS =6;
+    public static final int COLL_URL_RULE_POS = 7;
+    public static final int COLL_URL_POS = 8;
+    public static final int QUALIFIER_TYPE_POS = 9;
+    public static final int COLL_COMMENTS_POS = 10;
 
 }

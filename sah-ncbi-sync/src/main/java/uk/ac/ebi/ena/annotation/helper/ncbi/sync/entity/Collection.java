@@ -25,16 +25,16 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
+import uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants;
 
 import java.util.Arrays;
-
-import static uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants.INDEX_COLLECTION;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Document(indexName = INDEX_COLLECTION)
+@Document(indexName = SAHDataSyncConstants.INDEX_COLLECTION)
 public class Collection {
 
     @Id
@@ -50,7 +50,7 @@ public class Collection {
     @Field(name = "coll_type")
     private String collType;
     @Field(name = "qualifier_type")
-    private String[] qualifierType;
+    private List<String> qualifierType;
     @Field(name = "coll_url")
     private String collUrl;
     @Field(name = "coll_url_rule")
@@ -65,7 +65,7 @@ public class Collection {
                 ", collCode='" + collCode + '\'' +
                 ", collName='" + collName + '\'' +
                 ", collType='" + collType + '\'' +
-                ", qualifierType=" + Arrays.toString(qualifierType) +
+                ", qualifierType=" + qualifierType +
                 ", collUrl='" + collUrl + '\'' +
                 ", collUrlRule='" + collUrlRule + '\'' +
                 '}';

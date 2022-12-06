@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+import static uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants.*;
+
 @Service
 @Slf4j
 public class FTPDataReadServiceImpl implements FTPDataReadService {
@@ -43,7 +45,24 @@ public class FTPDataReadServiceImpl implements FTPDataReadService {
             while ((line = br.readLine()) != null) {
                 //System.out.println(line);
                 StringTokenizer st = new StringTokenizer(line, "|");
+                int tokenCount = 0;
                 while (st.hasMoreTokens()) {
+                    tokenCount++;
+                    //TODO Format to be read -
+                    // inst_id|inst_code|unique_name|synonyms|inst_name|country|address|phone|fax|home_url|comments
+                    switch (tokenCount) {
+                        case INST_ID_POS:
+                        case INST_CODE_POS:
+                        case UNIQUE_NAME_POS:
+                        case SYNONYMS_POS:
+                        case INST_NAME_POS:
+                        case COUNTRY_POS:
+                        case ADDRESS_POS:
+                        case PHONE_POS:
+                        case FAX_POS:
+                        case HOME_URL_POS:
+                        case INS_COMMENTS_POS:
+                    }
                     System.out.print(st.nextToken().trim());
                 }
                 System.out.println();
@@ -75,7 +94,23 @@ public class FTPDataReadServiceImpl implements FTPDataReadService {
             while ((line = br.readLine()) != null) {
                 //System.out.println(line);
                 StringTokenizer st = new StringTokenizer(line, "|");
+                int tokenCount = 0;
                 while (st.hasMoreTokens()) {
+                    tokenCount++;
+                    //TODO Format to be read -
+                    // coll_id|inst_id|coll_name|coll_code|coll_size|collection_type|coll_url_rule|coll_url|qualifier_type|comments
+                    switch (tokenCount) {
+                        case COLL_ID_POS:
+                        case COLL_INST_ID_POS:
+                        case COLL_NAME_POS:
+                        case COLL_CODE_POS:
+                        case COLL_SIZE_POS:
+                        case COLLECTION_TYPE_POS:
+                        case COLL_URL_RULE_POS:
+                        case COLL_URL_POS:
+                        case QUALIFIER_TYPE_POS:
+                        case COLL_COMMENTS_POS:
+                    }
                     System.out.print(st.nextToken().trim());
                 }
                 System.out.println();

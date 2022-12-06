@@ -1,4 +1,4 @@
-package uk.ac.ebi.ena.annotation.helper.ncbi.sync;
+package uk.ac.ebi.ena.annotation.helper.ncbi.sync.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;

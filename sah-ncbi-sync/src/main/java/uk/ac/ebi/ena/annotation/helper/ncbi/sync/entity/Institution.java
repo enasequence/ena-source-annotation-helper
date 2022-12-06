@@ -27,6 +27,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants.INDEX_INSTITUTION;
 
@@ -54,7 +55,7 @@ public class Institution {
     @Field(name = "coll_type")
     private String collType;
     @Field(name = "qualifier_type")
-    private String[] qualifierType;
+    private List<String> qualifierType;
 
     @Field(name = "home_url")
     private String homeUrl;
@@ -73,7 +74,7 @@ public class Institution {
                 ", country='" + country + '\'' +
                 ", address='" + address + '\'' +
                 ", collType='" + collType + '\'' +
-                ", qualifierType=" + Arrays.toString(qualifierType) +
+                ", qualifierType=" + qualifierType +
                 ", homeUrl='" + homeUrl + '\'' +
                 ", urlRule='" + urlRule + '\'' +
                 '}';
