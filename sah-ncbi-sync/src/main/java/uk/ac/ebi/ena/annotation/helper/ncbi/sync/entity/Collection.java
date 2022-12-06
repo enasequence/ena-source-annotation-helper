@@ -27,8 +27,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -49,7 +47,7 @@ public class Collection {
     @Field(name = "coll_type")
     private String collType;
     @Field(name = "qualifier_type")
-    private List<String> qualifierType;
+    private String qualifierType;
     @Field(name = "coll_url")
     private String collUrl;
     @Field(name = "coll_url_rule")

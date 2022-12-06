@@ -103,9 +103,9 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService {
                             break;
                         case QUALIFIER_TYPE_POS:
                             if (inst) {
-                                instObj.setQualifierType(List.of(tokenVal));
+                                instObj.setQualifierType(tokenVal);
                             } else {
-                                collObj.setQualifierType(List.of(tokenVal));
+                                collObj.setQualifierType(tokenVal);
                             }
                             break;
                     }
