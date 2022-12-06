@@ -27,7 +27,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants;
 
-import java.util.Arrays;
 import java.util.List;
 
 @AllArgsConstructor

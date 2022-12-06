@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class SAHDataObject {
 
-    public static Map<Long, Institution> mapInstitutions = new HashMap<Long, Institution>();
-    public static Map<Long, Collection> mapCollections = new HashMap<Long, Collection>();
+    public static Map<Integer, Institution> mapInstitutions = new HashMap<Integer, Institution>();
+    public static Map<Integer, Collection> mapCollections = new HashMap<Integer, Collection>();
 
 }

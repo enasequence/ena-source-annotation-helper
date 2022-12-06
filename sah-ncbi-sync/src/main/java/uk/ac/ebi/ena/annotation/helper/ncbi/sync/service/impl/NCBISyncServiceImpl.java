@@ -9,22 +9,25 @@ import uk.ac.ebi.ena.annotation.helper.ncbi.sync.service.NCBISyncService;
 @Component
 public class NCBISyncServiceImpl implements NCBISyncService {
 
-    final FTPDataReadServiceImpl ftpDataReadService;
+    final InstitutionDataReadServiceImpl institutionDataReadService;
+    final CollectionDataReadServiceImpl collectionDataReadService;
     final SAHDataSyncShutdownManager sahDataSyncShutdownManager;
 
     // files storage path on local server (used for processing and maintaining the history)
     public static final String local_server_path = "/hps/nobackup/cochrane/ena/index/source-attribute-helper";
 
-    public NCBISyncServiceImpl(FTPDataReadServiceImpl ftpDataReadService,
+    public NCBISyncServiceImpl(InstitutionDataReadServiceImpl institutionDataReadService,
+                               CollectionDataReadServiceImpl collectionDataReadService,
                                SAHDataSyncShutdownManager sahDataSyncShutdownManager) {
-        this.ftpDataReadService = ftpDataReadService;
+        this.institutionDataReadService = institutionDataReadService;
+        this.collectionDataReadService = collectionDataReadService;
         this.sahDataSyncShutdownManager = sahDataSyncShutdownManager;
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void processNCBIDataRead() {
-        ftpDataReadService.fetchInstitutionsFileFromFTP();
-        ftpDataReadService.fetchCollectionsFileFromFTP();;
+        institutionDataReadService.fetchDataFileFromFTP();
+        collectionDataReadService.fetchDataFileFromFTP();
         sahDataSyncShutdownManager.initiateShutdown(0);
     }
 
