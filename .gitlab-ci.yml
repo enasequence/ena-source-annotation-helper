@@ -42,7 +42,7 @@ build_dev:
       - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
-    - ncbi-format-changed-approach
+    - dcp-3441-ncbi-format-changes
 
 deploy_dev:
   stage: deploy
@@ -107,7 +107,7 @@ build_docker_image:
       - dist
   only:
     - master
-    - ncbi-format-changed-approach
+    - dcp-3441-ncbi-format-changes
 
 deploy_prod:
   stage: deploy
@@ -122,4 +122,4 @@ deploy_prod:
   when: manual
   only:
     - master
-    - ncbi-format-changed-approach
+    - dcp-3441-ncbi-format-changes
