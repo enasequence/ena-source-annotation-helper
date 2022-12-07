@@ -122,4 +122,3 @@ deploy_prod:
   when: manual
   only:
     - master
-    - dcp-3441-ncbi-format-changes
