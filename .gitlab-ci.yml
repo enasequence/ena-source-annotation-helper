@@ -1,7 +1,7 @@
-image: openjdk:8
+image: openjdk:17.0.2-slim-buster
 
 variables:
-  VERSION: "1.1.4"
+  VERSION: "1.2.0-beta"
   DOCKER_DRIVER: overlay2
 
 stages:
@@ -21,7 +21,7 @@ test:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/test/' src/main/resources/application.properties
-    - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-test.properties
+    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-test.properties
     - ./gradlew clean test
   allow_failure: true
   tags:
@@ -33,7 +33,7 @@ build_dev:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
-    - sed -i -e "s/<es-cluster-name>/$ES_DEV_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_DEV_HOST_NAME/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
+    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
@@ -42,6 +42,7 @@ build_dev:
       - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
+    - ncbi-format-changed-approach
 
 deploy_dev:
   stage: deploy
@@ -70,7 +71,7 @@ build_prod:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/prod/' src/main/resources/application.properties
-    - sed -i -e "s/<es-cluster-name>/$ES_PROD_CLUSTER_NAME/" -e "s/<es-host-name>/$ES_PROD_HOST_NAME/" -e "s/<es-port>/$ES_PROD_PORT/" src/main/resources/application-prod.properties
+    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_PROD_PORT/" src/main/resources/application-prod.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
@@ -106,6 +107,7 @@ build_docker_image:
       - dist
   only:
     - master
+    - ncbi-format-changed-approach
 
 deploy_prod:
   stage: deploy
@@ -120,3 +122,4 @@ deploy_prod:
   when: manual
   only:
     - master
+    - ncbi-format-changed-approach
