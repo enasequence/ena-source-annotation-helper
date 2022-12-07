@@ -31,6 +31,7 @@ import uk.ac.ebi.ena.annotation.helper.exception.BadRequestException;
 import uk.ac.ebi.ena.annotation.helper.exception.SAHErrorCode;
 import uk.ac.ebi.ena.annotation.helper.mapper.CollectionMapper;
 import uk.ac.ebi.ena.annotation.helper.mapper.InstituteMapper;
+import uk.ac.ebi.ena.annotation.helper.mapper.QualifierTypeMapper;
 import uk.ac.ebi.ena.annotation.helper.mapper.SAHResponseMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.repository.InstitutionRepository;
@@ -82,7 +83,7 @@ public class SAHServiceImpl implements SAHService {
         if (isEmpty(qualifierType)) {
             optionalInstitute  = institutionRepository.findByUniqueNameExact(name);
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             optionalInstitute = institutionRepository
                     .findByUniqueNameAndQualifierTypeArray(name, listQT);
         }
@@ -93,7 +94,7 @@ public class SAHServiceImpl implements SAHService {
             if (isEmpty(qualifierType)) {
                 optionalInstitute  = institutionRepository.findByUniqueNameExact(name.toUpperCase(Locale.ROOT));
             } else {
-                List<String> listQT = Arrays.asList(qualifierType);
+                List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
                 optionalInstitute = institutionRepository
                         .findByUniqueNameAndQualifierTypeArray(name.toUpperCase(Locale.ROOT), listQT);
             }
@@ -110,7 +111,7 @@ public class SAHServiceImpl implements SAHService {
                     Sort.by("_score").descending())
             );
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             institutionList = institutionRepository
                     .findByInstituteFuzzyAndQualifierTypeArray(name, listQT,
                             PageRequest.of(0, QUERY_RESULTS_LIMIT,
@@ -144,7 +145,7 @@ public class SAHServiceImpl implements SAHService {
             listCollection = collectionRepository
                     .findByInstId(optionalInstitute.get().getInstId());
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             listCollection = collectionRepository
                     .findByInstIdAndQualifierTypeArray(optionalInstitute.get().getInstId(), listQT);
         }
@@ -178,7 +179,7 @@ public class SAHServiceImpl implements SAHService {
             listCollection =
                     collectionRepository.findByInstIdAndCollNameFuzzy(optionalInstitute.get().getInstId(), collCode);
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             listCollection =
                     collectionRepository.findByInstIdAndCollNameFuzzyWithQualifierType(optionalInstitute.get().getInstId(),
                             collCode, listQT);

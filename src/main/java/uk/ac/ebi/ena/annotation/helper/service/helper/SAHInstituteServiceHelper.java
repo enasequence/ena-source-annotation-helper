@@ -26,6 +26,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Institution;
+import uk.ac.ebi.ena.annotation.helper.mapper.QualifierTypeMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.InstitutionRepository;
 import uk.ac.ebi.ena.annotation.helper.utils.SAHConstants;
 
@@ -77,7 +78,7 @@ public class SAHInstituteServiceHelper {
         if (isEmpty(qualifierType)) {
             optionalInstitute = institutionRepository.findByUniqueNameExact(instCode);
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             optionalInstitute = institutionRepository.findByUniqueNameAndQualifierTypeArray(instCode, listQT);
         }
 
@@ -87,7 +88,7 @@ public class SAHInstituteServiceHelper {
             if (isEmpty(qualifierType)) {
                 optionalInstitute  = institutionRepository.findByUniqueNameExact(instCode.toUpperCase(Locale.ROOT));
             } else {
-                List<String> listQT = Arrays.asList(qualifierType);
+                List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
                 optionalInstitute = institutionRepository
                         .findByUniqueNameAndQualifierTypeArray(instCode.toUpperCase(Locale.ROOT), listQT);
             }
@@ -114,7 +115,7 @@ public class SAHInstituteServiceHelper {
             listInstitution = institutionRepository.findByInstituteUniqueNameFuzzy(instUniqueName, PageRequest.of(0, QUERY_RESULTS_LIMIT,
                     Sort.by("_score").descending()));
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             listInstitution = institutionRepository.findByInstituteUniqueNameFuzzyAndQualifierType(instUniqueName, listQT, PageRequest.of(0, QUERY_RESULTS_LIMIT,
                     Sort.by("_score").descending()));
         }
@@ -128,7 +129,7 @@ public class SAHInstituteServiceHelper {
             listInstitution = institutionRepository.findByInstituteNameFuzzy(instName, PageRequest.of(0, QUERY_RESULTS_LIMIT,
                     Sort.by("_score").descending()));
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             listInstitution = institutionRepository.findByInstituteNameFuzzyAndQualifierType(instName, listQT, PageRequest.of(0, QUERY_RESULTS_LIMIT,
                     Sort.by("_score").descending()));
         }

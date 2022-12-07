@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.annotation.helper.dto.ValidationSearchResult;
 import uk.ac.ebi.ena.annotation.helper.entity.Collection;
 import uk.ac.ebi.ena.annotation.helper.entity.Institution;
+import uk.ac.ebi.ena.annotation.helper.mapper.QualifierTypeMapper;
 import uk.ac.ebi.ena.annotation.helper.repository.CollectionRepository;
 import uk.ac.ebi.ena.annotation.helper.utils.SAHConstants;
 
@@ -93,7 +94,7 @@ public class SAHCollectionServiceHelper {
         if (isEmpty(qualifierType)) {
             listCollection = collectionRepository.findByMultipleInstIdsAndCollNameExact(listInstituteIds, collectionCode);
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             listCollection = collectionRepository.findByMultipleInstIdsAndCollNameExactAndQualifierType(listInstituteIds, collectionCode, listQT);
         }
 
@@ -136,7 +137,7 @@ public class SAHCollectionServiceHelper {
             listCollection = collectionRepository.findByMultipleInstIdsAndStartsWithCollName(
                     listInstituteIds, collectionCode);
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             listCollection = collectionRepository.findByMultipleInstIdsAndStartsWithCollNameAndQualifierType(
                     listInstituteIds, collectionCode, listQT);
         }
@@ -180,7 +181,7 @@ public class SAHCollectionServiceHelper {
             listCollection = collectionRepository.findByMultipleInstIdsAndCollNameFuzzy(
                     listInstituteIds, collectionCode);
         } else {
-            List<String> listQT = Arrays.asList(qualifierType);
+            List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             listCollection = collectionRepository.findByMultipleInstIdsAndCollNameFuzzyAndQualifierType(
                     listInstituteIds, collectionCode, listQT);
         }
