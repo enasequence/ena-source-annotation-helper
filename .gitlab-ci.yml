@@ -80,6 +80,7 @@ build_prod:
       - build/libs/source-annotation-helper-${VERSION}.jar
   only:
     - master
+    - dcp-3441-ncbi-format-changes
 
 build_docker_image:
   image: docker:stable
