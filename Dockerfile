@@ -1,8 +1,8 @@
-FROM openjdk:17.0.2
+FROM openjdk:17.0.2  as builder
 
 EXPOSE 8080
 
 ARG JAR_FILE=./build/libs/source-annotation-helper-<app_version>.jar
-COPY ${JAR_FILE} app.jar
+COPY --from=builder ${JAR_FILE} app.jar
 
 ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
