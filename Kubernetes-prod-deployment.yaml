@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ena-dcap-sah
-          image: dockerhub.ebi.ac.uk/ena-dcap/ena-source-annotation-helper/master:latest
+          image: <container_app_image>
           ports:
             - containerPort: 8080
           env:
