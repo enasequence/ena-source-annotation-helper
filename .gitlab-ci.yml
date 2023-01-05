@@ -102,6 +102,10 @@ build_docker_image:
   services:
     - docker:dind
   stage: dockerise
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    CONTAINER_RUNTIME_IMAGE: runtime
   script:
     - sed -i -e "s/<app_version>/$VERSION/" Dockerfile
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
