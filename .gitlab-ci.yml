@@ -89,7 +89,9 @@ build_prod:
 build_docker_image:
   image: docker:stable
   services:
-    - docker:dind
+    - name: docker:dind
+      alias: docker
+      command: [ "--tls=false" ]
   stage: dockerise
   variables:
     DOCKER_HOST: tcp://docker:2375
