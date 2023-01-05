@@ -1,12 +1,9 @@
 image: openjdk:17.0.2-slim-buster
 
 variables:
-  VERSION: "1.2.0-beta-2"
+  VERSION: "1.2.0-beta-3"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
-  DOCKER_HOST: tcp://docker:2375
-  DOCKER_TLS_CERTDIR: ""
-  CONTAINER_RUNTIME_IMAGE: runtime
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
@@ -17,6 +14,8 @@ before_script:
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   - sed -i -e "s/<k8s_hh_wp_37_cluster_auth>/$K8S_HH_WP_37_CLUSTER_AUTH/" -e "s/<k8s_hh_wp_37_server>/$K8S_HH_WP_37_SERVER/" -e "s/<k8s_hh_wp_37_cluster>/$K8S_HH_WP_37_CLUSTER/" -e "s/<k8s_hh_wp_37_user>/$K8S_HH_WP_37_USER/" -e "s/<k8s_hh_wp_37_user_token>/$K8S_HH_WP_37_USER_TOKEN/" Kubernetes-cluster.yaml
   - export KUBECONFIG=./Kubernetes-cluster.yaml
 stages:
@@ -44,8 +43,6 @@ test:
 
 build_dev:
   stage: build
-  before_script:
-    - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
@@ -61,12 +58,6 @@ build_dev:
 
 deploy_dev:
   stage: deploy
-  before_script:
-    # Setup SSH deploy keys
-    - mkdir -p ~/.ssh
-    - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   script:
     - chmod u+x build/libs/source-annotation-helper-${VERSION}.jar
     - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.jar ena_adm@wp-p1m2-69:/nfs/public/rw/ena/source-annotation-helper/deploy
@@ -82,8 +73,6 @@ deploy_dev:
 
 build_prod:
   stage: build
-  before_script:
-    - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/prod/' src/main/resources/application.properties
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_PROD_PORT/" src/main/resources/application-prod.properties
