@@ -3,7 +3,19 @@ image: openjdk:17.0.2-slim-buster
 variables:
   VERSION: "1.2.0-beta-1"
   DOCKER_DRIVER: overlay2
+  CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
 
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+  ## Set timezone, default gitlab/docker can cause problem with DB
+  - TZ=Europe/London
+  - ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+  ## SSH config
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
+  - sed -i -e "s/<k8s_hh_wp_37_cluster_auth>/$K8S_HH_WP_37_CLUSTER_AUTH/" -e "s/<k8s_hh_wp_37_server>/$K8S_HH_WP_37_SERVER/" -e "s/<k8s_hh_wp_37_cluster>/$K8S_HH_WP_37_CLUSTER/" -e "s/<k8s_hh_wp_37_user>/$K8S_HH_WP_37_USER/" -e "s/<k8s_hh_wp_37_user_token>/$K8S_HH_WP_37_USER_TOKEN/" Kubernetes-cluster.yaml
+  - export KUBECONFIG=./Kubernetes-cluster.yaml
 stages:
   - test
   - build
@@ -87,11 +99,6 @@ build_docker_image:
   services:
     - docker:dind
   stage: dockerise
-  variables:
-    DOCKER_HOST: tcp://docker:2375
-    DOCKER_TLS_CERTDIR: ""
-    CONTAINER_RUNTIME_IMAGE: runtime
-    CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
   script:
     - sed -i -e "s/<app_version>/$VERSION/" Dockerfile
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
@@ -111,16 +118,29 @@ build_docker_image:
     - master
     - dcp-3441-ncbi-format-changes
 
-deploy_prod:
+k8s-deploy-dev:
+  image: dtzar/helm-kubectl
   stage: deploy
-  script:
-    - sed -i "s|TAG|$VERSION|g" k8s-deployment.yaml
-    - export KUBECONFIG=/home/gitlab-runner/.kube/<<webadmin-01-team-adm>> &&  kubectl apply -f k8s-deployment.yaml
-  tags:
-    - dcap-gitlab-runner
-  environment:
-    name: prod
-    url: https://www.ebi.ac.uk/ena/sah/api/
-  when: manual
   only:
     - master
+    - dcp-3441-ncbi-format-changes
+  script:
+    - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" Kubernetes-dev-deployment.yaml
+    - kubectl delete secret gitlab --namespace=ena-dcap
+    - kubectl create secret docker-registry gitlab --docker-server=$CI_REGISTRY --docker-username=$DOCKER_USER --docker-password=$DOCKER_PASSWORD --docker-email=$DOCKER_EMAIL --namespace=ena-dcap
+    - kubectl apply -f Kubernetes-dev-deployment.yaml --namespace=ena-dcap
+  when: manual
+
+k8s-deploy-prod:
+  image: dtzar/helm-kubectl
+  stage: deploy
+  only:
+    - tags
+    - master
+    - dcp-3441-ncbi-format-changes
+  script:
+    - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" Kubernetes-prod-deployment.yaml
+    - kubectl delete secret gitlab --namespace=ena-dcap
+    - kubectl create secret docker-registry gitlab --docker-server=$CI_REGISTRY --docker-username=$DOCKER_USER --docker-password=$DOCKER_PASSWORD --docker-email=$DOCKER_EMAIL --namespace=ena-dcap
+    - kubectl apply -f Kubernetes-prod-deployment.yaml --namespace=ena-dcap
+  when: manual
