@@ -1,7 +1,7 @@
 image: openjdk:17.0.2-slim-buster
 
 variables:
-  VERSION: "1.2.0-beta-5"
+  VERSION: "1.2.0-beta-6"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
 
@@ -124,8 +124,6 @@ k8s-deploy-dev:
     - dcp-3441-ncbi-format-changes
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" Kubernetes-dev-deployment.yaml
-    - kubectl delete secret gitlab --namespace=ena-dcap
-    - kubectl create secret docker-registry gitlab --docker-server=$CI_REGISTRY --docker-username=$DOCKER_USER --docker-password=$DOCKER_PASSWORD --docker-email=$DOCKER_EMAIL --namespace=ena-dcap
     - kubectl apply -f Kubernetes-dev-deployment.yaml --namespace=ena-dcap
   tags:
     - dcap-gitlab-runner-docker
@@ -140,8 +138,6 @@ k8s-deploy-prod:
     - dcp-3441-ncbi-format-changes
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" Kubernetes-prod-deployment.yaml
-    - kubectl delete secret gitlab --namespace=ena-dcap
-    - kubectl create secret docker-registry gitlab --docker-server=$CI_REGISTRY --docker-username=$DOCKER_USER --docker-password=$DOCKER_PASSWORD --docker-email=$DOCKER_EMAIL --namespace=ena-dcap
     - kubectl apply -f Kubernetes-prod-deployment.yaml --namespace=ena-dcap
   tags:
     - dcap-gitlab-runner-docker
