@@ -1,7 +1,7 @@
 image: openjdk:17.0.2-slim-buster
 
 variables:
-  VERSION: "1.2.0-beta-6"
+  VERSION: "1.2.0-beta-7"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
 
@@ -127,13 +127,14 @@ k8s-deploy-dev:
     - kubectl apply -f Kubernetes-dev-deployment.yaml --namespace=ena-dcap
   tags:
     - dcap-gitlab-runner-docker
+  dependencies:
+    - build_docker_image
   when: manual
 
 k8s-deploy-prod:
   image: dtzar/helm-kubectl
   stage: deploy
   only:
-    - tags
     - master
     - dcp-3441-ncbi-format-changes
   script:
@@ -141,4 +142,6 @@ k8s-deploy-prod:
     - kubectl apply -f Kubernetes-prod-deployment.yaml --namespace=ena-dcap
   tags:
     - dcap-gitlab-runner-docker
+  dependencies:
+    - build_docker_image
   when: manual
