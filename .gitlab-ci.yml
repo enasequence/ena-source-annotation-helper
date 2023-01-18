@@ -108,10 +108,6 @@ build_docker_image:
     - dcap-gitlab-runner-docker
   dependencies:
     - build_prod
-  artifacts:
-    expire_in: 1 day
-    paths:
-      - dist
   only:
     - master
     - dcp-3441-ncbi-format-changes
