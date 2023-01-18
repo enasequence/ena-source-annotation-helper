@@ -19,8 +19,8 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: JAVA_OPTS
-               value: "-Dhttp.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|.cluster.local -Dhttps.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttps.proxyPort=3128"
+          - name: JAVA_OPTS
+             value: "-Dspring.profiles.active=dev -Dhttp.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|.cluster.local -Dhttps.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttps.proxyPort=3128"
       imagePullSecrets:
         - name: regcred
 
