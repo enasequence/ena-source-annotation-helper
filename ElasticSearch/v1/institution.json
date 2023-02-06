@@ -1,4 +1,7 @@
 {
+  "aliases": {
+    "institution": {}
+  },
   "settings": {
     "number_of_shards": 1,
     "number_of_replicas": 0,
@@ -75,7 +78,7 @@
         }
       },
       "qualifier_type": {
-        "type": "text",
+        "type": "keyword",
         "meta": {
           "description": "Institution Qualifier Type"
         }
