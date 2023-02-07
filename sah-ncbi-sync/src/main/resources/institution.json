@@ -1,7 +1,4 @@
 {
-  "aliases": {
-    "collection": {}
-  },
   "settings": {
     "number_of_shards": 1,
     "number_of_replicas": 0,
@@ -9,6 +6,7 @@
       "analyzer": {
         "folding": {
           "tokenizer": "standard",
+          "type": "custom",
           "filter": [
             "lowercase",
             "asciifolding"
@@ -29,52 +27,70 @@
   "mappings": {
     "dynamic": "false",
     "properties": {
-      "coll_id": {
-        "type": "long",
-        "meta": {
-          "description": "Collection Identifier"
-        }
-      },
       "inst_id": {
         "type": "long",
         "meta": {
-          "description": "Institute Identifier"
+          "description": "Institution Identifier"
         }
       },
-      "coll_code": {
+      "inst_code": {
         "type": "text",
         "meta": {
-          "description": "Collection Code"
+          "description": "Institution Code"
         }
       },
-      "coll_name": {
+      "unique_name": {
+        "type": "keyword",
+        "meta": {
+          "description": "Institution Unique Name"
+        }
+      },
+      "synonyms": {
         "type": "text",
         "meta": {
-          "description": "Collection Name"
+          "description": "Institution synonyms"
+        }
+      },
+      "inst_name": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Name"
+        }
+      },
+      "country": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Country"
+        }
+      },
+      "address": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Address"
         }
       },
       "coll_type": {
         "type": "text",
         "meta": {
-          "description": "Collection Type"
+          "description": "Institution Collection Type"
         }
       },
       "qualifier_type": {
         "type": "keyword",
         "meta": {
-          "description": "Qualifier Type"
+          "description": "Institution Qualifier Type"
         }
       },
-      "coll_url": {
+      "home_url": {
         "type": "text",
         "meta": {
-          "description": "Collection URL"
+          "description": "Institution Home URL"
         }
       },
-      "coll_url_rule": {
+      "url_rule": {
         "type": "text",
         "meta": {
-          "description": "Collection URL Rule"
+          "description": "Institution URL Rule"
         }
       }
     }

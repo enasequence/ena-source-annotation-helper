@@ -4,14 +4,16 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
+import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.entity.Institution;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Collection;
 
+import static uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants.NEW_COLL_INDEX_NAME;
 import static uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants.NEW_INST_INDEX_NAME;
 
 @Repository
@@ -22,6 +24,16 @@ public class InstitutionRepositoryImpl implements InstitutionRepository {
 
     public InstitutionRepositoryImpl(ElasticsearchClient restHighLevelClient) {
         this.restHighLevelClient = restHighLevelClient;
+    }
+
+    @Override
+    public void createInstitutionIndex() throws IOException {
+        ClassLoader classLoader = getClass().getClassLoader();
+        InputStream instutionMapping = classLoader.getResourceAsStream("institution.json");
+        CreateIndexRequest request =
+                CreateIndexRequest.of(builder -> builder.index(NEW_INST_INDEX_NAME).withJson(instutionMapping));
+        boolean created = restHighLevelClient.indices().create(request).acknowledged();
+        log.debug("Institution Index {} Created: ", NEW_INST_INDEX_NAME);
     }
 
     @Override

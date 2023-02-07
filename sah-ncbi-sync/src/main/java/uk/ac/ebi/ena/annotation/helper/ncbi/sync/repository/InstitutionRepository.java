@@ -26,6 +26,8 @@ import java.util.Collection;
 
 public interface InstitutionRepository {
 
+    public void createInstitutionIndex() throws IOException;
+
     BulkResponse saveAll(Collection<Institution> institutions) throws IOException;
 
 }

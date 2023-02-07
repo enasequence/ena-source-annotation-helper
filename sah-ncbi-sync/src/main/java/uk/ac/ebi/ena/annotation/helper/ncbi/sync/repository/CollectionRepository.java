@@ -25,6 +25,8 @@ import java.io.IOException;
 
 public interface CollectionRepository {
 
+    public void createCollectionIndex() throws IOException;
+
     BulkResponse saveAll(java.util.Collection<Collection> collections) throws IOException;
 
 }

@@ -1,5 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import uk.ac.ebi.ena.annotation.helper.ncbi.sync.service.NCBISyncService;
 
 import java.io.IOException;
 
+@Slf4j
 @Component
 public class NCBISyncServiceImpl implements NCBISyncService {
 
@@ -36,23 +38,48 @@ public class NCBISyncServiceImpl implements NCBISyncService {
 
     @EventListener(ApplicationReadyEvent.class)
     public void processNCBIDataRead() {
+
+        try {
+            //fetch and persist institutions data
+            processInstitutionsData();
+            //fetch and persist institutions data
+            processCollectionsData();
+        } catch (Exception ex) {
+            log.info("Error occurred while processing the NCBI data import.");
+        } finally {
+            sahDataSyncShutdownManager.initiateShutdown(0);
+        }
+    }
+
+    public void processInstitutionsData() {
         //fetch and persist institutions data
         try {
+            //fetch the data from the FTP server
             institutionDataReadService.fetchDataFileFromFTP();
+            // create a new index
+            institutionRepository.createInstitutionIndex();
+            // populate the index with data fetched from FTP server
             institutionRepository.saveAll(SAHDataObject.mapInstitutions.values());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.info("Failed to process the Institutions data.");
+            sahDataSyncShutdownManager.initiateShutdown(0);
         }
+        sahDataSyncShutdownManager.initiateShutdown(0);
+    }
 
-        //fetch and persist collections data
+    public void processCollectionsData() {
+        //fetch and persist institutions data
         try {
+            //fetch the data from the FTP server
             collectionDataReadService.fetchDataFileFromFTP();
+            // create a new index
+            collectionRepository.createCollectionIndex();
+            // populate the index with data fetched from FTP server
             collectionRepository.saveAll(SAHDataObject.mapCollections.values());
         } catch (IOException e) {
-            e.printStackTrace();
+            log.info("Failed to process the Collections data.");
+            sahDataSyncShutdownManager.initiateShutdown(0);
         }
-
-        sahDataSyncShutdownManager.initiateShutdown(0);
     }
 
 
