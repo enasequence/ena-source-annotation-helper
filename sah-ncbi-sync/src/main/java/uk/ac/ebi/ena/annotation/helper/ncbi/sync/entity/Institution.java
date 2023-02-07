@@ -22,41 +22,23 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-
-import static uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants.INDEX_INSTITUTION;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Document(indexName = INDEX_INSTITUTION)
 public class Institution {
-
-    @Id
     private String id;
-    @Field(name = "inst_id")
     private int instId;
-    @Field(name = "inst_code")
     private String instCode;
-    @Field(name = "unique_name")
     private String uniqueName;
-    @Field(name = "synonyms")
     private String synonyms;
-    @Field(name = "inst_name")
     private String instName;
     private String country;
     private String address;
-    @Field(name = "coll_type")
     private String collType;
-    @Field(name = "qualifier_type")
     private String qualifierType;
-
-    @Field(name = "home_url")
     private String homeUrl;
-    @Field(name = "url_rule")
     private String urlRule;
 
     @Override

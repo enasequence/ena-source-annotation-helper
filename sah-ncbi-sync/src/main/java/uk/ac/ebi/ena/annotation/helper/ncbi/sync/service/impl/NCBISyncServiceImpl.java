@@ -9,6 +9,8 @@ import uk.ac.ebi.ena.annotation.helper.ncbi.sync.repository.CollectionRepository
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.repository.InstitutionRepository;
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.service.NCBISyncService;
 
+import java.io.IOException;
+
 @Component
 public class NCBISyncServiceImpl implements NCBISyncService {
 
@@ -34,16 +36,23 @@ public class NCBISyncServiceImpl implements NCBISyncService {
 
     @EventListener(ApplicationReadyEvent.class)
     public void processNCBIDataRead() {
-        institutionDataReadService.fetchDataFileFromFTP();
-        collectionDataReadService.fetchDataFileFromFTP();
-        persistDataObjects();
-        sahDataSyncShutdownManager.initiateShutdown(0);
-    }
+        //fetch and persist institutions data
+        try {
+            institutionDataReadService.fetchDataFileFromFTP();
+            institutionRepository.saveAll(SAHDataObject.mapInstitutions.values());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    public boolean persistDataObjects() {
-        institutionRepository.saveAll(SAHDataObject.mapInstitutions.values());
-        collectionRepository.saveAll(SAHDataObject.mapCollections.values());
-        return true;
+        //fetch and persist collections data
+        try {
+            collectionDataReadService.fetchDataFileFromFTP();
+            collectionRepository.saveAll(SAHDataObject.mapCollections.values());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        sahDataSyncShutdownManager.initiateShutdown(0);
     }
 
 

@@ -18,14 +18,14 @@
 
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync.repository;
 
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import co.elastic.clients.elasticsearch.core.BulkResponse;
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.entity.Institution;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.IOException;
+import java.util.Collection;
 
-public interface InstitutionRepository extends ElasticsearchRepository<Institution, String> {
+public interface InstitutionRepository {
 
-    List<Institution> findAll();
+    BulkResponse saveAll(Collection<Institution> institutions) throws IOException;
 
 }

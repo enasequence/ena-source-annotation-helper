@@ -18,13 +18,13 @@
 
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync.repository;
 
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
+import co.elastic.clients.elasticsearch.core.BulkResponse;
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.entity.Collection;
 
-import java.util.List;
+import java.io.IOException;
 
-public interface CollectionRepository extends ElasticsearchRepository<Collection, String> {
+public interface CollectionRepository {
 
-    List<Collection> findAll();
+    BulkResponse saveAll(java.util.Collection<Collection> collections) throws IOException;
 
 }

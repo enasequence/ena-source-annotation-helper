@@ -18,10 +18,18 @@
 
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class SAHDataSyncConstants {
 
-    public static final String INDEX_COLLECTION = "collection";
-    public static final String INDEX_INSTITUTION = "institution";
+    static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuuMMdd_HHmm");
+    static final String currentDate = dtf.format(LocalDateTime.now());
+    public static final String INDEX_COLLECTION_ALIAS = "collection";
+    public static final String INDEX_INSTITUTION_ALIAS= "institution";
+    public static final String NEW_INST_INDEX_NAME = "institution" + currentDate;
+    public static final String NEW_COLL_INDEX_NAME = "collection" + currentDate;
 
     public static final int INST_ID_POS = 1;
     public static final int INST_CODE_POS = 2;
