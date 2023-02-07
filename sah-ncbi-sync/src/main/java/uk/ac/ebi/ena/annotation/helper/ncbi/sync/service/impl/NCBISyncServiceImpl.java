@@ -61,8 +61,11 @@ public class NCBISyncServiceImpl implements NCBISyncService {
             institutionRepository.createInstitutionIndex();
             // populate the index with data fetched from FTP server
             institutionRepository.saveAll(SAHDataObject.mapInstitutions.values());
-            //TODO move the alias to new index
             log.info("Processing Data for Institutions - Finished");
+            //TODO move the alias to new index
+            if (institutionRepository.moveInstitutionIndexAlias()) {
+                log.info("Alias moved to new Institution Index Successfully.");
+            }
         } catch (IOException e) {
             log.info("Failed to process the Institutions data.");
             sahDataSyncShutdownManager.initiateShutdown(0);
@@ -79,8 +82,12 @@ public class NCBISyncServiceImpl implements NCBISyncService {
             collectionRepository.createCollectionIndex();
             // populate the index with data fetched from FTP server
             collectionRepository.saveAll(SAHDataObject.mapCollections.values());
-            //TODO move the alias to new index
             log.info("Processing Data for Collections - Finished");
+            //TODO move the alias to new index
+            if (collectionRepository.moveCollectionIndexAlias()) {
+                log.info("Alias moved to new Collection Index Successfully.");
+            }
+
         } catch (IOException e) {
             log.info("Failed to process the Collections data.");
             sahDataSyncShutdownManager.initiateShutdown(0);

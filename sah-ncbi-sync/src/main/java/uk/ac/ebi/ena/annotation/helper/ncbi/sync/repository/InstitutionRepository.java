@@ -28,6 +28,8 @@ public interface InstitutionRepository {
 
     public void createInstitutionIndex() throws IOException;
 
+    public boolean moveInstitutionIndexAlias();
+
     BulkResponse saveAll(Collection<Institution> institutions) throws IOException;
 
 }

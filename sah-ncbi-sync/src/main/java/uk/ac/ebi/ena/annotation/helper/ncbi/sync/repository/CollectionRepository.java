@@ -27,6 +27,8 @@ public interface CollectionRepository {
 
     public void createCollectionIndex() throws IOException;
 
+    public boolean moveCollectionIndexAlias();
+
     BulkResponse saveAll(java.util.Collection<Collection> collections) throws IOException;
 
 }
