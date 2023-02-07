@@ -65,6 +65,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService {
                                 collObj.setColl_id(coll_id);
                             } catch (NumberFormatException nfe) {
                                 log.debug("Invalid Collection Id - '{}'", tokenVal);
+                                continue;
                             }
                             break;
                         case COLL_INST_ID_POS:
@@ -73,6 +74,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService {
                                 collObj.setInstId(inst_id);
                             } catch (NumberFormatException nfe) {
                                 log.debug("Invalid Institution Id - '{}' in collection file", tokenVal);
+                                continue;
                             }
                             break;
                         case COLL_NAME_POS:
@@ -113,7 +115,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService {
                 //all tokens read, add to map
                 if (inst) {
                     SAHDataObject.mapInstitutions.put(instObj.getInstId(), instObj);
-                } else if (!isEmpty(collObj) || collObj.getColl_id() != 0) {
+                } else if (!isEmpty(collObj) && collObj.getColl_id() != 0) {
                     SAHDataObject.mapCollections.put(collObj.getColl_id(), collObj);
                 }
             }

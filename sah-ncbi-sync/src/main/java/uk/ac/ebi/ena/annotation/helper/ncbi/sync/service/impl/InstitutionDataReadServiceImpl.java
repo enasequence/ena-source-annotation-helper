@@ -62,6 +62,7 @@ public class InstitutionDataReadServiceImpl implements FTPDataReadService {
                                 instObj.setInstId(inst_id);
                             } catch (NumberFormatException nfe) {
                                 log.debug("Invalid Institution Id - '{}'", tokenVal);
+                                continue;
                             }
                             break;
                         case INST_CODE_POS:
@@ -91,7 +92,9 @@ public class InstitutionDataReadServiceImpl implements FTPDataReadService {
                     continue;
                 }
                 //all tokens read, add to map
-                SAHDataObject.mapInstitutions.put(instObj.getInstId(), instObj);
+                if (!isEmpty(instObj) && instObj.getInstId() != 0 && !isEmpty(instObj.getInstCode())) {
+                    SAHDataObject.mapInstitutions.put(instObj.getInstId(), instObj);
+                }
             }
             br.close();
             return true;

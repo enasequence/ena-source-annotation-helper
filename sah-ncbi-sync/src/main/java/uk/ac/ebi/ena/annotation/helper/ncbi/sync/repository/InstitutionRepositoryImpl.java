@@ -29,19 +29,16 @@ public class InstitutionRepositoryImpl implements InstitutionRepository {
     @Override
     public void createInstitutionIndex() throws IOException {
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream instutionMapping = classLoader.getResourceAsStream("institution.json");
+        InputStream institutionMapping = classLoader.getResourceAsStream("institution.json");
         CreateIndexRequest request =
-                CreateIndexRequest.of(builder -> builder.index(NEW_INST_INDEX_NAME).withJson(instutionMapping));
+                CreateIndexRequest.of(builder -> builder.index(NEW_INST_INDEX_NAME).withJson(institutionMapping));
         boolean created = restHighLevelClient.indices().create(request).acknowledged();
         log.debug("Institution Index {} Created: ", NEW_INST_INDEX_NAME);
     }
 
     @Override
     public BulkResponse saveAll(Collection<Institution> institutions) throws IOException {
-
-
         BulkRequest.Builder br = new BulkRequest.Builder();
-
         for (Institution inst : institutions) {
             br.operations(op -> op
                     .index(idx -> idx
@@ -50,9 +47,7 @@ public class InstitutionRepositoryImpl implements InstitutionRepository {
                     )
             );
         }
-
         BulkResponse result = restHighLevelClient.bulk(br.build());
-
         // Log errors, if any
         if (result.errors()) {
             log.error("Bulk had errors");

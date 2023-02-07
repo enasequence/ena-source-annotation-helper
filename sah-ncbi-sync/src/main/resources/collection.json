@@ -6,6 +6,7 @@
       "analyzer": {
         "folding": {
           "tokenizer": "standard",
+          "type": "custom",
           "filter": [
             "lowercase",
             "asciifolding"
