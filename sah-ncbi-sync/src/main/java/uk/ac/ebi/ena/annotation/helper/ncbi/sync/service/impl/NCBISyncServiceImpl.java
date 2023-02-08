@@ -1,8 +1,6 @@
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.config.SAHDataSyncShutdownManager;
 import uk.ac.ebi.ena.annotation.helper.ncbi.sync.data.SAHDataObject;
@@ -22,9 +20,6 @@ public class NCBISyncServiceImpl implements NCBISyncService {
     final InstitutionRepository institutionRepository;
     final CollectionRepository collectionRepository;
 
-    // files storage path on local server (used for processing and maintaining the history)
-    public static final String local_server_path = "/hps/nobackup/cochrane/ena/index/source-attribute-helper";
-
     public NCBISyncServiceImpl(InstitutionDataReadServiceImpl institutionDataReadService,
                                CollectionDataReadServiceImpl collectionDataReadService,
                                SAHDataSyncShutdownManager sahDataSyncShutdownManager,
@@ -36,7 +31,6 @@ public class NCBISyncServiceImpl implements NCBISyncService {
         this.collectionRepository = collectionRepository;
     }
 
-//    @EventListener(ApplicationReadyEvent.class)
     @Override
     public void processNCBIDataRead() {
 
