@@ -36,7 +36,8 @@ public class NCBISyncServiceImpl implements NCBISyncService {
         this.collectionRepository = collectionRepository;
     }
 
-    @EventListener(ApplicationReadyEvent.class)
+//    @EventListener(ApplicationReadyEvent.class)
+    @Override
     public void processNCBIDataRead() {
 
         try {

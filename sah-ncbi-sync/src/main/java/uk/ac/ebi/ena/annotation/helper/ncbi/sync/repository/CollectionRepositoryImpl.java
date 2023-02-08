@@ -78,7 +78,7 @@ public class CollectionRepositoryImpl implements CollectionRepository {
         BulkResponse result = restHighLevelClient.bulk(br.build());
         // Log errors, if any
         if (result.errors()) {
-            log.error("Bulk had errors");
+            log.error("Encountered errors while loading Institutions.");
             for (BulkResponseItem item : result.items()) {
                 if (item.error() != null) {
                     log.error(item.error().reason());

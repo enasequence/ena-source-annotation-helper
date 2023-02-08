@@ -19,17 +19,28 @@
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.util.StringUtils;
+import uk.ac.ebi.ena.annotation.helper.ncbi.sync.service.NCBISyncService;
 
 @SpringBootApplication
 @EnableElasticsearchRepositories(basePackages = "uk.ac.ebi.ena.annotation.helper.ncbi.sync.repository")
 @Slf4j
-public class SAHNCBISyncApplication {
+public class SAHNCBISyncApplication implements CommandLineRunner {
+
+    private final NCBISyncService ncbiSyncService;
+
+    public SAHNCBISyncApplication(NCBISyncService ncbiSyncService) {
+        this.ncbiSyncService = ncbiSyncService;
+    }
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(SAHNCBISyncApplication.class)
@@ -37,4 +48,19 @@ public class SAHNCBISyncApplication {
                 .run(args);
     }
 
+    @Override
+    public void run(String... args) throws Exception {
+        try {
+            ncbiSyncService.processNCBIDataRead();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        } finally {
+            log.info("Execution cycle completed");
+            exit(0);
+        }
+    }
+
+    private void exit(int status) {
+        System.exit(status);
+    }
 }
