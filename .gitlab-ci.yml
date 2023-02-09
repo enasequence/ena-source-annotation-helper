@@ -4,6 +4,8 @@ variables:
   VERSION: "1.2.0-beta-11"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
+  JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
+  JOB_LIBRARY_TEST: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/test/lib"
 
 before_script:
   - export GRADLE_USER_HOME=`pwd`/.gradle
@@ -45,13 +47,16 @@ build_dev:
   stage: build
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
+    - sed -i 's/<env>/dev/' biocollections-importer/src/main/resources/application.properties
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
+    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" biocollections-importer/src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
   artifacts:
     paths:
       - build/libs/source-annotation-helper-${VERSION}.jar
+      - biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
   only:
     - master
     - dcp-3441-ncbi-format-changes
@@ -75,13 +80,16 @@ build_prod:
   stage: build
   script:
     - sed -i 's/<env>/prod/' src/main/resources/application.properties
+    - sed -i 's/<env>/prod/' biocollections-importer/src/main/resources/application.properties
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_PROD_PORT/" src/main/resources/application-prod.properties
+    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_PROD_PORT/" biocollections-importer/src/main/resources/application-prod.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
   artifacts:
     paths:
       - build/libs/source-annotation-helper-${VERSION}.jar
+      - biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
   only:
     - master
     - dcp-3441-ncbi-format-changes
@@ -111,6 +119,43 @@ build_docker_image:
   only:
     - master
     - dcp-3441-ncbi-format-changes
+
+deploy_importer_tool_dev:
+  stage: deploy
+  before_script:
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
+    - mkdir -p ~/.ssh
+  script:
+    - chmod u+x biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
+    - scp -o StrictHostKeyChecking=no build/libs/${CI_PROJECT_NAME}-${APP_VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY_TEST}
+    - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY_TEST}/biocollections-importer-${VERSION}.jar ${JOB_LIBRARY_TEST}/biocollections-importer.jar"
+  tags:
+    - dcap-gitlab-runner
+  dependencies:
+    - build_dev
+
+deploy_importer_tool_prod:
+  stage: deploy
+  before_script:
+    # Setup SSH deploy keys
+    - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
+    - mkdir -p ~/.ssh
+  script:
+    - chmod u+x biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
+    - scp -o StrictHostKeyChecking=no build/libs/${CI_PROJECT_NAME}-${APP_VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY}
+    - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY}/biocollections-importer-${VERSION}.jar ${JOB_LIBRARY}/biocollections-importer.jar"
+  tags:
+    - dcap-gitlab-runner
+  dependencies:
+    - build_prod
+  only:
+    - master
+  when: manual
 
 k8s-deploy-dev:
   image: dtzar/helm-kubectl:3.11.0
