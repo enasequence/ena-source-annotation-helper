@@ -1,0 +1,54 @@
+plugins {
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+ext {
+    set('elasticsearch.version', '8.5.2')
+}
+
+group = 'uk.ac.ebi.ena.sah.biocollections.importer'
+version = System.getenv("VERSION")
+sourceCompatibility = '17'
+
+jar {
+    enabled = false
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'commons-validator:commons-validator:1.7'
+
+    implementation group: 'org.springframework.data', name: 'spring-data-elasticsearch', version: '5.0.0'
+    implementation group: 'org.elasticsearch.client', name: 'elasticsearch-rest-client', version: '8.5.2'
+
+    implementation group: 'jakarta.json', name: 'jakarta.json-api', version: '2.1.1'
+    implementation group: 'org.hibernate', name: 'hibernate-validator', version: '8.0.0.Final'
+    testImplementation 'org.hsqldb:hsqldb:2.6.1'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
