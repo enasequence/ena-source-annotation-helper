@@ -113,7 +113,7 @@ build_docker_image:
     - dcp-3441-ncbi-format-changes
 
 k8s-deploy-dev:
-  image: dtzar/helm-kubectl
+  image: dtzar/helm-kubectl:3.11.0
   stage: deploy
   only:
     - master
@@ -128,7 +128,7 @@ k8s-deploy-dev:
   when: manual
 
 k8s-deploy-prod:
-  image: dtzar/helm-kubectl
+  image: dtzar/helm-kubectl:3.11.0
   stage: deploy
   only:
     - master
