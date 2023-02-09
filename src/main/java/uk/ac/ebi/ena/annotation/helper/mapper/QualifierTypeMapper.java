@@ -7,9 +7,9 @@ import java.util.Map;
 
 public enum QualifierTypeMapper {
 
-    SPECIMEN_V("specimen_voucher", "specimen"),
-    BIO_MAT("bio_material", "bio"),
-    CULTURE_COLL("culture_collection", "culture");
+    SPECIMEN_V("specimen_voucher", "specimen-voucher"),
+    BIO_MAT("bio_material", "bio-material"),
+    CULTURE_COLL("culture_collection", "culture-collection");
 
     private static Map<String, QualifierTypeMapper> valueToTextMapping;
 
