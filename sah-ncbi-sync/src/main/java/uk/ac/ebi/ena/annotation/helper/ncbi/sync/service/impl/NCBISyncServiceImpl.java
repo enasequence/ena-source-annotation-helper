@@ -32,26 +32,55 @@ public class NCBISyncServiceImpl implements NCBISyncService {
     }
 
     @Override
-    public void processNCBIDataRead() {
-
+    public boolean processNCBIDataRead() {
         try {
-            //fetch and persist institutions data
-            processInstitutionsData();
-            //fetch and persist institutions data
-            processCollectionsData();
+            //fetch biocollections data
+            boolean fetchSuccessful = importBioCollectionsData();
+            if (!fetchSuccessful) {
+                return false;
+            }
+            // persist biocollections data
+            persistBioCollectionsData();
+            return true;
         } catch (Exception ex) {
             log.info("Error occurred while processing the NCBI data import.");
-        } finally {
-            sahDataSyncShutdownManager.initiateShutdown(0);
+            return false;
         }
     }
 
-    public void processInstitutionsData() {
-        //fetch and persist institutions data
-        log.info("Processing Data for Institutions - Started");
+    /**
+     * importBioCollectionsData.
+     *
+     * @return
+     */
+    public boolean importBioCollectionsData() {
+        log.info("Importing Data for Institutions - Started");
+        //fetch the data from the FTP server
+        boolean instImport = institutionDataReadService.fetchDataFileFromFTP();
+        if (!instImport) {
+            log.info("Failed to import the Institutions data.");
+            return false;
+        }
+        //fetch the data from the FTP server
+        log.info("Importing Data for Collections - Started");
+        boolean collImport = collectionDataReadService.fetchDataFileFromFTP();
+        if (!collImport) {
+            log.info("Failed to import the Collections data.");
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * persistBioCollectionsData.
+     *
+     * @return
+     */
+    public boolean persistBioCollectionsData() {
+        //fetch and persist Collections data
+        log.info("Persisting Data for Bio-collections - Started");
         try {
-            //fetch the data from the FTP server
-            institutionDataReadService.fetchDataFileFromFTP();
+            // processing for the institutions
             // create a new index
             institutionRepository.createInstitutionIndex();
             // populate the index with data fetched from FTP server
@@ -61,16 +90,8 @@ public class NCBISyncServiceImpl implements NCBISyncService {
             if (institutionRepository.moveInstitutionIndexAlias()) {
                 log.info("Alias moved to new Institution Index Successfully.");
             }
-        } catch (IOException e) {
-            log.info("Failed to process the Institutions data.");
-            sahDataSyncShutdownManager.initiateShutdown(0);
-        }
-    }
 
-    public void processCollectionsData() {
-        //fetch and persist Collections data
-        log.info("Processing Data for Collections - Started");
-        try {
+            // processing for the collections
             //fetch the data from the FTP server
             collectionDataReadService.fetchDataFileFromFTP();
             // create a new index
@@ -82,12 +103,11 @@ public class NCBISyncServiceImpl implements NCBISyncService {
             if (collectionRepository.moveCollectionIndexAlias()) {
                 log.info("Alias moved to new Collection Index Successfully.");
             }
-
+            return true;
         } catch (IOException e) {
-            log.info("Failed to process the Collections data.");
-            sahDataSyncShutdownManager.initiateShutdown(0);
+            log.info("Failed - Persisting Data for Bio-collections");
+            return false;
         }
     }
-
 
 }

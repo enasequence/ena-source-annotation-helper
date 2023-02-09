@@ -18,32 +18,55 @@
 
 package uk.ac.ebi.ena.annotation.helper.ncbi.sync.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import uk.ac.ebi.ena.annotation.helper.ncbi.sync.utils.SAHDataSyncConstants;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
+@Document(indexName = SAHDataSyncConstants.INDEX_COLLECTION_ALIAS)
 public class Collection {
 
+    @Id
     private String id;
-    private int coll_id;
+    @Field(name = "coll_id")
+    @JsonProperty("coll_id")
+    private int collId;
+    @Field(name = "inst_id")
+    @JsonProperty("inst_id")
     private int instId;
+    @Field(name = "coll_code")
+    @JsonProperty("coll_code")
     private String collCode;
+    @Field(name = "coll_name")
+    @JsonProperty("coll_name")
     private String collName;
+    @Field(name = "coll_type")
+    @JsonProperty("coll_type")
     private String collType;
+    @Field(name = "qualifier_type")
+    @JsonProperty("qualifier_type")
     private String qualifierType;
+    @Field(name = "coll_url")
+    @JsonProperty("coll_url")
     private String collUrl;
+    @Field(name = "coll_url_rule")
+    @JsonProperty("coll_url_rule")
     private String collUrlRule;
 
     @Override
     public String toString() {
         return "Collection{" +
                 "id='" + id + '\'' +
-                ", coll_id=" + coll_id +
+                ", coll_id=" + collId +
                 ", instId=" + instId +
                 ", collCode='" + collCode + '\'' +
                 ", collName='" + collName + '\'' +

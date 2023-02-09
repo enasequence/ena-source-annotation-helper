@@ -28,8 +28,8 @@ public class SAHDataSyncConstants {
     static final String currentDate = dtf.format(LocalDateTime.now());
     public static final String INDEX_COLLECTION_ALIAS = "collection";
     public static final String INDEX_INSTITUTION_ALIAS= "institution";
-    public static final String NEW_INST_INDEX_NAME = "institution" + currentDate;
-    public static final String NEW_COLL_INDEX_NAME = "collection" + currentDate;
+    public static final String NEW_INST_INDEX_NAME = "institution_" + currentDate;
+    public static final String NEW_COLL_INDEX_NAME = "collection_" + currentDate;
 
     public static final int INST_ID_POS = 1;
     public static final int INST_CODE_POS = 2;

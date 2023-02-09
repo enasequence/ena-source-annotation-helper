@@ -15,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.List;
 import java.util.StringTokenizer;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
@@ -62,7 +61,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService {
                         case COLL_ID_POS:
                             try {
                                 int coll_id = Integer.parseInt(tokenVal);
-                                collObj.setColl_id(coll_id);
+                                collObj.setCollId(coll_id);
                             } catch (NumberFormatException nfe) {
                                 log.debug("Invalid Collection Id - '{}'", tokenVal);
                                 continue;
@@ -115,8 +114,8 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService {
                 //all tokens read, add to map
                 if (inst) {
                     SAHDataObject.mapInstitutions.put(instObj.getInstId(), instObj);
-                } else if (!isEmpty(collObj) && collObj.getColl_id() != 0) {
-                    SAHDataObject.mapCollections.put(collObj.getColl_id(), collObj);
+                } else if (!isEmpty(collObj) && collObj.getCollId() != 0) {
+                    SAHDataObject.mapCollections.put(collObj.getCollId(), collObj);
                 }
             }
             br.close();
