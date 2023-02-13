@@ -1,4 +1,4 @@
-image: openjdk:17.0.2
+image: openjdk:17-slim-bullseye
 
 variables:
   VERSION: "1.2.0-beta-12"
@@ -124,7 +124,8 @@ deploy_importer_tool_dev:
   stage: deploy
   before_script:
     # Setup SSH deploy keys
-    - 'dnf install openssh-client '
+    - 'apt-get update'
+    - which ssh-agent || ( apt-get install -qq openssh-client )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
     - mkdir -p ~/.ssh
@@ -141,6 +142,7 @@ deploy_importer_tool_prod:
   stage: deploy
   before_script:
     # Setup SSH deploy keys
+    - 'apt-get update'
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
