@@ -131,7 +131,7 @@ deploy_importer_tool_dev:
     - mkdir -p ~/.ssh
   script:
     - chmod u+x biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
-    - scp -o StrictHostKeyChecking=no build/libs/biocollections-importer-${VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY_TEST}
+    - scp -o StrictHostKeyChecking=no biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY_TEST}
     - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY_TEST}/biocollections-importer-${VERSION}.jar ${JOB_LIBRARY_TEST}/biocollections-importer.jar"
   tags:
     - dcap-gitlab-runner
@@ -149,7 +149,7 @@ deploy_importer_tool_prod:
     - mkdir -p ~/.ssh
   script:
     - chmod u+x biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
-    - scp -o StrictHostKeyChecking=no build/libs/biocollections-importer-${VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY}
+    - scp -o StrictHostKeyChecking=no biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY}
     - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY}/biocollections-importer-${VERSION}.jar ${JOB_LIBRARY}/biocollections-importer.jar"
   tags:
     - dcap-gitlab-runner
