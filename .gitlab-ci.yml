@@ -1,7 +1,7 @@
 image: openjdk:17-slim-bullseye
 
 variables:
-  VERSION: "1.2.0-beta-12"
+  VERSION: "1.2.0-beta-13"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
   JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
@@ -121,10 +121,11 @@ build_docker_image:
     - dcp-3441-ncbi-format-changes
 
 deploy_importer_tool_dev:
+  image: openjdk:8
   stage: deploy
   before_script:
     # Setup SSH deploy keys
-    - apt-get update
+#    - apt-get update
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
@@ -139,10 +140,11 @@ deploy_importer_tool_dev:
     - build_dev
 
 deploy_importer_tool_prod:
+  image: openjdk:8
   stage: deploy
   before_script:
     # Setup SSH deploy keys
-    - apt-get update
+#    - apt-get update
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
