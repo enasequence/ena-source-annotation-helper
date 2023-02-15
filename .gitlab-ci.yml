@@ -131,8 +131,8 @@ deploy_importer_tool_dev:
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
     - mkdir -p ~/.ssh
   script:
+    -  echo $(ls -l biocollections-importer/build/libs)
     - chmod u+x biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
-    - echo $(ls -l biocollections-importer/build/libs)
     - scp -o StrictHostKeyChecking=no biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY_TEST}
     - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY_TEST}/biocollections-importer-${VERSION}.jar ${JOB_LIBRARY_TEST}/biocollections-importer.jar"
   tags:
