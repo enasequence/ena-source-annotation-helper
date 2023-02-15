@@ -159,6 +159,7 @@ deploy_importer_tool_prod:
     - build_prod
   only:
     - master
+    - dcp-3441-ncbi-format-changes
   when: manual
 
 k8s-deploy-dev:
