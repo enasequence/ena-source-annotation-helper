@@ -51,8 +51,8 @@ build_dev:
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" biocollections-importer/src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
-    - echo $(ls -l biocollections-importer/build/libs)
-    - echo $(ls -l build/libs)
+    - echo biocollections-importer/build/libs/*
+    - echo build/libs/*
   tags:
     - dcap-gitlab-runner
   artifacts:
@@ -133,7 +133,7 @@ deploy_importer_tool_dev:
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
     - mkdir -p ~/.ssh
   script:
-    -  echo $(ls -l biocollections-importer/build/libs)
+    -  echo biocollections-importer/build/libs/*
     - chmod u+x biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
     - scp -o StrictHostKeyChecking=no biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY_TEST}
     - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY_TEST}/biocollections-importer-${VERSION}.jar ${JOB_LIBRARY_TEST}/biocollections-importer.jar"
