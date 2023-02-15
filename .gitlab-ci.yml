@@ -51,7 +51,8 @@ build_dev:
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" biocollections-importer/src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
-    -  echo $(ls -l biocollections-importer/build/libs)
+    - echo $(ls -l biocollections-importer/build/libs)
+    - echo $(ls -l build/libs)
   tags:
     - dcap-gitlab-runner
   artifacts:
