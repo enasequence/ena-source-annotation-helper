@@ -124,7 +124,7 @@ deploy_importer_tool_dev:
   stage: deploy
   before_script:
     # Setup SSH deploy keys
-#    - apt-get update
+    - apt-get update
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
@@ -142,7 +142,7 @@ deploy_importer_tool_prod:
   stage: deploy
   before_script:
     # Setup SSH deploy keys
-#    - apt-get update
+    - apt-get update
     - 'which ssh-agent || ( apt-get install -qq openssh-client )'
     - eval $(ssh-agent -s)
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
