@@ -83,8 +83,8 @@ public class BioCollectionsRepository {
             PutAliasResponse putAliasResponse = restHighLevelClient.indices().putAlias(putRequest);
             log.info("Alias added to the new Index '{}'", indexName);
             //clean up older indexes
-            boolean removalCompleted = cleanupOlderIndexes(indexPrefix);
-            if(removalCompleted) {
+            boolean removalCompleted = cleanupOlderIndexes(indexAlias, indexPrefix);
+            if (removalCompleted) {
                 log.info("Cleanup completed for indexes with prefix '{}'", indexPrefix);
             }
             return true;
@@ -94,7 +94,7 @@ public class BioCollectionsRepository {
         return false;
     }
 
-    public boolean cleanupOlderIndexes(String indexPrefix) {
+    public boolean cleanupOlderIndexes(String indexAlias, String indexPrefix) {
         try {
             GetIndexRequest request = GetIndexRequest.of(gr -> gr.index(indexPrefix + "*"));
             GetIndexResponse response = restHighLevelClient.indices().get(request);
@@ -102,20 +102,20 @@ public class BioCollectionsRepository {
             for (String index : result.keySet()) {
                 log.debug("found Index -> " + index);
             }
-
-            System.out.println("\n");
-            System.out.println("Sorting Map Based on Keys :\n");
             Map<String, IndexState> keySortedMap = new TreeMap<String, IndexState>(result);
-
             String[] array = keySortedMap.keySet().toArray(new String[0]);
             for (int i = 0; i < array.length - 2; i++) {
                 String removeIdx = array[i];
-                log.debug("Deleting index -->  " + removeIdx);
+                // below condition should never be reached, or revise the logic
+                if (result.get(removeIdx).aliases().containsKey(indexAlias)) {
+                    log.info("Verify code flow. Tried to clear active index -->  " + removeIdx);
+                    break;
+                }
                 DeleteIndexRequest dRequest = DeleteIndexRequest.of(dr -> dr.index(removeIdx));
-//            final DeleteIndexResponse delete = restHighLevelClient.indices().delete(dRequest);
-//            if (delete.acknowledged()) {
-//                log.info("Deleted index -->  " + removeIdx );
-//            }
+                final DeleteIndexResponse delete = restHighLevelClient.indices().delete(dRequest);
+                if (delete.acknowledged()) {
+                    log.info("Deleted index -->  " + removeIdx);
+                }
             }
             return true;
         } catch (IOException e) {
