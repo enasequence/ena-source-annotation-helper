@@ -25,10 +25,14 @@ public class AppConstants {
 
     static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuuMMdd_HHmm");
     static final String currentDate = dtf.format(LocalDateTime.now());
+    public static final String INST_MAPPING_JSON = "institution.json";
+    public static final String COLL_MAPPING_JSON = "collection.json";
     public static final String INDEX_COLLECTION_ALIAS = "collection";
     public static final String INDEX_INSTITUTION_ALIAS= "institution";
-    public static final String NEW_INST_INDEX_NAME = "institution_" + currentDate;
-    public static final String NEW_COLL_INDEX_NAME = "collection_" + currentDate;
+    public static final String INST_INDEX_PREFIX = "institution_";
+    public static final String COLL_INDEX_PREFIX = "collection_";
+    public static final String NEW_INST_INDEX_NAME = INST_INDEX_PREFIX + currentDate;
+    public static final String NEW_COLL_INDEX_NAME = COLL_INDEX_PREFIX + currentDate;
 
     public static final int INST_ID_POS = 1;
     public static final int INST_CODE_POS = 2;

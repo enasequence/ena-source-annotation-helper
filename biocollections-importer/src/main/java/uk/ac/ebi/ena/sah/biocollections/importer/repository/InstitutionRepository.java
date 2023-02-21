@@ -18,18 +18,71 @@
 
 package uk.ac.ebi.ena.sah.biocollections.importer.repository;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 import uk.ac.ebi.ena.sah.biocollections.importer.entity.Institution;
 
 import java.io.IOException;
 import java.util.Collection;
 
-public interface InstitutionRepository {
+import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.*;
 
-    public void createInstitutionIndex() throws IOException;
+@Repository
+@Slf4j
+public class InstitutionRepository {
 
-    public boolean moveInstitutionIndexAlias();
+    private final BioCollectionsRepository bioCollectionsRepository;
+    private final ElasticsearchClient restHighLevelClient;
 
-    BulkResponse saveAll(Collection<Institution> institutions) throws IOException;
+    public InstitutionRepository(ElasticsearchClient restHighLevelClient, BioCollectionsRepository bioCollectionsRepository) {
+        this.restHighLevelClient = restHighLevelClient;
+        this.bioCollectionsRepository = bioCollectionsRepository;
+    }
+
+    public boolean createInstitutionIndex() throws IOException {
+        boolean success = bioCollectionsRepository.createIndex(INST_MAPPING_JSON, NEW_INST_INDEX_NAME);
+        if (success) {
+            log.info("Institution Index {} Created: ", NEW_INST_INDEX_NAME);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean moveInstitutionIndexAlias() {
+        boolean success = bioCollectionsRepository.moveInstitutionIndexAlias(INDEX_INSTITUTION_ALIAS, NEW_INST_INDEX_NAME, INST_INDEX_PREFIX);
+        if (success) {
+            log.info("Alias moved to new Index {} ", NEW_INST_INDEX_NAME);
+            return true;
+        }
+        return false;
+    }
+
+    public BulkResponse saveAll(Collection<Institution> institutions) throws IOException {
+        BulkRequest.Builder br = new BulkRequest.Builder();
+        for (Institution inst : institutions) {
+            br.operations(op -> op
+                    .index(idx -> idx
+                            .index(NEW_INST_INDEX_NAME)
+                            .document(inst)
+                    )
+            );
+        }
+        BulkResponse result = restHighLevelClient.bulk(br.build());
+        // Log errors, if any
+        if (result.errors()) {
+            log.error("Encountered errors while loading Institutions.");
+            for (BulkResponseItem item : result.items()) {
+                if (item.error() != null) {
+                    log.error(item.error().reason());
+                }
+            }
+        }
+        return result;
+    }
+
 
 }

@@ -6,6 +6,7 @@ import uk.ac.ebi.ena.sah.biocollections.importer.data.BioCollectionsDataObject;
 import uk.ac.ebi.ena.sah.biocollections.importer.repository.CollectionRepository;
 import uk.ac.ebi.ena.sah.biocollections.importer.repository.InstitutionRepository;
 import uk.ac.ebi.ena.sah.biocollections.importer.service.BioCollectionsImportService;
+import uk.ac.ebi.ena.sah.biocollections.importer.service.FTPDataReadService;
 
 import java.io.IOException;
 
@@ -13,8 +14,8 @@ import java.io.IOException;
 @Component
 public class BioCollectionsImportServiceImpl implements BioCollectionsImportService {
 
-    final InstitutionDataReadServiceImpl institutionDataReadService;
-    final CollectionDataReadServiceImpl collectionDataReadService;
+    final FTPDataReadService institutionDataReadService;
+    final FTPDataReadService collectionDataReadService;
     final InstitutionRepository institutionRepository;
     final CollectionRepository collectionRepository;
 
