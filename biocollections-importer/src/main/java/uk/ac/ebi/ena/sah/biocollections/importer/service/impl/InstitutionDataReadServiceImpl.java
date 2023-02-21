@@ -42,7 +42,6 @@ public class InstitutionDataReadServiceImpl implements FTPDataReadService {
 
             String line;
             while ((line = br.readLine()) != null) {
-                //System.out.println(line);
                 StringTokenizer st = new StringTokenizer(line, "|");
                 if (st.countTokens() < 3) {
                     //not a valid record

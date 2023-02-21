@@ -21,6 +21,7 @@ package uk.ac.ebi.ena.sah.biocollections.importer.repository;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.BulkRequest;
 import co.elastic.clients.elasticsearch.core.BulkResponse;
+import co.elastic.clients.elasticsearch.core.CountRequest;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.elasticsearch.indices.*;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +36,7 @@ import java.util.Optional;
 import java.util.TreeMap;
 
 import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.*;
+import static uk.ac.ebi.ena.sah.biocollections.importer.utils.BioCollectionsServiceUtils.calculatePercentChanged;
 
 @Repository
 @Slf4j
@@ -74,6 +76,18 @@ public class BioCollectionsRepository {
                 return false;
             }
             // TODO check for records count variation here
+            final var countOldIdxRequest = new CountRequest.Builder().index(indexName).build();
+            final var oldCount = restHighLevelClient.count(countOldIdxRequest).count();
+            log.info("Existing Index {} record count was: {}", indexName, oldCount);
+            final var countNewIdxRequest = new CountRequest.Builder().index(newIndexName).build();
+            final var newCount = restHighLevelClient.count(countNewIdxRequest).count();
+            log.info("New Index {} record count is: {}", newIndexName, newCount);
+            var percentageChanged = calculatePercentChanged(newCount,oldCount );
+            if(percentageChanged != 0 && percentageChanged < 95) {
+                log.error("New Index {} records count is reduced by more than {}%", newIndexName, percentageChanged);
+                log.error("Alias not moved to the new Index {}", newIndexName);
+                return false;
+            }
             // remove alias from old index
             DeleteAliasRequest delRequest = new DeleteAliasRequest.Builder().index(indexName).name(indexAlias).build();
             DeleteAliasResponse delAliasResponse = restHighLevelClient.indices().deleteAlias(delRequest);
@@ -89,7 +103,7 @@ public class BioCollectionsRepository {
             }
             return true;
         } catch (IOException e) {
-            log.error("Alias not moved to the new Index");
+            log.error("Alias not moved to the new Index {}", newIndexName);
         }
         return false;
     }
@@ -99,9 +113,6 @@ public class BioCollectionsRepository {
             GetIndexRequest request = GetIndexRequest.of(gr -> gr.index(indexPrefix + "*"));
             GetIndexResponse response = restHighLevelClient.indices().get(request);
             final Map<String, IndexState> result = response.result();
-            for (String index : result.keySet()) {
-                log.debug("found Index -> " + index);
-            }
             Map<String, IndexState> keySortedMap = new TreeMap<String, IndexState>(result);
             String[] array = keySortedMap.keySet().toArray(new String[0]);
             for (int i = 0; i < array.length - 2; i++) {
