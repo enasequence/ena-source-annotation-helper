@@ -24,15 +24,15 @@ import java.time.format.DateTimeFormatter;
 public class AppConstants {
 
     static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuuMMdd_HHmm");
-    static final String currentDate = dtf.format(LocalDateTime.now());
+    static final String CURRENT_DATE = dtf.format(LocalDateTime.now());
     public static final String INST_MAPPING_JSON = "institution.json";
     public static final String COLL_MAPPING_JSON = "collection.json";
     public static final String INDEX_COLLECTION_ALIAS = "collection";
     public static final String INDEX_INSTITUTION_ALIAS= "institution";
     public static final String INST_INDEX_PREFIX = "institution_";
     public static final String COLL_INDEX_PREFIX = "collection_";
-    public static final String NEW_INST_INDEX_NAME = INST_INDEX_PREFIX + currentDate;
-    public static final String NEW_COLL_INDEX_NAME = COLL_INDEX_PREFIX + currentDate;
+    public static final String NEW_INST_INDEX_NAME = INST_INDEX_PREFIX + CURRENT_DATE;
+    public static final String NEW_COLL_INDEX_NAME = COLL_INDEX_PREFIX + CURRENT_DATE;
 
     public static final String PERCENTAGE_FORMAT = "#0.00";
 
