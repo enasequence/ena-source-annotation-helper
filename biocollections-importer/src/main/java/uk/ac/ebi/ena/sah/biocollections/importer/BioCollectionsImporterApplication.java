@@ -43,14 +43,18 @@ public class BioCollectionsImporterApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        int exitCode = 0;
         try {
-            bioCollectionsImportService.processBioCollectionsImport();
+            boolean success = bioCollectionsImportService.processBioCollectionsImport();
+            if(!success) {
+                exitCode = 1;
+            }
         } catch (Exception e) {
             log.error(e.getMessage(), e);
-            exit(1);
+            exitCode = 1;
         } finally {
             log.info("Execution cycle completed");
-            exit(0);
+            exit(exitCode);
         }
     }
 
