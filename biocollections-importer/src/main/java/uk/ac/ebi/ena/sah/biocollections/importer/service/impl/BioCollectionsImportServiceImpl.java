@@ -20,7 +20,7 @@ package uk.ac.ebi.ena.sah.biocollections.importer.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-import uk.ac.ebi.ena.sah.biocollections.importer.data.BioCollectionsDataObject;
+import uk.ac.ebi.ena.sah.biocollections.importer.repository.BioCollectionsRepository;
 import uk.ac.ebi.ena.sah.biocollections.importer.repository.CollectionRepository;
 import uk.ac.ebi.ena.sah.biocollections.importer.repository.InstitutionRepository;
 import uk.ac.ebi.ena.sah.biocollections.importer.service.BioCollectionsImportService;
@@ -36,27 +36,30 @@ public class BioCollectionsImportServiceImpl implements BioCollectionsImportServ
     final FTPDataReadService collectionDataReadService;
     final InstitutionRepository institutionRepository;
     final CollectionRepository collectionRepository;
+    final BioCollectionsRepository bioCollectionsRepository;
 
     public BioCollectionsImportServiceImpl(InstitutionDataReadServiceImpl institutionDataReadService,
                                            CollectionDataReadServiceImpl collectionDataReadService,
-                                           InstitutionRepository institutionRepository, CollectionRepository collectionRepository) {
+                                           InstitutionRepository institutionRepository,
+                                           CollectionRepository collectionRepository,
+                                           BioCollectionsRepository bioCollectionsRepository) {
         this.institutionDataReadService = institutionDataReadService;
         this.collectionDataReadService = collectionDataReadService;
         this.institutionRepository = institutionRepository;
         this.collectionRepository = collectionRepository;
+        this.bioCollectionsRepository = bioCollectionsRepository;
     }
 
     @Override
     public boolean processNCBIDataRead() {
         try {
-            //fetch biocollections data
+            //fetch bio-collections data
             boolean fetchSuccessful = importBioCollectionsData();
             if (!fetchSuccessful) {
                 return false;
             }
-            // persist biocollections data
-            persistBioCollectionsData();
-            return true;
+            // persist bio-collections data
+            return persistBioCollectionsData();
         } catch (Exception ex) {
             log.info("Error occurred while processing the NCBI data import.");
             return false;
@@ -96,33 +99,20 @@ public class BioCollectionsImportServiceImpl implements BioCollectionsImportServ
         log.info("Persisting Data for Bio-collections - Started");
         try {
             // processing for the institutions
-            // create a new index
-            institutionRepository.createInstitutionIndex();
-            // populate the index with data fetched from FTP server
-            institutionRepository.saveAll(BioCollectionsDataObject.mapInstitutions.values());
-            log.info("Processing Data for Institutions - Finished");
-            //TODO move the alias to new index
-            if (institutionRepository.moveInstitutionIndexAlias()) {
-                log.info("Alias moved to new Institution Index Successfully.");
+            if (!institutionRepository.persistInstitutionsData()) {
+                return false;
             }
-
             // processing for the collections
-            //fetch the data from the FTP server
-            collectionDataReadService.fetchDataFileFromFTP();
-            // create a new index
-            collectionRepository.createCollectionIndex();
-            // populate the index with data fetched from FTP server
-            collectionRepository.saveAll(BioCollectionsDataObject.mapCollections.values());
-            log.info("Processing Data for Collections - Finished");
-            //TODO move the alias to new index
-            if (collectionRepository.moveCollectionIndexAlias()) {
-                log.info("Alias moved to new Collection Index Successfully.");
+            if (!collectionRepository.persistCollectionsData()) {
+                return false;
             }
+            log.info("Persisting Data for Bio-collections - finished");
             return true;
         } catch (IOException e) {
             log.info("Failed - Persisting Data for Bio-collections");
             return false;
         }
     }
+
 
 }

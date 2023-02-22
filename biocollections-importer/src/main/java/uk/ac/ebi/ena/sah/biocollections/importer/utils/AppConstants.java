@@ -34,6 +34,8 @@ public class AppConstants {
     public static final String NEW_INST_INDEX_NAME = INST_INDEX_PREFIX + currentDate;
     public static final String NEW_COLL_INDEX_NAME = COLL_INDEX_PREFIX + currentDate;
 
+    public static final String PERCENTAGE_FORMAT = "#0.00";
+
     public static final int INST_ID_POS = 1;
     public static final int INST_CODE_POS = 2;
     public static final int UNIQUE_NAME_POS = 3;

@@ -19,32 +19,29 @@
 package uk.ac.ebi.ena.sah.biocollections.importer.repository;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
-import co.elastic.clients.elasticsearch.core.BulkRequest;
-import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.CountRequest;
-import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.elasticsearch.indices.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
-import uk.ac.ebi.ena.sah.biocollections.importer.entity.Institution;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collection;
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
 
-import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.*;
+import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.PERCENTAGE_FORMAT;
 import static uk.ac.ebi.ena.sah.biocollections.importer.utils.BioCollectionsServiceUtils.calculatePercentChanged;
+import static uk.ac.ebi.ena.sah.biocollections.importer.utils.BioCollectionsServiceUtils.logStats;
 
 @Repository
 @Slf4j
 public class BioCollectionsRepository {
 
-    @Value("${biocollection.records.change.threshold}")
-    private int recordsChangeThreshold;
+    @Value("${records.threshold.percent}")
+    private int recordsThresholdPercent;
 
     private final ElasticsearchClient restHighLevelClient;
 
@@ -67,7 +64,7 @@ public class BioCollectionsRepository {
         return false;
     }
 
-    public boolean moveInstitutionIndexAlias(String indexAlias, String newIndexName, String indexPrefix) {
+    public boolean moveBioCollectionIndexAlias(String indexAlias, String newIndexName, String indexPrefix, long insertedRecordsCount) {
         try {
             GetAliasRequest getRequest = new GetAliasRequest.Builder().name(indexAlias).build();
             GetAliasResponse aliasResponse = null;
@@ -79,27 +76,19 @@ public class BioCollectionsRepository {
             } else {
                 return false;
             }
-            // TODO check for records count variation here
-            final var countOldIdxRequest = new CountRequest.Builder().index(indexName).build();
-            final var oldCount = restHighLevelClient.count(countOldIdxRequest).count();
-            log.info("Existing Index {} record count was: {}", indexName, oldCount);
-            final var countNewIdxRequest = new CountRequest.Builder().index(newIndexName).build();
-            final var newCount = restHighLevelClient.count(countNewIdxRequest).count();
-            log.info("New Index {} record count is: {}", newIndexName, newCount);
-            var percentageChanged = calculatePercentChanged(newCount,oldCount );
-            if(percentageChanged != 0 && percentageChanged < recordsChangeThreshold) {
-                log.error("New Index {} records count is reduced by more than {}%", newIndexName, percentageChanged);
-                log.error("Alias not moved to the new Index {}", newIndexName);
+            // check for records count variation here
+            if (!checkRecordsVariation(newIndexName, indexName, insertedRecordsCount)) {
                 return false;
             }
-            // remove alias from old index
-            DeleteAliasRequest delRequest = new DeleteAliasRequest.Builder().index(indexName).name(indexAlias).build();
-            DeleteAliasResponse delAliasResponse = restHighLevelClient.indices().deleteAlias(delRequest);
-            log.info("Old Index '{}' alias removed", indexName);
+            //TODO check if this is allowed
             // add alias to new index
             PutAliasRequest putRequest = new PutAliasRequest.Builder().index(newIndexName).name(indexAlias).build();
             PutAliasResponse putAliasResponse = restHighLevelClient.indices().putAlias(putRequest);
             log.info("Alias added to the new Index '{}'", indexName);
+            // remove alias from old index
+            DeleteAliasRequest delRequest = new DeleteAliasRequest.Builder().index(indexName).name(indexAlias).build();
+            DeleteAliasResponse delAliasResponse = restHighLevelClient.indices().deleteAlias(delRequest);
+            log.info("Old Index '{}' alias removed", indexName);
             //clean up older indexes
             boolean removalCompleted = cleanupOlderIndexes(indexAlias, indexPrefix);
             if (removalCompleted) {
@@ -139,5 +128,54 @@ public class BioCollectionsRepository {
         return false;
     }
 
+
+    /**
+     * checkRecordsVariation.
+     *
+     * @param newIndexName
+     * @param indexName
+     * @return
+     */
+    private boolean checkRecordsVariation(String newIndexName, String indexName, long insertedRecordsCount) {
+        DecimalFormat df = new DecimalFormat(PERCENTAGE_FORMAT);
+        final var oldCount = getIndexDocCount(indexName);
+        var percentageChanged = calculatePercentChanged(insertedRecordsCount, oldCount);
+        logStats(indexName, newIndexName, oldCount, insertedRecordsCount, percentageChanged);
+        if (percentageChanged != 0 && percentageChanged > recordsThresholdPercent) {
+            log.error("New Index {} records count is reduced by {}%, more than the threshold {}%", newIndexName, df.format(percentageChanged), recordsThresholdPercent);
+            log.error("Alias not moved to the new Index {}", newIndexName);
+            return false;
+        } else {
+            log.info("Records count variation: {}%", df.format(percentageChanged));
+        }
+        return true;
+    }
+
+    /**
+     * getIndexDocCount.
+     *
+     * @param indexName
+     * @return
+     */
+    private long getIndexDocCount(String indexName) {
+        try {
+            final var countOldIdxRequest = new CountRequest.Builder().index(indexName).build();
+            return restHighLevelClient.count(countOldIdxRequest).count();
+        } catch (IOException e) {
+            log.error("Failed to fetch the documents count for the  Index {}", indexName);
+            return 0;
+        }
+    }
+
+
+    public void refreshIndex(String indexName) {
+        try {
+        RefreshRequest req = RefreshRequest.of(b -> b.index(indexName));
+        final RefreshResponse refresh = restHighLevelClient.indices().refresh(req);
+        log.info("Refreshed:{}", refresh.shards().toString());
+        } catch (IOException e) {
+            log.error("Failed to refresh the  Index {}", indexName);
+        }
+    }
 
 }

@@ -26,11 +26,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.UncheckedIOException;
+import java.text.DecimalFormat;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
+import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.PERCENTAGE_FORMAT;
 
 @Slf4j
 public class BioCollectionsServiceUtils {
+
+    static DecimalFormat percentageDF = new DecimalFormat(PERCENTAGE_FORMAT);
 
     /**
      * getResourceAsString.
@@ -60,6 +64,40 @@ public class BioCollectionsServiceUtils {
             if (validatedRecords > existingRecords) return 0;
             return (existingRecords - validatedRecords) / (double) existingRecords * 100.0;
         }
+    }
+
+    /**
+     * logStats.
+     *
+     * @param oldIndexName
+     * @param newIndexName
+     * @param oldRecordCount
+     * @param newRecordCount
+     * @param percentageChanged
+     */
+    public static void logStats(String oldIndexName, String newIndexName,
+                                long oldRecordCount, long newRecordCount,
+                                double percentageChanged) {
+        log.info("Existing Index {} record count was: {}", oldIndexName, oldRecordCount);
+        log.info("New Index {} record count is: {}", newIndexName, newRecordCount);
+        StringBuilder buffer = new StringBuilder();
+        buffer.append("\n")
+                .append("Old Index: ")
+                .append(oldIndexName)
+                .append("\n")
+                .append("New Index: ")
+                .append(newIndexName)
+                .append("\n")
+                .append("Old Index Record Count: ")
+                .append(oldRecordCount)
+                .append("\n")
+                .append("New Index Record Count: ")
+                .append(newRecordCount)
+                .append("\n")
+                .append("Percentage reduced from old: ")
+                .append(percentageDF.format(percentageChanged))
+                .append("%\n");
+        log.info(buffer.toString());
     }
 
 }

@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch.core.BulkResponse;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+import uk.ac.ebi.ena.sah.biocollections.importer.data.BioCollectionsDataObject;
 import uk.ac.ebi.ena.sah.biocollections.importer.entity.Institution;
 
 import java.io.IOException;
@@ -43,23 +44,31 @@ public class InstitutionRepository {
         this.bioCollectionsRepository = bioCollectionsRepository;
     }
 
-    public boolean createInstitutionIndex() throws IOException {
-        boolean success = bioCollectionsRepository.createIndex(INST_MAPPING_JSON, NEW_INST_INDEX_NAME);
-        if (success) {
+    public boolean persistInstitutionsData() throws IOException {
+        // create a new index
+        boolean createInstIdxSuccess =  bioCollectionsRepository.createIndex(INST_MAPPING_JSON, NEW_INST_INDEX_NAME);
+        if (!createInstIdxSuccess) {
+            log.error("Failed to create new Institution Index. exiting now...");
+            return false;
+        } else {
             log.info("Institution Index {} Created: ", NEW_INST_INDEX_NAME);
-            return true;
         }
-        return false;
+        // populate the index with data fetched from FTP server
+        BulkResponse resultInst = saveAll(BioCollectionsDataObject.mapInstitutions.values());
+        log.info("Persisting data for Institutions - Finished");
+        // refresh the index post loading
+        bioCollectionsRepository.refreshIndex(NEW_INST_INDEX_NAME);
+        // move the alias to new index
+        boolean moveSuccessInst = bioCollectionsRepository.moveBioCollectionIndexAlias(INDEX_INSTITUTION_ALIAS, NEW_INST_INDEX_NAME, INST_INDEX_PREFIX, resultInst.items().size());
+        if (!moveSuccessInst) {
+            log.info("Couldn't move the alias to new index {} ", NEW_INST_INDEX_NAME);
+            return false;
+        } else {
+            log.info("Alias moved to new Institution Index {} Successfully.", NEW_INST_INDEX_NAME);
+        }
+        return true;
     }
 
-    public boolean moveInstitutionIndexAlias() {
-        boolean success = bioCollectionsRepository.moveInstitutionIndexAlias(INDEX_INSTITUTION_ALIAS, NEW_INST_INDEX_NAME, INST_INDEX_PREFIX);
-        if (success) {
-            log.info("Alias moved to new Index {} ", NEW_INST_INDEX_NAME);
-            return true;
-        }
-        return false;
-    }
 
     public BulkResponse saveAll(Collection<Institution> institutions) throws IOException {
         BulkRequest.Builder br = new BulkRequest.Builder();
