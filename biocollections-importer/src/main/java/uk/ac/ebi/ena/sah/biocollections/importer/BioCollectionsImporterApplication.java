@@ -23,11 +23,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 import uk.ac.ebi.ena.sah.biocollections.importer.service.BioCollectionsImportService;
 
 @SpringBootApplication
-@EnableElasticsearchRepositories(basePackages = "uk.ac.ebi.ena.sah.biocollections.importer.repository")
 @Slf4j
 public class BioCollectionsImporterApplication implements CommandLineRunner {
 
