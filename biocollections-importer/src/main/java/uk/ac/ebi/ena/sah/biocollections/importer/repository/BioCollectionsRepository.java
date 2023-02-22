@@ -25,6 +25,7 @@ import co.elastic.clients.elasticsearch.core.CountRequest;
 import co.elastic.clients.elasticsearch.core.bulk.BulkResponseItem;
 import co.elastic.clients.elasticsearch.indices.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import uk.ac.ebi.ena.sah.biocollections.importer.entity.Institution;
 
@@ -41,6 +42,9 @@ import static uk.ac.ebi.ena.sah.biocollections.importer.utils.BioCollectionsServ
 @Repository
 @Slf4j
 public class BioCollectionsRepository {
+
+    @Value("${biocollection.records.change.threshold}")
+    private int recordsChangeThreshold;
 
     private final ElasticsearchClient restHighLevelClient;
 
@@ -83,7 +87,7 @@ public class BioCollectionsRepository {
             final var newCount = restHighLevelClient.count(countNewIdxRequest).count();
             log.info("New Index {} record count is: {}", newIndexName, newCount);
             var percentageChanged = calculatePercentChanged(newCount,oldCount );
-            if(percentageChanged != 0 && percentageChanged < 95) {
+            if(percentageChanged != 0 && percentageChanged < recordsChangeThreshold) {
                 log.error("New Index {} records count is reduced by more than {}%", newIndexName, percentageChanged);
                 log.error("Alias not moved to the new Index {}", newIndexName);
                 return false;
