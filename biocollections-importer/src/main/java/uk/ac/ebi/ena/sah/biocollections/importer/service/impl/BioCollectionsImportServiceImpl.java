@@ -51,7 +51,7 @@ public class BioCollectionsImportServiceImpl implements BioCollectionsImportServ
     }
 
     @Override
-    public boolean processNCBIDataRead() {
+    public boolean processBioCollectionsImport() {
         try {
             //fetch bio-collections data
             boolean fetchSuccessful = importBioCollectionsData();

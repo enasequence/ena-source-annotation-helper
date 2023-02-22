@@ -29,10 +29,10 @@ import uk.ac.ebi.ena.sah.biocollections.importer.service.BioCollectionsImportSer
 @Slf4j
 public class BioCollectionsImporterApplication implements CommandLineRunner {
 
-    private final BioCollectionsImportService ncbiSyncService;
+    private final BioCollectionsImportService bioCollectionsImportService;
 
-    public BioCollectionsImporterApplication(BioCollectionsImportService ncbiSyncService) {
-        this.ncbiSyncService = ncbiSyncService;
+    public BioCollectionsImporterApplication(BioCollectionsImportService bioCollectionsImportService) {
+        this.bioCollectionsImportService = bioCollectionsImportService;
     }
 
     public static void main(String[] args) {
@@ -44,9 +44,10 @@ public class BioCollectionsImporterApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         try {
-            ncbiSyncService.processNCBIDataRead();
+            bioCollectionsImportService.processBioCollectionsImport();
         } catch (Exception e) {
             log.error(e.getMessage(), e);
+            exit(1);
         } finally {
             log.info("Execution cycle completed");
             exit(0);
