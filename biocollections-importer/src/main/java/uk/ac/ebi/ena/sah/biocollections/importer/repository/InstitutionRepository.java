@@ -44,6 +44,12 @@ public class InstitutionRepository {
         this.bioCollectionsRepository = bioCollectionsRepository;
     }
 
+    /**
+     * persistInstitutionsData.
+     *
+     * @return
+     * @throws IOException
+     */
     public boolean persistInstitutionsData() throws IOException {
         // create a new index
         boolean createInstIdxSuccess =  bioCollectionsRepository.createIndex(INST_MAPPING_JSON, NEW_INST_INDEX_NAME);
@@ -69,7 +75,13 @@ public class InstitutionRepository {
         return true;
     }
 
-
+    /**
+     * saveAll - bulk save records.
+     *
+     * @param institutions
+     * @return
+     * @throws IOException
+     */
     public BulkResponse saveAll(Collection<Institution> institutions) throws IOException {
         BulkRequest.Builder br = new BulkRequest.Builder();
         for (Institution inst : institutions) {

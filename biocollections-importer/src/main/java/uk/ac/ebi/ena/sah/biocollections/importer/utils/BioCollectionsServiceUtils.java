@@ -82,20 +82,11 @@ public class BioCollectionsServiceUtils {
         log.info("New Index {} record count is: {}", newIndexName, newRecordCount);
         StringBuilder buffer = new StringBuilder();
         buffer.append("\n")
-                .append("Old Index: ")
-                .append(oldIndexName)
-                .append("\n")
-                .append("New Index: ")
-                .append(newIndexName)
-                .append("\n")
-                .append("Old Index Record Count: ")
-                .append(oldRecordCount)
-                .append("\n")
-                .append("New Index Record Count: ")
-                .append(newRecordCount)
-                .append("\n")
-                .append("Percentage reduced from old: ")
-                .append(percentageDF.format(percentageChanged))
+                .append("Old Index: ").append(oldIndexName).append("\n")
+                .append("New Index: ").append(newIndexName).append("\n")
+                .append("Old Index Record Count: ").append(oldRecordCount)
+                .append("\n").append("New Index Record Count: ").append(newRecordCount)
+                .append("\n").append("Percentage reduced from old: ").append(percentageDF.format(percentageChanged))
                 .append("%\n");
         log.info(buffer.toString());
     }

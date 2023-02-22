@@ -43,6 +43,12 @@ public class CollectionRepository {
         this.bioCollectionsRepository = bioCollectionsRepository;
     }
 
+    /**
+     * persistCollectionsData.
+     *
+     * @return
+     * @throws IOException
+     */
     public boolean persistCollectionsData() throws IOException {
         // create a new index
         boolean createCollIdxSuccess = bioCollectionsRepository.createIndex(COLL_MAPPING_JSON, NEW_COLL_INDEX_NAME);
@@ -69,6 +75,13 @@ public class CollectionRepository {
     }
 
 
+    /**
+     * saveAll - bulk save records.
+     *
+     * @param collections
+     * @return
+     * @throws IOException
+     */
     public BulkResponse saveAll(Collection<uk.ac.ebi.ena.sah.biocollections.importer.entity.Collection> collections) throws IOException {
         BulkRequest.Builder br = new BulkRequest.Builder();
         for (uk.ac.ebi.ena.sah.biocollections.importer.entity.Collection coll : collections) {

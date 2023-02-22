@@ -49,6 +49,14 @@ public class BioCollectionsRepository {
         this.restHighLevelClient = restHighLevelClient;
     }
 
+    /**
+     * createIndex.
+     *
+     * @param mappingJSONFile
+     * @param newIndexName
+     * @return
+     * @throws IOException
+     */
     public boolean createIndex(String mappingJSONFile, String newIndexName) throws IOException {
         try {
             ClassLoader classLoader = getClass().getClassLoader();
@@ -64,6 +72,15 @@ public class BioCollectionsRepository {
         return false;
     }
 
+    /**
+     * moveBioCollectionIndexAlias.
+     *
+     * @param indexAlias
+     * @param newIndexName
+     * @param indexPrefix
+     * @param insertedRecordsCount
+     * @return
+     */
     public boolean moveBioCollectionIndexAlias(String indexAlias, String newIndexName, String indexPrefix, long insertedRecordsCount) {
         //check if earlier active index exists
         boolean activeIndexPresent = false;
@@ -110,6 +127,13 @@ public class BioCollectionsRepository {
         return false;
     }
 
+    /**
+     * cleanupOlderIndexes.
+     *
+     * @param indexAlias
+     * @param indexPrefix
+     * @return
+     */
     public boolean cleanupOlderIndexes(String indexAlias, String indexPrefix) {
         try {
             GetIndexRequest request = GetIndexRequest.of(gr -> gr.index(indexPrefix + "*"));
@@ -181,7 +205,11 @@ public class BioCollectionsRepository {
         }
     }
 
-
+    /**
+     * refreshIndex.
+     *
+     * @param indexName
+     */
     public void refreshIndex(String indexName) {
         try {
             RefreshRequest req = RefreshRequest.of(b -> b.index(indexName));
