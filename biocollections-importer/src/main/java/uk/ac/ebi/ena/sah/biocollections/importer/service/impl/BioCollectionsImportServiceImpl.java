@@ -61,7 +61,7 @@ public class BioCollectionsImportServiceImpl implements BioCollectionsImportServ
             // persist bio-collections data
             return persistBioCollectionsData();
         } catch (Exception ex) {
-            log.info("Error occurred while processing the NCBI data import.");
+            log.info("Error occurred while processing the bio-collections data import.");
             return false;
         }
     }

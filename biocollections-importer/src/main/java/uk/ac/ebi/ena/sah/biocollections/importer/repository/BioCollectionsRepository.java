@@ -65,30 +65,39 @@ public class BioCollectionsRepository {
     }
 
     public boolean moveBioCollectionIndexAlias(String indexAlias, String newIndexName, String indexPrefix, long insertedRecordsCount) {
+        //check if earlier active index exists
+        boolean activeIndexPresent = false;
+        String indexName = null;
         try {
             GetAliasRequest getRequest = new GetAliasRequest.Builder().name(indexAlias).build();
             GetAliasResponse aliasResponse = null;
             aliasResponse = restHighLevelClient.indices().getAlias(getRequest);
             Optional<String> optionalIdxName = aliasResponse.result().keySet().stream().findFirst();
-            String indexName;
             if (optionalIdxName.isPresent()) {
                 indexName = optionalIdxName.get();
-            } else {
-                return false;
+                activeIndexPresent = true;
             }
+        } catch (Exception e) {
+            log.info("No active index exists with alias {}", indexAlias);
+        }
+
+        try {
             // check for records count variation here
-            if (!checkRecordsVariation(newIndexName, indexName, insertedRecordsCount)) {
-                return false;
+            if (activeIndexPresent) {
+                if (!checkRecordsVariation(newIndexName, indexName, insertedRecordsCount)) {
+                    return false;
+                }
             }
-            //TODO check if this is allowed
             // add alias to new index
             PutAliasRequest putRequest = new PutAliasRequest.Builder().index(newIndexName).name(indexAlias).build();
             PutAliasResponse putAliasResponse = restHighLevelClient.indices().putAlias(putRequest);
-            log.info("Alias added to the new Index '{}'", indexName);
+            log.info("Alias added to the new Index '{}'", newIndexName);
             // remove alias from old index
-            DeleteAliasRequest delRequest = new DeleteAliasRequest.Builder().index(indexName).name(indexAlias).build();
-            DeleteAliasResponse delAliasResponse = restHighLevelClient.indices().deleteAlias(delRequest);
-            log.info("Old Index '{}' alias removed", indexName);
+            if (activeIndexPresent) {
+                DeleteAliasRequest delRequest = new DeleteAliasRequest.Builder().index(indexName).name(indexAlias).build();
+                DeleteAliasResponse delAliasResponse = restHighLevelClient.indices().deleteAlias(delRequest);
+                log.info("Old Index '{}' alias removed", indexName);
+            }
             //clean up older indexes
             boolean removalCompleted = cleanupOlderIndexes(indexAlias, indexPrefix);
             if (removalCompleted) {
@@ -106,6 +115,11 @@ public class BioCollectionsRepository {
             GetIndexRequest request = GetIndexRequest.of(gr -> gr.index(indexPrefix + "*"));
             GetIndexResponse response = restHighLevelClient.indices().get(request);
             final Map<String, IndexState> result = response.result();
+            //in case there are no old indexes to clean up
+            if (result.size() <= 2) {
+                log.info("No indexes to cleanup for index prefix - {}", indexPrefix);
+                return true;
+            }
             Map<String, IndexState> keySortedMap = new TreeMap<String, IndexState>(result);
             String[] array = keySortedMap.keySet().toArray(new String[0]);
             for (int i = 0; i < array.length - 2; i++) {
@@ -170,9 +184,9 @@ public class BioCollectionsRepository {
 
     public void refreshIndex(String indexName) {
         try {
-        RefreshRequest req = RefreshRequest.of(b -> b.index(indexName));
-        final RefreshResponse refresh = restHighLevelClient.indices().refresh(req);
-        log.info("Refreshed:{}", refresh.shards().toString());
+            RefreshRequest req = RefreshRequest.of(b -> b.index(indexName));
+            final RefreshResponse refresh = restHighLevelClient.indices().refresh(req);
+            log.info("Refreshed:{}", refresh.shards().toString());
         } catch (IOException e) {
             log.error("Failed to refresh the  Index {}", indexName);
         }

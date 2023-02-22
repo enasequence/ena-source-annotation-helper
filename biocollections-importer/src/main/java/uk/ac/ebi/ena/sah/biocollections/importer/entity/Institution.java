@@ -24,47 +24,34 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
-@Document(indexName = AppConstants.INDEX_INSTITUTION_ALIAS)
 public class Institution {
 
     @Id
     private String id;
-    @Field(name = "inst_id")
     @JsonProperty("inst_id")
     private int instId;
-    @Field(name = "inst_code")
     @JsonProperty("inst_code")
     private String instCode;
-    @Field(name = "unique_name")
     @JsonProperty("unique_name")
     private String uniqueName;
-    @Field(name = "synonyms")
     @JsonProperty("synonyms")
     private String synonyms;
-    @Field(name = "inst_name")
     @JsonProperty("inst_name")
     private String instName;
     private String country;
     private String address;
-    @Field(name = "coll_type")
     @JsonProperty("coll_type")
     private String collType;
-    @Field(name = "qualifier_type")
     @JsonProperty("qualifier_type")
     private String qualifierType;
 
-    @Field(name = "home_url")
     @JsonProperty("home_url")
     private String homeUrl;
-    @Field(name = "url_rule")
     @JsonProperty("url_rule")
     private String urlRule;
 
