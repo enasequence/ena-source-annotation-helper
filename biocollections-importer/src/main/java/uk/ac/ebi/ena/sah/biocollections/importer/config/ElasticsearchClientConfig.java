@@ -45,11 +45,12 @@ import java.io.InputStream;
 @Slf4j
 public class ElasticsearchClientConfig {
 
-    private static final int TIMEOUT = 5 * 60000;
-    @Value("${elasticsearch.password}")
-    private String password;
+    @Value("${elasticsearch.request.timeout}")
+    private int requestTimeout;
     @Value("${elasticsearch.username}")
     private String username;
+    @Value("${elasticsearch.password}")
+    private String password;
     @Value("${elasticsearch.host}")
     private String host;
     @Value("${elasticsearch.port}")
@@ -86,8 +87,8 @@ public class ElasticsearchClientConfig {
                     @Override
                     public RequestConfig.Builder customizeRequestConfig(RequestConfig.Builder requestConfigBuilder) {
                         return requestConfigBuilder
-                                .setConnectionRequestTimeout(TIMEOUT)
-                                .setConnectTimeout(TIMEOUT)
+                                .setConnectionRequestTimeout(requestTimeout)
+                                .setConnectTimeout(requestTimeout)
                                 .setSocketTimeout(0); // never timeout
                     }
                 })
