@@ -81,10 +81,7 @@ public class SAHInstituteServiceHelper {
             List<String> listQT = QualifierTypeMapper.getValueList(qualifierType);
             optionalInstitute = institutionRepository.findByUniqueNameAndQualifierTypeArray(instCode, listQT);
         }
-
-        //TODO discuss and later can be optimised for implementation
         if (!optionalInstitute.isPresent()) {
-            log.debug("going for upper case search...");
             if (isEmpty(qualifierType)) {
                 optionalInstitute  = institutionRepository.findByUniqueNameExact(instCode.toUpperCase(Locale.ROOT));
             } else {

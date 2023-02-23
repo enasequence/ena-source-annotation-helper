@@ -44,8 +44,6 @@ import java.util.List;
 
 
 @Configuration
-//@EnableSwagger2
-//@ImportAutoConfiguration({SecurityConfiguration.class})
 public class AppConfig implements WebMvcConfigurer {
 
     @Bean
@@ -55,7 +53,7 @@ public class AppConfig implements WebMvcConfigurer {
                 .info(new Info()
                         .title("ENA Source Attribute Helper (SAH)")
                         .description("")
-                        .version("1.1.0")
+                        .version("1.2.0")
                         .contact(new Contact().name("ENA Support").email("")
                                 .url("https://www.ebi.ac.uk/ena/sah/#:~:text=Source%20Attribute%20Helper-,Feedback,-The%20ENA%20Source"))
                 );

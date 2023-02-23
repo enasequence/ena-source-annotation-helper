@@ -87,10 +87,7 @@ public class SAHServiceImpl implements SAHService {
             optionalInstitute = institutionRepository
                     .findByUniqueNameAndQualifierTypeArray(name, listQT);
         }
-
-        //TODO discuss and later can be optimised for implementation
         if (!optionalInstitute.isPresent()) {
-            log.debug("going for upper case search...");
             if (isEmpty(qualifierType)) {
                 optionalInstitute  = institutionRepository.findByUniqueNameExact(name.toUpperCase(Locale.ROOT));
             } else {
