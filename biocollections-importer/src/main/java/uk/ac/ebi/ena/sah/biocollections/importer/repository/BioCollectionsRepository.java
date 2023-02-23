@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch.indices.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
+import uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsProcessingException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +33,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.TreeMap;
 
+import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.*;
 import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.PERCENTAGE_FORMAT;
 import static uk.ac.ebi.ena.sah.biocollections.importer.utils.BioCollectionsServiceUtils.calculatePercentChanged;
 import static uk.ac.ebi.ena.sah.biocollections.importer.utils.BioCollectionsServiceUtils.logStats;
@@ -121,10 +123,10 @@ public class BioCollectionsRepository {
                 log.info("Cleanup completed for indexes with prefix '{}'", indexPrefix);
             }
             return true;
-        } catch (IOException e) {
+        } catch (IOException ex) {
             log.error("Alias not moved to the new Index {}", newIndexName);
+            throw new BioCollectionsProcessingException(IndexAliasMoveError, IndexAliasMoveErrorMessage, ex);
         }
-        return false;
     }
 
     /**
@@ -160,10 +162,10 @@ public class BioCollectionsRepository {
                 }
             }
             return true;
-        } catch (IOException e) {
+        } catch (IOException ex) {
             log.warn("Failed to cleanup older indexes for {} Indexes ", indexPrefix);
+            throw new BioCollectionsProcessingException(IndexCleanupError, IndexCleanupErrorMessage, ex);
         }
-        return false;
     }
 
 

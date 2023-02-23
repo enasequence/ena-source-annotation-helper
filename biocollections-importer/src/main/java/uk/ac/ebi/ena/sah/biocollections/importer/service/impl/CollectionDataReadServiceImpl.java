@@ -28,6 +28,7 @@ import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.sah.biocollections.importer.data.BioCollectionsDataObject;
 import uk.ac.ebi.ena.sah.biocollections.importer.entity.Collection;
 import uk.ac.ebi.ena.sah.biocollections.importer.entity.Institution;
+import uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsProcessingException;
 import uk.ac.ebi.ena.sah.biocollections.importer.service.FTPDataReadService;
 
 import java.io.BufferedReader;
@@ -37,6 +38,7 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
+import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.*;
 import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.*;
 
 @Service
@@ -138,9 +140,9 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService, Applic
             }
             br.close();
             return true;
-        } catch (IOException e) {
-            log.debug(e.getLocalizedMessage(), e);
-            return false;
+        } catch (IOException ex) {
+            log.debug(ex.getLocalizedMessage(), ex);
+            throw new BioCollectionsProcessingException(CollectionDataReadError, CollectionDataReadErrorMessage, ex);
         }
     }
 

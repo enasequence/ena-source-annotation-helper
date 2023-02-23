@@ -20,6 +20,7 @@ package uk.ac.ebi.ena.sah.biocollections.importer.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsProcessingException;
 import uk.ac.ebi.ena.sah.biocollections.importer.repository.BioCollectionsRepository;
 import uk.ac.ebi.ena.sah.biocollections.importer.repository.CollectionRepository;
 import uk.ac.ebi.ena.sah.biocollections.importer.repository.InstitutionRepository;
@@ -27,6 +28,9 @@ import uk.ac.ebi.ena.sah.biocollections.importer.service.BioCollectionsImportSer
 import uk.ac.ebi.ena.sah.biocollections.importer.service.FTPDataReadService;
 
 import java.io.IOException;
+
+import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.PersistenceError;
+import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.PersistenceErrorMessage;
 
 @Slf4j
 @Component
@@ -110,7 +114,7 @@ public class BioCollectionsImportServiceImpl implements BioCollectionsImportServ
             return true;
         } catch (IOException e) {
             log.info("Failed - Persisting Data for Bio-collections");
-            return false;
+            throw new BioCollectionsProcessingException(PersistenceError, PersistenceErrorMessage, e);
         }
     }
 
