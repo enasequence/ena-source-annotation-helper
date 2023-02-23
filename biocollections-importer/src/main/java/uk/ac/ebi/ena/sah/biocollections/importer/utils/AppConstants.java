@@ -23,12 +23,12 @@ import java.time.format.DateTimeFormatter;
 
 public class AppConstants {
 
-    static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuuMMdd_HHmm");
-    static final String CURRENT_DATE = dtf.format(LocalDateTime.now());
+    static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("uuuuMMdd_HHmm");
+    static final String CURRENT_DATE = dateTimeFormatter.format(LocalDateTime.now());
     public static final String INST_MAPPING_JSON = "institution.json";
     public static final String COLL_MAPPING_JSON = "collection.json";
     public static final String INDEX_COLLECTION_ALIAS = "collection";
-    public static final String INDEX_INSTITUTION_ALIAS= "institution";
+    public static final String INDEX_INSTITUTION_ALIAS = "institution";
     public static final String INST_INDEX_PREFIX = "institution_";
     public static final String COLL_INDEX_PREFIX = "collection_";
     public static final String NEW_INST_INDEX_NAME = INST_INDEX_PREFIX + CURRENT_DATE;
@@ -54,7 +54,7 @@ public class AppConstants {
     public static final int COLL_NAME_POS = 3;
     public static final int COLL_CODE_POS = 4;
     public static final int COLL_SIZE_POS = 5;
-    public static final int COLLECTION_TYPE_POS =6;
+    public static final int COLLECTION_TYPE_POS = 6;
     public static final int COLL_URL_RULE_POS = 7;
     public static final int COLL_URL_POS = 8;
     public static final int QUALIFIER_TYPE_POS = 9;

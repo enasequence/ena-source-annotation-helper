@@ -24,7 +24,6 @@ import lombok.Data;
 public class BioCollectionsBaseException extends RuntimeException {
 
     private int errorCode;
-    private int refId;
 
     public BioCollectionsBaseException(int errorCode, String message) {
         super(message);
