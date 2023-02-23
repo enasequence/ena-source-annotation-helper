@@ -35,6 +35,7 @@ public class AppConstants {
     public static final String NEW_COLL_INDEX_NAME = COLL_INDEX_PREFIX + CURRENT_DATE;
 
     public static final String PERCENTAGE_FORMAT = "#0.00";
+    public static final String NCBI_DELIMITER = "|";
 
     public static final int INST_ID_POS = 1;
     public static final int INST_CODE_POS = 2;

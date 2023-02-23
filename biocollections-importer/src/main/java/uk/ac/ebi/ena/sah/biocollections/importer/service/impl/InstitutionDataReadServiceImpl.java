@@ -19,9 +19,10 @@
 package uk.ac.ebi.ena.sah.biocollections.importer.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.sah.biocollections.importer.data.BioCollectionsDataObject;
@@ -39,17 +40,14 @@ import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.*;
 
 @Service
 @Slf4j
-public class InstitutionDataReadServiceImpl implements FTPDataReadService {
+public class InstitutionDataReadServiceImpl implements FTPDataReadService, ApplicationContextAware {
 
-    // variables to be configured at the time of script setup
-    //TODO move to application properties
     @Value("${ftp.ncbi.file.institutions}")
     private String ncbiInstitutionsFilePath;
 
-    public boolean fetchDataFileFromFTP() {
+    private ApplicationContext appContext;
 
-        ApplicationContext appContext =
-                new ClassPathXmlApplicationContext();
+    public boolean fetchDataFileFromFTP() {
 
         Resource resource =
                 appContext.getResource(ncbiInstitutionsFilePath);
@@ -60,7 +58,7 @@ public class InstitutionDataReadServiceImpl implements FTPDataReadService {
 
             String line;
             while ((line = br.readLine()) != null) {
-                StringTokenizer st = new StringTokenizer(line, "|");
+                StringTokenizer st = new StringTokenizer(line, NCBI_DELIMITER);
                 if (st.countTokens() < 3) {
                     //not a valid record
                     continue;
@@ -121,5 +119,9 @@ public class InstitutionDataReadServiceImpl implements FTPDataReadService {
         }
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext appContext) throws BeansException {
+        this.appContext = appContext;
+    }
 
 }

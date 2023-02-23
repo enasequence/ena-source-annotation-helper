@@ -19,9 +19,10 @@
 package uk.ac.ebi.ena.sah.biocollections.importer.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.sah.biocollections.importer.data.BioCollectionsDataObject;
@@ -40,15 +41,14 @@ import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.*;
 
 @Service
 @Slf4j
-public class CollectionDataReadServiceImpl implements FTPDataReadService {
+public class CollectionDataReadServiceImpl implements FTPDataReadService, ApplicationContextAware {
 
     @Value("${ftp.ncbi.file.collections}")
     private String ncbiCollectionsFilePath;
 
-    public boolean fetchDataFileFromFTP() {
+    private ApplicationContext appContext;
 
-        ApplicationContext appContext =
-                new ClassPathXmlApplicationContext();
+    public boolean fetchDataFileFromFTP() {
 
         Resource resource =
                 appContext.getResource(ncbiCollectionsFilePath);
@@ -60,7 +60,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService {
             String line;
             while ((line = br.readLine()) != null) {
                 //System.out.println(line);
-                StringTokenizer st = new StringTokenizer(line, "|");
+                StringTokenizer st = new StringTokenizer(line, NCBI_DELIMITER);
                 if (st.countTokens() < 4) {
                     //not a valid record
                     continue;
@@ -142,6 +142,11 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService {
             log.debug(e.getLocalizedMessage(), e);
             return false;
         }
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext appContext) throws BeansException {
+        this.appContext = appContext;
     }
 
 }
