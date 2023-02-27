@@ -23,7 +23,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.sah.biocollections.importer.data.BioCollectionsDataObject;
 import uk.ac.ebi.ena.sah.biocollections.importer.entity.Collection;
@@ -38,7 +37,8 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.*;
+import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.CollectionDataReadError;
+import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.CollectionDataReadErrorMessage;
 import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.*;
 
 @Service
@@ -52,13 +52,9 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService, Applic
 
     public boolean fetchDataFileFromFTP() {
 
-        Resource resource =
-                appContext.getResource(ncbiCollectionsFilePath);
-
-        try {
-            InputStream is = resource.getInputStream();
+        try ( InputStream is =
+                      appContext.getResource(ncbiCollectionsFilePath).getInputStream()) {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
             String line;
             while ((line = br.readLine()) != null) {
                 //System.out.println(line);

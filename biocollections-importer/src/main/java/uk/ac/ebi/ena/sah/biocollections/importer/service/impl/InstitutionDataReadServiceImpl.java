@@ -23,7 +23,6 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 import uk.ac.ebi.ena.sah.biocollections.importer.data.BioCollectionsDataObject;
 import uk.ac.ebi.ena.sah.biocollections.importer.entity.Institution;
@@ -37,7 +36,8 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 import static org.springframework.util.ObjectUtils.isEmpty;
-import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.*;
+import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.InstitutionDataReadError;
+import static uk.ac.ebi.ena.sah.biocollections.importer.exception.BioCollectionsErrorCode.InstitutionDataReadErrorMessage;
 import static uk.ac.ebi.ena.sah.biocollections.importer.utils.AppConstants.*;
 
 @Service
@@ -51,13 +51,9 @@ public class InstitutionDataReadServiceImpl implements FTPDataReadService, Appli
 
     public boolean fetchDataFileFromFTP() {
 
-        Resource resource =
-                appContext.getResource(ncbiInstitutionsFilePath);
-
-        try {
-            InputStream is = resource.getInputStream();
+        try ( InputStream is =
+                     appContext.getResource(ncbiInstitutionsFilePath).getInputStream()) {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
-
             String line;
             while ((line = br.readLine()) != null) {
                 StringTokenizer st = new StringTokenizer(line, NCBI_DELIMITER);
