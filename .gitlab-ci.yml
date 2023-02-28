@@ -79,6 +79,7 @@ build_prod:
       - biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
   only:
     - master
+    - dcp-3441-ncbi-format-changes
 
 build_docker_image:
   image: docker:stable
