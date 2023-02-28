@@ -57,7 +57,7 @@ build_dev:
   artifacts:
     paths:
       - build/libs/source-annotation-helper-${VERSION}.jar
-      - biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
+      - biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar
   only:
     - master
     - dcp-3441-ncbi-format-changes
@@ -76,7 +76,7 @@ build_prod:
   artifacts:
     paths:
       - build/libs/source-annotation-helper-${VERSION}.jar
-      - biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
+      - biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar
   only:
     - master
     - dcp-3441-ncbi-format-changes
