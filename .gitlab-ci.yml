@@ -2,6 +2,7 @@ image: openjdk:17-slim-bullseye
 
 variables:
   VERSION: "1.2.1"
+  IMPORTER_VERSION: "1.0.0
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
   JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
@@ -61,20 +62,6 @@ build_dev:
     - master
     - dcp-3441-ncbi-format-changes
 
-deploy_dev:
-  stage: deploy
-  script:
-    - chmod u+x build/libs/source-annotation-helper-${VERSION}.jar
-    - scp -o StrictHostKeyChecking=no build/libs/source-annotation-helper-${VERSION}.jar ena_adm@wp-p1m2-69:/nfs/public/rw/ena/source-annotation-helper/deploy
-  tags:
-    - dcap-gitlab-runner
-  dependencies:
-    - build_dev
-  environment:
-    name: dev
-    url: https://wwwdev.ebi.ac.uk/ena/sah/api/
-  only:
-    - master
 
 build_prod:
   stage: build
@@ -130,9 +117,9 @@ deploy_importer_tool_dev:
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
     - mkdir -p ~/.ssh
   script:
-    - chmod u+x biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
-    - scp -o StrictHostKeyChecking=no biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY_TEST}
-    - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY_TEST}/biocollections-importer-${VERSION}.jar ${JOB_LIBRARY_TEST}/biocollections-importer.jar"
+    - chmod u+x biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar
+    - scp -o StrictHostKeyChecking=no biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY_TEST}
+    - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY_TEST}/biocollections-importer-${IMPORTER_VERSION}.jar ${JOB_LIBRARY_TEST}/biocollections-importer.jar"
   tags:
     - dcap-gitlab-runner
   dependencies:
@@ -148,16 +135,15 @@ deploy_importer_tool_prod:
     - ssh-add <(echo "$CODON_DATALIB_SSH_PVT_KEY")
     - mkdir -p ~/.ssh
   script:
-    - chmod u+x biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar
-    - scp -o StrictHostKeyChecking=no biocollections-importer/build/libs/biocollections-importer-${VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY}
-    - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY}/biocollections-importer-${VERSION}.jar ${JOB_LIBRARY}/biocollections-importer.jar"
+    - chmod u+x biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar
+    - scp -o StrictHostKeyChecking=no biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar datalib@codon-login-01.ebi.ac.uk:${JOB_LIBRARY}
+    - ssh datalib@codon-login-01.ebi.ac.uk "ln -sf ${JOB_LIBRARY}/biocollections-importer-${IMPORTER_VERSION}.jar ${JOB_LIBRARY}/biocollections-importer.jar"
   tags:
     - dcap-gitlab-runner
   dependencies:
     - build_prod
   only:
     - master
-    - dcp-3441-ncbi-format-changes
   when: manual
 
 k8s-deploy-dev:
@@ -180,7 +166,6 @@ k8s-deploy-prod:
   stage: deploy
   only:
     - master
-    - dcp-3441-ncbi-format-changes
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" Kubernetes-prod-deployment.yaml
     - kubectl apply -f Kubernetes-prod-deployment.yaml --namespace=ena-dcap

@@ -9,7 +9,7 @@ ext {
 }
 
 group = 'uk.ac.ebi.ena.sah.biocollections.importer'
-version = System.getenv("VERSION")
+version = System.getenv("IMPORTER_VERSION")
 sourceCompatibility = '17'
 
 jar {
