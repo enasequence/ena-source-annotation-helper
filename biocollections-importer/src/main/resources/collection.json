@@ -1,0 +1,59 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "dynamic": "false",
+    "properties": {
+      "coll_id": {
+        "type": "long",
+        "meta": {
+          "description": "Collection Identifier"
+        }
+      },
+      "inst_id": {
+        "type": "long",
+        "meta": {
+          "description": "Institute Identifier"
+        }
+      },
+      "coll_code": {
+        "type": "text",
+        "meta": {
+          "description": "Collection Code"
+        }
+      },
+      "coll_name": {
+        "type": "text",
+        "meta": {
+          "description": "Collection Name"
+        }
+      },
+      "coll_type": {
+        "type": "text",
+        "meta": {
+          "description": "Collection Type"
+        }
+      },
+      "qualifier_type": {
+        "type": "keyword",
+        "meta": {
+          "description": "Qualifier Type"
+        }
+      },
+      "coll_url": {
+        "type": "text",
+        "meta": {
+          "description": "Collection URL"
+        }
+      },
+      "coll_url_rule": {
+        "type": "text",
+        "meta": {
+          "description": "Collection URL Rule"
+        }
+      }
+    }
+  }
+}

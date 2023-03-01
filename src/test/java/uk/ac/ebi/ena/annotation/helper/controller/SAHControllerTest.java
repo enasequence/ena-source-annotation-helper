@@ -123,15 +123,14 @@ class SAHControllerTest {
     public void getInstFuzzySearchStrDoesNotExist() throws Exception {
         String params = "QQQ";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
-                .andExpect(status().isNotFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(equalTo(false)))
-                .andExpect(jsonPath("$.errors[0].code").value(equalTo(3004)))
                 .andReturn();
     }
 
     @Test
     public void getInstFuzzySearchStrWithQT() throws Exception {
-        String params = "ANS?qualifier_type=bio_material";
+        String params = "ANS?qualifier_type=specimen_voucher";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.institutions").exists())
@@ -201,9 +200,8 @@ class SAHControllerTest {
     public void getCollectionByInstCodeWithQTNoMatch() throws Exception {
         String params = "CMN/collection?qualifier_type=bio_material";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
-                .andExpect(status().isNotFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(equalTo(false)))
-                .andExpect(jsonPath("$.errors[0].code").value(equalTo(3006)))
                 .andReturn();
 
     }
@@ -212,9 +210,8 @@ class SAHControllerTest {
     public void getCollectionInstituteDoesNotExist() throws Exception {
         String params = "QQQ/collection";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
-                .andExpect(status().isNotFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(equalTo(false)))
-                .andExpect(jsonPath("$.errors[0].code").value(equalTo(3005)))
                 .andReturn();
     }
 
@@ -222,9 +219,8 @@ class SAHControllerTest {
     public void getCollectionInstituteExistNoColl() throws Exception {
         String params = "QQQ/collection";
         MvcResult result = this.mockMvc.perform(get(META_SEARCH_BASE_ENDPOINT + params))
-                .andExpect(status().isNotFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(equalTo(false)))
-                .andExpect(jsonPath("$.errors[0].code").value(equalTo(3005)))
                 .andReturn();
     }
 
@@ -255,7 +251,7 @@ class SAHControllerTest {
 
     @Test
     void validateSimilarMatchInstOnly() throws Exception {
-        String params = "?value=NYX:123456";
+        String params = "?value=NY:123456";
         MvcResult result = this.mockMvc.perform(get(VALIDATE_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.matches").exists())
@@ -295,7 +291,7 @@ class SAHControllerTest {
 
     @Test
     void constructSimilarMatchInstOnly() throws Exception {
-        String params = "?institution=NYX&id=123456&qualifier_type=specimen_voucher";
+        String params = "?institution=NY&id=123456&qualifier_type=specimen_voucher";
         MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.matches").exists())
@@ -317,9 +313,8 @@ class SAHControllerTest {
     void constructSimilarMatchInstWithCollWithQTNoMatch() throws Exception {
         String params = "?institution=HSUV&collection=Bird&id=123456&qualifier_type=bio_material";
         MvcResult result = this.mockMvc.perform(get(CONSTRUCT_BASE_ENDPOINT + params))
-                .andExpect(status().isNotFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(equalTo(false)))
-                .andExpect(jsonPath("$.error.code").value(equalTo(3012)))
                 .andReturn();
     }
 

@@ -27,6 +27,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static uk.ac.ebi.ena.annotation.helper.utils.SAHConstants.INDEX_COLLECTION;
 
@@ -51,7 +52,7 @@ public class Collection {
     @Field(name = "coll_type")
     private String collType;
     @Field(name = "qualifier_type")
-    private String[] qualifierType;
+    private List<String> qualifierType;
     @Field(name = "coll_url")
     private String collUrl;
     @Field(name = "coll_url_rule")
@@ -66,9 +67,10 @@ public class Collection {
                 ", collCode='" + collCode + '\'' +
                 ", collName='" + collName + '\'' +
                 ", collType='" + collType + '\'' +
-                ", qualifierType=" + Arrays.toString(qualifierType) +
+                ", qualifierType=" + qualifierType +
                 ", collUrl='" + collUrl + '\'' +
                 ", collUrlRule='" + collUrlRule + '\'' +
                 '}';
     }
+
 }

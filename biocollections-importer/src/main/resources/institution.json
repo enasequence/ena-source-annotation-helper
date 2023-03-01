@@ -1,0 +1,77 @@
+{
+  "settings": {
+    "number_of_shards": 1,
+    "number_of_replicas": 1
+  },
+  "mappings": {
+    "dynamic": "false",
+    "properties": {
+      "inst_id": {
+        "type": "long",
+        "meta": {
+          "description": "Institution Identifier"
+        }
+      },
+      "inst_code": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Code"
+        }
+      },
+      "unique_name": {
+        "type": "keyword",
+        "meta": {
+          "description": "Institution Unique Name"
+        }
+      },
+      "synonyms": {
+        "type": "text",
+        "meta": {
+          "description": "Institution synonyms"
+        }
+      },
+      "inst_name": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Name"
+        }
+      },
+      "country": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Country"
+        }
+      },
+      "address": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Address"
+        }
+      },
+      "coll_type": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Collection Type"
+        }
+      },
+      "qualifier_type": {
+        "type": "keyword",
+        "meta": {
+          "description": "Institution Qualifier Type"
+        }
+      },
+      "home_url": {
+        "type": "text",
+        "meta": {
+          "description": "Institution Home URL"
+        }
+      },
+      "url_rule": {
+        "type": "text",
+        "meta": {
+          "description": "Institution URL Rule"
+        }
+      }
+    }
+  }
+}
