@@ -58,10 +58,6 @@ build_dev:
     paths:
       - build/libs/source-annotation-helper-${VERSION}.jar
       - biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar
-  only:
-    - master
-    - dcp-3441-ncbi-format-changes
-
 
 build_prod:
   stage: build
@@ -77,9 +73,6 @@ build_prod:
     paths:
       - build/libs/source-annotation-helper-${VERSION}.jar
       - biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar
-  only:
-    - master
-    - dcp-3441-ncbi-format-changes
 
 build_docker_image:
   image: docker:stable
@@ -103,9 +96,6 @@ build_docker_image:
     - dcap-gitlab-runner-docker
   dependencies:
     - build_prod
-  only:
-    - master
-    - dcp-3441-ncbi-format-changes
 
 deploy_importer_tool_dev:
   stage: deploy
@@ -149,9 +139,6 @@ deploy_importer_tool_prod:
 k8s-deploy-dev:
   image: dtzar/helm-kubectl:3.11.0
   stage: deploy
-  only:
-    - master
-    - dcp-3441-ncbi-format-changes
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" Kubernetes-dev-deployment.yaml
     - kubectl apply -f Kubernetes-dev-deployment.yaml --namespace=ena-dcap
