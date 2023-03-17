@@ -1,8 +1,8 @@
 image: openjdk:17-slim-bullseye
 
 variables:
-  VERSION: "1.1.2"
-  IMPORTER_VERSION: "1.0.0"
+  VERSION: "1.1.3"
+  IMPORTER_VERSION: "1.0.1"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
   JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
