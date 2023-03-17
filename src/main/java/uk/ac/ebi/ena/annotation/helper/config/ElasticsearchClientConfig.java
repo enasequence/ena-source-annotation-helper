@@ -38,9 +38,8 @@ public class ElasticsearchClientConfig {
     @Value("${elasticsearch.port}")
     private int port;
 
-    @SneakyThrows
     @Bean
-    public ElasticsearchClient client() {
+    public RestClient restClient() {
         // ES 8.5 client approach
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("certificates/elasticsearch-ssl.crt");
@@ -53,7 +52,7 @@ public class ElasticsearchClientConfig {
         );
 
         // Create the low-level client
-        RestClient restClient = RestClient.builder(
+        return RestClient.builder(
                         new HttpHost(host, port, "https"))
                 .setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
                     @Override
@@ -75,14 +74,17 @@ public class ElasticsearchClientConfig {
                     }
                 })
                 .build();
+    }
 
+    @SneakyThrows
+    @Bean
+    public ElasticsearchClient client() {
         // Create the transport with a Jackson mapper
         ElasticsearchTransport transport = new RestClientTransport(
-                restClient, new JacksonJsonpMapper());
-
-// And create the API client
-        ElasticsearchClient client = new ElasticsearchClient(transport);
-        return client;
+                restClient(), new JacksonJsonpMapper());
+        // And create the API client
+        return new ElasticsearchClient(transport);
     }
+
 
 }

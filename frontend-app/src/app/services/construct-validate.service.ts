@@ -75,7 +75,7 @@ export class ConstructValidateService {
         // alert(attribVal);
         const headers = new HttpHeaders({'Accept': 'application/json'});
         const options = {headers: headers};
-        var urlString = environment.sahAPIURL + '/construct?institution=' + instVal + '&id=' + attribVal;
+        var urlString = environment.sahAPIURL + 'construct?institution=' + instVal + '&id=' + attribVal;
 
         if (collVal.trim() != '') {
             urlString = urlString + '&collection=' + collVal;
