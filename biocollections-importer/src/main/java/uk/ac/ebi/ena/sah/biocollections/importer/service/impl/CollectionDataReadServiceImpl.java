@@ -98,7 +98,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService, Applic
                         case COLL_CODE_POS:
                             if (tokenVal.contains(":")) {
                                 // it is a collection row
-                                collObj.setCollCode(tokenVal.substring(tokenVal.indexOf(":")));
+                                collObj.setCollCode(tokenVal.substring(tokenVal.indexOf(":")+1));
                             } else if (inst_id != 0) {
                                 //it is a valid institution row
                                 instObj = BioCollectionsDataObject.mapInstitutions.get(inst_id);

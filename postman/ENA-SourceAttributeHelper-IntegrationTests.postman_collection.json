@@ -65,14 +65,13 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{current-sv-env}}/{{sah_app_context}}/actuator/",
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/actuator",
 									"host": [
 										"{{current-sv-env}}"
 									],
 									"path": [
 										"{{sah_app_context}}",
-										"actuator",
-										""
+										"actuator"
 									]
 								}
 							},
@@ -1182,6 +1181,47 @@
 											"pm.test(\"Coll-ByInstCode-AllColl-Good-01-Coll-Present\", function () {",
 											"    var jsonData = pm.response.json();",
 											"    pm.expect(jsonData.institutions[0].collections.length).to.greaterThan(0);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{current-sv-env}}/{{sah_app_context}}/institution/CMN/collection",
+									"host": [
+										"{{current-sv-env}}"
+									],
+									"path": [
+										"{{sah_app_context}}",
+										"institution",
+										"CMN",
+										"collection"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Coll-ByInstCode-AllColl-NoColon-Test-01",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Coll-ByInstCode-AllColl-NoColon-Test-01-check\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"Coll-ByInstCode-AllColl-NoColon-Test-01-NotPresent\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.institutions[0].collections[0].collectionCode).not.contains(':');",
 											"});",
 											"",
 											""
