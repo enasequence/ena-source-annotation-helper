@@ -8,7 +8,7 @@ spec:
     matchLabels:
       app: ena-dcap-sah-prod
   replicas: 1
-  revisionHistoryLimit: 3
+  revisionHistoryLimit: 2
   template:
     metadata:
       labels:
@@ -25,7 +25,7 @@ spec:
       imagePullSecrets:
         - name: regcred
       nodeSelector:
-        appType: ena-dcap-web
+        appType: ena-dcap-es-hx
 
 ---
 kind: Service

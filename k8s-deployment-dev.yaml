@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ena-dcap-sah-dev
+  namespace: ena-dcap
+spec:
+  selector:
+    matchLabels:
+      app: ena-dcap-sah-dev
+  replicas: 1
+  revisionHistoryLimit: 1
+  template:
+    metadata:
+      labels:
+        app: ena-dcap-sah-dev
+    spec:
+      containers:
+        - name: ena-dcap-sah-dev
+          image: <container_app_image>
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JAVA_OPTS
+              value: "-Dhttp.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|.cluster.local -Dhttps.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttps.proxyPort=3128"
+      imagePullSecrets:
+        - name: regcred
+      nodeSelector:
+        appType: ena-dcap-es-hx
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ena-dcap-sah-dev
+  namespace: ena-dcap
+spec:
+  selector:
+    app: ena-dcap-sah-dev
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 31024
+  type: NodePort
