@@ -14,6 +14,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
+import org.apache.http.ssl.SSLContextBuilder;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.net.ssl.SSLContext;
+import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.InputStream;
 
 @Configuration
@@ -37,14 +40,19 @@ public class ElasticsearchClientConfig {
     private String host;
     @Value("${elasticsearch.port}")
     private int port;
+    @Value("${elasticsearch.certificate}")
+    private String certificate;
 
     @Bean
+    @SneakyThrows
     public RestClient restClient() {
         // ES 8.5 client approach
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("certificates/elasticsearch-ssl.crt");
+//        InputStream inputStream = classLoader.getResourceAsStream("certificates/elasticsearch-ssl.crt");
+//        SSLContext sslContext = TransportUtils
+//                .sslContextFromHttpCaCrt(inputStream);
         SSLContext sslContext = TransportUtils
-                .sslContextFromHttpCaCrt(inputStream);
+                .sslContextFromHttpCaCrt(new ByteArrayInputStream(certificate.getBytes()));
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
         credsProv.setCredentials(

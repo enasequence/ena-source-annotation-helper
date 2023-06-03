@@ -93,7 +93,7 @@ build_docker_image:
   tags:
     - dcap-gitlab-runner-docker
   dependencies:
-    - build_prod
+    - build_dev
 
 deploy_importer_tool_dev:
   stage: deploy
