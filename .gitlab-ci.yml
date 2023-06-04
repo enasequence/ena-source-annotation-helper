@@ -1,8 +1,8 @@
 image: openjdk:17-slim-bullseye
 
 variables:
-  VERSION: "1.1.9_a2"
-  IMPORTER_VERSION: "1.0.5_a2"
+  VERSION: "1.1.9_b1"
+  IMPORTER_VERSION: "1.0.5_b1"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
   JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
@@ -139,7 +139,7 @@ k8s-deploy-dev:
   stage: deploy
   before_script:
     - sed -i -e "s/<k8s_hh_wp_37_cluster_auth>/$K8S_HH_WP_37_CLUSTER_AUTH/" -e "s/<k8s_hh_wp_37_server>/$K8S_HH_WP_37_SERVER/" -e "s/<k8s_hh_wp_37_cluster>/$K8S_HH_WP_37_CLUSTER/" -e "s/<k8s_hh_wp_37_user>/$K8S_HH_WP_37_USER/" -e "s/<k8s_hh_wp_37_user_token>/$K8S_HH_WP_37_USER_TOKEN/" Kubernetes-cluster.yaml
-    - export KUBECONFIG=./Kubernetes-cluster.yaml
+    - export KUBECONFIG=./k8s-cluster-hh.yaml
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" k8s-deployment-dev.yaml
     - kubectl apply -f k8s-deployment-dev.yaml --namespace=ena-dcap
