@@ -50,7 +50,7 @@ spec:
       imagePullSecrets:
         - name: regcred
       nodeSelector:
-        appType: ena-dcap-es-hx
+        appType: ena-dcap-web
 
 ---
 kind: Service

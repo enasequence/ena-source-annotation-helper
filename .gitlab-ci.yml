@@ -1,8 +1,8 @@
 image: openjdk:17-slim-bullseye
 
 variables:
-  VERSION: "1.1.9_c1"
-  IMPORTER_VERSION: "1.0.5_c1"
+  VERSION: "1.1.10"
+  IMPORTER_VERSION: "1.0.10"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
   JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
@@ -172,7 +172,6 @@ k8s-deploy-prod-fb:
     - export KUBECONFIG=./k8s-cluster-hx.yaml
   only:
     - master
-    - DCP-3639-hh-k8s
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" k8s-deployment-prod-fb.yaml
     - kubectl apply -f k8s-deployment-prod-fb.yaml --namespace=ena-dcap
