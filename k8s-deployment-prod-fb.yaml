@@ -1,42 +1,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ena-dcap-sah-prod
+  name: ena-dcap-sah-prod-fb
   namespace: ena-dcap
 spec:
   selector:
     matchLabels:
-      app: ena-dcap-sah-prod
+      app: ena-dcap-sah-prod-fb
   replicas: 1
   revisionHistoryLimit: 2
   template:
     metadata:
       labels:
-        app: ena-dcap-sah-prod
+        app: ena-dcap-sah-prod-fb
     spec:
       containers:
-        - name: ena-dcap-sah-prod
+        - name: ena-dcap-sah-prod-fb
           image: <container_app_image>
           ports:
             - containerPort: 8080
           env:
             - name: JAVA_OPTS
               value: "-Dhttp.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|.cluster.local -Dhttps.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttps.proxyPort=3128"
+            - name: ES-PROD-HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: es-prod-host
+                  key: host
+            - name: ES-PROD-PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: es-prod-host
+                  key: port
             - name: ES-PROD-USERNAME
               valueFrom:
                 secretKeyRef:
                   name: es-prod-credentials
-                        key: username
+                  key: username
             - name: ES-PROD-PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: es-prod-credentials
-                    key: password
+                  key: password
             - name: ES-PROD-CERTIFICATE
               valueFrom:
                 secretKeyRef:
                   name: es-prod-certificate
-                    key: hx-cert.cer
+                  key: hx-cert.cer
       imagePullSecrets:
         - name: regcred
       nodeSelector:
@@ -46,11 +56,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: ena-dcap-sah-prod
+  name: ena-dcap-sah-prod-fb
   namespace: ena-dcap
 spec:
   selector:
-    app: ena-dcap-sah-prod
+    app: ena-dcap-sah-prod-fb
   ports:
     - protocol: TCP
       port: 8080
