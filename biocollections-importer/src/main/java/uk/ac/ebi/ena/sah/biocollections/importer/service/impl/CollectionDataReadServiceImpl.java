@@ -52,8 +52,8 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService, Applic
 
     public boolean fetchDataFileFromFTP() {
 
-        try ( InputStream is =
-                      appContext.getResource(ncbiCollectionsFilePath).getInputStream()) {
+        try (InputStream is =
+                     appContext.getResource(ncbiCollectionsFilePath).getInputStream()) {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line;
             while ((line = br.readLine()) != null) {
@@ -98,7 +98,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService, Applic
                         case COLL_CODE_POS:
                             if (tokenVal.contains(":")) {
                                 // it is a collection row
-                                collObj.setCollCode(tokenVal.substring(tokenVal.indexOf(":")+1));
+                                collObj.setCollCode(tokenVal.substring(tokenVal.indexOf(":") + 1));
                             } else if (inst_id != 0) {
                                 //it is a valid institution row
                                 instObj = BioCollectionsDataObject.mapInstitutions.get(inst_id);
@@ -120,7 +120,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService, Applic
                             break;
                         case QUALIFIER_TYPE_POS:
                             if (inst) {
-                                instObj.setQualifierType(tokenVal);
+                                instObj.setQualifierType(tokenVal.split(","));
                             } else {
                                 collObj.setQualifierType(tokenVal);
                             }

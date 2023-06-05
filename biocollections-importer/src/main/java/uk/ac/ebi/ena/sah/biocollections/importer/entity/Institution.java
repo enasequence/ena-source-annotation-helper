@@ -48,7 +48,7 @@ public class Institution {
     @JsonProperty("coll_type")
     private String collType;
     @JsonProperty("qualifier_type")
-    private String qualifierType;
+    private String[] qualifierType;
 
     @JsonProperty("home_url")
     private String homeUrl;
@@ -72,4 +72,5 @@ public class Institution {
                 ", urlRule='" + urlRule + '\'' +
                 '}';
     }
+
 }
