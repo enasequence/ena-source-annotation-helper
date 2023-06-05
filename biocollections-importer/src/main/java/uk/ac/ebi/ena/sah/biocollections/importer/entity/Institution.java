@@ -73,10 +73,4 @@ public class Institution {
                 '}';
     }
 
-    public void addQualifierType(String qtype) {
-        if(qtype != null) {
-            qualifierType = qtype.split(",");
-        }
-    }
-
 }
