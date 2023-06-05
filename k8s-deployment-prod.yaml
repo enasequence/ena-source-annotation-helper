@@ -46,7 +46,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: es-hl-prod-certificate
-                  key: hh-cert.cer
+                  key: hl-cert.cer
       imagePullSecrets:
         - name: regcred
       nodeSelector:
