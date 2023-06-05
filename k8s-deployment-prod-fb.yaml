@@ -22,30 +22,30 @@ spec:
           env:
             - name: JAVA_OPTS
               value: "-Dhttp.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|.cluster.local -Dhttps.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttps.proxyPort=3128"
-            - name: ES-PROD-HOST
+            - name: ES-HX-PROD-HOST
               valueFrom:
                 configMapKeyRef:
                   name: es-prod-host
                   key: host
-            - name: ES-PROD-PORT
+            - name: ES-HX-PROD-PORT
               valueFrom:
                 configMapKeyRef:
                   name: es-prod-host
                   key: port
-            - name: ES-PROD-USERNAME
+            - name: K8S_HX_ES_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: es-prod-credentials
+                  name: es-hx-prod-credentials
                   key: username
-            - name: ES-PROD-PASSWORD
+            - name: K8S_HX_ES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: es-prod-credentials
+                  name: es-hx-prod-credentials
                   key: password
-            - name: ES-PROD-CERTIFICATE
+            - name: ES-HX-PROD-CERTIFICATE
               valueFrom:
                 secretKeyRef:
-                  name: es-prod-certificate
+                  name: es-hx-prod-certificate
                   key: hx-cert.cer
       imagePullSecrets:
         - name: regcred
