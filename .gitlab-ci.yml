@@ -210,7 +210,7 @@ k8s-deploy-dev:
   tags:
     - dcap-gitlab-runner-docker
   dependencies:
-    - build_docker_image
+    - build_docker_img_dev
   when: manual
 
 k8s-deploy-prod:
@@ -228,7 +228,7 @@ k8s-deploy-prod:
   tags:
     - dcap-gitlab-runner-docker
   dependencies:
-    - build_docker_image
+    - build_docker_img_prod
   when: manual
 
 k8s-deploy-prod-fb:
@@ -246,6 +246,6 @@ k8s-deploy-prod-fb:
   tags:
     - dcap-gitlab-runner-docker
   dependencies:
-    - build_docker_image
+    - build_docker_img_prod-fb
   when: manual
 
