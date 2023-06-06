@@ -128,7 +128,6 @@ build_docker_img_prod:
     - build_prod
   only:
     - master
-    - DCP-3639-hl-hx-deployment
   when: manual
 
 build_docker_img_prod_fb:
@@ -155,7 +154,6 @@ build_docker_img_prod_fb:
     - build_prod_fb
   only:
     - master
-    - DCP-3639-hl-hx-deployment
   when: manual
 
 deploy_importer_tool_dev:
@@ -221,7 +219,6 @@ k8s-deploy-prod:
     - export KUBECONFIG=./k8s-cluster-hh.yaml
   only:
     - master
-    - DCP-3639-hl-hx-deployment
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE/prod:$VERSION#" k8s-deployment-prod.yaml
     - kubectl apply -f k8s-deployment-prod.yaml --namespace=ena-dcap
@@ -239,7 +236,6 @@ k8s-deploy-prod-fb:
     - export KUBECONFIG=./k8s-cluster-hx.yaml
   only:
     - master
-    - DCP-3639-hl-hx-deployment
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE/prodfb:$VERSION#" k8s-deployment-prod-fb.yaml
     - kubectl apply -f k8s-deployment-prod-fb.yaml --namespace=ena-dcap
