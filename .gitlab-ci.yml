@@ -1,7 +1,7 @@
 image: openjdk:17-slim-bullseye
 
 variables:
-  VERSION: "1.1.11"
+  VERSION: "1.1.11_21a"
   IMPORTER_VERSION: "1.0.6"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
@@ -200,8 +200,8 @@ k8s-deploy-dev:
   image: dtzar/helm-kubectl:3.11.0
   stage: deploy
   before_script:
-    - sed -i -e "s/<k8s_hh_wp_37_cluster_auth>/$K8S_HH_WP_37_CLUSTER_AUTH/" -e "s/<k8s_hh_wp_37_server>/$K8S_HH_WP_37_SERVER/" -e "s/<k8s_hh_wp_37_cluster>/$K8S_HH_WP_37_CLUSTER/" -e "s/<k8s_hh_wp_37_user>/$K8S_HH_WP_37_USER/" -e "s/<k8s_hh_wp_37_user_token>/$K8S_HH_WP_37_USER_TOKEN/" k8s-cluster-hh.yaml
-    - export KUBECONFIG=./k8s-cluster-hh.yaml
+    - sed -i -e "s/<k8s_hx_wp_38_cluster_auth>/$K8S_HX_WP_38_CLUSTER_AUTH/" -e "s/<k8s_hx_wp_38_server>/$K8S_HX_WP_38_SERVER/" -e "s/<k8s_hx_wp_38_cluster>/$K8S_HX_WP_38_CLUSTER/" -e "s/<k8s_hx_wp_38_user>/$K8S_HX_WP_38_USER/" -e "s/<k8s_hx_wp_38_user_token>/$K8S_HX_WP_38_USER_TOKEN/" k8s-cluster-hx.yaml
+    - export KUBECONFIG=./k8s-cluster-hx.yaml
   script:
     - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE/dev:$VERSION#" k8s-deployment-dev.yaml
     - kubectl apply -f k8s-deployment-dev.yaml --namespace=ena-dcap
@@ -209,7 +209,6 @@ k8s-deploy-dev:
     - dcap-gitlab-runner-docker
   dependencies:
     - build_docker_img_dev
-  when: manual
 
 k8s-deploy-prod:
   image: dtzar/helm-kubectl:3.11.0

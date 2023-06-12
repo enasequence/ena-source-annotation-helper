@@ -22,35 +22,35 @@ spec:
           env:
             - name: JAVA_OPTS
               value: "-Dhttp.proxyHost=pg-wwwcache.ebi.ac.uk -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|.cluster.local -Dhttps.proxyHost=pg-wwwcache.ebi.ac.uk -Dhttps.proxyPort=3128"
-            - name: ES-HL-PROD-HOST
+            - name: ES-HX-PROD-HOST
               valueFrom:
                 configMapKeyRef:
-                  name: es-hl-prod-host
+                  name: es-prod-host
                   key: host
-            - name: ES-HL-PROD-PORT
+            - name: ES-HX-PROD-PORT
               valueFrom:
                 configMapKeyRef:
-                  name: es-hl-prod-host
+                  name: es-prod-host
                   key: port
-            - name: K8S_ES_USERNAME
+            - name: K8S_HX_ES_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: es-hl-prod-credentials
+                  name: es-hx-prod-credentials
                   key: username
-            - name: K8S_ES_PASSWORD
+            - name: K8S_HX_ES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: es-hl-prod-credentials
+                  name: es-hx-prod-credentials
                   key: password
-            - name: ES-HL-PROD-CERTIFICATE
+            - name: ES-HX-PROD-CERTIFICATE
               valueFrom:
                 secretKeyRef:
-                  name: es-hl-prod-certificate
-                  key: hl-cert.cer
+                  name: es-hx-prod-certificate
+                  key: hx-cert.cer
       imagePullSecrets:
         - name: regcred
       nodeSelector:
-        appType: ena-dcap-web
+        appType: ena-dcap-es-hx
 
 ---
 kind: Service
