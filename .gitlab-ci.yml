@@ -1,7 +1,7 @@
 image: openjdk:17-slim-bullseye
 
 variables:
-  VERSION: "1.1.12"
+  VERSION: "1.1.13"
   IMPORTER_VERSION: "1.0.6"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
@@ -47,7 +47,6 @@ build_dev:
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
     - sed -i 's/<env>/dev/' biocollections-importer/src/main/resources/application.properties
-    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" biocollections-importer/src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
@@ -61,7 +60,6 @@ build_prod:
   script:
     - sed -i 's/<env>/prod/' src/main/resources/application.properties
     - sed -i 's/<env>/prod/' biocollections-importer/src/main/resources/application.properties
-    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_PROD_PORT/" biocollections-importer/src/main/resources/application-prod.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
