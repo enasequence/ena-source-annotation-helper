@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.net.ssl.SSLContext;
-import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 
 @Configuration
 @Slf4j
@@ -37,14 +37,16 @@ public class ElasticsearchClientConfig {
     private String host;
     @Value("${elasticsearch.port}")
     private int port;
+    @Value("${elasticsearch.certificate}")
+    private String certificate;
 
     @Bean
+    @SneakyThrows
     public RestClient restClient() {
         // ES 8.5 client approach
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("certificates/elasticsearch-ssl.crt");
         SSLContext sslContext = TransportUtils
-                .sslContextFromHttpCaCrt(inputStream);
+                .sslContextFromHttpCaCrt(new ByteArrayInputStream(certificate.getBytes()));
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
         credsProv.setCredentials(

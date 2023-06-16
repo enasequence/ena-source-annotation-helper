@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ena-dcap-sah-prod-fb
+  namespace: ena-dcap
+spec:
+  selector:
+    matchLabels:
+      app: ena-dcap-sah-prod-fb
+  replicas: 1
+  revisionHistoryLimit: 2
+  template:
+    metadata:
+      labels:
+        app: ena-dcap-sah-prod-fb
+    spec:
+      containers:
+        - name: ena-dcap-sah-prod-fb
+          image: <container_app_image>
+          ports:
+            - containerPort: 8080
+          env:
+            - name: JAVA_OPTS
+              value: "-Dhttp.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|.cluster.local -Dhttps.proxyHost=hx-wwwcache.ebi.ac.uk -Dhttps.proxyPort=3128"
+            - name: ES-HX-PROD-HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: es-prod-host
+                  key: host
+            - name: ES-HX-PROD-PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: es-prod-host
+                  key: port
+            - name: K8S_HX_ES_RO_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: es-hx-prod-ro-credentials
+                  key: username
+            - name: K8S_HX_ES_RO_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: es-hx-prod-ro-credentials
+                  key: password
+            - name: ES-HX-PROD-CERTIFICATE
+              valueFrom:
+                secretKeyRef:
+                  name: es-hx-prod-certificate
+                  key: hx-cert.cer
+      imagePullSecrets:
+        - name: regcred
+      nodeSelector:
+        appType: ena-dcap-es-hx
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: ena-dcap-sah-prod-fb
+  namespace: ena-dcap
+spec:
+  selector:
+    app: ena-dcap-sah-prod-fb
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 31025
+  type: NodePort

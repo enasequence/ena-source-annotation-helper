@@ -1,10 +1,10 @@
 image: openjdk:17-slim-bullseye
 
 variables:
-  VERSION: "1.1.9"
+  VERSION: "1.1.12"
   IMPORTER_VERSION: "1.0.6"
   DOCKER_DRIVER: overlay2
-  CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$VERSION
+  CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
   JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
   JOB_LIBRARY_TEST: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/test/lib"
 
@@ -19,8 +19,6 @@ before_script:
   - echo "$SSH_PRIVATE_KEY" >> ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-  - sed -i -e "s/<k8s_hh_wp_37_cluster_auth>/$K8S_HH_WP_37_CLUSTER_AUTH/" -e "s/<k8s_hh_wp_37_server>/$K8S_HH_WP_37_SERVER/" -e "s/<k8s_hh_wp_37_cluster>/$K8S_HH_WP_37_CLUSTER/" -e "s/<k8s_hh_wp_37_user>/$K8S_HH_WP_37_USER/" -e "s/<k8s_hh_wp_37_user_token>/$K8S_HH_WP_37_USER_TOKEN/" Kubernetes-cluster.yaml
-  - export KUBECONFIG=./Kubernetes-cluster.yaml
 stages:
   - test
   - build
@@ -49,7 +47,6 @@ build_dev:
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
     - sed -i 's/<env>/dev/' biocollections-importer/src/main/resources/application.properties
-    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-dev.properties
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" biocollections-importer/src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
   tags:
@@ -64,7 +61,6 @@ build_prod:
   script:
     - sed -i 's/<env>/prod/' src/main/resources/application.properties
     - sed -i 's/<env>/prod/' biocollections-importer/src/main/resources/application.properties
-    - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_PROD_PORT/" src/main/resources/application-prod.properties
     - sed -i -e "s/<k8s_es_username>/$K8S_ES_USERNAME/" -e "s/<k8s_es_password>/$K8S_ES_PASSWORD/" -e "s/<es-port>/$ES_PROD_PORT/" biocollections-importer/src/main/resources/application-prod.properties
     - ./gradlew clean build -x test
   tags:
@@ -74,7 +70,18 @@ build_prod:
       - build/libs/source-annotation-helper-${VERSION}.jar
       - biocollections-importer/build/libs/biocollections-importer-${IMPORTER_VERSION}.jar
 
-build_docker_image:
+build_prod_fb:
+  stage: build
+  script:
+    - sed -i 's/<env>/prod-fb/' src/main/resources/application.properties
+    - ./gradlew clean build -x test
+  tags:
+    - dcap-gitlab-runner
+  artifacts:
+    paths:
+      - build/libs/source-annotation-helper-${VERSION}.jar
+
+build_docker_img_dev:
   image: docker:stable
   services:
     - name: docker:dind
@@ -88,14 +95,66 @@ build_docker_image:
   script:
     - sed -i -e "s/<app_version>/$VERSION/" Dockerfile
     - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
-    - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE .
-    - docker push $CONTAINER_APP_IMAGE
+    - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE/dev:$VERSION .
+    - docker push $CONTAINER_APP_IMAGE/dev:$VERSION
+  after_script:
+    - docker logout ${CI_REGISTRY}
+  tags:
+    - dcap-gitlab-runner-docker
+  dependencies:
+    - build_dev
+
+build_docker_img_prod:
+  image: docker:stable
+  services:
+    - name: docker:dind
+      alias: docker
+      command: [ "--tls=false" ]
+  stage: dockerise
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    CONTAINER_RUNTIME_IMAGE: runtime
+  script:
+    - sed -i -e "s/<app_version>/$VERSION/" Dockerfile
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
+    - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE/prod:$VERSION .
+    - docker push $CONTAINER_APP_IMAGE/prod:$VERSION
   after_script:
     - docker logout ${CI_REGISTRY}
   tags:
     - dcap-gitlab-runner-docker
   dependencies:
     - build_prod
+  only:
+    - master
+  when: manual
+
+build_docker_img_prod_fb:
+  image: docker:stable
+  services:
+    - name: docker:dind
+      alias: docker
+      command: [ "--tls=false" ]
+  stage: dockerise
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+    DOCKER_TLS_CERTDIR: ""
+    CONTAINER_RUNTIME_IMAGE: runtime
+  script:
+    - sed -i -e "s/<app_version>/$VERSION/" Dockerfile
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
+    - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE/prodfb:$VERSION .
+    - docker push $CONTAINER_APP_IMAGE/prodfb:$VERSION
+  after_script:
+    - docker logout ${CI_REGISTRY}
+  tags:
+    - dcap-gitlab-runner-docker
+  dependencies:
+    - build_prod_fb
+  only:
+    - master
+  when: manual
 
 deploy_importer_tool_dev:
   stage: deploy
@@ -114,6 +173,7 @@ deploy_importer_tool_dev:
     - dcap-gitlab-runner
   dependencies:
     - build_dev
+  when: manual
 
 deploy_importer_tool_prod:
   stage: deploy
@@ -139,25 +199,48 @@ deploy_importer_tool_prod:
 k8s-deploy-dev:
   image: dtzar/helm-kubectl:3.11.0
   stage: deploy
+  before_script:
+    - sed -i -e "s/<k8s_hx_wp_38_cluster_auth>/$K8S_HX_WP_38_CLUSTER_AUTH/" -e "s/<k8s_hx_wp_38_server>/$K8S_HX_WP_38_SERVER/" -e "s/<k8s_hx_wp_38_cluster>/$K8S_HX_WP_38_CLUSTER/" -e "s/<k8s_hx_wp_38_user>/$K8S_HX_WP_38_USER/" -e "s/<k8s_hx_wp_38_user_token>/$K8S_HX_WP_38_USER_TOKEN/" k8s-cluster-hx.yaml
+    - export KUBECONFIG=./k8s-cluster-hx.yaml
   script:
-    - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" Kubernetes-dev-deployment.yaml
-    - kubectl apply -f Kubernetes-dev-deployment.yaml --namespace=ena-dcap
+    - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE/dev:$VERSION#" k8s-deployment-dev.yaml
+    - kubectl apply -f k8s-deployment-dev.yaml --namespace=ena-dcap
   tags:
     - dcap-gitlab-runner-docker
   dependencies:
-    - build_docker_image
-  when: manual
+    - build_docker_img_dev
 
 k8s-deploy-prod:
   image: dtzar/helm-kubectl:3.11.0
   stage: deploy
+  before_script:
+    - sed -i -e "s/<k8s_hh_wp_37_cluster_auth>/$K8S_HH_WP_37_CLUSTER_AUTH/" -e "s/<k8s_hh_wp_37_server>/$K8S_HH_WP_37_SERVER/" -e "s/<k8s_hh_wp_37_cluster>/$K8S_HH_WP_37_CLUSTER/" -e "s/<k8s_hh_wp_37_user>/$K8S_HH_WP_37_USER/" -e "s/<k8s_hh_wp_37_user_token>/$K8S_HH_WP_37_USER_TOKEN/" k8s-cluster-hh.yaml
+    - export KUBECONFIG=./k8s-cluster-hh.yaml
   only:
     - master
   script:
-    - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE#" Kubernetes-prod-deployment.yaml
-    - kubectl apply -f Kubernetes-prod-deployment.yaml --namespace=ena-dcap
+    - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE/prod:$VERSION#" k8s-deployment-prod.yaml
+    - kubectl apply -f k8s-deployment-prod.yaml --namespace=ena-dcap
   tags:
     - dcap-gitlab-runner-docker
   dependencies:
-    - build_docker_image
+    - build_docker_img_prod
   when: manual
+
+k8s-deploy-prod-fb:
+  image: dtzar/helm-kubectl:3.11.0
+  stage: deploy
+  before_script:
+    - sed -i -e "s/<k8s_hx_wp_38_cluster_auth>/$K8S_HX_WP_38_CLUSTER_AUTH/" -e "s/<k8s_hx_wp_38_server>/$K8S_HX_WP_38_SERVER/" -e "s/<k8s_hx_wp_38_cluster>/$K8S_HX_WP_38_CLUSTER/" -e "s/<k8s_hx_wp_38_user>/$K8S_HX_WP_38_USER/" -e "s/<k8s_hx_wp_38_user_token>/$K8S_HX_WP_38_USER_TOKEN/" k8s-cluster-hx.yaml
+    - export KUBECONFIG=./k8s-cluster-hx.yaml
+  only:
+    - master
+  script:
+    - sed -i -e "s#<container_app_image>#$CONTAINER_APP_IMAGE/prodfb:$VERSION#" k8s-deployment-prod-fb.yaml
+    - kubectl apply -f k8s-deployment-prod-fb.yaml --namespace=ena-dcap
+  tags:
+    - dcap-gitlab-runner-docker
+  dependencies:
+    - build_docker_img_prod_fb
+  when: manual
+
