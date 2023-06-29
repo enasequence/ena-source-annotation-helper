@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ena-dcap-sah-prod-fb
+  name: ena-dcap-sah-prod
   namespace: ena-dcap
 spec:
   selector:
     matchLabels:
-      app: ena-dcap-sah-prod-fb
+      app: ena-dcap-sah-prod
   replicas: 1
   revisionHistoryLimit: 2
   template:
     metadata:
       labels:
-        app: ena-dcap-sah-prod-fb
+        app: ena-dcap-sah-prod
     spec:
       containers:
-        - name: ena-dcap-sah-prod-fb
+        - name: ena-dcap-sah-prod
           image: <container_app_image>
           ports:
             - containerPort: 8080
@@ -56,11 +56,11 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: ena-dcap-sah-prod-fb
+  name: ena-dcap-sah-prod
   namespace: ena-dcap
 spec:
   selector:
-    app: ena-dcap-sah-prod-fb
+    app: ena-dcap-sah-prod
   ports:
     - protocol: TCP
       port: 8080
