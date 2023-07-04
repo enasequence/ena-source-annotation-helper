@@ -49,8 +49,6 @@ spec:
                   key: hh-cert.cer
       imagePullSecrets:
         - name: regcred
-      nodeSelector:
-        appType: ena-dcap-web
 
 ---
 kind: Service
