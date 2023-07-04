@@ -49,8 +49,6 @@ spec:
                   key: hx-cert.cer
       imagePullSecrets:
         - name: regcred
-      nodeSelector:
-        appType: ena-dcap-es-hx
 
 ---
 kind: Service
