@@ -22,6 +22,8 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.servers.Server;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.CorsEndpointProperties;
 import org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties;
 import org.springframework.boot.actuate.autoconfigure.web.server.ManagementPortType;
@@ -46,10 +48,15 @@ import java.util.List;
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
 
+    @Value("${server.servlet.context-path}")
+    String path;
+
+
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .components(new Components())
+                .addServersItem(new Server().url(path))
                 .info(new Info()
                         .title("ENA Source Attribute Helper (SAH)")
                         .description("")
