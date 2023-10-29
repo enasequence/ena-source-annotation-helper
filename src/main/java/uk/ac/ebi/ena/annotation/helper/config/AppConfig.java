@@ -48,7 +48,7 @@ import java.util.List;
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
 
-    @Value("${server.servlet.context-path}")
+    @Value("${custom-context-path}")
     String path;
 
 
