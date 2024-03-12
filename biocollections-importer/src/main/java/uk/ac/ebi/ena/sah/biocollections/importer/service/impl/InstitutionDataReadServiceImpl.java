@@ -112,7 +112,7 @@ public class InstitutionDataReadServiceImpl implements FTPDataReadService, Appli
             br.close();
             return true;
         } catch (IOException ex) {
-            log.debug(ex.getLocalizedMessage(), ex);
+            log.info("Failed to fetch and process institutions data from NCBI FTP - " + ex.getLocalizedMessage(), ex);
             throw new BioCollectionsProcessingException(InstitutionDataReadError, InstitutionDataReadErrorMessage, ex);
         }
     }
