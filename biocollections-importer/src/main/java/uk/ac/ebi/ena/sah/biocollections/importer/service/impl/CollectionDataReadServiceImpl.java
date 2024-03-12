@@ -137,7 +137,7 @@ public class CollectionDataReadServiceImpl implements FTPDataReadService, Applic
             br.close();
             return true;
         } catch (IOException ex) {
-            log.info("Failed to fetch and process collections data from NCBI FTP - " + ex.getLocalizedMessage(), ex);
+            log.info("Failed to fetch and process collections data from NCBI FTP - {} ", ex.getLocalizedMessage(), ex);
             throw new BioCollectionsProcessingException(CollectionDataReadError, CollectionDataReadErrorMessage, ex);
         }
     }
