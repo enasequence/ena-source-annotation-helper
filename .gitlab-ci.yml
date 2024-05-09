@@ -101,7 +101,7 @@ build_docker_img_dev:
     CONTAINER_RUNTIME_IMAGE: runtime
   script:
     - sed -i -e "s/<app_version>/$VERSION/" Dockerfile
-    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN
     - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE/dev:$VERSION .
     - docker push $CONTAINER_APP_IMAGE/dev:$VERSION
   after_script:
@@ -124,7 +124,7 @@ build_docker_img_prod:
     CONTAINER_RUNTIME_IMAGE: runtime
   script:
     - sed -i -e "s/<app_version>/$VERSION/" Dockerfile
-    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN
     - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE/prod:$VERSION .
     - docker push $CONTAINER_APP_IMAGE/prod:$VERSION
   after_script:
@@ -150,7 +150,7 @@ build_docker_img_prod_fb:
     CONTAINER_RUNTIME_IMAGE: runtime
   script:
     - sed -i -e "s/<app_version>/$VERSION/" Dockerfile
-    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN
+    - docker login $CI_REGISTRY -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN
     - docker build --no-cache --rm=true -t $CONTAINER_APP_IMAGE/prodfb:$VERSION .
     - docker push $CONTAINER_APP_IMAGE/prodfb:$VERSION
   after_script:
