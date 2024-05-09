@@ -39,6 +39,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.net.ssl.SSLContext;
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
 @Configuration
@@ -55,15 +56,16 @@ public class ElasticsearchClientConfig {
     private String host;
     @Value("${elasticsearch.port}")
     private int port;
+    @Value("${elasticsearch.certificate}")
+    private String certificate;
 
-    @SneakyThrows
     @Bean
-    public ElasticsearchClient client() {
+    @SneakyThrows
+    public RestClient restClient() {
         // ES 8.5 client approach
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("certificates/elasticsearch-ssl.crt");
         SSLContext sslContext = TransportUtils
-                .sslContextFromHttpCaCrt(inputStream);
+                .sslContextFromHttpCaCrt(new ByteArrayInputStream(certificate.getBytes()));
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
         credsProv.setCredentials(
@@ -71,7 +73,7 @@ public class ElasticsearchClientConfig {
         );
 
         // Create the low-level client
-        RestClient restClient = RestClient.builder(
+        return RestClient.builder(
                         new HttpHost(host, port, "https"))
                 .setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
                     @Override
@@ -93,14 +95,17 @@ public class ElasticsearchClientConfig {
                     }
                 })
                 .build();
+    }
 
+    @SneakyThrows
+    @Bean
+    public ElasticsearchClient client() {
         // Create the transport with a Jackson mapper
         ElasticsearchTransport transport = new RestClientTransport(
-                restClient, new JacksonJsonpMapper());
-
-// And create the API client
-        ElasticsearchClient client = new ElasticsearchClient(transport);
-        return client;
+                restClient(), new JacksonJsonpMapper());
+        // And create the API client
+        return new ElasticsearchClient(transport);
     }
+
 
 }

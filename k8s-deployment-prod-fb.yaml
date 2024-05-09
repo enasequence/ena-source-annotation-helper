@@ -32,21 +32,6 @@ spec:
                 configMapKeyRef:
                   name: es-prod-host
                   key: port
-            - name: K8S_HX_ES_RO_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: es-hx-prod-ro-credentials
-                  key: username
-            - name: K8S_HX_ES_RO_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: es-hx-prod-ro-credentials
-                  key: password
-            - name: ES-HX-PROD-CERTIFICATE
-              valueFrom:
-                secretKeyRef:
-                  name: es-hx-prod-certificate
-                  key: hx-cert.cer
       imagePullSecrets:
         - name: regcred
 
