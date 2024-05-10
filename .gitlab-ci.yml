@@ -47,9 +47,6 @@ build_dev:
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
     - sed -i 's/<env>/dev/' biocollections-importer/src/main/resources/application.properties
-    - echo $K8S_HX_ES_RO_USERNAME
-    - echo ${#ELASTIC_TLS_CERTIFICATE}
-    - echo ${#OAUTH_DATAHUBS_PORTAL_CLIENT_SECRET}
     - sed -i -e "s/<K8S_HX_ES_RO_USERNAME>/$K8S_HX_ES_RO_USERNAME/" -e "s/<K8S_HX_ES_RO_PASSWORD>/$K8S_HX_ES_RO_PASSWORD/" -e "s/<ES-HX-PROD-CERTIFICATE>/$ELASTIC_TLS_CERTIFICATE/" src/main/resources/application-dev.properties
     - sed -i -e "s/<K8S_HX_ES_USERNAME>/$K8S_HX_ES_USERNAME/" -e "s/<K8S_HX_ES_PASSWORD>/$K8S_HX_ES_PASSWORD/" -e "s/<ES-HX-PROD-CERTIFICATE>/$ELASTIC_TLS_CERTIFICATE/" biocollections-importer/src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
