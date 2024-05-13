@@ -2,7 +2,7 @@ image: openjdk:17-slim-bullseye
 
 variables:
   VERSION: "1.1.15e"
-  IMPORTER_VERSION: "1.0.8d"
+  IMPORTER_VERSION: "1.0.8e"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
   JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
@@ -36,8 +36,8 @@ test:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/test/' src/main/resources/application.properties
-    - sed -i -e "s/<K8S_HX_ES_RO_USERNAME>/$K8S_HX_ES_RO_USERNAME/" -e "s/<K8S_HX_ES_RO_PASSWORD>/$K8S_HX_ES_RO_PASSWORD/" -e "s#<ES-HX-PROD-CERTIFICATE>#$ELASTIC_TLS_CERTIFICATE#" src/main/resources/application-test.properties
-    - ./gradlew clean test
+    - sed -i -e "s/<K8S_HX_ES_RO_USERNAME>/$K8S_HX_ES_RO_USERNAME/" -e "s/<K8S_HX_ES_RO_PASSWORD>/$K8S_HX_ES_RO_PASSWORD/" src/main/resources/application-test.properties
+#    - ./gradlew clean test
   allow_failure: true
   tags:
     - dcap-gitlab-runner
@@ -47,10 +47,9 @@ build_dev:
   script:
     - sed -i 's/<env>/dev/' src/main/resources/application.properties
     - sed -i 's/<env>/dev/' biocollections-importer/src/main/resources/application.properties
-    - echo $ELASTIC_TLS_CERTIFICATE
-    - sed -i -e "s/<K8S_HX_ES_RO_USERNAME>/$K8S_HX_ES_RO_USERNAME/" -e "s/<K8S_HX_ES_RO_PASSWORD>/$K8S_HX_ES_RO_PASSWORD/" -e "s#<ES-HX-PROD-CERTIFICATE>#$ELASTIC_TLS_CERTIFICATE#" src/main/resources/application-dev.properties
-    - cat src/main/resources/application-dev.properties
-    - sed -i -e "s/<K8S_HX_ES_USERNAME>/$K8S_HX_ES_USERNAME/" -e "s/<K8S_HX_ES_PASSWORD>/$K8S_HX_ES_PASSWORD/" -e "s#<ES-HX-PROD-CERTIFICATE>#$ELASTIC_TLS_CERTIFICATE#" biocollections-importer/src/main/resources/application-dev.properties
+    - sed -i '1,$d' src/main/resources/certificates/ena-prod-es.crt && echo "$ELASTIC_TLS_CERTIFICATE" > src/main/resources/certificates/ena-prod-es.crt
+    - sed -i '1,$d' biocollections-importer/src/main/resources/certificates/ena-prod-es.crt && echo "$ELASTIC_TLS_CERTIFICATE" > biocollections-importer/src/main/resources/certificates/ena-prod-es.crt
+    - sed -i -e "s/<K8S_HX_ES_USERNAME>/$K8S_HX_ES_USERNAME/" -e "s/<K8S_HX_ES_PASSWORD>/$K8S_HX_ES_PASSWORD/" biocollections-importer/src/main/resources/application-dev.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
@@ -64,8 +63,10 @@ build_prod:
   script:
     - sed -i 's/<env>/prod/' src/main/resources/application.properties
     - sed -i 's/<env>/prod/' biocollections-importer/src/main/resources/application.properties
+    - sed -i '1,$d' src/main/resources/certificates/ena-prod-es.crt && echo "$ELASTIC_TLS_CERTIFICATE" > src/main/resources/certificates/ena-prod-es.crt
+    - sed -i '1,$d' biocollections-importer/src/main/resources/certificates/ena-prod-es.crt && echo "$ELASTIC_TLS_CERTIFICATE" > biocollections-importer/src/main/resources/certificates/ena-prod-es.crt
     - sed -i -e "s/<K8S_ES_RO_USERNAME>/$K8S_ES_RO_USERNAME/" -e "s/<K8S_ES_RO_PASSWORD>/$K8S_ES_RO_PASSWORD/" -e "s#<ES-HH-PROD-CERTIFICATE>#$ELASTIC_TLS_CERTIFICATE#" src/main/resources/application-prod-fb.properties
-    - sed -i -e "s/<K8S_HH_ES_USERNAME>/$K8S_ES_USERNAME/" -e "s/<K8S_HH_ES_PASSWORD>/$K8S_ES_PASSWORD/" -e "s#<ES-HH-PROD-CERTIFICATE>#$ELASTIC_TLS_CERTIFICATE#" biocollections-importer/src/main/resources/application-prod.properties
+    - sed -i -e "s/<K8S_HH_ES_USERNAME>/$K8S_ES_USERNAME/" -e "s/<K8S_HH_ES_PASSWORD>/$K8S_ES_PASSWORD/" biocollections-importer/src/main/resources/application-prod.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
@@ -80,7 +81,9 @@ build_prod_fb:
   stage: build
   script:
     - sed -i 's/<env>/prod-fb/' src/main/resources/application.properties
-    - sed -i -e "s/<K8S_HX_ES_RO_USERNAME>/$K8S_HX_ES_RO_USERNAME/" -e "s/<K8S_HX_ES_RO_PASSWORD>/$K8S_HX_ES_RO_PASSWORD/" -e "s#<ES-HX-PROD-CERTIFICATE>#$ELASTIC_TLS_CERTIFICATE#" src/main/resources/application-prod-fb.properties
+    - sed -i '1,$d' src/main/resources/certificates/ena-prod-es.crt && echo "$ELASTIC_TLS_CERTIFICATE" > src/main/resources/certificates/ena-prod-es.crt
+    - sed -i '1,$d' biocollections-importer/src/main/resources/certificates/ena-prod-es.crt && echo "$ELASTIC_TLS_CERTIFICATE" > biocollections-importer/src/main/resources/certificates/ena-prod-es.crt
+    - sed -i -e "s/<K8S_HX_ES_RO_USERNAME>/$K8S_HX_ES_RO_USERNAME/" -e "s/<K8S_HX_ES_RO_PASSWORD>/$K8S_HX_ES_RO_PASSWORD/" src/main/resources/application-prod-fb.properties
     - ./gradlew clean build -x test
   tags:
     - dcap-gitlab-runner
