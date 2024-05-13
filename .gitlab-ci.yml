@@ -1,8 +1,8 @@
 image: openjdk:17-slim-bullseye
 
 variables:
-  VERSION: "1.1.15f"
-  IMPORTER_VERSION: "1.0.8f"
+  VERSION: "1.1.16"
+  IMPORTER_VERSION: "1.0.9"
   DOCKER_DRIVER: overlay2
   CONTAINER_APP_IMAGE: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG
   JOB_LIBRARY: "/nfs/production/cochrane/ena/tools/sah-biocollections-importer/lib"
@@ -36,8 +36,8 @@ test:
     - export GRADLE_USER_HOME=`pwd`/.gradle
   script:
     - sed -i 's/<env>/test/' src/main/resources/application.properties
-    - sed -i -e "s/<K8S_HX_ES_RO_USERNAME>/$K8S_HX_ES_RO_USERNAME/" -e "s/<K8S_HX_ES_RO_PASSWORD>/$K8S_HX_ES_RO_PASSWORD/" src/main/resources/application-test.properties
-#    - ./gradlew clean test
+    - sed -i -e "s/<K8S_HX_ES_RO_USERNAME>/$K8S_HX_ES_RO_USERNAME/" -e "s/<K8S_HX_ES_RO_PASSWORD>/$K8S_HX_ES_RO_PASSWORD/" -e "s/<es-port>/$ES_DEV_PORT/" src/main/resources/application-test.properties
+    - ./gradlew clean test
   allow_failure: true
   tags:
     - dcap-gitlab-runner
