@@ -61,7 +61,7 @@ public class ElasticsearchClientConfig {
     public ElasticsearchClient client() {
         // ES 8.5 client approach
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("certificates/elasticsearch-ssl.crt");
+        InputStream inputStream = classLoader.getResourceAsStream("certificates/ena-prod-es.crt");
         SSLContext sslContext = TransportUtils
                 .sslContextFromHttpCaCrt(inputStream);
 
