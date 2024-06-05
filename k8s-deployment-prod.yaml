@@ -7,7 +7,7 @@ spec:
   selector:
     matchLabels:
       app: ena-dcap-sah-prod
-  replicas: 1
+  replicas: 2
   revisionHistoryLimit: 3
   template:
     metadata:
@@ -19,6 +19,14 @@ spec:
           image: <container_app_image>
           ports:
             - containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /ena/sah/api/actuator/health?client=k8s
+              port: 8080
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+            periodSeconds: 120
+            failureThreshold: 1
           env:
             - name: JAVA_OPTS
               value: "-Dhttp.proxyHost=pg-wwwcache.ebi.ac.uk -Dhttp.proxyPort=3128 -Dhttp.nonProxyHosts=localhost|.cluster.local -Dhttps.proxyHost=pg-wwwcache.ebi.ac.uk -Dhttps.proxyPort=3128"
